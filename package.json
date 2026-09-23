@@ -14,7 +14,7 @@
     "headers": "mcco-headers"
   },
   "dependencies": {
-    "@mcco/web-kit": "github:mcabrera-pixel/mcco-web-kit#v1.0.0",
+    "@mcco/web-kit": "github:mcabrera-pixel/mcco-web-kit#v1.0.3",
     "astro": "^7.3.4"
   },
   "devDependencies": {

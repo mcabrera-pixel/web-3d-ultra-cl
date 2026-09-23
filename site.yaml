@@ -48,7 +48,7 @@ csp:
   img_src: [https://images.unsplash.com]
   media_src: [https://pub-dd66483f8e7f497f9490ea37068612b0.r2.dev]
   connect_src: []
-  frame_src: []
+  frame_src: [https://courageous-salmiakki-fd7efc.netlify.app, https://komatsu-ph-4100xpc.netlify.app, https://komatsu930e5.netlify.app]   # visores 3D embebidos en el home
   unsafe_eval: false                # verificado: el sitio no usa eval ni new Function
 
 redirects:
