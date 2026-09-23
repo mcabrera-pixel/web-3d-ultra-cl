@@ -9,3 +9,7 @@ node_modules/
 .wrangler/
 *.log
 *.bat
+
+# Respaldo local de videos originales (385 MB, proce1.mp4 = 266 MB > limite GitHub).
+# Los videos se sirven desde Cloudflare R2 (ver 01_Web/index.html).
+06_Recursos/LargeVideos/

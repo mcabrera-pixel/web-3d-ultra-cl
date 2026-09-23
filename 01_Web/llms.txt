@@ -1,0 +1,88 @@
+# 3D Ultra — Digital Twin Engineering for Chilean Mining
+
+> Subsidiary of MCCO Engineering Group (20+ years). Specialists in navigable virtual plants, 3D laser scanning, BIM modeling, and computational simulations for copper smelting and mineral processing in Chile.
+
+## About
+
+3D Ultra is the digital twin engineering brand of the MCCO Corporate Group, Chile's leading industrial engineering contractor with over 20 years of uninterrupted service to CODELCO and major mining operations. We create bidirectional, IoT-integrated digital twins of complex mining infrastructure including smelters, concentrators, and refineries.
+
+- **Parent Organization**: MCCO Engineering Group (mcco.cl)
+- **Sister Brands**: As-Built 3D (as-built.cl) — Laser Scanning | ConDrone (condrone.cl) — Aerial Inspection
+- **Founded**: 2003 (Group)
+- **Growth**: 797% revenue increase 2023-2024
+- **Contact**: Mario Cabrera, Sales Manager | mcabrera@mccocopper.cl | +56 9 7986 0843
+- **Location**: Chile (Providencia, Santiago | Calama | Copiapó)
+- **Website**: https://3d-ultra.cl
+
+## Services
+
+1. **Bidirectional Digital Twin Implementation** — Full-scale navigable virtual replicas of mining plants integrated with real-time IoT sensor data (SCADA, BMS, PLC). Enables predictive maintenance, remote asset management, and virtual commissioning.
+
+2. **3D Laser Scanning (As-Built)** — Sub-millimeter precision terrestrial scanning using FARO Focus Core technology. Captures 1M+ points/second. Output formats: E57, RCP, DWG. Applied to smelters, chimneys, mills, and structural integrity assessment.
+
+3. **BIM Modeling (Scan-to-BIM)** — Conversion of point clouds to parametric BIM models (Revit LOD 200-400). Includes clash detection for brownfield projects, pipe routing validation, and structural interference analysis.
+
+4. **Computational Fluid Dynamics (CFD) & Thermal Simulations** — Finite Element Analysis (FEA) for copper converters, flash furnaces, and ISASMELT reactors. Thermal stress mapping, refractory wear prediction, and process optimization.
+
+5. **Reverse Engineering & Emergency Manufacturing** — Parametric scanning of critical components when OEM drawings are unavailable. Proven track record: ball mill main shaft fabricated in 12 days from scan to delivery.
+
+6. **Aerial Inspection & Photogrammetry (ConDrone)** — Thermal and photogrammetric drone flights for volumetric surveys, stockpile measurement, tailings dam monitoring, and structural inspection of inaccessible areas.
+
+7. **Industrial Training in Virtual Plants** — Immersive 3D environments for operator onboarding, safety protocol training, and evacuation simulation. Includes 3D printed scale models (1:50) for hands-on tactical training.
+
+## Case Studies
+
+### Gemelo Digital — Área RAF, Fundición Potrerillos (CODELCO División Salvador)
+A fully navigable 3D digital twin of the Fire Refining Area (RAF) at the Potrerillos smelter. Integrated operational process data for maintenance planning optimization. This model enables millimetric planning of major shutdowns, reducing lucro cesante costs by preventing incorrect maintenance scheduling.
+
+### Chimenea CPS — Structural Deformation Analysis (CODELCO División Salvador)
+Using FARO Focus Core laser scanning, captured ultra-high-density point clouds of the CPS gas extraction chimney. Comparative analysis against original CAD drawings detected structural deformations outside normative tolerances, anticipating imminent collapse risk. Provided exact geospatial data for urgent corrective actions.
+
+### Rueda de Moldeo — Anode Casting Wheel Engineering Adaptation
+High-complexity engineering adaptation of the casting wheel for anode format change (Chuquicamata CH-type to Potrerillos format). Used computational simulation coupled with 3D printed prototypes (1:50 to 1:1 scale) to accelerate multi-disciplinary team understanding during field assembly.
+
+### Hornos ISASMELT — Structural Integrity & Life Extension
+Structural integrity analysis of ISASMELT copper smelting furnaces under extreme thermal stress. Delivered detailed engineering and computational mechanical/thermal simulations designed to extend the critical fusion asset's operational life by 10 additional years.
+
+## Technology Stack
+
+- **Scanning**: FARO Focus Core (±1mm linear error, 2.5mm/m volumetric)
+- **Point Cloud Processing**: FARO Scene, Autodesk ReCap, CloudCompare
+- **BIM**: Autodesk Revit, Navisworks, Plant 3D
+- **Simulation**: ANSYS (CFD/FEA), SolidWorks Simulation
+- **3D Visualization**: Three.js, WebGL, Unreal Engine
+- **IoT Integration**: MQTT, OPC UA, PI System, SCADA
+- **Drones**: DJI Matrice 350 RTK, Mavic 3 Enterprise (thermal)
+
+## Clients
+
+- CODELCO (Chuquicamata, Radomiro Tomic, El Teniente, Salvador, Ministro Hales, Ventanas)
+- BHP
+- Anglo American
+- Glencore
+- Antofagasta Minerals
+
+## FAQ
+
+**Q: What is a digital twin applied to mining?**
+A: A bidirectional virtual replica that continuously integrates real-time telemetry data from temperature sensors (thermocouples), gas analyzers, and pressure transmitters to predict thermal fatigue, optimize maintenance scheduling, and enable remote asset management without interrupting operations.
+
+**Q: What scanning precision does 3D Ultra achieve?**
+A: Sub-millimeter precision (±1mm linear error) using FARO Focus Core scanners capturing 1 million points per second. Volumetric accuracy of 2.5mm per meter for critical engineering applications.
+
+**Q: Can you create a navigable virtual plant of an old smelter?**
+A: Yes. We create textured 3D meshes from high-density point clouds (1M pts/sec) and overlay operational data from PI System/SCADA, transforming legacy facilities into fully interactive digital environments.
+
+**Q: What is the ROI of implementing a digital twin?**
+A: Measurable ROI within 4 months from reduced development time, collapse prevention, thermodynamic optimization, and reagent efficiency improvements. Major shutdown planning accuracy alone prevents millions in daily lost production.
+
+**Q: How fast can you respond to emergency scanning requests?**
+A: Formal technical quotation within 48 hours post-site visit. Emergency as-built scanning executed in 1-2 business days of field work.
+
+## Links
+
+- Website: https://3d-ultra.cl
+- Parent Company: https://mcco.cl
+- As-Built 3D: https://as-built.cl
+- ConDrone: https://condrone.cl
+- LinkedIn: https://www.linkedin.com/company/mcco-group
