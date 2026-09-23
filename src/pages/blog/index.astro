@@ -1,0 +1,31 @@
+---
+// Índice del blog: se genera desde la colección. Sin posts lleva noindex y el sitemap lo omite (Estándar v2 §4).
+import Base from '@mcco/web-kit/layouts/Base.astro';
+import PostCard from '@mcco/web-kit/components/PostCard.astro';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import { getCollection } from 'astro:content';
+import '../../styles/theme.css';
+
+const site = loadSite();
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort((a, b) => +b.data.date - +a.data.date);
+const empty = posts.length === 0;
+---
+<Base title={`Blog | ${site.name}`} description={`Guías técnicas, casos y normativa de ${site.name} para minería e industria en Chile.`} noindex={empty}>
+  <main class="blog">
+    <header class="blog__header">
+      <p><a href="/">← {site.name}</a></p>
+      <h1>Blog</h1>
+    </header>
+    {empty ? (
+      <p>Próximamente publicaremos guías técnicas y casos. Mientras tanto, <a href="/#contacto">escríbenos</a>.</p>
+    ) : (
+      <div class="blog__grid">
+        {posts.map((p) => <PostCard href={`/blog/${p.id}`} title={p.data.title} description={p.data.description} date={p.data.date} category={p.data.category} hero={p.data.hero} />)}
+      </div>
+    )}
+  </main>
+</Base>
+<style>
+  .blog { max-width: var(--mcco-maxw); margin: 0 auto; padding: calc(var(--mcco-space) * 2) var(--mcco-space); }
+  .blog__grid { display: grid; gap: var(--mcco-space); grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+</style>

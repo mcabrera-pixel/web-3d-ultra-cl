@@ -1,0 +1,27 @@
+---
+// Home de 3d-ultra.cl. Cabecera, canonical, JSON-LD de entidad, analítica y bloque Grupo MCCO vienen del kit.
+// El cuerpo es el HTML original del sitio (src/legacy/index-body.html) sin cambios visuales, a la espera de
+// componentizarse por secciones. El CSS original vive en src/styles/site.css; los tokens en theme.css.
+import fs from 'node:fs';
+import path from 'node:path';
+import Base from '@mcco/web-kit/layouts/Base.astro';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import '../styles/theme.css';
+import '../styles/site.css';
+
+const site = loadSite();
+const read = (p: string) => fs.readFileSync(path.resolve(p), 'utf8');
+const body = read('src/legacy/index-body.html');
+const headExtra = read('src/legacy/index-head-extra.html');
+const faqLd = read('src/legacy/index-faq.jsonld').trim();
+// Título original del sitio (se conserva para paridad con producción; mejorarlo es una decisión de contenido aparte).
+const title = '3DUltra Arch & Ingeniería Soluciones de Ingeniería 4.0';
+---
+<Base title={title} description={site.description.trim()} organization={true} ogImage="/og.webp"
+      alternates={[{ lang: 'es', href: '/' }, { lang: 'en', href: '/en/faq' }]}>
+  <Fragment slot="head">
+    <Fragment set:html={headExtra} />
+    {faqLd && <script is:inline type="application/ld+json" set:html={faqLd} />}
+  </Fragment>
+  <Fragment set:html={body} />
+</Base>

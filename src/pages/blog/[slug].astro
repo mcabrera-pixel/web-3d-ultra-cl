@@ -1,0 +1,16 @@
+---
+// Página de artículo: una ruta por entrada de la colección blog → /blog/<slug> (archivo <slug>.html).
+import Post from '@mcco/web-kit/layouts/Post.astro';
+import { getCollection, render } from 'astro:content';
+import '../../styles/theme.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<Post post={post}>
+  <Content />
+</Post>

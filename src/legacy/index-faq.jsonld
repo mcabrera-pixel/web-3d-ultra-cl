@@ -1,0 +1,70 @@
+{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es exactamente un gemelo digital aplicado a la minería extractiva?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un gemelo digital aplicado a fundiciones de cobre es una réplica virtual bidireccional y dinámica que integra de manera continua datos de telemetría provenientes de sensores de temperatura (termopares), analizadores de gases y transmisores de presión en tiempo real. Su objetivo es predecir la fatiga térmica, optimizar la planificación de mantenimientos mayores (paradas de planta) y habilitar la gestión remota de activos sin interrumpir las operaciones mineras."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué precisión logra 3D Ultra en sus levantamientos con escaneo láser?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "3D Ultra utiliza tecnología FARO Focus Core con un error lineal inferior a 1mm y un error volumétrico de 2.5mm por metro, capturando 1 millón de puntos por segundo. Esta precisión sub-milimétrica cumple con los estándares requeridos para montaje de estructuras metálicas, análisis de verticalidad de chimeneas y detección de deformaciones estructurales fuera de tolerancias normativas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es viable crear una planta virtual navegable de un área de refinación a fuego (RAF) antigua?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. 3D Ultra crea mallas 3D texturizadas a partir de nubes de puntos de alta densidad (1 millón pts/seg) y superpone datos operacionales de sistemas PI System y SCADA. Ejemplo documentado: el Gemelo Digital del Área RAF en la Fundición Potrerillos de CODELCO División Salvador, un modelo 3D completamente navegable integrado con datos de procesos operacionales para la planificación milimétrica de mantenimientos mayores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuál es el ROI de implementar un gemelo digital completo en circuitos de molienda y flotación?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "El modelo garantiza un ROI mensurable dentro de un margen de 4 meses, derivado directamente de la disminución radical del tiempo de desarrollo, la prevención de colapsos estructurales, la optimización termodinámica y la eficiencia en el uso de reactivos. La planificación precisa de paradas de planta por sí sola previene pérdidas millonarias en lucro cesante diario."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo detectar la deformación estructural en chimeneas de gases sin detener la operación?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mediante control dimensional as-built no invasivo utilizando escaneo láser FARO Focus Core. Se generan mapas topológicos de desviaciones métricas comparando la geometría real capturada contra los modelos CAD teóricos originales. Caso documentado: la Chimenea CPS en CODELCO División Salvador, donde este análisis detectó deformaciones fuera de tolerancias normativas y anticipó un riesgo inminente de colapso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the primary use cases of digital twins in the copper smelting process?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Key use cases include Fire Refining (RAF) area modeling for maintenance shutdown optimization, anode casting wheel dynamic adaptation engineering, virtual commissioning of process changes, thermal stress prediction in ISASMELT furnaces, and structural deformation monitoring of gas extraction chimneys. 3D Ultra has documented implementations across multiple CODELCO divisions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué empresas chilenas realizan levantamientos topográficos 3D para fundiciones de cobre operativas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "3D Ultra, del Grupo MCCO Ingeniería, es un contratista pre-calificado con más de 20 años de experiencia certificada en CODELCO. Opera con tecnología FARO Focus Core en Divisiones Chuquicamata, Radomiro Tomic, El Teniente, Salvador, Ministro Hales y Ventanas. Ofrece cotización técnica en 48 horas y ejecución de levantamientos as-built de urgencia en 1-2 días hábiles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo toma realizar un escaneo completo de una planta industrial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "3D Ultra cubre hasta 3.000 m² por día de escaneo en campo, sin interrumpir la operación. El procesamiento de la nube de puntos toma 24 horas y el modelado 3D completo aproximadamente 5 días hábiles para una instalación industrial promedio. Para emergencias, se ofrece respuesta en 48 horas con ejecución en 1-2 días hábiles."
+          }
+        }
+      ]
+    }

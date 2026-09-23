@@ -1,0 +1,15 @@
+/* theme.css — VALORES de los tokens de 3d-ultra.cl (nombres fijados por @mcco/web-kit/styles/tokens.css).
+   Reflejan la identidad vigente del sitio (ver DESIGN.md). El CSS original del home sigue en site.css. */
+:root {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f4f6f8;
+  --color-text: #1a1a1a;
+  --color-muted: #555555;
+  --color-accent: #d32f2f;
+  --color-border: #e1e1e1;
+  --font-body: 'Montserrat', system-ui, sans-serif;
+  --font-display: 'Montserrat', system-ui, sans-serif;
+  --space: 1rem;
+  --radius: 4px;
+  --maxw: 1440px;
+}

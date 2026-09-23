@@ -1,0 +1,12 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: mcabrera-pixel/mcco-web-kit/.github/workflows/site-deploy.yml@v1
+    with:
+      project: 3d-ultra   # = cloudflare.project de site.yaml
+    secrets: inherit

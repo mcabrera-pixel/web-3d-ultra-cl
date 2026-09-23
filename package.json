@@ -1,0 +1,26 @@
+{
+  "name": "web-3d-ultra-cl",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "3d-ultra.cl — web de 3D Ultra (MCCO Group), conforme al Estándar Web MCCO v2 (Astro + @mcco/web-kit + Cloudflare Pages)",
+  "scripts": {
+    "dev": "astro dev",
+    "prebuild": "mcco-headers",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "mcco-check --dist dist",
+    "parity": "mcco-parity",
+    "headers": "mcco-headers"
+  },
+  "dependencies": {
+    "@mcco/web-kit": "github:mcabrera-pixel/mcco-web-kit#v1.0.0",
+    "astro": "^7.3.4"
+  },
+  "devDependencies": {
+    "wrangler": "^4.62.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
