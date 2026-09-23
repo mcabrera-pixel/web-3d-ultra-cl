@@ -1,0 +1,12 @@
+name: ci
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ci:
+    uses: mcabrera-pixel/mcco-web-kit/.github/workflows/site-ci.yml@v1
+    with:
+      project: 3d-ultra   # = cloudflare.project de site.yaml
+    secrets: inherit

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Estructural Chimenea CPS — Deformación y Prevención de Colapso | 3D Ultra</title>
+    <link rel="canonical" href="https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador">
+    <meta name="description" content="Caso de estudio: Análisis de deformación estructural de la Chimenea CPS en CODELCO División Salvador mediante escaneo láser FARO Focus Core. Detección de deformaciones fuera de tolerancia normativa que anticiparon riesgo de colapso.">
+    <meta name="keywords" content="chimenea CPS, deformación estructural, CODELCO Salvador, escaneo láser, FARO Focus Core, nube de puntos, control dimensional, prevención de colapso, 3D Ultra, MCCO">
+    <meta name="author" content="3D Ultra — MCCO Engineering Group">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador.html">
+    <meta property="og:title" content="Análisis Estructural Chimenea CPS — Prevención de Colapso | 3D Ultra">
+    <meta property="og:description" content="Detección de deformaciones estructurales críticas en la Chimenea CPS de CODELCO Salvador mediante escaneo láser de precisión milimétrica.">
+    <meta property="og:image" content="https://3d-ultra.cl/og.webp">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS — CODELCO División Salvador",
+      "description": "Utilizando tecnología de escaneo láser FARO Focus Core, se capturó una nube de puntos de ultra alta densidad de la Chimenea CPS, detectando deformaciones estructurales fuera de tolerancias normativas y anticipando un riesgo inminente de colapso.",
+      "author": {
+        "@type": "Organization",
+        "name": "3D Ultra — MCCO Engineering Group",
+        "url": "https://3d-ultra.cl"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "3D Ultra",
+        "url": "https://3d-ultra.cl"
+      },
+      "datePublished": "2026-03-16",
+      "dateModified": "2026-03-16",
+      "mainEntityOfPage": "https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador.html",
+      "about": ["Structural Deformation Analysis", "Laser Scanning", "Chimney Inspection", "Collapse Prevention", "CODELCO"],
+      "keywords": "chimenea CPS, CODELCO Salvador, deformación estructural, escaneo láser, FARO Focus Core, prevención de colapso, control dimensional, 3D Ultra"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --bg-body:#fff; --bg-alt:#f4f6f8; --bg-dark:#0f0f0f; --text-main:#1a1a1a; --text-muted:#555; --accent:#d32f2f; --primary:#111; --border:#e1e1e1; --container-width:800px; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { font-family:'Montserrat',sans-serif; background:var(--bg-body); color:var(--text-main); line-height:1.8; }
+        .container { max-width:var(--container-width); margin:0 auto; padding:0 5%; }
+        a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+        .top-bar { background:var(--bg-dark); color:white; padding:15px 0; }
+        .top-bar .container { display:flex; justify-content:space-between; align-items:center; }
+        .top-bar a { color:white; font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+        .brand-link { font-size:1.4rem; font-weight:800; letter-spacing:-1px; } .brand-link span { color:#C85A17; }
+        .article-hero { background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 100%); color:white; padding:100px 0 80px; }
+        .article-hero .tag { display:inline-block; background:var(--accent); color:white; padding:5px 15px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; border-radius:2px; margin-bottom:25px; }
+        .article-hero h1 { font-size:clamp(2rem,4vw,3rem); font-weight:800; line-height:1.15; margin-bottom:20px; letter-spacing:-1px; }
+        .article-hero .meta { color:rgba(255,255,255,0.6); font-size:0.85rem; }
+        .ai-capsule { background:#f0f4ff; border-left:4px solid #2563eb; padding:25px 30px; margin:40px 0; border-radius:0 8px 8px 0; }
+        .ai-capsule .label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#2563eb; margin-bottom:8px; }
+        .ai-capsule p { color:#1a1a1a; font-size:0.95rem; line-height:1.7; margin:0; font-weight:500; }
+        article { padding:60px 0 100px; }
+        article h2 { font-size:1.8rem; font-weight:800; margin:50px 0 15px; color:var(--primary); letter-spacing:-0.5px; }
+        article h3 { font-size:1.3rem; font-weight:700; margin:35px 0 10px; color:var(--primary); }
+        article p { color:var(--text-muted); margin-bottom:1.5rem; font-size:1rem; }
+        article ul,article ol { padding-left:25px; margin-bottom:1.5rem; color:var(--text-muted); }
+        article li { margin-bottom:8px; }
+        .results-box { background:var(--bg-dark); color:white; padding:40px; border-radius:8px; margin:40px 0; }
+        .results-box h3 { color:white; margin-top:0; }
+        .results-box .stat { display:flex; align-items:baseline; gap:10px; margin-bottom:15px; }
+        .results-box .stat-number { font-size:2rem; font-weight:800; color:var(--accent); }
+        .results-box .stat-label { color:#bbb; font-size:0.9rem; }
+        table { width:100%; border-collapse:collapse; margin:25px 0; font-size:0.9rem; }
+        th { background:var(--bg-dark); color:white; padding:12px 15px; text-align:left; font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.5px; }
+        td { padding:12px 15px; border-bottom:1px solid var(--border); color:var(--text-muted); }
+        tr:hover td { background:var(--bg-alt); }
+        .cta-section { background:var(--bg-alt); padding:60px 0; text-align:center; }
+        .cta-section h2 { margin-top:0; }
+        .btn { display:inline-block; padding:15px 35px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; background:var(--primary); color:white; border:1px solid var(--primary); cursor:pointer; transition:all 0.3s ease; text-decoration:none; }
+        .btn:hover { background:transparent; color:var(--primary); text-decoration:none; }
+        footer { background:var(--bg-dark); color:#777; padding:30px 0; text-align:center; font-size:0.8rem; }
+        footer a { color:#aaa; }
+        @media (max-width:768px) { .article-hero { padding:80px 0 60px; } .article-hero h1 { font-size:1.8rem; } }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container">
+        <a href="../index.html" class="brand-link">3D<span>ULTRA</span></a>
+        <a href="../index.html#contacto">Contacto</a>
+    </div>
+</div>
+
+<div class="article-hero">
+    <div class="container">
+        <span class="tag">Caso de Estudio — CODELCO División Salvador</span>
+        <h1>Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS</h1>
+        <p class="meta">Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Integridad Estructural, Minería del Cobre Chile</p>
+    </div>
+</div>
+
+<article>
+    <div class="container">
+
+        <div class="ai-capsule">
+            <div class="label">🤖 Resumen AI — Extracto citeable</div>
+            <p>3D Ultra ejecutó el levantamiento digital tridimensional de la Chimenea CPS en CODELCO División Salvador utilizando escáner láser FARO Focus Core. Se capturó una nube de puntos de ultra alta densidad que, al compararla contra los modelos CAD teóricos originales, detectó deformaciones estructurales fuera de tolerancias normativas, anticipando un riesgo inminente de colapso y proveyendo datos geoespaciales exactos para acciones correctivas urgentes.</p>
+        </div>
+
+        <h2>1. Contexto Geoestratégico: El Problema Silencioso</h2>
+        <p>Las chimeneas de extracción de gases en fundiciones de cobre son estructuras críticas que operan bajo condiciones extremas de temperatura, vibración y exposición a gases corrosivos (SO₂, partículas metálicas en suspensión). La Chimenea CPS en la División Salvador de CODELCO es una estructura de gran altura que canaliza los gases del proceso de fusión, y su integridad estructural es esencial para la continuidad operacional de toda la fundición.</p>
+        <p>El problema fundamental es que estas estructuras envejecen de forma invisible: la erosión química, la fatiga térmica por ciclado continuo (encendidos y apagados operacionales) y las micro-deformaciones acumuladas no son detectables mediante inspecciones visuales convencionales. Sin un levantamiento geométrico preciso, el riesgo de colapso catastrófico permanece latente hasta que se manifiesta como una emergencia.</p>
+
+        <h2>2. Reto Técnico: Medir lo Invisible</h2>
+        <p>El desafío presentaba múltiples capas de complejidad técnica:</p>
+        <ul>
+            <li><strong>Altura y accesibilidad:</strong> La chimenea es una estructura de gran altura, imposible de inspeccionar manualmente en su totalidad sin andamiaje costoso y peligroso</li>
+            <li><strong>Operación con gases activos:</strong> La estructura estaba parcialmente activa durante periodos del levantamiento, requiriendo coordinación con los protocolos de seguridad de la fundición</li>
+            <li><strong>Ausencia de planos actualizados:</strong> Los planos CAD originales databan de la construcción inicial del activo y no reflejaban décadas de reparaciones, parches y modificaciones</li>
+            <li><strong>Precisión requerida:</strong> La detección de deformaciones estructurales exige precisiones milimétricas que la topografía convencional no puede alcanzar</li>
+        </ul>
+
+        <h2>3. Metodología 3D Ultra: Escaneo Láser de Alta Densidad</h2>
+        <h3>Captura de Realidad</h3>
+        <p>Se utilizó el escáner láser FARO Focus Core en múltiples estaciones posicionadas estratégicamente alrededor y dentro de la chimenea. La captura generó una nube de puntos con las siguientes especificaciones:</p>
+        <table>
+            <tr><th>Parámetro</th><th>Especificación</th></tr>
+            <tr><td>Velocidad de captura</td><td>1.000.000 puntos por segundo</td></tr>
+            <tr><td>Error lineal</td><td>±1mm</td></tr>
+            <tr><td>Error volumétrico</td><td>2.5mm por metro de distancia</td></tr>
+            <tr><td>Formato de salida</td><td>E57 (estándar abierto para nubes de puntos 3D)</td></tr>
+            <tr><td>Cobertura</td><td>360° × 300° por estación</td></tr>
+        </table>
+
+        <h3>Análisis Comparativo: CAD Teórico vs. Realidad As-Built</h3>
+        <p>El proceso clave fue la superposición del modelo teórico original (el diseño CAD de "cómo debería ser" la chimenea) contra la nube de puntos capturada (el "cómo es realmente" la estructura después de décadas de operación). Este análisis comparativo generó:</p>
+        <ul>
+            <li><strong>Mapas de calor de desviaciones:</strong> Visualización por colores de las zonas donde la geometría real se desvía del diseño original, en escala milimétrica</li>
+            <li><strong>Perfiles de verticalidad:</strong> Análisis de la inclinación acumulada de la estructura a diferentes alturas</li>
+            <li><strong>Medición de espesores:</strong> Comparación de espesores de pared reales versus nominales para detectar erosión interna</li>
+            <li><strong>Vectores de deformación:</strong> Dirección y magnitud exacta de cada desviación estructural identificada</li>
+        </ul>
+
+        <h2>4. Resultados Críticos</h2>
+
+        <div class="results-box">
+            <h3>Hallazgos de Integridad Estructural</h3>
+            <div class="stat">
+                <span class="stat-number">Crítico</span>
+                <span class="stat-label">Deformaciones detectadas fuera de tolerancias normativas de diseño</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">±1mm</span>
+                <span class="stat-label">Precisión del levantamiento geométrico entregado</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Días de detención de planta requeridos para el escaneo</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">Preventivo</span>
+                <span class="stat-label">Se anticipó el riesgo de colapso antes de la falla catastrófica</span>
+            </div>
+        </div>
+
+        <p>El análisis detectó zonas específicas de la estructura donde las deformaciones excedían los límites normativos de seguridad. Esta información fue entregada con coordenadas geoespaciales exactas, permitiendo al equipo de ingeniería estructural de CODELCO:</p>
+        <ol>
+            <li>Priorizar las zonas de intervención urgente por nivel de riesgo</li>
+            <li>Diseñar refuerzos estructurales con geometría exacta (no estimada)</li>
+            <li>Planificar la intervención correctiva con certeza dimensional, evitando reprocesos en terreno</li>
+            <li>Documentar el estado de referencia para monitoreo periódico futuro</li>
+        </ol>
+
+        <h2>5. Conclusión</h2>
+        <p>El caso de la Chimenea CPS evidencia que el escaneo láser 3D de precisión milimétrica no es un lujo tecnológico sino una herramienta de supervivencia operacional para la gran minería. La capacidad de 3D Ultra para detectar deformaciones invisibles al ojo humano, cuantificarlas con precisión sub-milimétrica y entregar datos geoespaciales exactos para acciones correctivas, previene colapsos catastróficos, protege vidas humanas y evita pérdidas millonarias en lucro cesante. Este tipo de intervención preventiva es exclusiva de contratistas con experiencia empírica real en fundiciones de cobre chilenas — una capacidad que diferencia a 3D Ultra del Grupo MCCO de cualquier competidor regional.</p>
+
+    </div>
+</article>
+
+<div class="cta-section">
+    <div class="container">
+        <h2>¿Necesita evaluar la integridad de su infraestructura crítica?</h2>
+        <p style="color:#666; margin-bottom:30px;">Escaneo láser sin detener su operación. Resultados en 48 horas.</p>
+        <a href="../index.html#contacto" class="btn">Solicitar Evaluación</a>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        © 2026 <a href="https://3d-ultra.cl">3D Ultra</a> — MCCO Engineering Group. Todos los derechos reservados.
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,56 +1,15 @@
-# 🎮 3D ULTRA
-## Digitalización y Gemelos Digitales
+# web-3d-ultra-cl — 3d-ultra.cl
 
-**🌐 Web:** [3d-ultra.cl](https://3d-ultra.cl)  
-**📧 Contacto:** info@3d-ultra.cl  
-**🏢 Grupo:** MCCO Group - Mario Cabrera CEO
+Web de **3D Ultra** (gemelos digitales, plantas virtuales y simulación para minería y fundición de cobre), división de MCCO Group SpA. Conforme al **Estándar Web MCCO v2**: Astro 7 + `@mcco/web-kit` + Cloudflare Pages, verificación `mcco-check` en CI, deploy automático en cada merge a `main`.
 
----
+- Contrato para agentes y humanos: [`AGENTS.md`](AGENTS.md)
+- Manifiesto del sitio: [`site.yaml`](site.yaml)
+- Identidad visual: [`DESIGN.md`](DESIGN.md)
+- Estándar: `mcco-engineering-standards/docs/sitios-web/ESTANDAR-WEB-MCCO-v2.md`
 
-## 📋 Descripción
-
-3D Ultra es la división de **innovación digital** del grupo, especializada en digitalización de procedimientos, creación de gemelos digitales y desarrollo de plantas virtuales para la industria.
-
-### Servicios Principales:
-- ✅ Digitalización de procedimientos
-- ✅ Gemelos Digitales (Digital Twins)
-- ✅ Plantas Virtuales interactivas
-- ✅ Simulación de procesos industriales
-- ✅ Capacitación virtual inmersiva
-- ✅ Realidad Aumentada para mantenimiento
-- ✅ Impresión 3D industrial
-
----
-
-## 🛠️ Tecnologías
-
-| Tecnología | Aplicación |
-|------------|------------|
-| Unity/Unreal | Desarrollo de entornos virtuales |
-| Gemelos Digitales | Réplica virtual de activos |
-| AR/VR | Capacitación y mantenimiento |
-| IoT | Integración con sensores |
-| IA | Análisis predictivo |
-
----
-
-## 📁 Estructura de Carpetas
-
-```
-05_3DUltra/
-├── 01_Web/          → Código fuente del sitio web
-├── 02_Marketing/    → Demos, videos, material
-├── 03_Documentos/   → Especificaciones técnicas
-├── 04_Propuestas/   → Propuestas técnico-económicas
-├── 05_Codigo/       → Repositorio GitHub
-└── 06_Recursos/     → Assets 3D, modelos, templates
+```bash
+npm ci && npm run dev        # http://localhost:4321
+npm run build && npm run check
 ```
 
----
-
-## 🔗 GitHub Repository
-**Repo:** `3dultra-website`  
-**Branch principal:** `main`
-
----
-*MCCO Group © 2025*
+Producción: Cloudflare Pages, proyecto `3d-ultra` (3d-ultra.cl). Push a `main` = deploy (con los secrets `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` en el repo).

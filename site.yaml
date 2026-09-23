@@ -1,0 +1,76 @@
+# site.yaml — manifiesto de 3d-ultra.cl (Estándar Web MCCO v2 §2). Única fuente de verdad del sitio.
+schema: 1
+key: 3dultra
+name: 3D Ultra
+domain: https://3d-ultra.cl
+lang: es-CL
+locales: [es, en]
+tagline: Gemelos digitales y plantas virtuales para minería y fundición de cobre
+description: >
+  Deje de adivinar medidas. Creamos la réplica digital exacta de su planta para ingeniería
+  100% precisa. Expertos en Escaneo Láser, As-Built y Gemelos Digitales.
+role: gemelos
+
+cloudflare:
+  project: 3d-ultra
+  zone_checklist_done: false        # pendiente Mario: AI Crawl Control allow · robots gestionado OFF · Crawler Hints ON · www
+
+analytics:
+  ga4: ""
+  ads: ""
+  cf_beacon_token: ""
+
+contact:
+  whatsapp: "+56979860843"
+  phone: "+56 9 7986 0843"
+  email: mcabrera@mccocopper.cl
+  turnstile_sitekey: ""
+  response_sla: Respondemos en menos de 24 horas hábiles.
+
+content:
+  blog_dir: src/content/blog
+  collections: [blog]
+  cadence: viernes                  # calendario del motor de contenido (3dultra publica los viernes)
+  author:
+    name: Mario Cabrera
+    role: Gerente General, MCCO Group SpA
+
+seo:
+  og_image: /og.webp                # recorte 1200×630 del render ens.png original (8,9 MB → WebP)
+  logo: /logo.png                   # PROVISIONAL generado por script; reemplazar por el logo oficial
+  sameAs:
+    - https://www.linkedin.com/company/mcco-group   # heredado del JSON-LD anterior; verificar que sea el perfil oficial
+
+csp:
+  script_src: []
+  style_src: []
+  font_src: []
+  img_src: [https://images.unsplash.com]
+  media_src: [https://pub-dd66483f8e7f497f9490ea37068612b0.r2.dev]
+  connect_src: []
+  frame_src: []
+  unsafe_eval: false                # verificado: el sitio no usa eval ni new Function
+
+redirects:
+  www_to_apex: true
+  extra_hosts: []
+
+sitemap:
+  exclude: []
+
+llms:
+  pages:
+    - { title: Inicio, url: / }
+    - { title: "Caso: gemelo digital área RAF, Fundición Potrerillos", url: /casos/gemelo-digital-raf-potrerillos }
+    - { title: "Caso: análisis estructural de chimenea CPS", url: /casos/analisis-chimenea-cps-salvador }
+    - { title: "Caso: hornos Isasmelt, extensión de vida útil", url: /casos/hornos-isasmelt-extension-vida-util }
+    - { title: "Caso: rueda de moldeo de ánodos, Potrerillos", url: /casos/rueda-moldeo-anodos-potrerillos }
+    - { title: "Guía: gemelos digitales en fundiciones de cobre", url: /guias/gemelos-digitales-fundiciones-cobre }
+    - { title: "Digital twin FAQ (English)", url: /en/faq }
+
+# Verdad del sitio: si alguno de estos strings aparece en dist/, mcco-check falla.
+forbidden: ["Leica", "RTC360", "tupagina-de-activos", "foundingDate\":\"2003", "condrone.cl"]
+clients_allowed: [CODELCO]
+
+legacy_pages: true                  # casos/, guias/ y en/ siguen como .html con canonical manual (fase C pendiente)
+indexnow_key: c3e70c36be4a27623ec717c2b2f92d77

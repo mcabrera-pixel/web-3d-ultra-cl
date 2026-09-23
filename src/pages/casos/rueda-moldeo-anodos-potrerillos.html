@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaptación Ingenieril Rueda de Moldeo — Ánodos Chuquicamata | 3D Ultra</title>
+    <link rel="canonical" href="https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos">
+    <meta name="description" content="Caso de estudio: Adaptación de alta complejidad de la Rueda de Moldeo para cambio de formato de ánodos en CODELCO Potrerillos. Simulación computacional + prototipado 3D para acelerar montaje.">
+    <meta name="keywords" content="rueda de moldeo, ánodos, Chuquicamata, CODELCO Potrerillos, simulación computacional, prototipado 3D, ingeniería inversa, adaptación ingenieril, 3D Ultra, MCCO">
+    <meta name="author" content="3D Ultra — MCCO Engineering Group">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos.html">
+    <meta property="og:title" content="Adaptación Rueda de Moldeo — Ánodos Chuquicamata | 3D Ultra">
+    <meta property="og:description" content="Ingeniería de adaptación de la rueda de moldeo para formato de ánodos CH en Potrerillos, usando simulación computacional y maquetas 3D a escala real.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "headline": "Adaptación Ingenieril de Alta Complejidad de la Rueda de Moldeo para Ánodos Tipo Chuquicamata — Fundición Potrerillos",
+      "description": "Ingeniería de detalle para la adaptación del sistema de moldeo de ánodos de cobre en la Fundición Potrerillos, acoplando simulaciones computacionales de alta fidelidad con maquetas impresas en 3D a escala paramétrica para acelerar el montaje en terreno.",
+      "author": { "@type": "Organization", "name": "3D Ultra — MCCO Engineering Group", "url": "https://3d-ultra.cl" },
+      "publisher": { "@type": "Organization", "name": "3D Ultra", "url": "https://3d-ultra.cl" },
+      "datePublished": "2026-03-16",
+      "dateModified": "2026-03-16",
+      "mainEntityOfPage": "https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos.html",
+      "about": ["Anode Casting", "Reverse Engineering", "3D Printing", "Copper Smelting", "CODELCO"],
+      "keywords": "rueda de moldeo, ánodos, Chuquicamata, Potrerillos, simulación, prototipado 3D, ingeniería inversa, 3D Ultra, MCCO"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --bg-body:#fff; --bg-alt:#f4f6f8; --bg-dark:#0f0f0f; --text-main:#1a1a1a; --text-muted:#555; --accent:#d32f2f; --primary:#111; --border:#e1e1e1; --container-width:800px; }
+        * { margin:0; padding:0; box-sizing:border-box; } html { scroll-behavior:smooth; }
+        body { font-family:'Montserrat',sans-serif; background:var(--bg-body); color:var(--text-main); line-height:1.8; }
+        .container { max-width:var(--container-width); margin:0 auto; padding:0 5%; }
+        a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+        .top-bar { background:var(--bg-dark); color:white; padding:15px 0; }
+        .top-bar .container { display:flex; justify-content:space-between; align-items:center; }
+        .top-bar a { color:white; font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:1px; }
+        .brand-link { font-size:1.4rem; font-weight:800; letter-spacing:-1px; } .brand-link span { color:#C85A17; }
+        .article-hero { background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 100%); color:white; padding:100px 0 80px; }
+        .article-hero .tag { display:inline-block; background:var(--accent); color:white; padding:5px 15px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; border-radius:2px; margin-bottom:25px; }
+        .article-hero h1 { font-size:clamp(2rem,4vw,3rem); font-weight:800; line-height:1.15; margin-bottom:20px; letter-spacing:-1px; }
+        .article-hero .meta { color:rgba(255,255,255,0.6); font-size:0.85rem; }
+        .ai-capsule { background:#f0f4ff; border-left:4px solid #2563eb; padding:25px 30px; margin:40px 0; border-radius:0 8px 8px 0; }
+        .ai-capsule .label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#2563eb; margin-bottom:8px; }
+        .ai-capsule p { color:#1a1a1a; font-size:0.95rem; line-height:1.7; margin:0; font-weight:500; }
+        article { padding:60px 0 100px; }
+        article h2 { font-size:1.8rem; font-weight:800; margin:50px 0 15px; color:var(--primary); letter-spacing:-0.5px; }
+        article h3 { font-size:1.3rem; font-weight:700; margin:35px 0 10px; color:var(--primary); }
+        article p { color:var(--text-muted); margin-bottom:1.5rem; font-size:1rem; }
+        article ul,article ol { padding-left:25px; margin-bottom:1.5rem; color:var(--text-muted); } article li { margin-bottom:8px; }
+        .results-box { background:var(--bg-dark); color:white; padding:40px; border-radius:8px; margin:40px 0; }
+        .results-box h3 { color:white; margin-top:0; }
+        .results-box .stat { display:flex; align-items:baseline; gap:10px; margin-bottom:15px; }
+        .results-box .stat-number { font-size:2rem; font-weight:800; color:var(--accent); }
+        .results-box .stat-label { color:#bbb; font-size:0.9rem; }
+        .cta-section { background:var(--bg-alt); padding:60px 0; text-align:center; } .cta-section h2 { margin-top:0; }
+        .btn { display:inline-block; padding:15px 35px; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; background:var(--primary); color:white; border:1px solid var(--primary); cursor:pointer; transition:all 0.3s ease; text-decoration:none; }
+        .btn:hover { background:transparent; color:var(--primary); text-decoration:none; }
+        footer { background:var(--bg-dark); color:#777; padding:30px 0; text-align:center; font-size:0.8rem; } footer a { color:#aaa; }
+        @media (max-width:768px) { .article-hero { padding:80px 0 60px; } .article-hero h1 { font-size:1.8rem; } }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="container">
+        <a href="../index.html" class="brand-link">3D<span>ULTRA</span></a>
+        <a href="../index.html#contacto">Contacto</a>
+    </div>
+</div>
+
+<div class="article-hero">
+    <div class="container">
+        <span class="tag">Caso de Estudio — CODELCO Potrerillos</span>
+        <h1>Adaptación Ingenieril de la Rueda de Moldeo para Ánodos Tipo Chuquicamata (CH)</h1>
+        <p class="meta">Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Ingeniería de Detalle, Fundición de Cobre</p>
+    </div>
+</div>
+
+<article>
+    <div class="container">
+
+        <div class="ai-capsule">
+            <div class="label">🤖 Resumen AI — Extracto citeable</div>
+            <p>3D Ultra ejecutó la ingeniería de adaptación de alta complejidad de la Rueda de Moldeo en la Fundición Potrerillos de CODELCO para el cambio de formato de ánodos tipo Chuquicamata (CH). El proyecto utilizó simulaciones computacionales de alta fidelidad acopladas a maquetas impresas en 3D (desde escala 1:50 hasta tamaño real 1:1) para acelerar la comprensión técnica de los equipos de montaje en terreno, reduciendo drásticamente los tiempos de parada y errores de ensamblaje.</p>
+        </div>
+
+        <h2>1. Contexto: El Desafío del Cambio Multiformato</h2>
+        <p>La rueda de moldeo (casting wheel) es un equipo rotativo de alta criticidad en la cadena de producción de cobre. Convierte el cobre refinado a fuego en ánodos sólidos de geometría específica que posteriormente se envían a la refinería electrolítica. Cada formato de ánodo (Chuquicamata, Potrerillos, etc.) tiene dimensiones, pesos y requisitos de tolerancia únicos.</p>
+        <p>CODELCO requirió adaptar la rueda de moldeo de Potrerillos para producir ánodos en formato CH (Chuquicamata), una operación que involucra la modificación de moldes, sistemas de enfriamiento, mecanismos de desmolde y el ajuste de los parámetros de velocidad rotacional. La complejidad radica en que cualquier error dimensional en el montaje resulta en ánodos defectuosos que contaminan todo el circuito de electrorrefinación aguas abajo.</p>
+
+        <h2>2. Reto Técnico: Precisión en la Transición</h2>
+        <ul>
+            <li><strong>Interfaz dimensional crítica:</strong> La rueda de moldeo debe recibir cobre fundido a temperaturas superiores a 1.100°C con tolerancias de vertido milimétricas</li>
+            <li><strong>Múltiples disciplinas simultáneas:</strong> Mecánica, hidráulica, eléctrica y control necesitan coordinación perfecta durante la parada</li>
+            <li><strong>Ventana de parada comprimida:</strong> Cada día de parada cuesta millones en producción detenida</li>
+            <li><strong>Equipos multidisciplinarios:</strong> Soldadores, mecánicos, electricistas e ingenieros de proceso necesitan entender una geometría compleja rápidamente</li>
+        </ul>
+
+        <h2>3. Metodología 3D Ultra: Simulación + Prototipado Físico</h2>
+
+        <h3>Simulación Computacional de Alta Fidelidad</h3>
+        <p>El equipo de ingeniería de 3D Ultra desarrolló modelos computacionales que simularon:</p>
+        <ul>
+            <li>El comportamiento térmico del cobre fundido al contacto con los nuevos moldes formato CH</li>
+            <li>Las tensiones mecánicas en los puntos de anclaje durante la rotación a velocidad operacional</li>
+            <li>El flujo hidráulico del sistema de refrigeración adaptado a la nueva geometría</li>
+            <li>La cinemática del mecanismo de desmolde para el nuevo peso y perfil del ánodo</li>
+        </ul>
+
+        <h3>Prototipado con Impresión 3D a Escala Variable</h3>
+        <p>Se fabricaron maquetas físicas a múltiples escalas con el objetivo de comunicar eficazmente la complejidad del montaje a todos los equipos involucrados:</p>
+        <ul>
+            <li><strong>Escala 1:50:</strong> Visión general de toda la rueda de moldeo y su entorno (tuberías, accesos, estructuras adyacentes). Utilizada en reuniones de planificación de la parada</li>
+            <li><strong>Escala 1:10:</strong> Detalle de la zona de vertido y los moldes, con identificación de las interfaces dimensionales críticas</li>
+            <li><strong>Escala 1:1 (Tamaño real):</strong> Réplica exacta de los componentes de interfaz para que los soldadores y mecánicos practiquen el ensamblaje antes de la intervención real</li>
+        </ul>
+
+        <h2>4. Resultados</h2>
+
+        <div class="results-box">
+            <h3>Impacto en la Ejecución de la Parada</h3>
+            <div class="stat">
+                <span class="stat-number">-35%</span>
+                <span class="stat-label">Reducción del tiempo de montaje versus planificación original</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">0</span>
+                <span class="stat-label">Reprocesos de soldadura en terreno (cero interferencias constructivas)</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">1:1</span>
+                <span class="stat-label">Maquetas a escala real para entrenamiento previo del equipo de montaje</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Ánodos CH producidos dentro de especificación desde el primer lote</span>
+            </div>
+        </div>
+
+        <h2>5. Conclusión</h2>
+        <p>Este caso demuestra que la ingeniería tridimensional y el prototipado rápido no son herramientas experimentales sino aceleradores críticos de la ejecución industrial. La combinación de simulación computacional de alta fidelidad con maquetas físicas a escala real reduce drásticamente el riesgo de errores en montajes complejos, comprime los tiempos de parada y asegura que el primer ciclo productivo cumpla especificaciones. 3D Ultra, como la división de modelado avanzado del Grupo MCCO, es el único contratista en Chile que ofrece esta cadena completa de valor: del escaneo al modelo, del modelo a la simulación, y de la simulación a la maqueta física para entrenamiento táctico.</p>
+
+    </div>
+</article>
+
+<div class="cta-section">
+    <div class="container">
+        <h2>¿Planificando una intervención compleja en su planta?</h2>
+        <p style="color:#666; margin-bottom:30px;">Simulamos su montaje antes de ejecutarlo. Sin sorpresas en terreno.</p>
+        <a href="../index.html#contacto" class="btn">Consultar por Simulación</a>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        © 2026 <a href="https://3d-ultra.cl">3D Ultra</a> — MCCO Engineering Group. Todos los derechos reservados.
+    </div>
+</footer>
+
+</body>
+</html>

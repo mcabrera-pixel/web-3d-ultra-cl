@@ -1,0 +1,17 @@
+---
+// Destino del formulario (functions/api/contact.js). Página de conversión: aquí se mide el lead (GA4/Ads).
+import Base from '@mcco/web-kit/layouts/Base.astro';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import '../styles/theme.css';
+const site = loadSite();
+const wa = site.contact.whatsapp?.replace(/\D/g, '');
+---
+<Base title={`Gracias | ${site.name}`} description={`Recibimos tu solicitud en ${site.name}. Un ingeniero la revisa y te responde por correo o WhatsApp dentro de 24 horas hábiles.`} noindex={true}>
+  <main class="thanks">
+    <h1>Recibimos tu solicitud</h1>
+    <p>{site.contact.response_sla ?? 'Te respondemos en menos de 24 horas hábiles.'}</p>
+    {wa && <p>¿Es urgente? <a href={`https://wa.me/${wa}`} rel="noopener">Escríbenos por WhatsApp</a>.</p>}
+    <p><a href="/">Volver al inicio</a></p>
+  </main>
+</Base>
+<style>.thanks { max-width: 640px; margin: 0 auto; padding: 4rem 1rem; }</style>

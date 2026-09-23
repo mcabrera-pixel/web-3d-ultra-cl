@@ -1,0 +1,19 @@
+---
+import Base from '@mcco/web-kit/layouts/Base.astro';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import '../styles/theme.css';
+const site = loadSite();
+const wa = site.contact.whatsapp?.replace(/\D/g, '');
+---
+<Base title={`No pudimos enviar tu mensaje | ${site.name}`} description="El formulario no se pudo enviar. Escríbenos por WhatsApp o correo y te respondemos igual." noindex={true}>
+  <main class="thanks">
+    <h1>No pudimos enviar tu mensaje</h1>
+    <p>Algo falló al procesar el formulario. Puedes intentarlo de nuevo o escribirnos directo:</p>
+    <ul>
+      {wa && <li><a href={`https://wa.me/${wa}`} rel="noopener">WhatsApp</a></li>}
+      {site.contact.email && <li><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>}
+    </ul>
+    <p><a href="/#contacto">Volver al formulario</a></p>
+  </main>
+</Base>
+<style>.thanks { max-width: 640px; margin: 0 auto; padding: 4rem 1rem; }</style>
