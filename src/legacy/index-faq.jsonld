@@ -28,10 +28,10 @@
         },
         {
           "@type": "Question",
-          "name": "¿Cuál es el ROI de implementar un gemelo digital completo en circuitos de molienda y flotación?",
+          "name": "¿Dónde se paga un gemelo digital en circuitos de molienda y flotación?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "El modelo garantiza un ROI mensurable dentro de un margen de 4 meses, derivado directamente de la disminución radical del tiempo de desarrollo, la prevención de colapsos estructurales, la optimización termodinámica y la eficiencia en el uso de reactivos. La planificación precisa de paradas de planta por sí sola previene pérdidas millonarias en lucro cesante diario."
+            "text": "Sobre todo en las paradas: se planifican sobre la planta real y no sobre planos antiguos, así que hay menos sorpresas en terreno. También ayuda a detectar a tiempo daños estructurales y a revisar montajes en 3D antes de ejecutarlos."
           }
         },
         {
