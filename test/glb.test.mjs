@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { copyFileSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -68,4 +68,39 @@ test('el CLI verifica aunque la ruta pase por un enlace (symlink o junction)', (
   } finally {
     rmSync(tmp, { recursive: true, force: true });
   }
+});
+
+test('compara los nombres como los deja three.js: espacios a _ y sin [ ] . : /', () => {
+  const info = leerGlb(glb({ nodes: [{ name: 'Pieza.001' }, { name: 'Brazo de levante' }], extensionsUsed: ['EXT_meshopt_compression'] }));
+  const p = problemasSalida(info, {
+    marcadas: [{ nodo: 'Pieza.001', etiqueta: 'Balde' }],
+    grupos: [{ titulo: 'Carga', nodos: ['Pieza.001', 'Brazo_de_levante'] }],
+    nombres: { 'Pieza.001': 'Balde', Brazo_de_levante: 'Brazo de levante' },
+  });
+  assert.equal(p.length, 1);
+  assert.match(p[0], /Pieza\.001/);
+  assert.match(p[0], /Pieza001/);
+});
+
+test('marca los nombres repetidos, porque three.js renombra las copias con _1', () => {
+  const info = leerGlb(glb({ nodes: [{ name: 'Rueda' }, { name: 'Rueda' }, { name: 'Eje.1' }, { name: 'Eje1' }], extensionsUsed: ['EXT_meshopt_compression'] }));
+  const p = problemasSalida(info, { marcadas: [], grupos: [{ titulo: 'Ruedas', nodos: ['Rueda', 'Eje1'] }], nombres: { Rueda: 'Rueda', Eje1: 'Eje' } });
+  assert.equal(p.length, 2);
+  assert.match(p.join(' | '), /Rueda.*repite/);
+  assert.match(p.join(' | '), /Eje1.*repite/);
+});
+
+test('la etiqueta de una pieza marcada es su nombre en español', () => {
+  const info = leerGlb(glb({ nodes: [{ name: 'Bucket_' }, { name: 'Main_Boom' }], extensionsUsed: ['EXT_meshopt_compression'] }));
+  const p = problemasSalida(info, { ...piezas, marcadas: [{ nodo: 'Bucket_', etiqueta: 'Pala' }] });
+  assert.equal(p.length, 1);
+  assert.match(p[0], /etiqueta de Bucket_/);
+  assert.match(p[0], /Balde/);
+});
+
+test('sin argumentos el CLI muestra el modo de uso', () => {
+  const r = spawnSync(process.execPath, [fileURLToPath(new URL('../tools/equipos/glb.mjs', import.meta.url))], { encoding: 'utf8' });
+  assert.notEqual(r.status, 0);
+  assert.match(r.stderr, /Uso: node tools\/equipos\/glb\.mjs <archivo\.glb> <piezas\.json>/);
+  assert.doesNotMatch(r.stderr, /TypeError/);
 });
