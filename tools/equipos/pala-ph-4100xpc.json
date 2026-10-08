@@ -1,7 +1,7 @@
 {
   "slug": "pala-ph-4100xpc",
   "fuente": "pala-ph-4100xpc/uploads_files_4101746_Pala+4100XPC.fbx",
-  "caras_max": 200000,
+  "caras_max": 450000,
   "textura_max": 1024,
   "color_base": "#d8a31a",
   "excluir": ["Accesorios\\d+"],

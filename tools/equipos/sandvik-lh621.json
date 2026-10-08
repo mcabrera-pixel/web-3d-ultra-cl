@@ -1,7 +1,7 @@
 {
   "slug": "sandvik-lh621",
   "fuente": "sandvik-lh621/SANDVIK-LH621.fbx",
-  "caras_max": 200000,
+  "caras_max": 450000,
   "textura_max": 1024,
   "color_base": "#d9531e",
   "piezas": [

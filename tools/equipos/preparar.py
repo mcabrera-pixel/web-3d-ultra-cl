@@ -124,24 +124,29 @@ for o in mallas:
         o.data.materials.clear()
         o.data.materials.append(pintura)
 
-# Decimado proporcional hasta caras_max, aplicado malla por malla antes de unir conjuntos
-# (así una pieza chica no se decima por quedar dentro de un conjunto grande)
-caras = sum(len(o.data.polygons) for o in mallas)
+# Decimado hasta caras_max triángulos (Decimate aplica su razón sobre triángulos), malla por malla y antes de unir
+# conjuntos, para que una pieza chica no se decime por quedar dentro de un conjunto grande. Las mallas de hasta
+# 2000 caras no se deciman: sus triángulos se descuentan del presupuesto y la razón se calcula sobre el resto.
+def triangulos(o):
+    return sum(len(p.vertices) - 2 for p in o.data.polygons)
+
+
+caras = sum(triangulos(o) for o in mallas)
 caras_max = int(cfg.get('caras_max', 200000))
-if caras > caras_max:
-    ratio = caras_max / caras
-    for o in mallas:
-        if len(o.data.polygons) > 2000:
-            mod = o.modifiers.new('decimar', 'DECIMATE')
-            mod.ratio = ratio
+decimables = [o for o in mallas if len(o.data.polygons) > 2000]
+fijos = caras - sum(triangulos(o) for o in decimables)
+if caras > caras_max and decimables:
+    ratio = max(0.05, (caras_max - fijos) / (caras - fijos))
+    for o in decimables:
+        mod = o.modifiers.new('decimar', 'DECIMATE')
+        mod.ratio = ratio
     dg = bpy.context.evaluated_depsgraph_get()
-    for o in mallas:
-        if o.modifiers:
-            o.data = bpy.data.meshes.new_from_object(o.evaluated_get(dg), preserve_all_data_layers=True, depsgraph=dg)
-            o.modifiers.clear()
+    for o in decimables:
+        o.data = bpy.data.meshes.new_from_object(o.evaluated_get(dg), preserve_all_data_layers=True, depsgraph=dg)
+        o.modifiers.clear()
 unir_conjuntos()
 mallas = [o for o in escena.objects if o.type == 'MESH']
-caras_glb = sum(len(o.data.polygons) for o in mallas)
+caras_glb = sum(triangulos(o) for o in mallas)
 
 # Texturas al lado máximo
 lado = int(cfg.get('textura_max', 1024))
@@ -230,5 +235,5 @@ escena.render.image_settings.color_mode = 'RGBA'
 escena.render.image_settings.quality = 82
 escena.render.filepath = os.path.join(publico, 'poster.webp')
 bpy.ops.render.render(write_still=True)
-print(f'PREPARAR_OK {slug}: {caras} caras de origen, {caras_glb} en el GLB, {len(mallas)} mallas, '
+print(f'PREPARAR_OK {slug}: {caras} triángulos de origen, {caras_glb} en el GLB (máximo {caras_max}), {len(mallas)} mallas, '
       f'crudo {os.path.getsize(crudo) / 1e6:.2f} MB, póster listo')
