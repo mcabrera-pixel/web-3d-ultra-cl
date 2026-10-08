@@ -1,4 +1,5 @@
 name: deploy
+# Estándar Web MCCO v2 §7: push a main = build + mcco-check + deploy a producción + smoke.
 on:
   push:
     branches: [main]
@@ -6,7 +7,5 @@ on:
 
 jobs:
   deploy:
-    uses: mcabrera-pixel/mcco-web-kit/.github/workflows/site-deploy.yml@v1
-    with:
-      project: 3d-ultra   # = cloudflare.project de site.yaml
+    uses: mcabrera-pixel/mcco-web-kit/.github/workflows/site-deploy.yml@v1.1.3
     secrets: inherit
