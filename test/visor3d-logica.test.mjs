@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   distanciaEncuadre, pasoExplosion, ladoVisible, alternarSeleccion,
-  avanceScroll, aperturaNube, nombrePieza, ruedaAcerca,
+  avanceScroll, aperturaNube, giroNube, nombrePieza, ruedaAcerca,
 } from '../src/scripts/visor3d-logica.js';
 
 const cerca = (a, b, eps = 1e-6) => assert.ok(Math.abs(a - b) < eps, `${a} no es ${b}`);
@@ -78,6 +78,19 @@ test('nube: cerrada al inicio, abierta a un sexto y quieta con movimiento reduci
   cerca(aperturaNube(0), 0.03);
   cerca(aperturaNube(1 / 6), 0.17);
   assert.equal(aperturaNube(0.4, true), 0.05);
+});
+
+test('giro de la nube: quieta con movimiento reducido para cualquier tiempo y scroll', () => {
+  for (const t of [0, 1234, 60000]) {
+    for (const a of [0, 0.37, 1]) assert.equal(giroNube(t, a, true), 0);
+  }
+});
+
+test('giro de la nube: sin movimiento reducido avanza con el tiempo y con el scroll', () => {
+  assert.equal(giroNube(0, 0, false), 0);
+  cerca(giroNube(20000, 0, false), 1);
+  cerca(giroNube(0, 1, false), Math.PI * 1.6);
+  cerca(giroNube(20000, 0.5, false), 1 + Math.PI * 0.8);
 });
 
 test('nombres: en español si existe, genérico si no', () => {
