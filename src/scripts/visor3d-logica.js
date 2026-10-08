@@ -1,10 +1,17 @@
 // Lógica pura del visor de la biblioteca (sin Three.js ni DOM): se prueba con node --test.
 
-/** Distancia de cámara para que una esfera de radio `radio` quepa en el campo de visión más estrecho. */
+/**
+ * Distancia de cámara para que una esfera de radio `radio` quepa en el campo de visión más estrecho.
+ * `fovGrados` es el FOV vertical y `aspecto` = ancho / alto. El margen baja de forma continua (smoothstep)
+ * de 1,35 (aspecto 1,0 o menos) a 0,82 (aspecto 1,6 o más). Un aspecto no finito o no positivo (canvas oculto) cuenta como 1.
+ */
 export function distanciaEncuadre(radio, fovGrados, aspecto) {
+  const a = Number.isFinite(aspecto) && aspecto > 0 ? aspecto : 1;
   const v = (fovGrados * Math.PI) / 360;
-  const h = Math.atan(Math.tan(v) * aspecto);
-  const margen = aspecto >= 1.4 ? 0.82 : 1.35;
+  const h = Math.atan(Math.tan(v) * a);
+  const t = Math.min(1, Math.max(0, (a - 1) / 0.6));
+  const s = t * t * (3 - 2 * t);
+  const margen = 1.35 + (0.82 - 1.35) * s;
   return (radio * margen) / Math.sin(Math.min(v, h));
 }
 
@@ -45,9 +52,10 @@ export function aperturaNube(avance, reducir = false) {
   return 0.03 + 0.14 * Math.sin(avance * Math.PI * 3) ** 2;
 }
 
-/** Nombre en español de un nodo del modelo. */
+/** Nombre en español de un nodo del modelo. Solo cuenta una propiedad propia, no una heredada de Object.prototype. */
 export function nombrePieza(nombres, nodo) {
-  return nombres[nodo] ?? 'Pieza del equipo';
+  const nombre = Object.hasOwn(nombres, nodo) ? nombres[nodo] : undefined;
+  return nombre ?? 'Pieza del equipo';
 }
 
 /** La rueda sin Ctrl ni Cmd baja la página; con Ctrl o Cmd acerca el modelo. */
