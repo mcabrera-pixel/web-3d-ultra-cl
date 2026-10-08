@@ -4,6 +4,10 @@
   "caras_max": 450000,
   "textura_max": 1024,
   "color_base": "#d9531e",
+  "materiales": {
+    "Tyre.*": { "metal": 0, "rugosidad": 0.9 },
+    "(Gum|Transparent|Plastic|Fabric).*": { "metal": 0 }
+  },
   "piezas": [
     { "nodo": "Bucket_", "etiqueta": "Balde" },
     { "nodo": "Main_Boom", "etiqueta": "Brazo de levante" },
