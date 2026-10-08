@@ -1,0 +1,41 @@
+{
+  "slug": "sandvik-lh621",
+  "fuente": "sandvik-lh621/SANDVIK-LH621.fbx",
+  "caras_max": 200000,
+  "textura_max": 1024,
+  "color_base": "#d9531e",
+  "piezas": [
+    { "nodo": "Bucket_", "etiqueta": "Balde" },
+    { "nodo": "Main_Boom", "etiqueta": "Brazo de levante" },
+    { "nodo": "Door", "etiqueta": "Cabina del operador" },
+    { "nodo": "Rear_Wheels", "etiqueta": "Ruedas traseras" }
+  ],
+  "grupos": [
+    { "titulo": "Carga", "nodos": ["Bucket_", "Main_Boom", "Main_Boom_Cylinders", "Main_Boom_Pistons", "Bucket_Cylinder", "Bucket_Piston", "Main_Boom_Cam", "2nd_Cam"] },
+    { "titulo": "Chasis y cabina", "nodos": ["Front_Chassis", "LH621_Hull", "Door"] },
+    { "titulo": "Dirección", "nodos": ["Steering_Cylinder_L", "Steering_Cylinder_R", "Steering_Piston_L", "Steering_Piston_R"] },
+    { "titulo": "Ruedas y tren de fuerza", "nodos": ["Steering_Wheel_L", "Steering_Wheel_R", "Rear_Wheels", "Transmission", "Hydraulics"] }
+  ],
+  "nombres": {
+    "Bucket_": "Balde",
+    "Main_Boom": "Brazo de levante",
+    "Main_Boom_Cylinders": "Cilindros de levante",
+    "Main_Boom_Pistons": "Vástagos de levante",
+    "Bucket_Cylinder": "Cilindro de volteo",
+    "Bucket_Piston": "Vástago de volteo",
+    "Main_Boom_Cam": "Balancín",
+    "2nd_Cam": "Biela del balancín",
+    "Front_Chassis": "Chasis delantero",
+    "LH621_Hull": "Chasis trasero",
+    "Door": "Cabina del operador",
+    "Steering_Cylinder_L": "Cilindro de dirección izquierdo",
+    "Steering_Cylinder_R": "Cilindro de dirección derecho",
+    "Steering_Piston_L": "Vástago de dirección izquierdo",
+    "Steering_Piston_R": "Vástago de dirección derecho",
+    "Steering_Wheel_L": "Rueda delantera izquierda",
+    "Steering_Wheel_R": "Rueda delantera derecha",
+    "Rear_Wheels": "Ruedas traseras",
+    "Transmission": "Transmisión",
+    "Hydraulics": "Sistema hidráulico"
+  }
+}

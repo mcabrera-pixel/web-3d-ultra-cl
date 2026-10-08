@@ -1,0 +1,63 @@
+{
+  "slug": "pala-ph-4100xpc",
+  "fuente": "pala-ph-4100xpc/uploads_files_4101746_Pala+4100XPC.fbx",
+  "caras_max": 200000,
+  "textura_max": 1024,
+  "color_base": "#d8a31a",
+  "excluir": ["Accesorios\\d+"],
+  "materiales": {
+    "Pala Negro": { "color": "#2a2b2d", "metal": 0, "rugosidad": 0.6 }
+  },
+  "conjuntos": [
+    { "nodo": "Pala_Tambor", "nombres": ["PalaTambor\\d+", "PalaCables\\d+"] },
+    { "nodo": "Pala_Motores", "nombres": ["PalaMotor\\d+"] },
+    { "nodo": "Pala_Transmision", "nombres": ["PalaTransmision\\d+"] },
+    { "nodo": "Pala_Gabinetes", "nombres": ["PalaGabiente\\d+"] },
+    { "nodo": "Pala_Pluma", "nombres": ["Line355", "Gradassss090"], "cajas": [[[21.0, 17.0, -10.8], [28.0, 24.2, -1.0]]] },
+    { "nodo": "Pala_Accesos", "nombres": ["PalaEscalera\\d+", "PalaPasaMano\\d+", "Gradas\\d+", "Gradassss\\d+"] },
+    { "nodo": "Pala_Cabina", "nombres": ["PalaCabina\\d+", "Contenedor microondas_ textura\\d+"], "cajas": [[[10.0, 12.4, -14.6], [17.6, 16.6, -10.4]]] },
+    { "nodo": "Pala_Tensores", "nombres": ["Line407"] },
+    { "nodo": "Pala_CablesLevante", "nombres": ["Line469", "Line470"] },
+    { "nodo": "Pala_Brazo", "nombres": ["Object1390", "Line465"], "cajas": [[[21.0, 17.0, -14.8], [28.0, 24.2, -10.8]]] },
+    { "nodo": "Pala_Poleas", "cajas": [[[28.0, 10.0, -6.5], [40.0, 31.0, 5.0]]] },
+    { "nodo": "Pala_Balde", "cajas": [[[28.0, 10.0, -25.0], [40.0, 31.0, -6.5]]] },
+    { "nodo": "Pala_Empuje", "nombres": ["BaseLapiz\\d+"], "cajas": [[[15.6, 16.6, -15.6], [21.0, 25.0, -7.0]]] },
+    { "nodo": "Pala_Mastil", "nombres": ["Object1361", "Line397", "Object1371", "Object1362"], "cajas": [[[7.0, 17.0, -11.3], [12.5, 24.2, -7.0]]] },
+    { "nodo": "Pala_Contrapeso", "cajas": [[[1.0, 10.0, -20.5], [6.8, 31.0, -17.0]]] },
+    { "nodo": "Pala_Orugas", "nombres": ["Object(1085|12(1[5-9]|[2-4]\\d|5[01]))"], "cajas": [[[2.0, 14.6, -23.5], [19.0, 17.9, -19.4]], [[2.0, 23.3, -23.5], [19.0, 26.6, -19.4]]] },
+    { "nodo": "Pala_Bastidor", "nombres": ["PalaTornameza\\d+", "PalaBaseInferior\\d+"], "cajas": [[[1.0, 10.0, -23.5], [19.5, 31.0, -18.9]]] },
+    { "nodo": "Pala_Sala", "cajas": [[[-1000, -1000, -1000], [1000, 1000, 1000]]] }
+  ],
+  "piezas": [
+    { "nodo": "Pala_Balde", "etiqueta": "Balde" },
+    { "nodo": "Pala_Pluma", "etiqueta": "Pluma" },
+    { "nodo": "Pala_Cabina", "etiqueta": "Cabina del operador" },
+    { "nodo": "Pala_Orugas", "etiqueta": "Orugas" }
+  ],
+  "grupos": [
+    { "titulo": "Equipo de excavación", "nodos": ["Pala_Balde", "Pala_Brazo", "Pala_Pluma", "Pala_Poleas", "Pala_CablesLevante", "Pala_Empuje"] },
+    { "titulo": "Superestructura", "nodos": ["Pala_Sala", "Pala_Cabina", "Pala_Contrapeso", "Pala_Mastil", "Pala_Tensores", "Pala_Accesos"] },
+    { "titulo": "Maquinaria", "nodos": ["Pala_Motores", "Pala_Transmision", "Pala_Tambor", "Pala_Gabinetes"] },
+    { "titulo": "Tren inferior", "nodos": ["Pala_Orugas", "Pala_Bastidor"] }
+  ],
+  "nombres": {
+    "Pala_Balde": "Balde",
+    "Pala_Brazo": "Brazo de empuje",
+    "Pala_Pluma": "Pluma",
+    "Pala_Poleas": "Poleas de la punta de la pluma",
+    "Pala_CablesLevante": "Cables de levante",
+    "Pala_Empuje": "Mecanismo de empuje",
+    "Pala_Sala": "Sala de máquinas",
+    "Pala_Cabina": "Cabina del operador",
+    "Pala_Contrapeso": "Contrapeso",
+    "Pala_Mastil": "Mástil",
+    "Pala_Tensores": "Tensores de la pluma",
+    "Pala_Accesos": "Escaleras y pasamanos",
+    "Pala_Motores": "Motores eléctricos",
+    "Pala_Transmision": "Transmisiones",
+    "Pala_Tambor": "Tambor de levante",
+    "Pala_Gabinetes": "Gabinetes eléctricos",
+    "Pala_Orugas": "Orugas",
+    "Pala_Bastidor": "Bastidor inferior y corona de giro"
+  }
+}

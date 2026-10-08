@@ -1,0 +1,105 @@
+{
+ "marcadas": [
+  {
+   "nodo": "K930_Tolva",
+   "etiqueta": "Tolva"
+  },
+  {
+   "nodo": "K930_Cabina",
+   "etiqueta": "Cabina del operador"
+  },
+  {
+   "nodo": "K930_Radiador",
+   "etiqueta": "Radiador"
+  },
+  {
+   "nodo": "K930_NeumTraseros",
+   "etiqueta": "Neumáticos traseros"
+  }
+ ],
+ "grupos": [
+  {
+   "titulo": "Tolva y levante",
+   "nodos": [
+    "K930_Tolva",
+    "K930_Levante",
+    "K930_Eyectores"
+   ]
+  },
+  {
+   "titulo": "Cabina y plataforma",
+   "nodos": [
+    "K930_Cabina",
+    "K930_Plataforma",
+    "K930_Escaleras",
+    "K930_Barandas",
+    "K930_Espejos"
+   ]
+  },
+  {
+   "titulo": "Motor y potencia",
+   "nodos": [
+    "K930_Motor",
+    "K930_Radiador",
+    "NS_K930E5_Motor_fan",
+    "NS_K930E5_Filters",
+    "NS_K930E5_Silencers",
+    "K930_Cableado",
+    "NS_K930E5_Barrel_L",
+    "NS_K930E5_Electric_Box",
+    "NS_K930E5_Barrel"
+   ]
+  },
+  {
+   "titulo": "Ruedas y suspensión",
+   "nodos": [
+    "K930_NeumDelanteros",
+    "K930_NeumTraseros",
+    "K930_Llantas",
+    "NS_K930E5_Back_Axles",
+    "K930_SuspDelantera",
+    "K930_SuspTrasera",
+    "K930_Direccion",
+    "K930_Guardabarros"
+   ]
+  },
+  {
+   "titulo": "Chasis y frontal",
+   "nodos": [
+    "K930_Chasis",
+    "NS_K930E5_Front",
+    "NS_K930E5_Front_2"
+   ]
+  }
+ ],
+ "nombres": {
+  "K930_Tolva": "Tolva",
+  "K930_Levante": "Cilindros de levante de la tolva",
+  "K930_Eyectores": "Eyectores de rocas",
+  "K930_Cabina": "Cabina del operador",
+  "K930_Plataforma": "Plataforma superior",
+  "K930_Escaleras": "Escaleras de acceso",
+  "K930_Barandas": "Barandas",
+  "K930_Espejos": "Espejos retrovisores",
+  "K930_Motor": "Motor diésel",
+  "K930_Radiador": "Radiador",
+  "NS_K930E5_Motor_fan": "Ventilador del radiador",
+  "NS_K930E5_Filters": "Filtros de aire",
+  "NS_K930E5_Silencers": "Silenciadores de escape",
+  "K930_Cableado": "Cableado y mangueras",
+  "NS_K930E5_Barrel_L": "Tanque lateral izquierdo",
+  "NS_K930E5_Electric_Box": "Componente 1",
+  "NS_K930E5_Barrel": "Componente 2",
+  "K930_NeumDelanteros": "Neumáticos delanteros",
+  "K930_NeumTraseros": "Neumáticos traseros",
+  "K930_Llantas": "Llantas y pernos",
+  "NS_K930E5_Back_Axles": "Eje trasero y motores de rueda",
+  "K930_SuspDelantera": "Suspensión delantera",
+  "K930_SuspTrasera": "Suspensión trasera",
+  "K930_Direccion": "Cilindros y barras de dirección",
+  "K930_Guardabarros": "Guardabarros",
+  "K930_Chasis": "Chasis",
+  "NS_K930E5_Front": "Parachoques y estructura frontal",
+  "NS_K930E5_Front_2": "Faros y marco del radiador"
+ }
+}
