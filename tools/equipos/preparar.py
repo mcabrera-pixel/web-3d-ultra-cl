@@ -44,6 +44,13 @@ if not mallas:
     raise SystemExit('el modelo no trae mallas')
 
 
+def escribir_json(ruta, datos):
+    # LF y salto final, como el resto del repo (en Windows open() escribiría CRLF)
+    with open(ruta, 'w', encoding='utf-8', newline='\n') as f:
+        json.dump(datos, f, ensure_ascii=False, indent=1)
+        f.write('\n')
+
+
 def unir_conjuntos():
     # Cada malla va al primer conjunto que la reclama, por nombre (regex) o por el centro de su caja dentro de una de
     # sus «cajas» [[x, y, z mín], [x, y, z máx]] (coordenadas de Blender tras importar). Las mallas de un conjunto
@@ -78,7 +85,7 @@ if solo_nodos:
     unir_conjuntos()
     nodos = [{'nodo': o.name, 'tipo': o.type, 'padre': o.parent.name if o.parent else None,
               'caras': len(o.data.polygons) if o.type == 'MESH' else 0} for o in escena.objects]
-    json.dump(nodos, open(os.path.join(salida, 'nodos.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    escribir_json(os.path.join(salida, 'nodos.json'), nodos)
     print(f'NODOS_OK {len(nodos)} nodos en {os.path.join(salida, "nodos.json")}')
     raise SystemExit(0)
 
@@ -155,8 +162,7 @@ sin_nombre = sorted(n for n in citados if n not in cfg['nombres'])
 if faltan or sin_nombre:
     raise SystemExit(f'piezas inconsistentes: faltan en el modelo {faltan}; sin nombre en español {sin_nombre}')
 os.makedirs(publico, exist_ok=True)
-json.dump({'marcadas': cfg['piezas'], 'grupos': cfg['grupos'], 'nombres': cfg['nombres']},
-          open(os.path.join(publico, 'piezas.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+escribir_json(os.path.join(publico, 'piezas.json'), {'marcadas': cfg['piezas'], 'grupos': cfg['grupos'], 'nombres': cfg['nombres']})
 
 # Póster: misma vista inicial que el visor (fov vertical 35°, objetivo a 0,42 de la altura), fondo transparente
 bpy.context.view_layer.update()
