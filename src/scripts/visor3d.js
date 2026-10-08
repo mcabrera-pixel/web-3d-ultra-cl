@@ -51,7 +51,7 @@ export function iniciarVisor(raiz) {
   lienzo.style.touchAction = 'pan-y'; // OrbitControls pone 'none': así un dedo vertical baja la página
 
   const fantasma = new THREE.MeshStandardMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.12, depthWrite: false });
-  const e = { modelo: null, radio: 1, altura: 1, partes: [], piezas: [], elegida: null, vuelo: null, tocado: false, resaltada: null, vistaInicial: null, fondo: null, visible: true };
+  const e = { modelo: null, radio: 1, altura: 1, partes: [], piezas: [], elegida: null, vuelo: null, tocado: false, resaltada: null, fondo: null, visible: true };
 
   // --- encuadre y cámara ---
   function desplazar() {
@@ -78,13 +78,12 @@ export function iniciarVisor(raiz) {
     if (e.modelo && !e.tocado) {
       const v = vistaGeneral();
       camara.position.copy(v.pos); controles.target.copy(v.obj); controles.update();
-      e.vistaInicial = v;
     }
   }
   const observador = new ResizeObserver(ajustar);
   observador.observe(raiz);
   observador.observe(titulo); // también cambia de alto cuando llega la fuente
-  new IntersectionObserver(([x]) => { e.visible = x.isIntersecting; }).observe(raiz);
+  new IntersectionObserver((entradas) => { e.visible = entradas[entradas.length - 1].isIntersecting; }).observe(raiz);
 
   // --- selección ---
   function detenerGiro() {
@@ -195,7 +194,7 @@ export function iniciarVisor(raiz) {
     ajustar();
     controles.minDistance = e.radio * 0.25; controles.maxDistance = e.radio * 6; controles.maxPolarAngle = Math.PI * 0.49;
     camara.near = e.radio / 300; camara.far = e.radio * 40; camara.updateProjectionMatrix();
-    carga.hidden = true; controlesEl.hidden = false; poster.classList.add('bib-oculto');
+    carga.hidden = true; controlesEl.hidden = false; poster.classList.add('bib-oculto'); poster.setAttribute('aria-hidden', 'true');
     e.fondo = iniciarFondo({ modelo, radio: e.radio, altura: e.altura, escenario: raiz, angosto: angosto(), reducir });
   }, (p) => {
     if (p.total) barra.style.width = `${Math.round((p.loaded / p.total) * 100)}%`;
@@ -225,6 +224,7 @@ export function iniciarVisor(raiz) {
   });
   controles.addEventListener('start', () => { e.vuelo = null; detenerGiro(); });
   $('.bib-inicial').addEventListener('click', verTodo);
+  if (!document.fullscreenEnabled) $('.bib-completa').hidden = true; // Safari de iPhone no tiene pantalla completa para elementos
   $('.bib-completa').addEventListener('click', () => {
     const p = raiz.requestFullscreen ? raiz.requestFullscreen() : null;
     if (p && p.catch) p.catch(() => {});
@@ -278,6 +278,7 @@ export function iniciarVisor(raiz) {
   let abajo = null;
   lienzo.addEventListener('pointerdown', (ev) => {
     clearTimeout(hoverTimer);
+    if (ev.button !== 0 || !ev.isPrimary) return; // el clic derecho o del medio y el segundo dedo no eligen piezas
     abajo = { x: ev.clientX, y: ev.clientY, t: performance.now() };
   });
   lienzo.addEventListener('pointerup', (ev) => {

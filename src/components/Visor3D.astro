@@ -12,8 +12,8 @@ const base = import.meta.env.PUBLIC_MODELOS_BASE ?? '/modelos/';
 const datos = JSON.stringify({ ...piezas, modelo: `${base}${slug}.glb` }).replace(/</g, '\\u003c');
 ---
 <div class="bib-escenario" data-visor>
-  <img class="bib-poster" src={`/biblioteca/${slug}/poster.webp`} alt={`Modelo 3D de referencia del ${nombre}`} width="1600" height="1000" fetchpriority="high" decoding="async" />
-  <canvas class="bib-lienzo" tabindex="0" aria-label={`Modelo 3D del ${nombre}. Arrástrelo para girarlo, haga clic en una pieza para verla y use Ctrl con la rueda para acercarse.`}></canvas>
+  <img class="bib-poster" src={`/biblioteca/${slug}/poster.webp`} alt={`Modelo 3D de referencia: ${nombre}`} width="1600" height="1000" fetchpriority="high" decoding="async" />
+  <canvas class="bib-lienzo" tabindex="0" aria-label={`Modelo 3D: ${nombre}. Arrástrelo para girarlo, haga clic en una pieza para verla y use Ctrl con la rueda para acercarse.`}></canvas>
   <div class="bib-etiquetas" aria-hidden="true"></div>
   <div class="bib-aviso-zoom bib-vidrio" role="status">Para acercar, mantenga Ctrl y use la rueda.</div>
   <div class="bib-nombre-pieza" hidden></div>

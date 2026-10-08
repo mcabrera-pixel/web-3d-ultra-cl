@@ -70,8 +70,11 @@ export function iniciarFondo({ modelo, radio, altura, escenario, angosto, reduci
     lienzo.remove();
     return { dibujar() {} };
   }
-  renderer.setPixelRatio(Math.min(devicePixelRatio, angosto ? 1 : 1.5));
+  let estrecho = angosto; // la cantidad de puntos queda la del inicio; el resto sigue al ancho actual
   const ajustar = () => {
+    estrecho = escenario.clientWidth < 900;
+    renderer.setPixelRatio(Math.min(devicePixelRatio, estrecho ? 1 : 1.5));
+    material.uniforms.uTam.value = estrecho ? 1.6 : 2.2;
     renderer.setSize(innerWidth, innerHeight, false);
     camara.aspect = innerWidth / innerHeight;
     camara.updateProjectionMatrix();
@@ -81,16 +84,17 @@ export function iniciarFondo({ modelo, radio, altura, escenario, angosto, reduci
 
   return {
     dibujar(t) {
-      const visible = escenario.getBoundingClientRect().bottom < innerHeight * 0.35;
-      lienzo.style.opacity = visible ? (angosto ? '0.4' : '0.6') : '0';
+      const borde = escenario.getBoundingClientRect().bottom;
+      const visible = borde < innerHeight * 0.35;
+      lienzo.style.opacity = visible ? (estrecho ? '0.4' : '0.6') : '0';
       if (!visible) return;
-      const inicio = escenario.offsetTop + escenario.offsetHeight - innerHeight * 0.35;
+      const inicio = scrollY + borde - innerHeight * 0.35;
       const avance = avanceScroll(scrollY, inicio, document.documentElement.scrollHeight - innerHeight);
       const giro = giroNube(t, avance, reducir);
-      const d = distanciaEncuadre(radio, 35, camara.aspect) * (angosto ? 1.2 : 1.05);
+      const d = distanciaEncuadre(radio, 35, camara.aspect) * (estrecho ? 1.2 : 1.05);
       camara.position.set(Math.sin(giro) * d, d * 0.28, Math.cos(giro) * d);
       camara.lookAt(0, 0, 0);
-      if (angosto) camara.clearViewOffset();
+      if (estrecho) camara.clearViewOffset();
       else camara.setViewOffset(innerWidth, innerHeight, -innerWidth * 0.2, 0, innerWidth, innerHeight);
       material.uniforms.uTiempo.value = reducir ? 0 : t / 1000;
       material.uniforms.uDispersion.value = aperturaNube(avance, reducir);
