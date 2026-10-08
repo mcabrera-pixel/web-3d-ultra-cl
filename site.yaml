@@ -42,7 +42,7 @@ seo:
     - https://www.linkedin.com/company/mcco-group   # heredado del JSON-LD anterior; verificar que sea el perfil oficial
 
 csp:
-  script_src: []
+  script_src: ["'wasm-unsafe-eval'"]   # decodificador meshopt (WebAssembly) del visor de la biblioteca
   style_src: []
   font_src: []
   img_src: [https://images.unsplash.com]
