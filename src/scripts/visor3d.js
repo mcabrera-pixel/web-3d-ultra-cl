@@ -42,6 +42,7 @@ export function iniciarVisor(raiz) {
   escena.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(renderer), 0.04).texture;
   const luz = new THREE.DirectionalLight(0xffffff, 1.4);
   luz.position.set(3, 5, 2);
+  luz.layers.enable(1); // three filtra las luces por capa: la pieza elegida (capa 1) también la recibe
   escena.add(luz);
   const camara = new THREE.PerspectiveCamera(35, 16 / 9, 0.01, 1000);
   const controles = new OrbitControls(camara, lienzo);
@@ -97,7 +98,12 @@ export function iniciarVisor(raiz) {
     detenerGiro(); quitarResalte();
     e.elegida = obj;
     const propios = new Set(); obj.traverse((o) => propios.add(o));
-    e.modelo.traverse((o) => { if (o.isMesh) o.material = propios.has(o) ? o.userData.material : fantasma; });
+    e.modelo.traverse((o) => {
+      if (!o.isMesh) return;
+      const propia = propios.has(o);
+      o.material = propia ? o.userData.material : fantasma;
+      o.layers.set(propia ? 1 : 0); // la capa 1 se dibuja en una segunda pasada, encima del fantasma
+    });
     e.piezas.forEach((p) => p.boton.setAttribute('aria-pressed', String(p.obj === obj)));
     const caja = new THREE.Box3().setFromObject(obj);
     const c = caja.getCenter(new THREE.Vector3());
@@ -107,7 +113,7 @@ export function iniciarVisor(raiz) {
   }
   function verTodo() {
     e.elegida = null;
-    if (e.modelo) e.modelo.traverse((o) => { if (o.isMesh) o.material = o.userData.material; });
+    if (e.modelo) e.modelo.traverse((o) => { if (o.isMesh) { o.material = o.userData.material; o.layers.set(0); } });
     e.piezas.forEach((p) => p.boton.setAttribute('aria-pressed', 'false'));
     volar(vistaGeneral());
   }
@@ -123,6 +129,7 @@ export function iniciarVisor(raiz) {
     return x;
   }
   const rayo = new THREE.Raycaster();
+  rayo.layers.enableAll(); // la pieza elegida queda en la capa 1
   const puntero = new THREE.Vector2();
   function tocar(ev) {
     if (!e.modelo) return null;
@@ -307,6 +314,16 @@ export function iniciarVisor(raiz) {
     if (e.visible) {
       controles.update();
       renderer.render(escena, camara);
+      if (e.elegida) {
+        // Segunda pasada: la pieza elegida encima, con la profundidad limpia. Si no, cada capa del fantasma que queda
+        // delante de una pieza interior le suma un velo gris (con 8 capas le queda un tercio de su color).
+        renderer.autoClear = false;
+        renderer.clearDepth();
+        camara.layers.set(1);
+        renderer.render(escena, camara);
+        camara.layers.set(0);
+        renderer.autoClear = true;
+      }
       if (e.modelo) etiquetas();
     }
     e.fondo?.dibujar(t);
