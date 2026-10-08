@@ -19,6 +19,31 @@ test('encuadre: en celular usa el campo horizontal y más margen', () => {
   assert.ok(distanciaEncuadre(1, 35, 0.5) > distanciaEncuadre(1, 35, 16 / 9));
 });
 
+test('encuadre: el margen cambia de forma continua al cruzar el aspecto 1,4', () => {
+  const antes = distanciaEncuadre(1, 35, 1.3999);
+  const despues = distanciaEncuadre(1, 35, 1.4001);
+  assert.ok(Math.abs(antes - despues) / distanciaEncuadre(1, 35, 1.4) < 0.01);
+});
+
+test('encuadre: la distancia baja de forma monótona entre aspecto 1,0 y 1,6', () => {
+  let previa = Infinity;
+  for (let i = 0; i <= 12; i++) {
+    const aspecto = 1 + i * 0.05;
+    const d = distanciaEncuadre(1, 35, aspecto);
+    assert.ok(d < previa, `aspecto ${aspecto}: ${d} no baja de ${previa}`);
+    previa = d;
+  }
+});
+
+test('encuadre: aspecto 0, NaN, infinito o negativo se trata como 1 (canvas oculto)', () => {
+  const base = distanciaEncuadre(1, 35, 1);
+  for (const aspecto of [0, NaN, Infinity, -1]) {
+    const d = distanciaEncuadre(1, 35, aspecto);
+    assert.ok(Number.isFinite(d), `aspecto ${aspecto} da ${d}`);
+    cerca(d, base);
+  }
+});
+
 test('explosión: va del centro del equipo al de la pieza, con largo igual al radio', () => {
   const p = pasoExplosion([3, 0, 4], [0, 0, 0], 10);
   cerca(p[0], 6); cerca(p[1], 0); cerca(p[2], 8);
@@ -58,6 +83,16 @@ test('nube: cerrada al inicio, abierta a un sexto y quieta con movimiento reduci
 test('nombres: en español si existe, genérico si no', () => {
   assert.equal(nombrePieza({ Door: 'Cabina del operador' }, 'Door'), 'Cabina del operador');
   assert.equal(nombrePieza({}, 'Mesh_12'), 'Pieza del equipo');
+});
+
+test('nombres: no toma propiedades heredadas de Object.prototype', () => {
+  assert.equal(nombrePieza({}, 'constructor'), 'Pieza del equipo');
+  assert.equal(nombrePieza({}, 'toString'), 'Pieza del equipo');
+  assert.equal(nombrePieza({}, '__proto__'), 'Pieza del equipo');
+});
+
+test('nombres: un valor null cuenta como sin nombre', () => {
+  assert.equal(nombrePieza({ Door: null }, 'Door'), 'Pieza del equipo');
 });
 
 test('rueda: solo acerca con Ctrl o Cmd', () => {
