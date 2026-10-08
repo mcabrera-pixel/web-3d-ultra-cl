@@ -124,7 +124,8 @@ export function iniciarVisor(raiz) {
     const r = lienzo.getBoundingClientRect();
     puntero.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
     rayo.setFromCamera(puntero, camara);
-    const hit = rayo.intersectObject(e.modelo, true).find((h) => h.object.material !== fantasma);
+    // Con una pieza elegida, lo demás es fantasma: basta con buscar dentro de ella
+    const hit = rayo.intersectObject(e.elegida ?? e.modelo, true).find((h) => h.object.material !== fantasma);
     return hit ? piezaDe(hit.object) : null;
   }
 
@@ -233,12 +234,14 @@ export function iniciarVisor(raiz) {
     clearTimeout(avisoTimer);
     avisoTimer = setTimeout(() => avisoZoom.classList.remove('bib-visible'), 1400);
   }, { capture: true });
-  let ultimoHover = 0;
-  lienzo.addEventListener('pointermove', (ev) => {
-    if (ev.pointerType !== 'mouse' || ev.buttons) return;
-    const ahora = performance.now();
-    if (ahora - ultimoHover < 40) return;
-    ultimoHover = ahora;
+  // Hover: el raycast cuesta decenas de ms con 450 mil triángulos, así que se hace uno solo cuando el mouse se detiene
+  // (90 ms quieto). Mientras se mueve, el nombre de la pieza resaltada solo sigue al cursor.
+  let hoverTimer = 0;
+  function moverNombre(ev) {
+    const r = raiz.getBoundingClientRect();
+    nombreEl.style.left = `${ev.clientX - r.left}px`; nombreEl.style.top = `${ev.clientY - r.top}px`;
+  }
+  function resaltar(ev) {
     const pieza = tocar(ev);
     if (pieza !== e.resaltada) {
       quitarResalte();
@@ -251,14 +254,20 @@ export function iniciarVisor(raiz) {
         nombreEl.hidden = false;
       }
     }
-    if (e.resaltada) {
-      const r = raiz.getBoundingClientRect();
-      nombreEl.style.left = `${ev.clientX - r.left}px`; nombreEl.style.top = `${ev.clientY - r.top}px`;
-    }
+    if (e.resaltada) moverNombre(ev);
+  }
+  lienzo.addEventListener('pointermove', (ev) => {
+    if (ev.pointerType !== 'mouse' || ev.buttons) return;
+    if (e.resaltada) moverNombre(ev);
+    clearTimeout(hoverTimer);
+    hoverTimer = setTimeout(() => resaltar(ev), 90);
   });
-  lienzo.addEventListener('pointerleave', quitarResalte);
+  lienzo.addEventListener('pointerleave', () => { clearTimeout(hoverTimer); quitarResalte(); });
   let abajo = null;
-  lienzo.addEventListener('pointerdown', (ev) => { abajo = { x: ev.clientX, y: ev.clientY, t: performance.now() }; });
+  lienzo.addEventListener('pointerdown', (ev) => {
+    clearTimeout(hoverTimer);
+    abajo = { x: ev.clientX, y: ev.clientY, t: performance.now() };
+  });
   lienzo.addEventListener('pointerup', (ev) => {
     if (!abajo) return;
     const movido = Math.hypot(ev.clientX - abajo.x, ev.clientY - abajo.y);
