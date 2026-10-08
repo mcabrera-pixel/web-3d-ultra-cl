@@ -23,11 +23,11 @@ const datos = JSON.stringify({ ...piezas, modelo: `${base}${slug}.glb` }).replac
     <h1>{nombre}</h1>
     <p>{bajada}</p>
   </div>
-  <aside class="bib-panel bib-vidrio" aria-label="Piezas del equipo" hidden>
+  <aside class="bib-panel bib-vidrio" id={`piezas-${slug}`} aria-label="Piezas del equipo" hidden>
     <h2>Piezas</h2>
     <div class="bib-grupos"></div>
     <div class="bib-todo"><button type="button" class="bib-ver-todo"><span class="bib-largo">Ver equipo completo</span><span class="bib-corto">Ver todo</span></button></div>
-    <button type="button" class="bib-pestana" aria-expanded="true" aria-label="Mostrar u ocultar el panel de piezas"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button type="button" class="bib-pestana" aria-controls={`piezas-${slug}`} aria-expanded="true" aria-label="Mostrar u ocultar el panel de piezas"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   </aside>
   <div class="bib-controles bib-vidrio" hidden>
     <span class="bib-icono" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 5-9 5-9-5 9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 13l9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>

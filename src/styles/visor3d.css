@@ -66,12 +66,12 @@
 .bib-barra i { display: block; height: 100%; width: 0; background: var(--bib-rojo); transition: width 0.2s; }
 .bib-escenario:fullscreen { height: 100vh; max-height: none; }
 .bib-fondo { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 0.6s; }
-/* Bajo 1380 px la barra centrada alcanza al panel y bajo 1300 px tapa la ayuda (pantallas de 1280 y 1366 de ancho) */
+/* Bajo 1380 px la barra centrada alcanza al panel y bajo 1300 px alcanza la ayuda (pantallas de 1280 y 1366 de ancho) */
 @media (min-width: 901px) and (max-width: 1379px) {
   .bib-panel { max-height: calc(100% - var(--bib-panel-top, 150px) - 90px); }
 }
-@media (max-width: 1299px) {
-  .bib-ayuda { display: none; }
+@media (min-width: 901px) and (max-width: 1299px) {
+  .bib-ayuda { bottom: 84px; }
 }
 @media (max-width: 900px) {
   .bib-escenario { height: 72vh; min-height: 480px; }

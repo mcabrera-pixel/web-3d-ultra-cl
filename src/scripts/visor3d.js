@@ -9,6 +9,20 @@ import { iniciarFondo } from './fondo-particulas.js';
 
 const suave = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
+// Sombra de contacto bajo el equipo, como en la maqueta: un degradado radial sobre un plano, con el lado largo en el
+// eje más largo del equipo para que no quede atravesada.
+function sombra(r, largoEnX) {
+  const c = document.createElement('canvas'); c.width = c.height = 256;
+  const g = c.getContext('2d');
+  const grad = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+  grad.addColorStop(0, 'rgba(15,23,42,0.32)'); grad.addColorStop(1, 'rgba(15,23,42,0)');
+  g.fillStyle = grad; g.fillRect(0, 0, 256, 256);
+  const plano = new THREE.PlaneGeometry(r * (largoEnX ? 3.2 : 2.2), r * (largoEnX ? 2.2 : 3.2));
+  const m = new THREE.Mesh(plano, new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(c), transparent: true, depthWrite: false }));
+  m.rotation.x = -Math.PI / 2;
+  return m;
+}
+
 export function iniciarVisor(raiz) {
   const $ = (s) => raiz.querySelector(s);
   const datos = JSON.parse($('.bib-datos').textContent);
@@ -104,6 +118,8 @@ export function iniciarVisor(raiz) {
       o.layers.set(propia ? 1 : 0); // la capa 1 se dibuja en una segunda pasada, encima del fantasma
     });
     e.piezas.forEach((p) => p.boton.setAttribute('aria-pressed', String(p.obj === obj)));
+    const boton = e.piezas.find((p) => p.obj === obj)?.boton;
+    if (boton) mostrarBoton(boton);
     const caja = new THREE.Box3().setFromObject(obj);
     const c = caja.getCenter(new THREE.Vector3());
     const r = Math.max(caja.getSize(new THREE.Vector3()).length() / 2, e.radio * 0.12);
@@ -119,6 +135,12 @@ export function iniciarVisor(raiz) {
   function elegir(obj) {
     const siguiente = alternarSeleccion(e.elegida, obj);
     if (siguiente === null) verTodo(); else enfocar(siguiente);
+  }
+  // Deja a la vista el botón de la pieza elegida dentro de la lista, sin mover la página (en celular lo centra en la fila)
+  function mostrarBoton(boton) {
+    const c = grupos.getBoundingClientRect(), b = boton.getBoundingClientRect();
+    if (angosto()) grupos.scrollLeft += b.left + b.width / 2 - (c.left + c.width / 2);
+    else if (b.top < c.top || b.bottom > c.bottom) grupos.scrollTop += b.top + b.height / 2 - (c.top + c.height / 2);
   }
   // Sube desde la malla tocada hasta el nodo con nombre en español (o hasta el hijo directo del modelo)
   function piezaDe(malla) {
@@ -153,6 +175,9 @@ export function iniciarVisor(raiz) {
     e.altura = tam.y;
     modelo.position.sub(new THREE.Vector3(centro.x, caja.min.y, centro.z));
     escena.add(modelo);
+    const base = sombra(e.radio, tam.x >= tam.z);
+    base.position.y = 0.002 * e.radio;
+    escena.add(base);
     e.modelo = modelo;
     modelo.updateMatrixWorld(true);
     const centroMundo = new THREE.Box3().setFromObject(modelo).getCenter(new THREE.Vector3());
@@ -190,7 +215,7 @@ export function iniciarVisor(raiz) {
       }
     }
     panel.hidden = false;
-    if (angosto()) panel.classList.add('bib-cerrado');
+    if (angosto()) { panel.classList.add('bib-cerrado'); pestana.setAttribute('aria-expanded', 'false'); }
     ajustar();
     controles.minDistance = e.radio * 0.25; controles.maxDistance = e.radio * 6; controles.maxPolarAngle = Math.PI * 0.49;
     camara.near = e.radio / 300; camara.far = e.radio * 40; camara.updateProjectionMatrix();
