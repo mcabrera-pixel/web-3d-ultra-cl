@@ -25,7 +25,7 @@
 .bib-migas a:hover { color: var(--bib-rojo); }
 .bib-titulo h1 { font-size: clamp(1.9rem, 3.4vw, 2.7rem); line-height: 1.05; letter-spacing: -1px; font-weight: 800; margin: 6px 0 4px; color: var(--bib-tinta); }
 .bib-titulo p { margin: 0; color: var(--bib-pizarra); font-size: 0.98rem; }
-.bib-panel { position: absolute; left: 20px; top: 150px; max-height: calc(100% - 190px); width: 270px; z-index: 3; display: flex; flex-direction: column; padding: 14px; transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1); }
+.bib-panel { position: absolute; left: 20px; top: var(--bib-panel-top, 150px); max-height: calc(100% - var(--bib-panel-top, 150px) - 40px); width: 270px; z-index: 3; display: flex; flex-direction: column; padding: 14px; transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1); }
 .bib-panel.bib-cerrado { transform: translateX(calc(-100% - 24px)); }
 .bib-panel h2 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--bib-pizarra-2); margin: 2px 6px 10px; }
 .bib-grupos { overflow: auto; display: grid; gap: 10px; padding-right: 4px; }
@@ -68,7 +68,7 @@
 .bib-fondo { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0; transition: opacity 0.6s; }
 /* Bajo 1380 px la barra centrada alcanza al panel y bajo 1300 px tapa la ayuda (pantallas de 1280 y 1366 de ancho) */
 @media (min-width: 901px) and (max-width: 1379px) {
-  .bib-panel { max-height: calc(100% - 240px); }
+  .bib-panel { max-height: calc(100% - var(--bib-panel-top, 150px) - 90px); }
 }
 @media (max-width: 1299px) {
   .bib-ayuda { display: none; }

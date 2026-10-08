@@ -25,6 +25,7 @@ export function iniciarVisor(raiz) {
   const avisoZoom = $('.bib-aviso-zoom');
   const nombreEl = $('.bib-nombre-pieza');
   const girar = $('.bib-girar');
+  const titulo = $('.bib-titulo');
   const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const angosto = () => raiz.clientWidth < 900;
 
@@ -69,6 +70,8 @@ export function iniciarVisor(raiz) {
   function ajustar() {
     const w = raiz.clientWidth, h = raiz.clientHeight;
     renderer.setSize(w, h, false);
+    // El panel parte 8 px bajo la tarjeta del título, que crece si la bajada ocupa dos líneas
+    panel.style.setProperty('--bib-panel-top', `${titulo.offsetTop + titulo.offsetHeight + 8}px`);
     camara.aspect = w / h;
     desplazar();
     if (e.modelo && !e.tocado) {
@@ -77,7 +80,9 @@ export function iniciarVisor(raiz) {
       e.vistaInicial = v;
     }
   }
-  new ResizeObserver(ajustar).observe(raiz);
+  const observador = new ResizeObserver(ajustar);
+  observador.observe(raiz);
+  observador.observe(titulo); // también cambia de alto cuando llega la fuente
   new IntersectionObserver(([x]) => { e.visible = x.isIntersecting; }).observe(raiz);
 
   // --- selección ---
