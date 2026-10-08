@@ -1,7 +1,7 @@
 // tools/equipos/glb.mjs · Lee un GLB y verifica la salida de preparar.py antes de subirla a R2.
 // Uso: node tools/equipos/glb.mjs <archivo.glb> <piezas.json>   (sale con 1 si hay problemas)
-import { readFileSync } from 'node:fs';
-import { pathToFileURL } from 'node:url';
+import { readFileSync, realpathSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 export function leerGlb(buffer) {
   const b = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
@@ -32,7 +32,14 @@ export function problemasSalida(info, piezas, maxBytes = 5_000_000) {
   return p;
 }
 
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+// Rutas reales en ambos lados: con un symlink o junction en la ruta, la URL del módulo y argv[1] no coinciden.
+let principal = false;
+try {
+  principal = realpathSync(fileURLToPath(import.meta.url)) === realpathSync(process.argv[1]);
+} catch {
+  // sin argv[1] o ruta ilegible: no es el principal
+}
+if (principal) {
   const [archivo, piezasJson] = process.argv.slice(2);
   const info = leerGlb(readFileSync(archivo));
   const p = problemasSalida(info, JSON.parse(readFileSync(piezasJson, 'utf8')));
