@@ -18,3 +18,6 @@ dist/
 *.bat
 reorder_sections.py
 error_log.txt
+
+# Modelos locales para probar el visor sin R2 (nunca se versionan)
+public/_local/

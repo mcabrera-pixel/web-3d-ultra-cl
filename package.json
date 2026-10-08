@@ -9,9 +9,10 @@
     "prebuild": "mcco-headers",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "mcco-check --dist dist",
+    "check": "mcco-check --dist dist && node scripts/sin-modelos.mjs",
     "parity": "mcco-parity",
-    "headers": "mcco-headers"
+    "headers": "mcco-headers",
+    "test": "node --test \"test/*.test.mjs\""
   },
   "dependencies": {
     "@mcco/web-kit": "github:mcabrera-pixel/mcco-web-kit#v1.1.3",
