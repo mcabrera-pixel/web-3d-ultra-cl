@@ -1,5 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { copyFileSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { leerGlb, problemasSalida } from '../tools/equipos/glb.mjs';
 
 function glb(json, relleno = 0) {
@@ -46,4 +51,21 @@ test('un nodo marcado sin nombre en español es un problema', () => {
   const info = leerGlb(glb({ nodes: [{ name: 'Bucket_' }, { name: 'Main_Boom' }], extensionsUsed: ['EXT_meshopt_compression'] }));
   const p = problemasSalida(info, { ...piezas, nombres: { Main_Boom: 'Brazo de levante' } });
   assert.deepEqual(p, ['el nodo Bucket_ no tiene nombre en español']);
+});
+
+test('el CLI verifica aunque la ruta pase por un enlace (symlink o junction)', () => {
+  const tmp = mkdtempSync(join(tmpdir(), 'glb-'));
+  try {
+    const real = join(tmp, 'real');
+    mkdirSync(real);
+    copyFileSync(fileURLToPath(new URL('../tools/equipos/glb.mjs', import.meta.url)), join(real, 'glb.mjs'));
+    symlinkSync(real, join(tmp, 'enlace'), 'junction');
+    writeFileSync(join(tmp, 'x.glb'), glb({ nodes: [{ name: 'Bucket_' }, { name: 'Main_Boom' }], extensionsUsed: ['EXT_meshopt_compression'] }));
+    writeFileSync(join(tmp, 'piezas.json'), JSON.stringify(piezas));
+    const salida = execFileSync(process.execPath, [join(tmp, 'enlace', 'glb.mjs'), join(tmp, 'x.glb'), join(tmp, 'piezas.json')], { encoding: 'utf8' });
+    assert.match(salida, /2 nodos/);
+    assert.match(salida, /OK/);
+  } finally {
+    rmSync(tmp, { recursive: true, force: true });
+  }
 });
