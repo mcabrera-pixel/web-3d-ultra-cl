@@ -52,6 +52,11 @@ export function aperturaNube(avance, reducir = false) {
   return 0.03 + 0.14 * Math.sin(avance * Math.PI * 3) ** 2;
 }
 
+/** Giro (radianes) de la cámara del fondo: avanza con el tiempo `t` (ms) y con el scroll. Con movimiento reducido la nube queda quieta. */
+export function giroNube(t, avance, reducir = false) {
+  return reducir ? 0 : t * 0.00005 + avance * Math.PI * 1.6;
+}
+
 /** Nombre en español de un nodo del modelo. Solo cuenta una propiedad propia, no una heredada de Object.prototype. */
 export function nombrePieza(nombres, nodo) {
   const nombre = Object.hasOwn(nombres, nodo) ? nombres[nodo] : undefined;

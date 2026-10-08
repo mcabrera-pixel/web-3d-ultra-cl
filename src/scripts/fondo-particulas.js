@@ -1,7 +1,7 @@
 // Fondo «antigravity» (estándar visual MCCO): la nube de puntos del mismo equipo queda fija detrás del contenido,
 // flota, gira y se abre o se arma a medida que se baja por la página. Se dibuja solo con el visor fuera de pantalla.
 import * as THREE from 'three';
-import { avanceScroll, aperturaNube, distanciaEncuadre } from './visor3d-logica.js';
+import { avanceScroll, aperturaNube, giroNube, distanciaEncuadre } from './visor3d-logica.js';
 
 export function iniciarFondo({ modelo, radio, altura, escenario, angosto, reducir }) {
   const lienzo = document.createElement('canvas');
@@ -86,7 +86,7 @@ export function iniciarFondo({ modelo, radio, altura, escenario, angosto, reduci
       if (!visible) return;
       const inicio = escenario.offsetTop + escenario.offsetHeight - innerHeight * 0.35;
       const avance = avanceScroll(scrollY, inicio, document.documentElement.scrollHeight - innerHeight);
-      const giro = (reducir ? 0 : t * 0.00005) + avance * Math.PI * 1.6;
+      const giro = giroNube(t, avance, reducir);
       const d = distanciaEncuadre(radio, 35, camara.aspect) * (angosto ? 1.2 : 1.05);
       camara.position.set(Math.sin(giro) * d, d * 0.28, Math.cos(giro) * d);
       camara.lookAt(0, 0, 0);
