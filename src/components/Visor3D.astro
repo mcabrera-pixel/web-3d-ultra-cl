@@ -1,0 +1,57 @@
+---
+// Visor 3D de la biblioteca: el póster sale primero (LCP) y Three.js se importa recién cuando la página terminó de cargar.
+// Las piezas vienen de public/biblioteca/<slug>/piezas.json (única fuente: tools/equipos/<slug>.json).
+import fs from 'node:fs';
+import path from 'node:path';
+import '../styles/visor3d.css';
+
+interface Props { slug: string; nombre: string; migas: string; bajada: string }
+const { slug, nombre, migas, bajada } = Astro.props;
+const piezas = JSON.parse(fs.readFileSync(path.resolve(`public/biblioteca/${slug}/piezas.json`), 'utf8'));
+const base = import.meta.env.PUBLIC_MODELOS_BASE ?? '/modelos/';
+const datos = JSON.stringify({ ...piezas, modelo: `${base}${slug}.glb` }).replace(/</g, '\\u003c');
+---
+<div class="bib-escenario" data-visor>
+  <img class="bib-poster" src={`/biblioteca/${slug}/poster.webp`} alt={`Modelo 3D de referencia del ${nombre}`} width="1600" height="1000" fetchpriority="high" decoding="async" />
+  <canvas class="bib-lienzo" tabindex="0" aria-label={`Modelo 3D del ${nombre}. Arrástrelo para girarlo, haga clic en una pieza para verla y use Ctrl con la rueda para acercarse.`}></canvas>
+  <div class="bib-etiquetas" aria-hidden="true"></div>
+  <div class="bib-aviso-zoom bib-vidrio" role="status">Para acercar, mantenga Ctrl y use la rueda.</div>
+  <div class="bib-nombre-pieza" hidden></div>
+  <div class="bib-carga" hidden><span class="bib-carga-texto">Cargando el modelo</span><span class="bib-barra"><i></i></span></div>
+  <div class="bib-titulo bib-vidrio">
+    <div class="bib-migas"><a href="/biblioteca/">Biblioteca de equipos</a> / {migas}</div>
+    <h1>{nombre}</h1>
+    <p>{bajada}</p>
+  </div>
+  <aside class="bib-panel bib-vidrio" aria-label="Piezas del equipo" hidden>
+    <h2>Piezas</h2>
+    <div class="bib-grupos"></div>
+    <div class="bib-todo"><button type="button" class="bib-ver-todo"><span class="bib-largo">Ver equipo completo</span><span class="bib-corto">Ver todo</span></button></div>
+    <button type="button" class="bib-pestana" aria-expanded="true" aria-label="Mostrar u ocultar el panel de piezas"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </aside>
+  <div class="bib-controles bib-vidrio" hidden>
+    <span class="bib-icono" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l9 5-9 5-9-5 9-5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 13l9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+    <label class="bib-txt" for={`separar-${slug}`}>Separar piezas</label>
+    <input id={`separar-${slug}`} class="bib-separar" type="range" min="0" max="100" value="0" aria-label="Separar piezas" />
+    <output class="bib-separar-valor" for={`separar-${slug}`}>0 %</output>
+    <span class="bib-sep" aria-hidden="true"></span>
+    <button type="button" class="bib-acercar" title="Acercar" aria-label="Acercar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M11 8v6M8 11h6M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <button type="button" class="bib-alejar" title="Alejar" aria-label="Alejar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M8 11h6M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <button type="button" class="bib-girar" aria-pressed="true" title="Giro automático"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M18 3v4h-4M6 21v-4h4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="bib-txt">Girar</span></button>
+    <button type="button" class="bib-inicial" title="Vista inicial"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 4v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="bib-txt">Vista inicial</span></button>
+    <button type="button" class="bib-completa" title="Pantalla completa"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="bib-txt">Pantalla completa</span></button>
+  </div>
+  <p class="bib-ayuda">Arrastre para girar y haga clic en una pieza para verla. Para acercar, use Ctrl y la rueda o los botones de lupa.</p>
+  <script is:inline type="application/json" class="bib-datos" set:html={datos}></script>
+</div>
+
+<script>
+  // Three.js entra en un trozo aparte que se pide recién después de la carga, en tiempo ocioso.
+  const arrancar = async () => {
+    const { iniciarVisor } = await import('../scripts/visor3d.js');
+    document.querySelectorAll<HTMLElement>('[data-visor]').forEach((el) => iniciarVisor(el));
+  };
+  const enOcio = () => ('requestIdleCallback' in window ? requestIdleCallback(() => arrancar(), { timeout: 1500 }) : setTimeout(arrancar, 200));
+  if (document.readyState === 'complete') enOcio();
+  else addEventListener('load', enOcio, { once: true });
+</script>
