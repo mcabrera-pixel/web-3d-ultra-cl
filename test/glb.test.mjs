@@ -1,0 +1,49 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { leerGlb, problemasSalida } from '../tools/equipos/glb.mjs';
+
+function glb(json, relleno = 0) {
+  let txt = JSON.stringify(json);
+  while (txt.length % 4) txt += ' ';
+  const j = Buffer.from(txt);
+  const b = Buffer.alloc(20 + j.length + relleno);
+  b.writeUInt32LE(0x46546c67, 0);
+  b.writeUInt32LE(2, 4);
+  b.writeUInt32LE(b.length, 8);
+  b.writeUInt32LE(j.length, 12);
+  b.writeUInt32LE(0x4e4f534a, 16);
+  j.copy(b, 20);
+  return b;
+}
+const piezas = { marcadas: [{ nodo: 'Bucket_', etiqueta: 'Balde' }], grupos: [{ titulo: 'Carga', nodos: ['Bucket_', 'Main_Boom'] }], nombres: { Bucket_: 'Balde', Main_Boom: 'Brazo de levante' } };
+
+test('lee peso, nodos y extensiones', () => {
+  const info = leerGlb(glb({ asset: { version: '2.0' }, nodes: [{ name: 'Bucket_' }, { name: 'Main_Boom' }, {}], extensionsUsed: ['EXT_meshopt_compression'] }));
+  assert.deepEqual(info.nodos, ['Bucket_', 'Main_Boom']);
+  assert.deepEqual(info.extensiones, ['EXT_meshopt_compression']);
+  assert.ok(info.bytes > 20);
+});
+
+test('rechaza archivos que no son GLB 2', () => {
+  assert.throws(() => leerGlb(Buffer.from('no es un glb, solo texto')), /GLB/);
+});
+
+test('salida correcta: sin problemas', () => {
+  const info = leerGlb(glb({ nodes: [{ name: 'Bucket_' }, { name: 'Main_Boom' }], extensionsUsed: ['EXT_meshopt_compression'] }));
+  assert.deepEqual(problemasSalida(info, piezas), []);
+});
+
+test('salida con problemas: peso, compresión y nodo faltante', () => {
+  const info = leerGlb(glb({ nodes: [{ name: 'Bucket_' }], extensionsUsed: [] }, 64));
+  const p = problemasSalida(info, piezas, 50);
+  assert.equal(p.length, 3);
+  assert.match(p.join(' | '), /pesa/);
+  assert.match(p.join(' | '), /meshopt/);
+  assert.match(p.join(' | '), /Main_Boom/);
+});
+
+test('un nodo marcado sin nombre en español es un problema', () => {
+  const info = leerGlb(glb({ nodes: [{ name: 'Bucket_' }, { name: 'Main_Boom' }], extensionsUsed: ['EXT_meshopt_compression'] }));
+  const p = problemasSalida(info, { ...piezas, nombres: { Main_Boom: 'Brazo de levante' } });
+  assert.deepEqual(p, ['el nodo Bucket_ no tiene nombre en español']);
+});
