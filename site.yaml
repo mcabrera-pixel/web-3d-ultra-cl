@@ -47,7 +47,7 @@ csp:
   font_src: []
   img_src: [https://images.unsplash.com]
   media_src: [https://pub-dd66483f8e7f497f9490ea37068612b0.r2.dev]
-  connect_src: []
+  connect_src: ["blob:"]                # texturas del visor 3D: GLTFLoader las lee con fetch() desde blob: (Chrome y Firefox)
   frame_src: [https://komatsu-ph-4100xpc.netlify.app, https://komatsu930e5.netlify.app]   # visores 3D embebidos en el home
   unsafe_eval: false                # verificado: el sitio no usa eval ni new Function
 
