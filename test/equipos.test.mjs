@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
+import yaml from 'js-yaml';
 
 const DIR = 'src/content/equipos';
 const fichas = () => readdirSync(DIR).filter((f) => f.endsWith('.md')).map((f) => ({ f, txt: readFileSync(`${DIR}/${f}`, 'utf8') }));
@@ -10,14 +11,12 @@ const paginas = () => [
   'src/content.config.ts',
 ].map((f) => ({ f, txt: readFileSync(f, 'utf8') }));
 const cuerpo = (txt) => txt.split(/^---$/m).slice(2).join('---');
-// Campos de una línea del frontmatter que lee una persona: descripción, bajada, y preguntas y respuestas del FAQ
-const campos = (txt) => txt.split(/^---$/m)[1].split('\n')
-  .map((l) => l.match(/^\s*(?:- )?(descripcion|bajada|q|a): (.*)$/)).filter(Boolean)
-  .map(([, clave, valor]) => ({ clave, valor }));
-const faq = (txt) => campos(txt).filter((x) => x.clave === 'q' || x.clave === 'a');
-// Lo que lee una persona en la ficha: esos campos y el cuerpo (sin la experiencia, que sale de la lista cerrada del
-// esquema y puede repetirse entre equipos de un mismo proyecto)
-const textoVisible = (txt) => [...campos(txt).map((x) => x.valor), cuerpo(txt)].join(' ');
+// Frontmatter leído con js-yaml, el mismo lector que usa Astro: lo que Astro no puede leer tampoco pasa estas pruebas
+const datos = (txt) => yaml.load(txt.split(/^---$/m)[1]);
+const faq = (txt) => datos(txt).faq.flatMap(({ q, a }) => [q, a]);
+// Lo que lee una persona en la ficha: descripción, bajada, FAQ y cuerpo (sin la experiencia, que sale de la lista
+// cerrada del esquema y puede repetirse entre equipos de un mismo proyecto)
+const textoVisible = (txt) => [datos(txt).descripcion, datos(txt).bajada, ...faq(txt), cuerpo(txt)].join(' ');
 const ngramas = (texto, n) => {
   const p = texto.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim().split(' ');
   return new Set(Array.from({ length: Math.max(0, p.length - n + 1) }, (_, i) => p.slice(i, i + n).join(' ')));
@@ -54,19 +53,22 @@ test('las fichas no repiten entre sí una frase de 8 palabras seguidas', () => {
   }
 });
 
-test('el FAQ de cada ficha trae 3 preguntas y 3 respuestas, cada una en una línea', () => {
-  // Las pruebas de frases leen el frontmatter línea a línea: una respuesta en bloque (a: > o a: |) quedaría fuera sin aviso
+test('el frontmatter de cada ficha se lee como YAML, igual que en Astro', () => {
+  // Un valor sin comillas con «: » adentro rompe el build; aquí se ve antes
   for (const { f, txt } of fichas()) {
-    assert.deepEqual(faq(txt).map((x) => x.clave), ['q', 'a', 'q', 'a', 'q', 'a'], f);
-    for (const { valor } of faq(txt)) assert.doesNotMatch(valor, /^[>|]/, `${f}: «${valor}» va en bloque; escríbalo en una línea`);
+    try {
+      datos(txt);
+    } catch (e) {
+      assert.fail(`${f}: ${e.reason ?? e.message} (línea ${(e.mark?.line ?? 0) + 1} del archivo)`);
+    }
   }
 });
 
 test('el cuerpo de cada ficha no repite 8 palabras seguidas de su FAQ', () => {
   for (const { f, txt } of fichas()) {
     const delCuerpo = ngramas(cuerpo(txt), 8);
-    for (const { valor } of faq(txt)) {
-      const comun = [...ngramas(valor, 8)].find((x) => delCuerpo.has(x));
+    for (const texto of faq(txt)) {
+      const comun = [...ngramas(texto, 8)].find((x) => delCuerpo.has(x));
       assert.equal(comun, undefined, `${f}: el cuerpo y el FAQ repiten «${comun}»`);
     }
   }
