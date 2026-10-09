@@ -10,8 +10,10 @@ const fichas = Object.fromEntries(
   readdirSync(DIR).filter((f) => f.endsWith('.md')).map((f) => [f.replace(/\.md$/, ''), yaml.load(readFileSync(`${DIR}/${f}`, 'utf8').split(/^---$/m)[1])]),
 );
 const sinEntidades = (s) => s.replace(/&amp;/g, '&').trim();
+// Las tarjetas son las de la sección «Gestión de Activos Mineros»: un enlace a una ficha en otra parte del inicio no cuenta
+const SECCION = INICIO.match(/<section id="twins-2"[\s\S]*?<\/section>/)?.[0] ?? '';
 // El inicio es HTML legado y no puede leer la colección: cada tarjeta repite el slug, el nombre y el tipo de su ficha
-const tarjetas = () => [...INICIO.matchAll(/<a href="\/biblioteca\/([a-z0-9-]+)"[^>]*>([\s\S]*?)<\/a>/g)].map(([, slug, dentro]) => ({
+const tarjetas = () => [...SECCION.matchAll(/<a href="\/biblioteca\/([a-z0-9-]+)"[^>]*>([\s\S]*?)<\/a>/g)].map(([, slug, dentro]) => ({
   slug,
   poster: dentro.match(/<img[^>]* src="([^"]*)"/)?.[1],
   alt: sinEntidades(dentro.match(/<img[^>]* alt="([^"]*)"/)?.[1] ?? ''),
