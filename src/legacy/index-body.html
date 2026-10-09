@@ -22,6 +22,9 @@
                     <a href="#twins" class="nav-link" style="text-decoration: none;">Gemelos Digitales</a>
                 </div>
                 <div class="nav-item">
+                    <a href="/biblioteca/" class="nav-link" style="text-decoration: none;">Biblioteca</a>
+                </div>
+                <div class="nav-item">
                     <a href="#process" class="nav-link" style="text-decoration: none;">Proceso</a>
                 </div>
                 <div class="nav-item">
@@ -193,59 +196,28 @@
                             </h2>
                             <p
                                 style="color: #bbb; max-width: 750px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; font-weight: 300;">
-                                Visualización multiplataforma de activos críticos. Acceda a sus operaciones mineras
-                                desde
-                                cualquier parte del mundo con nuestros visualizadores de alto rendimiento.
+                                Cada ficha muestra un equipo en 3D y lo que podemos hacer con ese modelo.
                             </p>
                         </div>
 
                         <div style="display: flex; flex-direction: column; gap: 60px; margin-bottom: 60px;">
 
-                            <!-- Visor 1: Planta Concentradora -->
-                            <div
-                                style="background: #111; border: 1px solid #333; border-radius: 8px; overflow: hidden;">
-                                <div style="position: relative; height: 75vh; min-height: 500px;">
-                                    <iframe src="https://komatsu-ph-4100xpc.netlify.app/"
-                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                                        allowfullscreen loading="lazy"></iframe>
-                                </div>
-                                <div
-                                    style="padding: 25px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333;">
-                                    <div>
-                                        <h4
-                                            style="color: white; margin-bottom: 5px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">
-                                            Komatsu PH-4100XPC - Pala Minera</h4>
-                                        <p style="color: #888; font-size: 0.9rem; margin: 0;">Estado: Modelo 3D
-                                            Interactivo</p>
-                                    </div>
-                                    <span
-                                        style="background: #1a472a; color: #4ade80; padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">●
-                                        EN VIVO</span>
-                                </div>
+                            <!-- Biblioteca de equipos: tarjetas a las fichas con visor 3D propio -->
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+                                <a href="/biblioteca/komatsu-930e-5" style="display: grid; background: #111; border: 1px solid #333; border-radius: 8px; overflow: hidden; text-decoration: none; color: #fff;">
+                                    <span style="aspect-ratio: 16 / 10; background: radial-gradient(80% 80% at 50% 45%, #ffffff, #f1f5f9 60%, #dfe5ec); display: grid; place-items: center;"><img src="/biblioteca/komatsu-930e-5/poster.webp" alt="Modelo 3D de referencia: Komatsu 930E-5" width="1600" height="1000" loading="lazy" style="width: 100%; height: 100%; object-fit: contain;"></span>
+                                    <span style="padding: 20px 22px; border-top: 1px solid #333;"><strong style="display: block; text-transform: uppercase; letter-spacing: 1px;">Komatsu 930E-5</strong><span style="color: #888; font-size: 0.9rem;">Camión de extracción</span></span>
+                                </a>
+                                <a href="/biblioteca/pala-ph-4100xpc" style="display: grid; background: #111; border: 1px solid #333; border-radius: 8px; overflow: hidden; text-decoration: none; color: #fff;">
+                                    <span style="aspect-ratio: 16 / 10; background: radial-gradient(80% 80% at 50% 45%, #ffffff, #f1f5f9 60%, #dfe5ec); display: grid; place-items: center;"><img src="/biblioteca/pala-ph-4100xpc/poster.webp" alt="Modelo 3D de referencia: Pala P&amp;H 4100XPC" width="1600" height="1000" loading="lazy" style="width: 100%; height: 100%; object-fit: contain;"></span>
+                                    <span style="padding: 20px 22px; border-top: 1px solid #333;"><strong style="display: block; text-transform: uppercase; letter-spacing: 1px;">Pala P&amp;H 4100XPC</strong><span style="color: #888; font-size: 0.9rem;">Pala de cable</span></span>
+                                </a>
+                                <a href="/biblioteca/sandvik-lh621" style="display: grid; background: #111; border: 1px solid #333; border-radius: 8px; overflow: hidden; text-decoration: none; color: #fff;">
+                                    <span style="aspect-ratio: 16 / 10; background: radial-gradient(80% 80% at 50% 45%, #ffffff, #f1f5f9 60%, #dfe5ec); display: grid; place-items: center;"><img src="/biblioteca/sandvik-lh621/poster.webp" alt="Modelo 3D de referencia: Sandvik LH621" width="1600" height="1000" loading="lazy" style="width: 100%; height: 100%; object-fit: contain;"></span>
+                                    <span style="padding: 20px 22px; border-top: 1px solid #333;"><strong style="display: block; text-transform: uppercase; letter-spacing: 1px;">Sandvik LH621</strong><span style="color: #888; font-size: 0.9rem;">Cargador de bajo perfil (LHD)</span></span>
+                                </a>
                             </div>
-
-                            <!-- Visor 2: Área de Mantenimiento -->
-                            <div
-                                style="background: #111; border: 1px solid #333; border-radius: 8px; overflow: hidden;">
-                                <div style="position: relative; height: 75vh; min-height: 500px;">
-                                    <iframe src="https://komatsu930e5.netlify.app/"
-                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
-                                        allowfullscreen loading="lazy"></iframe>
-                                </div>
-                                <div
-                                    style="padding: 25px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333;">
-                                    <div>
-                                        <h4
-                                            style="color: white; margin-bottom: 5px; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">
-                                            Komatsu 930E-5 - Camión Minero</h4>
-                                        <p style="color: #888; font-size: 0.9rem; margin: 0;">Estado: Modelo 3D
-                                            Interactivo</p>
-                                    </div>
-                                    <span
-                                        style="background: #1a472a; color: #4ade80; padding: 8px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">●
-                                        EN VIVO</span>
-                                </div>
-                            </div>
+                            <p style="text-align: center; margin: 0;"><a href="/biblioteca/" style="color: #fff; text-transform: uppercase; letter-spacing: 1.2px; font-weight: 700; font-size: 0.8rem;">Ver la biblioteca completa</a></p>
 
 
 
