@@ -5,16 +5,17 @@ import Base from '@mcco/web-kit/layouts/Base.astro';
 import Faq from '@mcco/web-kit/components/Faq.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';
 import Cabecera from '../../components/Cabecera.astro';
+import TarjetaEquipo from '../../components/TarjetaEquipo.astro';
 import Visor3D from '../../components/Visor3D.astro';
+import { ETAPAS, otrosEquipos } from '../../scripts/biblioteca-logica.js';
 import '../../styles/theme.css';
 import '../../styles/biblioteca.css';
 
 export async function getStaticPaths() {
-  const equipos = (await getCollection('equipos')).sort((a, b) => a.data.orden - b.data.orden);
-  return equipos.map((equipo) => ({ params: { slug: equipo.id }, props: { equipo, otros: equipos.filter((x) => x.id !== equipo.id) } }));
+  const equipos = await getCollection('equipos');
+  return equipos.map((equipo) => ({ params: { slug: equipo.id }, props: { equipo, otros: otrosEquipos(equipos, equipo) } }));
 }
 
-const ETAPAS: Record<string, string> = { carguio: 'Carguío', transporte: 'Transporte', subterranea: 'Subterránea', chancado: 'Chancado', clasificacion: 'Clasificación', molienda: 'Molienda' };
 const { equipo, otros } = Astro.props;
 const d = equipo.data;
 const slug = equipo.id;
@@ -66,12 +67,12 @@ const jsonld = [
       <div class="bib-rotulo">Biblioteca</div>
       <h2 class="bib-titular">Otros equipos</h2>
       <div class="bib-tarjetas">
-        {otros.map((o) => (
-          <a class="bib-tarjeta" href={`/biblioteca/${o.id}`}>
-            <span class="bib-franja"><img src={`/biblioteca/${o.id}/poster.webp`} alt={`Modelo 3D de referencia: ${o.data.nombre}`} width="1600" height="1000" loading="lazy" decoding="async" /></span>
-            <span class="bib-info"><span class="bib-etapa">{ETAPAS[o.data.etapa]}</span><b>{o.data.nombre}</b><p>{o.data.bajada}</p></span>
+        {otros.map((o) => <TarjetaEquipo equipo={o} />)}
+        {otros.length < 3 && (
+          <a class="bib-tarjeta bib-tarjeta-contacto" href="#contacto">
+            <span class="bib-info"><span class="bib-etapa">Contacto</span><b>¿Su equipo no está en la lista?</b><span class="bib-bajada">Cuéntenos cuál es y lo modelamos con sus medidas reales.</span></span>
           </a>
-        ))}
+        )}
       </div>
     </div></section>
 

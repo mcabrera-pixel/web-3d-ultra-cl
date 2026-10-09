@@ -3,8 +3,10 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { blogSchema, casoSchema, guiaSchema } from '@mcco/web-kit/schemas';
+import { ETAPAS } from './scripts/biblioteca-logica.js';
 
 const md = (base: string) => glob({ pattern: '**/[^_]*.md', base });
+type Etapa = keyof typeof ETAPAS;
 
 // Experiencias confirmadas por Mario el 08-oct-2026. Una frase nueva entra aquí solo con su confirmación.
 const EXPERIENCIAS = [
@@ -18,7 +20,7 @@ const equipoSchema = z.object({
   nombre: z.string(),
   // Artículo del nombre en las frases de la ficha: «el modelo de la Pala P&H 4100XPC», «vi la Pala P&H 4100XPC».
   articulo: z.enum(['el', 'la']).default('el'),
-  etapa: z.enum(['carguio', 'transporte', 'subterranea', 'chancado', 'clasificacion', 'molienda']),
+  etapa: z.enum(Object.keys(ETAPAS) as [Etapa, ...Etapa[]]),
   tipo: z.string(),
   bajada: z.string().max(140),
   descripcion: z.string().min(70).max(155),

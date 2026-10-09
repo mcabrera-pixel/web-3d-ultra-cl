@@ -1,0 +1,13 @@
+---
+// Tarjeta de un equipo de la biblioteca, en el hub y en «Otros equipos» de la ficha. El filtro del hub lee data-etapa.
+import type { CollectionEntry } from 'astro:content';
+import { ETAPAS } from '../scripts/biblioteca-logica.js';
+
+interface Props { equipo: CollectionEntry<'equipos'> }
+const { equipo } = Astro.props;
+const d = equipo.data;
+---
+<a class="bib-tarjeta" href={`/biblioteca/${equipo.id}`} data-etapa={d.etapa}>
+  <span class="bib-franja"><img src={`/biblioteca/${equipo.id}/poster.webp`} alt={`Modelo 3D de referencia: ${d.nombre}`} width="1600" height="1000" loading="lazy" decoding="async" /></span>
+  <span class="bib-info"><span class="bib-etapa">{ETAPAS[d.etapa]}</span><b>{d.nombre}</b><span class="bib-bajada">{d.bajada}</span></span>
+</a>
