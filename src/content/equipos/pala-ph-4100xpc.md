@@ -4,7 +4,7 @@ articulo: la
 etapa: carguio
 tipo: Pala de cable
 bajada: Pala de cable eléctrica para rajo abierto.
-descripcion: Prepare en 3D la próxima parada de la pala P&H 4100XPC: dónde ubicar la grúa y cómo cambiar los dientes del balde o los cables de levante.
+descripcion: "Prepare en 3D la próxima parada de la pala P&H 4100XPC: dónde ubicar la grúa y cómo cambiar los dientes del balde o los cables de levante."
 experiencia:
   - Hicimos el gemelo de la pala 4100 para El Abra.
 faq:
