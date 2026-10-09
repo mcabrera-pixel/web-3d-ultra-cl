@@ -69,8 +69,11 @@ body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-fam
 .bib-btn { font: 700 12px 'Montserrat', sans-serif; letter-spacing: 1.2px; text-transform: uppercase; padding: 16px 26px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
 .bib-btn-blanco { background: #fff; color: #111; border: 0; }
 .bib-btn-borde { background: transparent; color: #fff; border: 1px solid #3a3a3a; }
-@media (max-width: 900px) {
+/* Bajo 1025 px el menú se parte en dos líneas o queda apretado entre el logo y el botón: se oculta, igual que en el inicio */
+@media (max-width: 1024px) {
   .bib-menu { display: none; }
+}
+@media (max-width: 900px) {
   /* En celular queda «Agendar reunión», más compacto; puede pasar a dos líneas en pantallas angostas */
   .bib-cabecera-dentro { padding: 10px 16px; gap: 12px; }
   .bib-logos { gap: 8px; }
