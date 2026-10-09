@@ -27,7 +27,7 @@ const url = new URL(`/biblioteca/${slug}`, site.domain).href;
 const poster = `/biblioteca/${slug}/poster.webp`;
 const jsonld = [
   { '@context': 'https://schema.org', '@type': 'WebPage', name: `${d.nombre} en 3D`, url, about: { '@type': 'Thing', name: d.nombre }, primaryImageOfPage: new URL(poster, site.domain).href },
-  { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@id': `${site.domain}/#organization` }, areaServed: 'CL' },
+  { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@type': 'Organization', '@id': `${site.domain}/#organization`, name: site.name, url: `${site.domain}/` }, areaServed: 'CL' },
 ];
 ---
 <Base title={`${d.nombre} en 3D: gemelo y procedimientos | ${site.name}`} description={d.descripcion} ogImage={poster} jsonld={jsonld} bodyClass="bib-pagina">
@@ -76,7 +76,7 @@ const jsonld = [
       <div>
         <div class="bib-rotulo">Contacto</div>
         <h2 class="bib-titular">Quiero el gemelo de mi equipo</h2>
-        <p class="bib-texto">Cuéntenos qué equipo tiene y qué necesita resolver. {site.contact.response_sla ?? 'Respondemos en menos de 24 horas hábiles.'}</p>
+        <p class="bib-texto">Cuéntenos qué equipo tiene y qué necesita resolver. {site.contact.response_sla}</p>
       </div>
       <FormularioEquipo equipo={d.nombre} origen={`biblioteca/${slug}`} textoWa={`Hola, vi ${d.articulo} ${d.nombre} en la biblioteca de ${site.name} y quiero saber más`} />
     </div></section>
