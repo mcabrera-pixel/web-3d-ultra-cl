@@ -5,6 +5,7 @@ import Base from '@mcco/web-kit/layouts/Base.astro';
 import Faq from '@mcco/web-kit/components/Faq.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';
 import Cabecera from '../../components/Cabecera.astro';
+import FormularioEquipo from '../../components/FormularioEquipo.astro';
 import TarjetaEquipo from '../../components/TarjetaEquipo.astro';
 import Visor3D from '../../components/Visor3D.astro';
 import { ETAPAS, otrosEquipos } from '../../scripts/biblioteca-logica.js';
@@ -24,8 +25,6 @@ const site = loadSite();
 const { Content } = await render(equipo);
 const url = new URL(`/biblioteca/${slug}`, site.domain).href;
 const poster = `/biblioteca/${slug}/poster.webp`;
-const wa = (site.contact.whatsapp ?? '').replace(/\D/g, '');
-const textoWa = encodeURIComponent(`Hola, vi ${d.articulo} ${d.nombre} en la biblioteca de ${site.name} y quiero saber más`);
 const jsonld = [
   { '@context': 'https://schema.org', '@type': 'WebPage', name: `${d.nombre} en 3D`, url, about: { '@type': 'Thing', name: d.nombre }, primaryImageOfPage: new URL(poster, site.domain).href },
   { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@type': 'Organization', name: site.name, url: site.domain }, areaServed: 'CL' },
@@ -82,19 +81,7 @@ const jsonld = [
         <h2 class="bib-titular">Quiero el gemelo de mi equipo</h2>
         <p class="bib-texto">Cuéntenos qué equipo tiene y qué necesita resolver. {site.contact.response_sla ?? 'Respondemos en menos de 24 horas hábiles.'}</p>
       </div>
-      <form class="bib-form" method="post" action="/api/contact">
-        <label for="f-equipo">Equipo<input id="f-equipo" name="equipo" value={d.nombre} readonly /></label>
-        <input type="hidden" name="origen" value={`biblioteca/${slug}`} />
-        <div class="bib-oculto-honeypot" aria-hidden="true"><label for="f-web">Sitio web<input id="f-web" name="website_url" tabindex="-1" autocomplete="off" /></label></div>
-        <label for="f-nombre">Nombre<input id="f-nombre" name="nombre" autocomplete="name" required /></label>
-        <label for="f-empresa">Empresa o faena<input id="f-empresa" name="empresa" autocomplete="organization" /></label>
-        <label for="f-correo">Correo<input id="f-correo" name="email" type="email" autocomplete="email" required /></label>
-        <label for="f-mensaje">Qué necesita<textarea id="f-mensaje" name="mensaje" rows="3"></textarea></label>
-        <div class="bib-acciones">
-          <button class="bib-btn bib-btn-blanco" type="submit">Enviar solicitud</button>
-          {wa && <a class="bib-btn bib-btn-borde" href={`https://wa.me/${wa}?text=${textoWa}`} target="_blank" rel="noopener">WhatsApp</a>}
-        </div>
-      </form>
+      <FormularioEquipo equipo={d.nombre} origen={`biblioteca/${slug}`} textoWa={`Hola, vi ${d.articulo} ${d.nombre} en la biblioteca de ${site.name} y quiero saber más`} />
     </div></section>
   </main>
 </Base>

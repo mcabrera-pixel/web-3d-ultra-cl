@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 import Base from '@mcco/web-kit/layouts/Base.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';
 import Cabecera from '../../components/Cabecera.astro';
+import FormularioEquipo from '../../components/FormularioEquipo.astro';
 import TarjetaEquipo from '../../components/TarjetaEquipo.astro';
 import { ETAPAS } from '../../scripts/biblioteca-logica.js';
 import '../../styles/theme.css';
@@ -37,11 +38,13 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
         {equipos.map((e) => <TarjetaEquipo equipo={e} />)}
       </div>
     </div></section>
-    <section class="bib-bloque" id="contacto"><div class="bib-contenedor">
-      <div class="bib-rotulo">Contacto</div>
-      <h2 class="bib-titular">¿Su equipo no está en la lista?</h2>
-      <p class="bib-texto">Modelamos el equipo que usted opera, con sus medidas reales. {site.contact.response_sla ?? 'Respondemos en menos de 24 horas hábiles.'}</p>
-      <div class="bib-acciones"><a class="bib-btn bib-btn-blanco" href="/#contacto">Pedir una evaluación</a></div>
+    <section class="bib-bloque" id="contacto"><div class="bib-contenedor bib-cierre">
+      <div>
+        <div class="bib-rotulo">Contacto</div>
+        <h2 class="bib-titular">¿Su equipo no está en la lista?</h2>
+        <p class="bib-texto">Modelamos el equipo que usted opera, con sus medidas reales. {site.contact.response_sla ?? 'Respondemos en menos de 24 horas hábiles.'}</p>
+      </div>
+      <FormularioEquipo origen="biblioteca/" textoWa={`Hola, vi la biblioteca de equipos de ${site.name} y quiero saber más`} />
     </div></section>
   </main>
   {/* El script va dentro del layout: Astro lo emite donde se declara. */}
