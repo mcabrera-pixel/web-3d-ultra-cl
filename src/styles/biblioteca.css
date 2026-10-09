@@ -22,6 +22,8 @@ body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-fam
 .bib-rotulo, .bib-pagina .mcco-faq h2 { display: flex; align-items: center; gap: 15px; color: var(--bib-rojo-texto); font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; text-transform: uppercase; }
 .bib-rotulo::before, .bib-pagina .mcco-faq h2::before { content: ""; display: block; width: 40px; height: 2px; background: #d32f2f; }
 .bib-bloque { padding-block: 76px; border-top: 1px solid #141414; }
+/* Salto a un ancla (#contacto): la sección queda 16 px bajo el encabezado pegado, que mide 76 px (59 px en celular) */
+.bib-pagina section[id] { scroll-margin-top: calc(76px + 16px); }
 .bib-dos { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: start; }
 .bib-titular { font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height: 1.1; letter-spacing: -1px; font-weight: 800; margin: 18px 0 22px; text-wrap: balance; }
 .bib-texto p, p.bib-texto { color: var(--bib-gris); font-weight: 300; font-size: 1.05rem; margin: 0 0 16px; max-width: 64ch; }
@@ -79,4 +81,5 @@ body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-fam
   .bib-dos, .bib-cierre { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .bib-tarjetas { grid-template-columns: minmax(0, 1fr); }
   .bib-bloque { padding-block: 52px; }
+  .bib-pagina section[id] { scroll-margin-top: calc(59px + 16px); }
 }
