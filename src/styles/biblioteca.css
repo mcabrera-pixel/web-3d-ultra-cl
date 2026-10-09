@@ -1,5 +1,6 @@
 /* Páginas de la biblioteca con la identidad de 3d-ultra.cl: encabezado blanco, secciones negras y rótulos rojos. */
-:root { --bib-negro: #050505; --bib-panel-osc: #111111; --bib-linea: #262626; --bib-gris: #bbbbbb; --bib-gris-2: #8a8a8a; --bib-cobre: #c85a17; }
+/* --bib-rojo-texto: rojo de los rótulos con contraste AA sobre negro (5,9:1); las líneas y bordes siguen en #d32f2f */
+:root { --bib-negro: #050505; --bib-panel-osc: #111111; --bib-linea: #262626; --bib-gris: #bbbbbb; --bib-gris-2: #8a8a8a; --bib-cobre: #c85a17; --bib-rojo-texto: #ef5350; }
 body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; }
 /* hidden tiene que ganarles a los display de abajo: filtro del hub sin JS y tarjetas filtradas */
 .bib-pagina [hidden] { display: none !important; }
@@ -18,31 +19,36 @@ body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-fam
 .bib-menu a[aria-current] { color: #111; box-shadow: inset 0 -2px 0 #d32f2f; padding-bottom: 4px; }
 .bib-btn-negro { background: #111; color: #fff; text-decoration: none; text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; padding: 15px 28px; }
 .bib-pie-visor { color: var(--bib-gris-2); font-size: 12.5px; padding-block: 14px; margin: 0; border-bottom: 1px solid #141414; }
-.bib-rotulo { display: flex; align-items: center; gap: 15px; color: #d32f2f; font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; text-transform: uppercase; }
-.bib-rotulo::before { content: ""; display: block; width: 40px; height: 2px; background: #d32f2f; }
+.bib-rotulo, .bib-pagina .mcco-faq h2 { display: flex; align-items: center; gap: 15px; color: var(--bib-rojo-texto); font-weight: 700; letter-spacing: 2px; font-size: 0.8rem; text-transform: uppercase; }
+.bib-rotulo::before, .bib-pagina .mcco-faq h2::before { content: ""; display: block; width: 40px; height: 2px; background: #d32f2f; }
 .bib-bloque { padding-block: 76px; border-top: 1px solid #141414; }
 .bib-dos { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 64px; align-items: start; }
 .bib-titular { font-size: clamp(1.9rem, 3.4vw, 2.6rem); line-height: 1.1; letter-spacing: -1px; font-weight: 800; margin: 18px 0 22px; text-wrap: balance; }
 .bib-texto p, p.bib-texto { color: var(--bib-gris); font-weight: 300; font-size: 1.05rem; margin: 0 0 16px; max-width: 64ch; }
 .bib-experiencia { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .bib-experiencia li { border-left: 2px solid #d32f2f; padding: 6px 12px; color: #fff; background: #0d0d0d; }
-.bib-pagina .mcco-faq h2 { display: none; }
 /* El FAQ del kit tiene estilos con alcance propio: se ajusta por sus tokens para que se lea sobre negro. */
 .bib-pagina .mcco-faq { --mcco-color-muted: #bbbbbb; --mcco-color-border: #262626; color: #fff; }
+.bib-pagina .mcco-faq h2 { margin: 0 0 22px; }
+/* Marcador + y − en vez del triángulo que el kit quita: la pregunta se ve desplegable */
+.bib-pagina .mcco-faq__item summary { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.bib-pagina .mcco-faq__item summary::-webkit-details-marker { display: none; }
+.bib-pagina .mcco-faq__item summary::after { content: "+"; flex: none; color: var(--bib-rojo-texto); font-weight: 700; font-size: 1.25rem; line-height: 1; }
+.bib-pagina .mcco-faq__item[open] summary::after { content: "−"; }
 .bib-tarjetas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .bib-tarjeta { background: var(--bib-panel-osc); border: 1px solid var(--bib-linea); border-radius: 6px; overflow: hidden; display: grid; text-decoration: none; color: #fff; }
 .bib-tarjeta:hover { border-color: #3a3a3a; }
 .bib-tarjeta .bib-franja { aspect-ratio: 16 / 10; background: radial-gradient(80% 80% at 50% 45%, #ffffff, #f1f5f9 60%, #dfe5ec); display: grid; place-items: center; overflow: hidden; }
 .bib-tarjeta .bib-franja img { width: 100%; height: 100%; object-fit: contain; }
 .bib-tarjeta .bib-info { padding: 18px 20px 22px; display: grid; gap: 6px; border-top: 1px solid var(--bib-linea); }
-.bib-tarjeta .bib-etapa { color: #d32f2f; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+.bib-tarjeta .bib-etapa { color: var(--bib-rojo-texto); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
 .bib-tarjeta b { text-transform: uppercase; letter-spacing: 0.5px; font-size: 15px; }
 .bib-tarjeta .bib-bajada { color: var(--bib-gris-2); font-size: 13.5px; }
 /* Tercera tarjeta de «Otros equipos» mientras la biblioteca tenga menos de 4 equipos: lleva al formulario */
 .bib-tarjeta-contacto { align-content: center; border-style: dashed; }
 .bib-tarjeta-contacto .bib-info { border-top: 0; }
 .bib-filtros { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
-.bib-filtros button { background: transparent; color: var(--bib-gris); border: 1px solid #333; border-radius: 999px; padding: 8px 16px; font: 600 12px 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
+.bib-filtros button { background: transparent; color: var(--bib-gris); border: 1px solid #333; border-radius: 0; padding: 8px 16px; font: 600 12px 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; }
 .bib-filtros button[aria-pressed="true"] { color: #fff; border-color: #d32f2f; background: rgba(211, 47, 47, 0.12); }
 .bib-hub-cabeza { padding-block: 72px 36px; }
 .bib-hub-cabeza h1 { font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.02; letter-spacing: -1.5px; font-weight: 800; margin: 18px 0 0; }
@@ -59,7 +65,14 @@ body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-fam
 .bib-btn-blanco { background: #fff; color: #111; border: 0; }
 .bib-btn-borde { background: transparent; color: #fff; border: 1px solid #3a3a3a; }
 @media (max-width: 900px) {
-  .bib-menu, .bib-btn-negro { display: none; }
+  .bib-menu { display: none; }
+  /* En celular queda «Agendar reunión», más compacto; puede pasar a dos líneas en pantallas angostas */
+  .bib-cabecera-dentro { padding: 10px 16px; gap: 12px; }
+  .bib-logos { gap: 8px; }
+  .bib-logos img { width: 60px; }
+  .bib-div { height: 30px; }
+  .bib-marca { font-size: 1.3rem; }
+  .bib-btn-negro { padding: 10px 14px; font-size: 11px; letter-spacing: 1px; line-height: 1.25; text-align: center; }
   .bib-dos, .bib-cierre { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .bib-tarjetas { grid-template-columns: minmax(0, 1fr); }
   .bib-bloque { padding-block: 52px; }

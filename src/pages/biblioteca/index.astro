@@ -35,7 +35,7 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
         {etapas.map((e) => <button type="button" data-etapa={e} aria-pressed="false">{ETAPAS[e]}</button>)}
       </div>
       <div class="bib-tarjetas">
-        {equipos.map((e) => <TarjetaEquipo equipo={e} />)}
+        {equipos.map((e, i) => <TarjetaEquipo equipo={e} prioridad={i === 0} />)}
       </div>
     </div></section>
     <section class="bib-bloque" id="contacto"><div class="bib-contenedor bib-cierre">

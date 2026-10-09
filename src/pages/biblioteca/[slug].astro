@@ -48,10 +48,7 @@ const jsonld = [
         <h2 class="bib-titular">{`Para qué usamos el modelo ${del} ${d.nombre}`}</h2>
         <Content />
       </div>
-      <div>
-        <div class="bib-rotulo">Preguntas frecuentes</div>
-        <div style="margin-top:22px"><Faq items={d.faq} /></div>
-      </div>
+      <div><Faq items={d.faq} /></div>
     </div></section>
 
     {d.experiencia.length > 0 && (

@@ -3,11 +3,12 @@
 import type { CollectionEntry } from 'astro:content';
 import { ETAPAS } from '../scripts/biblioteca-logica.js';
 
-interface Props { equipo: CollectionEntry<'equipos'> }
-const { equipo } = Astro.props;
+// prioridad: la primera tarjeta del hub es la imagen más grande de la primera pantalla en celular (LCP)
+interface Props { equipo: CollectionEntry<'equipos'>; prioridad?: boolean }
+const { equipo, prioridad = false } = Astro.props;
 const d = equipo.data;
 ---
 <a class="bib-tarjeta" href={`/biblioteca/${equipo.id}`} data-etapa={d.etapa}>
-  <span class="bib-franja"><img src={`/biblioteca/${equipo.id}/poster.webp`} alt={`Modelo 3D de referencia: ${d.nombre}`} width="1600" height="1000" loading="lazy" decoding="async" /></span>
+  <span class="bib-franja"><img src={`/biblioteca/${equipo.id}/poster.webp`} alt={`Modelo 3D de referencia: ${d.nombre}`} width="1600" height="1000" loading={prioridad ? undefined : 'lazy'} fetchpriority={prioridad ? 'high' : undefined} decoding="async" /></span>
   <span class="bib-info"><span class="bib-etapa">{ETAPAS[d.etapa]}</span><b>{d.nombre}</b><span class="bib-bajada">{d.bajada}</span></span>
 </a>
