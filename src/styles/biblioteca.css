@@ -45,7 +45,8 @@ body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-fam
 .bib-tarjeta .bib-etapa { color: var(--bib-rojo-texto); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
 .bib-tarjeta b { text-transform: uppercase; letter-spacing: 0.5px; font-size: 15px; }
 .bib-tarjeta .bib-bajada { color: var(--bib-gris-2); font-size: 13.5px; }
-/* Tercera tarjeta de «Otros equipos» mientras la biblioteca tenga menos de 4 equipos: lleva al formulario */
+/* Tercera tarjeta de «Otros equipos» mientras la biblioteca tenga menos de 4 equipos: lleva al formulario del hub,
+   donde el equipo se escribe (en la ficha viene puesto) */
 .bib-tarjeta-contacto { align-content: center; border-style: dashed; }
 .bib-tarjeta-contacto .bib-info { border-top: 0; }
 .bib-filtros { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
