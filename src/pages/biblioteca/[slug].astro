@@ -27,7 +27,7 @@ const url = new URL(`/biblioteca/${slug}`, site.domain).href;
 const poster = `/biblioteca/${slug}/poster.webp`;
 const jsonld = [
   { '@context': 'https://schema.org', '@type': 'WebPage', name: `${d.nombre} en 3D`, url, about: { '@type': 'Thing', name: d.nombre }, primaryImageOfPage: new URL(poster, site.domain).href },
-  { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@type': 'Organization', name: site.name, url: site.domain }, areaServed: 'CL' },
+  { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@id': `${site.domain}/#organization` }, areaServed: 'CL' },
 ];
 ---
 <Base title={`${d.nombre} en 3D: gemelo y procedimientos | ${site.name}`} description={d.descripcion} ogImage={poster} jsonld={jsonld} bodyClass="bib-pagina">

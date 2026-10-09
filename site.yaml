@@ -61,6 +61,7 @@ sitemap:
 llms:
   pages:
     - { title: Inicio, url: / }
+    - { title: Biblioteca de equipos mineros en 3D, url: /biblioteca/ }
     - { title: "Caso: gemelo digital área RAF, Fundición Potrerillos", url: /casos/gemelo-digital-raf-potrerillos }
     - { title: "Caso: análisis estructural de chimenea CPS", url: /casos/analisis-chimenea-cps-salvador }
     - { title: "Caso: hornos Isasmelt, extensión de vida útil", url: /casos/hornos-isasmelt-extension-vida-util }
@@ -70,7 +71,7 @@ llms:
 
 # Verdad del sitio: si alguno de estos strings aparece en dist/, mcco-check falla.
 forbidden: ["Leica", "RTC360", "tupagina-de-activos", "foundingDate\":\"2003", "condrone.cl"]
-clients_allowed: [CODELCO]
+clients_allowed: [CODELCO, BHP, Aster, Capstone Copper, El Abra]
 
 legacy_pages: true                  # casos/, guias/ y en/ siguen como .html con canonical manual (fase C pendiente)
 indexnow_key: c3e70c36be4a27623ec717c2b2f92d77
