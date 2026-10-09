@@ -39,6 +39,12 @@ test('las 3 tarjetas del inicio calzan con su ficha: slug, nombre, tipo, alt y p
   }
 });
 
+test('«Ver Demo Virtual» del héroe lleva a la biblioteca', () => {
+  // La demo del inicio ya no existe: los visores viven en las fichas
+  const heroe = INICIO.match(/<section class="hero"[\s\S]*?<\/section>/)?.[0] ?? '';
+  assert.match(heroe, /<a href="\/biblioteca\/"[^>]*>\s*Ver Demo Virtual\s*<\/a>/);
+});
+
 test('el inicio ya no embebe visores externos y la CSP no abre marcos para ellos', () => {
   // equal y no doesNotMatch: al fallar, este último imprime el inicio completo (54 mil caracteres)
   assert.equal((INICIO.match(/<iframe/gi) ?? []).length, 0, 'los visores viven en /biblioteca/<slug>, no en iframes del inicio');
