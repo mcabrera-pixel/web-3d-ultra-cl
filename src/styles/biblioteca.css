@@ -2,7 +2,7 @@
 /* --bib-rojo-texto: rojo de los rótulos con contraste AA sobre negro (5,9:1); las líneas y bordes siguen en #d32f2f */
 :root { --bib-negro: #050505; --bib-panel-osc: #111111; --bib-linea: #262626; --bib-gris: #bbbbbb; --bib-gris-2: #8a8a8a; --bib-cobre: #c85a17; --bib-rojo-texto: #ef5350; }
 body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; }
-/* hidden tiene que ganarles a los display de abajo: filtro del hub sin JS y tarjetas filtradas */
+/* hidden tiene que ganarles a los display de abajo: así se ocultan las tarjetas que deja fuera el filtro del hub */
 .bib-pagina [hidden] { display: none !important; }
 /* Sobre la nube del fondo (fija, z-index 0): el contenido y el bloque Grupo MCCO del kit (.mcco-grupo) */
 .bib-pagina main > section, .bib-pagina main > .bib-contenedor, .bib-pagina .mcco-grupo { position: relative; z-index: 1; }
