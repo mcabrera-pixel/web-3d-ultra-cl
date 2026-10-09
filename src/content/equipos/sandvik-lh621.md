@@ -20,4 +20,4 @@ Antes de detener el LH621 para una mantención mayor, podemos armar su gemelo co
 
 El cambio de balde o de neumáticos, dos de los trabajos más frecuentes del taller, se puede mostrar en una animación para que el turno conozca cada paso antes de hacerlo. Para los operadores nuevos, el mismo modelo sirve de recorrido en la pantalla o con lentes de realidad virtual, sin bajar a la mina.
 
-El panel de piezas separa el cargador en «Carga», «Chasis y cabina», «Dirección» y «Ruedas y tren de fuerza». En la carga están el balde, el brazo de levante, el balancín y los cilindros de levante y de volteo con sus vástagos; en el tren de fuerza, la transmisión y el sistema hidráulico. Si elige una pieza, la cámara la enfoca y deja translúcido el resto del cargador.
+El panel de piezas separa el cargador en «Carga», «Chasis y cabina», «Dirección» y «Ruedas y tren de fuerza». En la carga están el balde, el brazo de levante, el balancín y los cilindros de levante y de volteo con sus vástagos; en la dirección, un cilindro a cada lado, y en el tren de fuerza, la transmisión y el sistema hidráulico. Si elige una pieza, la cámara la enfoca y deja translúcido el resto del cargador.
