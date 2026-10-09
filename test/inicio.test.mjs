@@ -27,6 +27,7 @@ test('el menú del inicio enlaza la biblioteca', () => {
 test('las 3 tarjetas del inicio calzan con su ficha: slug, nombre, tipo, alt y póster', () => {
   const lista = tarjetas();
   assert.equal(lista.length, 3, 'el inicio muestra 3 tarjetas a fichas');
+  assert.equal(new Set(lista.map((t) => t.slug)).size, 3, 'cada tarjeta lleva a una ficha distinta');
   for (const t of lista) {
     const ficha = fichas[t.slug];
     assert.ok(ficha, `${t.slug}: no existe en ${DIR}`);
