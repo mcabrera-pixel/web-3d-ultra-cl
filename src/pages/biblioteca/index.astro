@@ -15,7 +15,7 @@ const etapas = [...new Set(equipos.map((e) => e.data.etapa))];
 const site = loadSite();
 const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Biblioteca de equipos 3D', url: new URL('/biblioteca/', site.domain).href, hasPart: equipos.map((e) => ({ '@type': 'WebPage', name: `${e.data.nombre} en 3D`, url: new URL(`/biblioteca/${e.id}`, site.domain).href })) }];
 ---
-<Base title={`Biblioteca de equipos mineros en 3D | ${site.name}`} description="Camiones, palas y cargadores mineros en 3D. Vea qué podemos hacer con cada modelo: planificar mantenciones, animar procedimientos y capacitar." jsonld={jsonld} bodyClass="bib-pagina">
+<Base title={`Biblioteca de equipos mineros en 3D | ${site.name}`} description="Camiones, palas y cargadores mineros en 3D. Vea qué podemos hacer con cada modelo: planificar mantenciones, animar procedimientos y capacitar operadores." jsonld={jsonld} bodyClass="bib-pagina">
   <Fragment slot="head">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
