@@ -19,7 +19,8 @@ const EXPERIENCIAS = [
 const equipoSchema = z.object({
   nombre: z.string(),
   // Artículo del nombre en las frases de la ficha: «el modelo de la Pala P&H 4100XPC», «vi la Pala P&H 4100XPC».
-  articulo: z.enum(['el', 'la']).default('el'),
+  // Sin valor por defecto: una ficha nueva que no lo declara no compila.
+  articulo: z.enum(['el', 'la']),
   etapa: z.enum(Object.keys(ETAPAS) as [Etapa, ...Etapa[]]),
   tipo: z.string(),
   bajada: z.string().max(140),

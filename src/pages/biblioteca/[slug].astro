@@ -25,13 +25,13 @@ const { Content } = await render(equipo);
 const url = new URL(`/biblioteca/${slug}`, site.domain).href;
 const poster = `/biblioteca/${slug}/poster.webp`;
 const wa = (site.contact.whatsapp ?? '').replace(/\D/g, '');
-const textoWa = encodeURIComponent(`Hola, vi ${d.articulo} ${d.nombre} en la biblioteca de 3D Ultra y quiero saber más`);
+const textoWa = encodeURIComponent(`Hola, vi ${d.articulo} ${d.nombre} en la biblioteca de ${site.name} y quiero saber más`);
 const jsonld = [
   { '@context': 'https://schema.org', '@type': 'WebPage', name: `${d.nombre} en 3D`, url, about: { '@type': 'Thing', name: d.nombre }, primaryImageOfPage: new URL(poster, site.domain).href },
   { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@type': 'Organization', name: site.name, url: site.domain }, areaServed: 'CL' },
 ];
 ---
-<Base title={`${d.nombre} en 3D: gemelo digital y procedimientos | 3D Ultra`} description={d.descripcion} ogImage={poster} jsonld={jsonld} bodyClass="bib-pagina">
+<Base title={`${d.nombre} en 3D: gemelo y procedimientos | ${site.name}`} description={d.descripcion} ogImage={poster} jsonld={jsonld} bodyClass="bib-pagina">
   <Fragment slot="head">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,7 +58,7 @@ const jsonld = [
     {d.experiencia.length > 0 && (
       <section class="bib-bloque"><div class="bib-contenedor">
         <div class="bib-rotulo">Experiencia</div>
-        <h2 class="bib-titular">Dónde lo hemos hecho</h2>
+        <h2 class="bib-titular">Dónde hemos trabajado con este equipo</h2>
         <ul class="bib-experiencia">{d.experiencia.map((x) => <li>{x}</li>)}</ul>
       </div></section>
     )}

@@ -1,20 +1,23 @@
 ---
 nombre: Sandvik LH621
+articulo: el
 etapa: subterranea
 tipo: Cargador de bajo perfil (LHD)
 bajada: Cargador de bajo perfil para minería subterránea.
-descripcion: Sandvik LH621 en 3D para planificar mantenciones en la galería, animar el cambio de balde o de neumáticos y capacitar operadores.
+descripcion: Modelo 3D del cargador Sandvik LH621 para revisar el espacio de la galería antes de una mantención y mostrar al turno el cambio de balde o de neumáticos.
 experiencia: []
 faq:
   - q: ¿Pueden modelar el equipo de mi faena tal como está?
-    a: Sí. Partimos del modelo de referencia y lo ajustamos con escaneo láser, fotos y planos del fabricante, para que las medidas coincidan con las del equipo que opera en su mina.
+    a: Sí. Ajustamos el modelo de referencia con un escaneo láser del equipo, fotos y planos del fabricante. Así las medidas quedan iguales a las del cargador que opera en su mina.
   - q: ¿Qué necesitan para empezar?
     a: El modelo y la serie del equipo, y la maniobra o el procedimiento que quiere mostrar. Si tiene el procedimiento escrito vigente, también nos sirve para partir.
   - q: ¿Sirve para inducir a contratistas?
-    a: Sí. El recorrido 3D y los videos se usan en inducciones y charlas sin detener el equipo ni bajar a la mina.
+    a: Sí. En una inducción o una charla, el recorrido 3D y los videos muestran el equipo sin detenerlo ni bajar a la mina.
 orden: 3
 ---
 
-Con el modelo del LH621 podemos armar el gemelo para planificar una mantención mayor antes de detener el equipo: cuánto espacio queda en la galería y en qué orden conviene desarmarlo.
+Antes de detener el LH621 para una mantención mayor, podemos armar su gemelo con este modelo y revisar cuánto espacio queda en la galería y en qué orden conviene desarmarlo.
 
-También podemos animar los procedimientos que más se repiten en el taller, como el cambio de balde o de neumáticos, para que el turno los vea antes de hacerlos en terreno. Los operadores nuevos pueden recorrer el mismo modelo en 3D o con lentes de realidad virtual sin bajar a la mina.
+El cambio de balde o de neumáticos, dos de los trabajos más frecuentes del taller, se puede mostrar en una animación para que el turno conozca cada paso antes de hacerlo. Para los operadores nuevos, el mismo modelo sirve de recorrido en la pantalla o con lentes de realidad virtual, sin bajar a la mina.
+
+El panel de piezas separa el cargador en «Carga», «Chasis y cabina», «Dirección» y «Ruedas y tren de fuerza». En la carga están el balde, el brazo de levante, el balancín y los cilindros de levante y de volteo con sus vástagos; en el tren de fuerza, la transmisión y el sistema hidráulico. Si elige una pieza, la cámara la enfoca y deja translúcido el resto del cargador.

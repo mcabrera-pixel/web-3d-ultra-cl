@@ -4,19 +4,21 @@ articulo: la
 etapa: carguio
 tipo: Pala de cable
 bajada: Pala de cable eléctrica para rajo abierto.
-descripcion: Pala P&H 4100XPC en 3D para planificar paradas, animar el cambio de dientes o de cables y capacitar a los equipos de mantención.
+descripcion: Prepare en 3D la próxima parada de la pala P&H 4100XPC, desde la ubicación de la grúa hasta el cambio de dientes del balde o de los cables de levante.
 experiencia:
   - Hicimos el gemelo de la pala 4100 para El Abra.
 faq:
   - q: ¿Pueden modelar la pala de mi faena con sus modificaciones?
-    a: Sí. Partimos del modelo de referencia y lo ajustamos con escaneo láser, fotos y planos del fabricante, para que el balde, la pluma y los accesos coincidan con la pala que opera en su rajo.
+    a: Sí. Con un escaneo láser de su pala, fotos y los planos del fabricante corregimos el modelo de referencia, para que el balde, la pluma y los accesos coincidan con la pala que opera en su rajo.
   - q: ¿Qué procedimientos se pueden animar en una pala de cable?
-    a: Los que más se repiten en una parada, como el cambio de dientes y adaptadores del balde, el cambio de cables de levante o el trabajo en la sala de máquinas. Partimos del procedimiento escrito vigente.
+    a: Los que más se repiten en una parada, como el cambio de dientes y adaptadores del balde, el cambio de cables de levante o el trabajo en la sala de máquinas. Cada animación parte del procedimiento escrito vigente.
   - q: ¿Sirve para preparar una parada con contratistas?
-    a: Sí. El recorrido 3D muestra dónde se ubican la grúa y los equipos de apoyo, y los videos se usan en la charla previa sin detener la pala.
+    a: Sí. En el recorrido 3D se ve dónde quedan la grúa y los equipos de apoyo, y los videos sirven para la charla previa sin detener la pala.
 orden: 2
 ---
 
-Con el modelo de la 4100XPC podemos armar el gemelo para planificar una parada de la pala: dónde se ubican la grúa y los equipos de apoyo, y en qué orden conviene intervenir el balde, la pluma o la sala de máquinas.
+Para una parada de la 4100XPC, un gemelo armado sobre este modelo ayuda a decidir dónde se ubican la grúa y los equipos de apoyo, y en qué orden conviene intervenir el balde, la pluma o la sala de máquinas.
 
-También podemos animar los procedimientos que más se repiten, como el cambio de dientes del balde o de los cables de levante, para que el turno los vea antes de hacerlos en terreno. Los operadores y mantenedores nuevos pueden recorrer la pala en 3D o con lentes de realidad virtual sin subir a ella.
+Los trabajos que más se repiten en una parada, como el cambio de dientes del balde o de los cables de levante, se pueden animar para que la cuadrilla los vea antes de empezar. Quien llega nuevo a la pala, operador o mantenedor, la puede recorrer con lentes de realidad virtual o en la pantalla sin subir a ella.
+
+En el panel, la pala se divide en «Equipo de excavación», «Superestructura», «Maquinaria» y «Tren inferior». La lista va del balde y el brazo de empuje hasta las orugas y la corona de giro, e incluye los motores eléctricos, el tambor de levante y los gabinetes eléctricos. Basta elegir una pieza en el panel o en el modelo para acercar la cámara; el resto de la pala queda translúcido.

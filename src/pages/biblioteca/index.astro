@@ -14,7 +14,7 @@ const etapas = [...new Set(equipos.map((e) => e.data.etapa))];
 const site = loadSite();
 const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Biblioteca de equipos 3D', url: new URL('/biblioteca/', site.domain).href, hasPart: equipos.map((e) => ({ '@type': 'WebPage', name: `${e.data.nombre} en 3D`, url: new URL(`/biblioteca/${e.id}`, site.domain).href })) }];
 ---
-<Base title="Biblioteca de equipos mineros en 3D | 3D Ultra" description="Equipos mineros en 3D: camiones, palas y cargadores que modelamos para planificar mantenciones, animar procedimientos y capacitar." jsonld={jsonld} bodyClass="bib-pagina">
+<Base title={`Biblioteca de equipos mineros en 3D | ${site.name}`} description="Camiones, palas y cargadores mineros en 3D. Vea qué podemos hacer con cada modelo: planificar mantenciones, animar procedimientos y capacitar." jsonld={jsonld} bodyClass="bib-pagina">
   <Fragment slot="head">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,7 +26,7 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
     <section class="bib-hub-cabeza"><div class="bib-contenedor">
       <div class="bib-rotulo">Biblioteca de equipos</div>
       <h1>Equipos mineros en 3D</h1>
-      <p class="bib-texto" style="margin-top:16px">Estos son algunos de los equipos que modelamos. Cada uno tiene su ficha con el modelo en 3D y lo que hacemos con él.</p>
+      <p class="bib-texto" style="margin-top:16px">Cada ficha muestra un equipo en 3D y lo que podemos hacer con ese modelo.</p>
     </div></section>
     <section class="bib-bloque" style="border-top:0;padding-top:0"><div class="bib-contenedor">
       <div class="bib-filtros" role="group" aria-label="Filtrar por etapa" hidden>
@@ -40,7 +40,7 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
     <section class="bib-bloque" id="contacto"><div class="bib-contenedor">
       <div class="bib-rotulo">Contacto</div>
       <h2 class="bib-titular">¿Su equipo no está en la lista?</h2>
-      <p class="bib-texto">Modelamos el equipo que usted opera, con sus medidas reales. Escríbanos y le respondemos en menos de 24 horas hábiles.</p>
+      <p class="bib-texto">Modelamos el equipo que usted opera, con sus medidas reales. {site.contact.response_sla ?? 'Respondemos en menos de 24 horas hábiles.'}</p>
       <div class="bib-acciones"><a class="bib-btn bib-btn-blanco" href="/#contacto">Pedir una evaluación</a></div>
     </div></section>
   </main>
