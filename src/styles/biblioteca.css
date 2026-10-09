@@ -31,11 +31,12 @@ body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-fam
    panel opaco del formulario porque la nube del fondo también pasa por detrás de esta columna. */
 .bib-pagina .mcco-faq { --mcco-color-muted: #bbbbbb; --mcco-color-border: #262626; color: #fff; background: var(--bib-negro); padding: 24px; border: 1px solid var(--bib-linea); border-radius: 6px; }
 .bib-pagina .mcco-faq h2 { margin: 0 0 22px; }
-/* Marcador + y − en vez del triángulo que el kit quita: la pregunta se ve desplegable */
+/* Marcador + y − en vez del triángulo que el kit quita: la pregunta se ve desplegable. El texto alternativo vacío
+   ("+" / "") lo saca del nombre que lee el lector de pantalla; quien no lo entiende se queda con la primera línea. */
 .bib-pagina .mcco-faq__item summary { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
 .bib-pagina .mcco-faq__item summary::-webkit-details-marker { display: none; }
-.bib-pagina .mcco-faq__item summary::after { content: "+"; flex: none; color: var(--bib-rojo-texto); font-weight: 700; font-size: 1.25rem; line-height: 1; }
-.bib-pagina .mcco-faq__item[open] summary::after { content: "−"; }
+.bib-pagina .mcco-faq__item summary::after { content: "+"; content: "+" / ""; flex: none; color: var(--bib-rojo-texto); font-weight: 700; font-size: 1.25rem; line-height: 1; }
+.bib-pagina .mcco-faq__item[open] summary::after { content: "−"; content: "−" / ""; }
 .bib-tarjetas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .bib-tarjeta { background: var(--bib-panel-osc); border: 1px solid var(--bib-linea); border-radius: 6px; overflow: hidden; display: grid; text-decoration: none; color: #fff; }
 .bib-tarjeta:hover { border-color: #3a3a3a; }
