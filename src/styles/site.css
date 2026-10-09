@@ -479,6 +479,13 @@
         }
 
         /* Responsive */
+        /* Con «Biblioteca» el menú suma 4 enlaces: bajo 1080 px van a 20 px para no pegarse al logo ni al botón */
+        @media (max-width: 1079px) {
+            .nav-menu {
+                gap: 20px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-menu {
                 display: none;
