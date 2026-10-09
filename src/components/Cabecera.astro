@@ -1,0 +1,21 @@
+---
+// Encabezado del sitio para las páginas nuevas (el inicio legado tiene el suyo en src/legacy/index-body.html).
+interface Props { actual?: 'biblioteca' | 'inicio' }
+const { actual } = Astro.props;
+---
+<header class="bib-cabecera">
+  <div class="bib-cabecera-dentro">
+    <a class="bib-logos" href="/">
+      <img src="/mcco_foto.png" alt="McCopper" width="80" height="38" />
+      <span class="bib-div" aria-hidden="true"></span>
+      <span class="bib-marca">3D<span>ULTRA</span></span>
+    </a>
+    <nav class="bib-menu" aria-label="Principal">
+      <a href="/#twins">Gemelos digitales</a>
+      <a href="/biblioteca/" aria-current={actual === 'biblioteca' ? 'page' : undefined}>Biblioteca</a>
+      <a href="/#process">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="bib-btn-negro" href="#contacto">Agendar reunión</a>
+  </div>
+</header>
