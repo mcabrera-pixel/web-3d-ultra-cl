@@ -10,15 +10,17 @@ const paginas = () => [
   'src/content.config.ts',
 ].map((f) => ({ f, txt: readFileSync(f, 'utf8') }));
 const cuerpo = (txt) => txt.split(/^---$/m).slice(2).join('---');
-// Lo que lee una persona en la ficha: descripción, bajada, preguntas y respuestas del FAQ y cuerpo (sin la experiencia,
-// que sale de la lista cerrada del esquema y puede repetirse entre equipos de un mismo proyecto)
-const textoVisible = (txt) => {
-  const campos = txt.split(/^---$/m)[1].split('\n').map((l) => l.match(/^\s*(?:- )?(?:descripcion|bajada|q|a): (.*)$/)?.[1]).filter(Boolean);
-  return [...campos, cuerpo(txt)].join(' ');
-};
+// Campos de una línea del frontmatter que lee una persona: descripción, bajada, y preguntas y respuestas del FAQ
+const campos = (txt) => txt.split(/^---$/m)[1].split('\n')
+  .map((l) => l.match(/^\s*(?:- )?(descripcion|bajada|q|a): (.*)$/)).filter(Boolean)
+  .map(([, clave, valor]) => ({ clave, valor }));
+const faq = (txt) => campos(txt).filter((x) => x.clave === 'q' || x.clave === 'a');
+// Lo que lee una persona en la ficha: esos campos y el cuerpo (sin la experiencia, que sale de la lista cerrada del
+// esquema y puede repetirse entre equipos de un mismo proyecto)
+const textoVisible = (txt) => [...campos(txt).map((x) => x.valor), cuerpo(txt)].join(' ');
 const ngramas = (texto, n) => {
   const p = texto.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim().split(' ');
-  return new Set(p.slice(0, p.length - n + 1).map((_, i) => p.slice(i, i + n).join(' ')));
+  return new Set(Array.from({ length: Math.max(0, p.length - n + 1) }, (_, i) => p.slice(i, i + n).join(' ')));
 };
 
 test('hay 3 fichas en F1', () => {
@@ -48,6 +50,24 @@ test('las fichas no repiten entre sí una frase de 8 palabras seguidas', () => {
     for (const b of lista.slice(i + 1)) {
       const comun = [...a.g].find((x) => b.g.has(x));
       assert.equal(comun, undefined, `${a.f} y ${b.f} repiten «${comun}»`);
+    }
+  }
+});
+
+test('el FAQ de cada ficha trae 3 preguntas y 3 respuestas, cada una en una línea', () => {
+  // Las pruebas de frases leen el frontmatter línea a línea: una respuesta en bloque (a: > o a: |) quedaría fuera sin aviso
+  for (const { f, txt } of fichas()) {
+    assert.deepEqual(faq(txt).map((x) => x.clave), ['q', 'a', 'q', 'a', 'q', 'a'], f);
+    for (const { valor } of faq(txt)) assert.doesNotMatch(valor, /^[>|]/, `${f}: «${valor}» va en bloque; escríbalo en una línea`);
+  }
+});
+
+test('el cuerpo de cada ficha no repite 8 palabras seguidas de su FAQ', () => {
+  for (const { f, txt } of fichas()) {
+    const delCuerpo = ngramas(cuerpo(txt), 8);
+    for (const { valor } of faq(txt)) {
+      const comun = [...ngramas(valor, 8)].find((x) => delCuerpo.has(x));
+      assert.equal(comun, undefined, `${f}: el cuerpo y el FAQ repiten «${comun}»`);
     }
   }
 });
