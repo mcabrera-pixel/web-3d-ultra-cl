@@ -479,15 +479,12 @@
         }
 
         /* Responsive */
-        /* Bajo 1080 px los 4 enlaces del menú quedan a menos de 30 px del logo y del botón */
-        @media (max-width: 1079px) {
-            /* En prod usaría un menú hamburguesa */
+        @media (max-width: 1024px) {
             .nav-menu {
                 display: none;
             }
-        }
 
-        @media (max-width: 1024px) {
+            /* En prod usaría un menú hamburguesa */
             .split-layout,
             .case-study-card {
                 grid-template-columns: 1fr;
