@@ -167,7 +167,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* Hueco mínimo entre logos, menú y botón: sin él, entre 501 y 530 px el botón queda pegado a la marca */
+            /* Hueco mínimo entre logos, menú y botón: sin él, en el encabezado compacto el botón queda pegado a la marca
+               bajo 382 px */
             gap: 12px;
         }
 
@@ -509,7 +510,7 @@
         /* Celular: logos y botón del encabezado más chicos, como en el de la biblioteca, para que «Agendar Reunión»
            quepa desde 320 px. El HTML trae el ancho del logo, el hueco y el tamaño de la marca en línea, por eso
            el !important */
-        @media (max-width: 500px) {
+        @media (max-width: 540px) {
             .nav-container > div:first-child {
                 gap: 8px !important;
             }
