@@ -27,8 +27,9 @@ body.bib-pagina { background: var(--bib-negro); color: #fff; margin: 0; font-fam
 .bib-texto p, p.bib-texto { color: var(--bib-gris); font-weight: 300; font-size: 1.05rem; margin: 0 0 16px; max-width: 64ch; }
 .bib-experiencia { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .bib-experiencia li { border-left: 2px solid #d32f2f; padding: 6px 12px; color: #fff; background: #0d0d0d; }
-/* El FAQ del kit tiene estilos con alcance propio: se ajusta por sus tokens para que se lea sobre negro. */
-.bib-pagina .mcco-faq { --mcco-color-muted: #bbbbbb; --mcco-color-border: #262626; color: #fff; }
+/* El FAQ del kit tiene estilos con alcance propio: se ajusta por sus tokens para que se lea sobre negro. Va en el mismo
+   panel opaco del formulario porque la nube del fondo también pasa por detrás de esta columna. */
+.bib-pagina .mcco-faq { --mcco-color-muted: #bbbbbb; --mcco-color-border: #262626; color: #fff; background: var(--bib-negro); padding: 24px; border: 1px solid var(--bib-linea); border-radius: 6px; }
 .bib-pagina .mcco-faq h2 { margin: 0 0 22px; }
 /* Marcador + y − en vez del triángulo que el kit quita: la pregunta se ve desplegable */
 .bib-pagina .mcco-faq__item summary { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
