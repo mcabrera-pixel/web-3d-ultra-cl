@@ -21,6 +21,8 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" />
+    {/* Sin JS el filtro no sirve: se oculta aquí y no desde el script, para que las tarjetas no se corran al cargar (CLS) */}
+    <noscript><style>.bib-filtros { display: none !important; }</style></noscript>
   </Fragment>
   <Cabecera actual="biblioteca" />
   <main>
@@ -30,7 +32,7 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
       <p class="bib-texto" style="margin-top:16px">Cada ficha muestra un equipo en 3D y lo que podemos hacer con ese modelo.</p>
     </div></section>
     <section class="bib-bloque" style="border-top:0;padding-top:0"><div class="bib-contenedor">
-      <div class="bib-filtros" role="group" aria-label="Filtrar por etapa" hidden>
+      <div class="bib-filtros" role="group" aria-label="Filtrar por etapa">
         <button type="button" data-etapa="" aria-pressed="true">Todos</button>
         {etapas.map((e) => <button type="button" data-etapa={e} aria-pressed="false">{ETAPAS[e]}</button>)}
       </div>
@@ -49,10 +51,9 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
   </main>
   {/* El script va dentro del layout: Astro lo emite donde se declara. */}
   <script>
-    // Filtro por etapa: sin JS los botones quedan ocultos y se ven todos los equipos.
+    // Filtro por etapa: sin JS los botones quedan ocultos (regla en <noscript>) y se ven todos los equipos.
     const grupo = document.querySelector<HTMLElement>('.bib-filtros');
     if (grupo) {
-      grupo.hidden = false;
       const botones = [...grupo.querySelectorAll<HTMLButtonElement>('button')];
       const tarjetas = [...document.querySelectorAll<HTMLElement>('.bib-tarjeta[data-etapa]')];
       grupo.addEventListener('click', (ev) => {
