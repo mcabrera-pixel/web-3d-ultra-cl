@@ -116,6 +116,11 @@ test('cada ficha tiene su imagen para redes: og.jpg opaco de 1200 × 630 y bajo 
   }
 });
 
+test('la ficha comparte su og.jpg en redes, no el póster transparente', () => {
+  const pagina = readFileSync('src/pages/biblioteca/[slug].astro', 'utf8');
+  assert.match(pagina, /ogImage=\{`\/biblioteca\/\$\{slug\}\/og\.jpg`\}/);
+});
+
 test('cada ficha tiene su póster y sus piezas', () => {
   for (const { f } of fichas()) {
     const slug = f.replace(/\.md$/, '');
