@@ -67,3 +67,19 @@ export function nombrePieza(nombres, nodo) {
 export function ruedaAcerca(evento) {
   return Boolean(evento.ctrlKey || evento.metaKey);
 }
+
+/**
+ * Avance de la barra de carga (0 a 100), o null sin total conocido. Con el GLB en gzip, `cargado` cuenta bytes ya
+ * descomprimidos y `total` es el largo del archivo comprimido: el cociente pasa de 1 y la barra se queda en 100.
+ */
+export function porcentajeCarga(cargado, total) {
+  if (!total) return null;
+  return Math.min(100, Math.round((cargado / total) * 100));
+}
+
+/** Etiquetas de piezas a la vista: bajo 400 px de ancho, solo las 2 primeras de las que miran a la cámara, para que no se monten. */
+export function etiquetasAVer(visibles, ancho) {
+  const tope = ancho < 400 ? 2 : Infinity;
+  let vistas = 0;
+  return visibles.map((v) => v && vistas++ < tope);
+}

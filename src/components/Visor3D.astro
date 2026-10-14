@@ -1,5 +1,6 @@
 ---
-// Visor 3D de la biblioteca: el póster sale primero (LCP) y Three.js se importa recién cuando la página terminó de cargar.
+// Visor 3D de la biblioteca: el póster sale primero (LCP) y Three.js se importa recién cuando la página terminó de cargar
+// (en escritorio) o con el toque en «Ver en 3D» (bajo 900 px de ancho).
 // Las piezas vienen de public/biblioteca/<slug>/piezas.json (única fuente: tools/equipos/<slug>.json).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,6 +15,7 @@ const datos = JSON.stringify({ ...piezas, modelo: `${base}${slug}.glb` }).replac
 <div class="bib-escenario" data-visor>
   <img class="bib-poster" src={`/biblioteca/${slug}/poster.webp`} alt={`Modelo 3D de referencia: ${nombre}`} width="1600" height="1000" fetchpriority="high" decoding="async" />
   <canvas class="bib-lienzo" tabindex="0" aria-label={`Modelo 3D: ${nombre}. Arrástrelo para girarlo, haga clic en una pieza para verla y use Ctrl con la rueda para acercarse.`}></canvas>
+  <button type="button" class="bib-ver3d" hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.8l8 4.6v9.2l-8 4.6-8-4.6V7.4l8-4.6z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7.4l8 4.6 8-4.6M12 12v9.2" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Ver en 3D</button>
   <div class="bib-etiquetas" aria-hidden="true"></div>
   <div class="bib-aviso-zoom bib-vidrio" role="status">Para acercar, mantenga Ctrl y use la rueda.</div>
   <div class="bib-nombre-pieza" hidden></div>
@@ -46,12 +48,32 @@ const datos = JSON.stringify({ ...piezas, modelo: `${base}${slug}.glb` }).replac
 </div>
 
 <script>
-  // Three.js entra en un trozo aparte que se pide recién después de la carga, en tiempo ocioso.
-  const arrancar = async () => {
-    const { iniciarVisor } = await import('../scripts/visor3d.js');
-    document.querySelectorAll<HTMLElement>('[data-visor]').forEach((el) => iniciarVisor(el));
-  };
-  const enOcio = () => ('requestIdleCallback' in window ? requestIdleCallback(() => arrancar(), { timeout: 1500 }) : setTimeout(arrancar, 200));
-  if (document.readyState === 'complete') enOcio();
-  else addEventListener('load', enOcio, { once: true });
+  // Three.js entra en un trozo aparte. En escritorio se pide después de la carga, en tiempo ocioso. Bajo 900 px el visor
+  // espera el toque en «Ver en 3D» (decisión de Mario, spec §9): preparar el modelo ocupa el hilo principal de un
+  // teléfono entre 1 y 3 s, justo cuando la persona empieza a bajar o tocar.
+  async function arrancar(el: HTMLElement) {
+    try {
+      const { iniciarVisor } = await import('../scripts/visor3d.js');
+      await iniciarVisor(el);
+    } catch {
+      // Sin WebGL, sin red o sin modelo queda el póster con el aviso, y se va la ayuda, que habla de controles que no están
+      el.querySelector<HTMLElement>('.bib-carga')!.hidden = false;
+      el.querySelector<HTMLElement>('.bib-carga-texto')!.textContent = 'No se pudo cargar el modelo';
+      el.querySelector<HTMLElement>('.bib-barra')!.hidden = true;
+      el.querySelector<HTMLElement>('.bib-ayuda')!.hidden = true;
+    }
+  }
+  const enOcio = (fn: () => void) => ('requestIdleCallback' in window ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 200));
+  document.querySelectorAll<HTMLElement>('[data-visor]').forEach((el) => {
+    if (el.clientWidth < 900) {
+      const boton = el.querySelector<HTMLButtonElement>('.bib-ver3d')!;
+      boton.hidden = false;
+      boton.addEventListener('click', () => {
+        boton.hidden = true;
+        el.querySelector<HTMLElement>('.bib-carga')!.hidden = false; // aviso inmediato mientras llega el trozo de Three.js
+        arrancar(el);
+      }, { once: true });
+    } else if (document.readyState === 'complete') enOcio(() => arrancar(el));
+    else addEventListener('load', () => enOcio(() => arrancar(el)), { once: true });
+  });
 </script>

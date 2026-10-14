@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   distanciaEncuadre, pasoExplosion, ladoVisible, alternarSeleccion,
-  avanceScroll, aperturaNube, giroNube, nombrePieza, ruedaAcerca,
+  avanceScroll, aperturaNube, giroNube, nombrePieza, ruedaAcerca, porcentajeCarga, etiquetasAVer,
 } from '../src/scripts/visor3d-logica.js';
 
 const cerca = (a, b, eps = 1e-6) => assert.ok(Math.abs(a - b) < eps, `${a} no es ${b}`);
@@ -106,6 +106,29 @@ test('nombres: no toma propiedades heredadas de Object.prototype', () => {
 
 test('nombres: un valor null cuenta como sin nombre', () => {
   assert.equal(nombrePieza({ Door: null }, 'Door'), 'Pieza del equipo');
+});
+
+test('barra de carga: porcentaje del total, sin pasar de 100', () => {
+  assert.equal(porcentajeCarga(50, 200), 25);
+  assert.equal(porcentajeCarga(200, 200), 100);
+  // Con el GLB en gzip, el cargador cuenta bytes ya descomprimidos y el total es el del archivo comprimido
+  assert.equal(porcentajeCarga(2_181_772, 1_570_000), 100);
+});
+
+test('barra de carga: sin total conocido no hay porcentaje', () => {
+  assert.equal(porcentajeCarga(1000, 0), null);
+  assert.equal(porcentajeCarga(1000, undefined), null);
+});
+
+test('etiquetas: desde 400 px de ancho se ven todas las que miran a la cámara', () => {
+  assert.deepEqual(etiquetasAVer([true, false, true, true], 400), [true, false, true, true]);
+  assert.deepEqual(etiquetasAVer([true, true, true, true], 1440), [true, true, true, true]);
+});
+
+test('etiquetas: bajo 400 px, solo las 2 primeras de las que miran a la cámara', () => {
+  assert.deepEqual(etiquetasAVer([true, false, true, true], 399), [true, false, true, false]);
+  assert.deepEqual(etiquetasAVer([true, true, true, true], 320), [true, true, false, false]);
+  assert.deepEqual(etiquetasAVer([false, false, false, true], 320), [false, false, false, true]);
 });
 
 test('rueda: solo acerca con Ctrl o Cmd', () => {

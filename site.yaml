@@ -62,6 +62,9 @@ llms:
   pages:
     - { title: Inicio, url: / }
     - { title: Biblioteca de equipos mineros en 3D, url: /biblioteca/ }
+    - { title: Komatsu 930E-5 en 3D, url: /biblioteca/komatsu-930e-5 }
+    - { title: Pala P&H 4100XPC en 3D, url: /biblioteca/pala-ph-4100xpc }
+    - { title: Sandvik LH621 en 3D, url: /biblioteca/sandvik-lh621 }
     - { title: "Caso: gemelo digital área RAF, Fundición Potrerillos", url: /casos/gemelo-digital-raf-potrerillos }
     - { title: "Caso: análisis estructural de chimenea CPS", url: /casos/analisis-chimenea-cps-salvador }
     - { title: "Caso: hornos Isasmelt, extensión de vida útil", url: /casos/hornos-isasmelt-extension-vida-util }

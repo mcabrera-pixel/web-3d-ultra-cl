@@ -85,6 +85,37 @@ test('el cuerpo de cada ficha nombra los sistemas de su piezas.json', () => {
   }
 });
 
+test('cada ficha declara la fecha de su última revisión (updated), que el sitemap usa como lastmod', () => {
+  for (const { f, txt } of fichas()) {
+    const { updated } = datos(txt);
+    assert.ok(updated instanceof Date && !Number.isNaN(updated.getTime()), `${f}: updated = ${updated}`);
+  }
+});
+
+test('llms.txt lista cada ficha (site.yaml → llms.pages)', () => {
+  const urls = yaml.load(readFileSync('site.yaml', 'utf8')).llms.pages.map((p) => p.url);
+  for (const { f } of fichas()) assert.ok(urls.includes(`/biblioteca/${f.replace(/\.md$/, '')}`), `${f}: falta en llms.pages`);
+});
+
+// Ancho y alto de un JPEG: los trae el primer marcador SOF (C0 a CF, salvo C4, C8 y CC)
+function medidasJpeg(b) {
+  assert.equal(b.readUInt16BE(0), 0xffd8, 'no es un JPEG');
+  for (let i = 2; i + 9 < b.length; i += 2 + b.readUInt16BE(i + 2)) {
+    const marca = b[i + 1];
+    if (marca >= 0xc0 && marca <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marca)) return { ancho: b.readUInt16BE(i + 7), alto: b.readUInt16BE(i + 5) };
+  }
+  assert.fail('JPEG sin marcador SOF');
+}
+
+test('cada ficha tiene su imagen para redes: og.jpg opaco de 1200 × 630 y bajo 300 KB', () => {
+  for (const { f } of fichas()) {
+    const slug = f.replace(/\.md$/, '');
+    const og = readFileSync(`public/biblioteca/${slug}/og.jpg`);
+    assert.deepEqual(medidasJpeg(og), { ancho: 1200, alto: 630 }, slug);
+    assert.ok(og.length < 300_000, `${slug}: og.jpg pesa ${og.length} bytes`);
+  }
+});
+
 test('cada ficha tiene su póster y sus piezas', () => {
   for (const { f } of fichas()) {
     const slug = f.replace(/\.md$/, '');

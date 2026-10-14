@@ -36,3 +36,6 @@
   Cache-Control: public, max-age=86400
 
 # --- reglas del sitio ---
+# Pósters de la biblioteca (imagen LCP de las fichas y de las tarjetas): 1 día
+/biblioteca/:slug/poster.webp
+  Cache-Control: public, max-age=86400

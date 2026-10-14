@@ -16,6 +16,7 @@ faq:
   - q: ¿Sirve para inducir a operadores y contratistas?
     a: Sí. El recorrido 3D y los videos se usan en inducciones y charlas de seguridad sin sacar el camión de operación ni subir a nadie a la plataforma.
 orden: 1
+updated: 2026-10-09
 ---
 
 Con el modelo del 930E-5 podemos armar el gemelo para planificar una mantención mayor en el taller antes de detener el camión: por dónde entran la grúa y el manipulador de neumáticos, cuánto espacio queda alrededor y en qué orden conviene desarmarlo.

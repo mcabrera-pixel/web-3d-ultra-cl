@@ -15,6 +15,7 @@ faq:
   - q: ¿Sirve para preparar una parada con contratistas?
     a: Sí. El recorrido 3D muestra dónde van la grúa y el resto de los equipos de apoyo, y los videos sirven para la charla previa sin detener la pala.
 orden: 2
+updated: 2026-10-09
 ---
 
 Para una parada de la 4100XPC, un gemelo armado sobre este modelo ayuda a decidir dónde se ubican la grúa y los equipos de apoyo, y en qué orden conviene intervenir el balde, la pluma o la sala de máquinas.

@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
-import { distanciaEncuadre, pasoExplosion, ladoVisible, alternarSeleccion, nombrePieza, ruedaAcerca } from './visor3d-logica.js';
+import { distanciaEncuadre, pasoExplosion, ladoVisible, alternarSeleccion, nombrePieza, ruedaAcerca, porcentajeCarga, etiquetasAVer } from './visor3d-logica.js';
 import { iniciarFondo } from './fondo-particulas.js';
 
 const suave = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -23,6 +23,8 @@ function sombra(r, largoEnX) {
   return m;
 }
 
+// Devuelve una promesa que se cumple con el modelo a la vista. Sin WebGL lanza el error del renderer y sin modelo la
+// promesa se rechaza: Visor3D.astro deja entonces el póster con el aviso.
 export function iniciarVisor(raiz) {
   const $ = (s) => raiz.querySelector(s);
   const datos = JSON.parse($('.bib-datos').textContent);
@@ -35,7 +37,6 @@ export function iniciarVisor(raiz) {
   const controlesEl = $('.bib-controles');
   const carga = $('.bib-carga');
   const barra = $('.bib-barra i');
-  const cargaTexto = $('.bib-carga-texto');
   const avisoZoom = $('.bib-aviso-zoom');
   const nombreEl = $('.bib-nombre-pieza');
   const girar = $('.bib-girar');
@@ -43,12 +44,7 @@ export function iniciarVisor(raiz) {
   const reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const angosto = () => raiz.clientWidth < 900;
 
-  let renderer;
-  try {
-    renderer = new THREE.WebGLRenderer({ canvas: lienzo, antialias: true, alpha: true });
-  } catch {
-    return; // sin WebGL queda el póster
-  }
+  const renderer = new THREE.WebGLRenderer({ canvas: lienzo, antialias: true, alpha: true }); // sin WebGL, lanza
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -97,7 +93,18 @@ export function iniciarVisor(raiz) {
   const observador = new ResizeObserver(ajustar);
   observador.observe(raiz);
   observador.observe(titulo); // también cambia de alto cuando llega la fuente
-  new IntersectionObserver((entradas) => { e.visible = entradas[entradas.length - 1].isIntersecting; }).observe(raiz);
+  new IntersectionObserver((entradas) => {
+    const ultima = entradas[entradas.length - 1];
+    e.visible = ultima.isIntersecting;
+    if (ultima.intersectionRatio < 0.9) armarFondo(); // el visor empieza a salir de pantalla
+  }, { threshold: [0, 0.9] }).observe(raiz);
+
+  // La nube del fondo se arma en una tarea aparte, no en la que procesa el modelo: en tiempo ocioso o apenas el visor
+  // empieza a salir de pantalla, lo que pase primero.
+  function armarFondo() {
+    if (e.fondo || !e.modelo) return;
+    e.fondo = iniciarFondo({ modelo: e.modelo, radio: e.radio, altura: e.altura, escenario: raiz, angosto: angosto(), reducir });
+  }
 
   // --- selección ---
   function detenerGiro() {
@@ -166,7 +173,10 @@ export function iniciarVisor(raiz) {
   carga.hidden = false;
   const cargador = new GLTFLoader();
   cargador.setMeshoptDecoder(MeshoptDecoder);
-  cargador.load(datos.modelo, (gltf) => {
+  const listo = cargador.loadAsync(datos.modelo, (p) => {
+    const avance = porcentajeCarga(p.loaded, p.total);
+    if (avance !== null) barra.style.width = `${avance}%`;
+  }).then((gltf) => {
     const modelo = gltf.scene;
     const caja = new THREE.Box3().setFromObject(modelo);
     const tam = caja.getSize(new THREE.Vector3());
@@ -220,12 +230,8 @@ export function iniciarVisor(raiz) {
     controles.minDistance = e.radio * 0.25; controles.maxDistance = e.radio * 6; controles.maxPolarAngle = Math.PI * 0.49;
     camara.near = e.radio / 300; camara.far = e.radio * 40; camara.updateProjectionMatrix();
     carga.hidden = true; controlesEl.hidden = false; poster.classList.add('bib-oculto'); poster.setAttribute('aria-hidden', 'true');
-    e.fondo = iniciarFondo({ modelo, radio: e.radio, altura: e.altura, escenario: raiz, angosto: angosto(), reducir });
-  }, (p) => {
-    if (p.total) barra.style.width = `${Math.round((p.loaded / p.total) * 100)}%`;
-  }, () => {
-    cargaTexto.textContent = 'No se pudo cargar el modelo';
-    barra.parentElement.hidden = true;
+    if ('requestIdleCallback' in window) requestIdleCallback(armarFondo, { timeout: 2000 });
+    else setTimeout(armarFondo, 300);
   });
 
   // --- controles ---
@@ -276,7 +282,8 @@ export function iniciarVisor(raiz) {
   let hoverTimer = 0;
   function moverNombre(ev) {
     const r = raiz.getBoundingClientRect();
-    nombreEl.style.left = `${ev.clientX - r.left}px`; nombreEl.style.top = `${ev.clientY - r.top}px`;
+    // Con transform y no con left/top: moverla no recalcula el diseño ni suma desplazamientos (CLS)
+    nombreEl.style.transform = `translate(${ev.clientX - r.left}px, ${ev.clientY - r.top}px) translate(14px, -50%)`;
   }
   function resaltar(ev) {
     const pieza = tocar(ev);
@@ -321,14 +328,15 @@ export function iniciarVisor(raiz) {
   const tmp = new THREE.Vector3();
   function etiquetas() {
     const w = raiz.clientWidth, h = raiz.clientHeight;
-    for (const p of e.piezas) {
-      if (!p.el) continue;
+    const marcadas = e.piezas.filter((p) => p.el);
+    const visibles = marcadas.map((p) => {
       new THREE.Box3().setFromObject(p.obj).getCenter(tmp);
       const pr = tmp.clone().project(camara);
       p.el.style.transform = `translate(${(pr.x * 0.5 + 0.5) * w - 6}px, ${(-pr.y * 0.5 + 0.5) * h - 6}px)`;
       const visible = e.elegida ? e.elegida === p.obj : ladoVisible(tmp.toArray(), controles.target.toArray(), camara.position.toArray());
-      p.el.classList.toggle('bib-oculta', !visible || pr.z > 1);
-    }
+      return visible && pr.z <= 1;
+    });
+    etiquetasAVer(visibles, w).forEach((ver, i) => marcadas[i].el.classList.toggle('bib-oculta', !ver));
   }
   renderer.setAnimationLoop((t) => {
     if (e.vuelo) {
@@ -354,4 +362,5 @@ export function iniciarVisor(raiz) {
     }
     e.fondo?.dibujar(t);
   });
+  return listo;
 }

@@ -14,6 +14,7 @@ faq:
   - q: ¿Sirve para inducir a contratistas?
     a: Sí. En una inducción o una charla, el recorrido 3D y los videos muestran el equipo sin detenerlo ni bajar a la mina.
 orden: 3
+updated: 2026-10-09
 ---
 
 Antes de detener el LH621 para una mantención mayor, podemos armar su gemelo con este modelo y revisar cuánto espacio queda en la galería y en qué orden conviene desarmarlo.

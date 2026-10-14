@@ -28,6 +28,8 @@ const equipoSchema = z.object({
   experiencia: z.array(z.enum(EXPERIENCIAS)).default([]),
   faq: z.array(z.object({ q: z.string(), a: z.string() })).length(3),
   orden: z.number().int(),
+  // Fecha de la última revisión de la ficha: el sitemap del kit la usa como lastmod. Sin valor por defecto, como articulo.
+  updated: z.coerce.date(),
 });
 
 export const collections = {
