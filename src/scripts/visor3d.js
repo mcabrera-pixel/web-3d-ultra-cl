@@ -362,5 +362,11 @@ export function iniciarVisor(raiz) {
     }
     e.fondo?.dibujar(t);
   });
-  return listo;
+  // Si el modelo no llega, no se sigue dibujando una escena vacía: Visor3D.astro deja el póster con el aviso
+  return listo.catch((error) => {
+    renderer.setAnimationLoop(null);
+    observador.disconnect();
+    renderer.dispose();
+    throw error;
+  });
 }
