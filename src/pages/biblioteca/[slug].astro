@@ -30,7 +30,7 @@ const jsonld = [
   { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@type': 'Organization', '@id': `${site.domain}/#organization`, name: site.name, url: `${site.domain}/` }, areaServed: 'CL' },
 ];
 ---
-<Base title={`${d.nombre} en 3D: gemelo y procedimientos | ${site.name}`} description={d.descripcion} ogImage={poster} jsonld={jsonld} bodyClass="bib-pagina">
+<Base title={`${d.nombre} en 3D: gemelo y procedimientos | ${site.name}`} description={d.descripcion} ogImage={`/biblioteca/${slug}/og.jpg`} jsonld={jsonld} bodyClass="bib-pagina">
   <Fragment slot="head">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
