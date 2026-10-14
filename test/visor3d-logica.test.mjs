@@ -1,0 +1,138 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import {
+  distanciaEncuadre, pasoExplosion, ladoVisible, alternarSeleccion,
+  avanceScroll, aperturaNube, giroNube, nombrePieza, ruedaAcerca, porcentajeCarga, etiquetasAVer,
+} from '../src/scripts/visor3d-logica.js';
+
+const cerca = (a, b, eps = 1e-6) => assert.ok(Math.abs(a - b) < eps, `${a} no es ${b}`);
+
+test('encuadre: en pantalla ancha usa el campo vertical con margen 0,82', () => {
+  const v = (35 * Math.PI) / 360;
+  cerca(distanciaEncuadre(1, 35, 16 / 9), 0.82 / Math.sin(v));
+});
+
+test('encuadre: en celular usa el campo horizontal y más margen', () => {
+  const v = (35 * Math.PI) / 360;
+  const h = Math.atan(Math.tan(v) * 0.5);
+  cerca(distanciaEncuadre(1, 35, 0.5), 1.35 / Math.sin(h));
+  assert.ok(distanciaEncuadre(1, 35, 0.5) > distanciaEncuadre(1, 35, 16 / 9));
+});
+
+test('encuadre: el margen cambia de forma continua al cruzar el aspecto 1,4', () => {
+  const antes = distanciaEncuadre(1, 35, 1.3999);
+  const despues = distanciaEncuadre(1, 35, 1.4001);
+  assert.ok(Math.abs(antes - despues) / distanciaEncuadre(1, 35, 1.4) < 0.01);
+});
+
+test('encuadre: la distancia baja de forma monótona entre aspecto 1,0 y 1,6', () => {
+  let previa = Infinity;
+  for (let i = 0; i <= 12; i++) {
+    const aspecto = 1 + i * 0.05;
+    const d = distanciaEncuadre(1, 35, aspecto);
+    assert.ok(d < previa, `aspecto ${aspecto}: ${d} no baja de ${previa}`);
+    previa = d;
+  }
+});
+
+test('encuadre: aspecto 0, NaN, infinito o negativo se trata como 1 (canvas oculto)', () => {
+  const base = distanciaEncuadre(1, 35, 1);
+  for (const aspecto of [0, NaN, Infinity, -1]) {
+    const d = distanciaEncuadre(1, 35, aspecto);
+    assert.ok(Number.isFinite(d), `aspecto ${aspecto} da ${d}`);
+    cerca(d, base);
+  }
+});
+
+test('explosión: va del centro del equipo al de la pieza, con largo igual al radio', () => {
+  const p = pasoExplosion([3, 0, 4], [0, 0, 0], 10);
+  cerca(p[0], 6); cerca(p[1], 0); cerca(p[2], 8);
+});
+
+test('explosión: una pieza en el centro sube', () => {
+  assert.deepEqual(pasoExplosion([1, 1, 1], [1, 1, 1], 2), [0, 2, 0]);
+});
+
+test('lado visible: de frente sí, detrás no, y la altura no cuenta', () => {
+  assert.equal(ladoVisible([1, 0, 0], [0, 0, 0], [5, 2, 0]), true);
+  assert.equal(ladoVisible([-1, 0, 0], [0, 0, 0], [5, 2, 0]), false);
+  assert.equal(ladoVisible([0, 9, 0], [0, 0, 0], [5, 2, 0]), true);
+});
+
+test('alternar: tocar la pieza elegida vuelve al equipo completo; tocar otra la cambia', () => {
+  const a = { id: 'a' };
+  const b = { id: 'b' };
+  assert.equal(alternarSeleccion(null, a), a);
+  assert.equal(alternarSeleccion(a, a), null);
+  assert.equal(alternarSeleccion(a, b), b);
+});
+
+test('avance del scroll: acotado entre 0 y 1', () => {
+  assert.equal(avanceScroll(0, 100, 300), 0);
+  assert.equal(avanceScroll(200, 100, 300), 0.5);
+  assert.equal(avanceScroll(900, 100, 300), 1);
+  assert.equal(avanceScroll(50, 300, 300), 0);
+});
+
+test('nube: cerrada al inicio, abierta a un sexto y quieta con movimiento reducido', () => {
+  cerca(aperturaNube(0), 0.03);
+  cerca(aperturaNube(1 / 6), 0.17);
+  assert.equal(aperturaNube(0.4, true), 0.05);
+});
+
+test('giro de la nube: quieta con movimiento reducido para cualquier tiempo y scroll', () => {
+  for (const t of [0, 1234, 60000]) {
+    for (const a of [0, 0.37, 1]) assert.equal(giroNube(t, a, true), 0);
+  }
+});
+
+test('giro de la nube: sin movimiento reducido avanza con el tiempo y con el scroll', () => {
+  assert.equal(giroNube(0, 0, false), 0);
+  cerca(giroNube(20000, 0, false), 1);
+  cerca(giroNube(0, 1, false), Math.PI * 1.6);
+  cerca(giroNube(20000, 0.5, false), 1 + Math.PI * 0.8);
+});
+
+test('nombres: en español si existe, genérico si no', () => {
+  assert.equal(nombrePieza({ Door: 'Cabina del operador' }, 'Door'), 'Cabina del operador');
+  assert.equal(nombrePieza({}, 'Mesh_12'), 'Pieza del equipo');
+});
+
+test('nombres: no toma propiedades heredadas de Object.prototype', () => {
+  assert.equal(nombrePieza({}, 'constructor'), 'Pieza del equipo');
+  assert.equal(nombrePieza({}, 'toString'), 'Pieza del equipo');
+  assert.equal(nombrePieza({}, '__proto__'), 'Pieza del equipo');
+});
+
+test('nombres: un valor null cuenta como sin nombre', () => {
+  assert.equal(nombrePieza({ Door: null }, 'Door'), 'Pieza del equipo');
+});
+
+test('barra de carga: porcentaje del total, sin pasar de 100', () => {
+  assert.equal(porcentajeCarga(50, 200), 25);
+  assert.equal(porcentajeCarga(200, 200), 100);
+  // Con el GLB en gzip, el cargador cuenta bytes ya descomprimidos y el total es el del archivo comprimido
+  assert.equal(porcentajeCarga(2_181_772, 1_570_000), 100);
+});
+
+test('barra de carga: sin total conocido no hay porcentaje', () => {
+  assert.equal(porcentajeCarga(1000, 0), null);
+  assert.equal(porcentajeCarga(1000, undefined), null);
+});
+
+test('etiquetas: desde 400 px de ancho se ven todas las que miran a la cámara', () => {
+  assert.deepEqual(etiquetasAVer([true, false, true, true], 400), [true, false, true, true]);
+  assert.deepEqual(etiquetasAVer([true, true, true, true], 1440), [true, true, true, true]);
+});
+
+test('etiquetas: bajo 400 px, solo las 2 primeras de las que miran a la cámara', () => {
+  assert.deepEqual(etiquetasAVer([true, false, true, true], 399), [true, false, true, false]);
+  assert.deepEqual(etiquetasAVer([true, true, true, true], 320), [true, true, false, false]);
+  assert.deepEqual(etiquetasAVer([false, false, false, true], 320), [false, false, false, true]);
+});
+
+test('rueda: solo acerca con Ctrl o Cmd', () => {
+  assert.equal(ruedaAcerca({ ctrlKey: false, metaKey: false }), false);
+  assert.equal(ruedaAcerca({ ctrlKey: true }), true);
+  assert.equal(ruedaAcerca({ metaKey: true }), true);
+});

@@ -1,0 +1,84 @@
+---
+// Ficha de un equipo de la biblioteca: visor 3D, servicios, experiencia, FAQ, otros equipos y contacto.
+import { getCollection, render } from 'astro:content';
+import Base from '@mcco/web-kit/layouts/Base.astro';
+import Faq from '@mcco/web-kit/components/Faq.astro';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import Cabecera from '../../components/Cabecera.astro';
+import FormularioEquipo from '../../components/FormularioEquipo.astro';
+import TarjetaEquipo from '../../components/TarjetaEquipo.astro';
+import Visor3D from '../../components/Visor3D.astro';
+import { ETAPAS, otrosEquipos } from '../../scripts/biblioteca-logica.js';
+import '../../styles/theme.css';
+import '../../styles/biblioteca.css';
+
+export async function getStaticPaths() {
+  const equipos = await getCollection('equipos');
+  return equipos.map((equipo) => ({ params: { slug: equipo.id }, props: { equipo, otros: otrosEquipos(equipos, equipo) } }));
+}
+
+const { equipo, otros } = Astro.props;
+const d = equipo.data;
+const slug = equipo.id;
+const del = d.articulo === 'la' ? 'de la' : 'del';
+const site = loadSite();
+const { Content } = await render(equipo);
+const url = new URL(`/biblioteca/${slug}`, site.domain).href;
+const poster = `/biblioteca/${slug}/poster.webp`;
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'WebPage', name: `${d.nombre} en 3D`, url, about: { '@type': 'Thing', name: d.nombre }, primaryImageOfPage: new URL(poster, site.domain).href },
+  { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@type': 'Organization', '@id': `${site.domain}/#organization`, name: site.name, url: `${site.domain}/` }, areaServed: 'CL' },
+];
+---
+<Base title={`${d.nombre} en 3D: gemelo y procedimientos | ${site.name}`} description={d.descripcion} ogImage={`/biblioteca/${slug}/og.jpg`} jsonld={jsonld} bodyClass="bib-pagina">
+  <Fragment slot="head">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" />
+  </Fragment>
+  <Cabecera actual="biblioteca" />
+  <main>
+    <Visor3D slug={slug} nombre={d.nombre} migas={ETAPAS[d.etapa]} bajada={d.bajada} />
+    <div class="bib-contenedor"><p class="bib-pie-visor">Modelo 3D de referencia. Las marcas y modelos pertenecen a sus fabricantes.</p></div>
+
+    <section class="bib-bloque" style="border-top:0"><div class="bib-contenedor bib-dos">
+      <div class="bib-texto">
+        <div class="bib-rotulo">Servicios</div>
+        <h2 class="bib-titular">{`Para qué usamos el modelo ${del} ${d.nombre}`}</h2>
+        <Content />
+      </div>
+      <div><Faq items={d.faq} /></div>
+    </div></section>
+
+    {d.experiencia.length > 0 && (
+      <section class="bib-bloque"><div class="bib-contenedor">
+        <div class="bib-rotulo">Experiencia</div>
+        <h2 class="bib-titular">Dónde hemos trabajado con este equipo</h2>
+        <ul class="bib-experiencia">{d.experiencia.map((x) => <li>{x}</li>)}</ul>
+      </div></section>
+    )}
+
+    <section class="bib-bloque"><div class="bib-contenedor">
+      <div class="bib-rotulo">Biblioteca</div>
+      <h2 class="bib-titular">Otros equipos</h2>
+      <div class="bib-tarjetas">
+        {otros.map((o) => <TarjetaEquipo equipo={o} />)}
+        {otros.length < 3 && (
+          <a class="bib-tarjeta bib-tarjeta-contacto" href="/biblioteca/#contacto">
+            <span class="bib-info"><span class="bib-etapa">Contacto</span><b>¿Su equipo no está en la lista?</b><span class="bib-bajada">Cuéntenos cuál es y lo modelamos con sus medidas reales.</span></span>
+          </a>
+        )}
+      </div>
+    </div></section>
+
+    <section class="bib-bloque" id="contacto"><div class="bib-contenedor bib-cierre">
+      <div>
+        <div class="bib-rotulo">Contacto</div>
+        <h2 class="bib-titular">Quiero el gemelo de mi equipo</h2>
+        <p class="bib-texto">Cuéntenos qué necesita resolver con este equipo. {site.contact.response_sla}</p>
+      </div>
+      <FormularioEquipo equipo={d.nombre} origen={`biblioteca/${slug}`} textoWa={`Hola, vi ${d.articulo} ${d.nombre} en la biblioteca de ${site.name} y quiero saber más`} />
+    </div></section>
+  </main>
+</Base>

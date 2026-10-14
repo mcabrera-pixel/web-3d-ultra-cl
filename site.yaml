@@ -42,13 +42,13 @@ seo:
     - https://www.linkedin.com/company/mcco-group   # heredado del JSON-LD anterior; verificar que sea el perfil oficial
 
 csp:
-  script_src: []
+  script_src: ["'wasm-unsafe-eval'"]   # decodificador meshopt (WebAssembly) del visor de la biblioteca
   style_src: []
   font_src: []
   img_src: [https://images.unsplash.com]
   media_src: [https://pub-dd66483f8e7f497f9490ea37068612b0.r2.dev]
-  connect_src: []
-  frame_src: [https://komatsu-ph-4100xpc.netlify.app, https://komatsu930e5.netlify.app]   # visores 3D embebidos en el home
+  connect_src: ["blob:"]                # texturas del visor 3D: GLTFLoader las lee con fetch() desde blob: (Chrome y Firefox)
+  frame_src: []
   unsafe_eval: false                # verificado: el sitio no usa eval ni new Function
 
 redirects:
@@ -61,6 +61,10 @@ sitemap:
 llms:
   pages:
     - { title: Inicio, url: / }
+    - { title: Biblioteca de equipos mineros en 3D, url: /biblioteca/ }
+    - { title: Komatsu 930E-5 en 3D, url: /biblioteca/komatsu-930e-5 }
+    - { title: Pala P&H 4100XPC en 3D, url: /biblioteca/pala-ph-4100xpc }
+    - { title: Sandvik LH621 en 3D, url: /biblioteca/sandvik-lh621 }
     - { title: "Caso: gemelo digital área RAF, Fundición Potrerillos", url: /casos/gemelo-digital-raf-potrerillos }
     - { title: "Caso: análisis estructural de chimenea CPS", url: /casos/analisis-chimenea-cps-salvador }
     - { title: "Caso: hornos Isasmelt, extensión de vida útil", url: /casos/hornos-isasmelt-extension-vida-util }
@@ -70,7 +74,7 @@ llms:
 
 # Verdad del sitio: si alguno de estos strings aparece en dist/, mcco-check falla.
 forbidden: ["Leica", "RTC360", "tupagina-de-activos", "foundingDate\":\"2003", "condrone.cl"]
-clients_allowed: [CODELCO]
+clients_allowed: [CODELCO, BHP, Aster, Capstone Copper, El Abra]
 
 legacy_pages: true                  # casos/, guias/ y en/ siguen como .html con canonical manual (fase C pendiente)
 indexnow_key: c3e70c36be4a27623ec717c2b2f92d77

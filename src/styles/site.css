@@ -167,6 +167,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            /* Hueco mínimo entre logos, menú y botón: sin él, en el encabezado compacto el botón queda pegado a la marca
+               bajo 382 px */
+            gap: 12px;
         }
 
         .brand {
@@ -477,6 +480,13 @@
         }
 
         /* Responsive */
+        /* Con «Biblioteca» el menú suma 4 enlaces: bajo 1080 px van a 20 px para no pegarse al logo ni al botón */
+        @media (max-width: 1079px) {
+            .nav-menu {
+                gap: 20px;
+            }
+        }
+
         @media (max-width: 1024px) {
             .nav-menu {
                 display: none;
@@ -494,6 +504,30 @@
 
             .lod-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Celular: logos y botón del encabezado más chicos, como en el de la biblioteca, para que «Agendar Reunión»
+           quepa desde 320 px. El HTML trae el ancho del logo, el hueco y el tamaño de la marca en línea, por eso
+           el !important */
+        @media (max-width: 540px) {
+            .nav-container > div:first-child {
+                gap: 8px !important;
+            }
+
+            .nav-container > div:first-child > a:first-child {
+                width: 60px !important;
+            }
+
+            .brand-container > div {
+                font-size: 1.3rem !important;
+            }
+
+            .nav-container > .btn {
+                padding: 10px 14px;
+                font-size: 0.7rem;
+                line-height: 1.25;
+                text-align: center;
             }
         }
 

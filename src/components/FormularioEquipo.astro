@@ -1,0 +1,23 @@
+---
+// Formulario de lead de la biblioteca → /api/contact (función del kit). En la ficha el equipo viene puesto y no se edita;
+// en el hub lo escribe la persona. `origen` dice desde qué página llegó el lead.
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+
+interface Props { equipo?: string; origen: string; textoWa: string }
+const { equipo, origen, textoWa } = Astro.props;
+const site = loadSite();
+const wa = (site.contact.whatsapp ?? '').replace(/\D/g, '');
+---
+<form class="bib-form" method="post" action="/api/contact">
+  <label for="f-equipo">Equipo<input id="f-equipo" name="equipo" value={equipo} readonly={equipo !== undefined} /></label>
+  <input type="hidden" name="origen" value={origen} />
+  <div class="bib-oculto-honeypot" aria-hidden="true"><label for="f-web">Sitio web<input id="f-web" name="website_url" tabindex="-1" autocomplete="off" /></label></div>
+  <label for="f-nombre">Nombre<input id="f-nombre" name="nombre" autocomplete="name" required /></label>
+  <label for="f-empresa">Empresa o faena<input id="f-empresa" name="empresa" autocomplete="organization" /></label>
+  <label for="f-correo">Correo<input id="f-correo" name="email" type="email" autocomplete="email" required /></label>
+  <label for="f-mensaje">Qué necesita<textarea id="f-mensaje" name="mensaje" rows="3"></textarea></label>
+  <div class="bib-acciones">
+    <button class="bib-btn bib-btn-blanco" type="submit">Enviar solicitud</button>
+    {wa && <a class="bib-btn bib-btn-borde" href={`https://wa.me/${wa}?text=${encodeURIComponent(textoWa)}`} target="_blank" rel="noopener">WhatsApp</a>}
+  </div>
+</form>

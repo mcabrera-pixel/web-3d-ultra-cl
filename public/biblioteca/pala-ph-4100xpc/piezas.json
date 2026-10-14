@@ -1,0 +1,80 @@
+{
+ "marcadas": [
+  {
+   "nodo": "Pala_Balde",
+   "etiqueta": "Balde"
+  },
+  {
+   "nodo": "Pala_Pluma",
+   "etiqueta": "Pluma"
+  },
+  {
+   "nodo": "Pala_Cabina",
+   "etiqueta": "Cabina del operador"
+  },
+  {
+   "nodo": "Pala_Orugas",
+   "etiqueta": "Orugas"
+  }
+ ],
+ "grupos": [
+  {
+   "titulo": "Equipo de excavación",
+   "nodos": [
+    "Pala_Balde",
+    "Pala_Brazo",
+    "Pala_Pluma",
+    "Pala_Poleas",
+    "Pala_CablesLevante",
+    "Pala_Empuje"
+   ]
+  },
+  {
+   "titulo": "Superestructura",
+   "nodos": [
+    "Pala_Sala",
+    "Pala_Cabina",
+    "Pala_Contrapeso",
+    "Pala_Mastil",
+    "Pala_Tensores",
+    "Pala_Accesos"
+   ]
+  },
+  {
+   "titulo": "Maquinaria",
+   "nodos": [
+    "Pala_Motores",
+    "Pala_Transmision",
+    "Pala_Tambor",
+    "Pala_Gabinetes"
+   ]
+  },
+  {
+   "titulo": "Tren inferior",
+   "nodos": [
+    "Pala_Orugas",
+    "Pala_Bastidor"
+   ]
+  }
+ ],
+ "nombres": {
+  "Pala_Balde": "Balde",
+  "Pala_Brazo": "Brazo de empuje",
+  "Pala_Pluma": "Pluma",
+  "Pala_Poleas": "Poleas de la punta de la pluma",
+  "Pala_CablesLevante": "Cables de levante",
+  "Pala_Empuje": "Mecanismo de empuje",
+  "Pala_Sala": "Sala de máquinas",
+  "Pala_Cabina": "Cabina del operador",
+  "Pala_Contrapeso": "Contrapeso",
+  "Pala_Mastil": "Mástil",
+  "Pala_Tensores": "Tensores de la pluma",
+  "Pala_Accesos": "Escaleras y pasamanos",
+  "Pala_Motores": "Motores eléctricos",
+  "Pala_Transmision": "Transmisiones",
+  "Pala_Tambor": "Tambor de levante",
+  "Pala_Gabinetes": "Gabinetes eléctricos",
+  "Pala_Orugas": "Orugas",
+  "Pala_Bastidor": "Bastidor inferior y corona de giro"
+ }
+}
