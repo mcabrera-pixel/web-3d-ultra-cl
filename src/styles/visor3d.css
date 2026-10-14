@@ -65,6 +65,7 @@
 .bib-ver3d { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 3; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 12px 24px; border: 0; border-radius: 999px; background: var(--bib-tinta); color: var(--bib-blanco); font: 700 13px 'Montserrat', sans-serif; letter-spacing: 1px; text-transform: uppercase; white-space: nowrap; cursor: pointer; box-shadow: 0 10px 30px -8px rgba(15, 23, 42, 0.45); }
 .bib-ver3d:focus-visible { outline: 2px solid var(--bib-rojo); outline-offset: 3px; }
 .bib-carga { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 14px; color: var(--bib-pizarra); font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; z-index: 1; }
+.bib-carga-texto { padding: 10px 18px; border-radius: 999px; color: var(--bib-tinta); }
 .bib-barra { width: 220px; height: 2px; background: #cbd5e1; display: block; }
 .bib-barra i { display: block; height: 100%; width: 0; background: var(--bib-rojo); transition: width 0.2s; }
 .bib-escenario:fullscreen { height: 100vh; max-height: none; }
