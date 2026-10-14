@@ -121,6 +121,12 @@ test('la ficha comparte su og.jpg en redes, no el póster transparente', () => {
   assert.match(pagina, /ogImage=\{`\/biblioteca\/\$\{slug\}\/og\.jpg`\}/);
 });
 
+// m1: sin WebGL o sin modelo, «No se pudo cargar el modelo» queda encima del póster y en gris no se lee sobre el equipo
+test('el aviso de carga del visor va sobre vidrio, legible encima del póster', () => {
+  const visor = readFileSync('src/components/Visor3D.astro', 'utf8');
+  assert.match(visor, /<span class="bib-carga-texto bib-vidrio">/);
+});
+
 test('cada ficha tiene su póster y sus piezas', () => {
   for (const { f } of fichas()) {
     const slug = f.replace(/\.md$/, '');
