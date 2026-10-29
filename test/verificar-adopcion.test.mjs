@@ -82,3 +82,55 @@ describe('comparación de páginas', () => {
     assert.equal(norm(base['/'].h1), norm(nuevo['/'].h1));
   });
 });
+
+describe('verificador: reglas de listas', () => {
+  it('verificador: un ancla nueva se informa y no falla', () => {
+    const base = { '/': page({ anchors: ['#contacto'] }) };
+    const nuevo = { '/': page({ anchors: ['#contacto', '#nueva-seccion'] }) };
+    const report = compareReport(base, nuevo);
+    const addition = report
+      .find((r) => r.route === '/')
+      ?.diffs.find((d) => d.field === 'anchors' && d.severity === 'addition');
+    assert.ok(addition, 'se informa la adición del ancla');
+    assert.ok(addition.nuevo.includes('#nueva-seccion'));
+    const failures = report.filter((entry) => entry.diffs.some((d) => d.severity !== 'addition'));
+    assert.equal(failures.length, 0, 'no debe generar fallas');
+  });
+
+  it('verificador: un contacto nuevo se informa y no falla', () => {
+    const basePage = page();
+    const nuevo = {
+      '/': page({
+        contacts: {
+          ...basePage.contacts,
+          mailto: [...basePage.contacts.mailto, 'nuevo@example.com'],
+        },
+      }),
+    };
+    const base = { '/': basePage };
+    const report = compareReport(base, nuevo);
+    const addition = report
+      .find((r) => r.route === '/')
+      ?.diffs.find((d) => d.field === 'contacts.mailto' && d.severity === 'addition');
+    assert.ok(addition, 'se informa la adición del contacto');
+    assert.ok(addition.nuevo.includes('nuevo@example.com'));
+    const failures = report.filter((entry) => entry.diffs.some((d) => d.severity !== 'addition'));
+    assert.equal(failures.length, 0, 'no debe generar fallas');
+  });
+
+  it('verificador: un contacto que desaparece falla', () => {
+    const base = { '/': page() };
+    const nuevo = {
+      '/': page({
+        contacts: { forms: [], mailto: [], whatsapp: [], contactAnchors: [] },
+      }),
+    };
+    const report = compareReport(base, nuevo);
+    const failures = report.filter((entry) => entry.diffs.some((d) => d.severity !== 'addition'));
+    assert.ok(failures.length > 0, 'debe generar al menos una falla');
+    assert.ok(
+      failures.some((entry) => entry.diffs.some((d) => d.field === 'contacts' && d.severity === 'missing')),
+      'la falla debe estar en los contactos'
+    );
+  });
+});

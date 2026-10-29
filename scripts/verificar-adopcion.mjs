@@ -262,21 +262,59 @@ function deepEqual(a, b) {
 
 function diffValue(label, baseVal, nuevoVal) {
   if (deepEqual(baseVal, nuevoVal)) return null;
-  return { field: label, base: baseVal, nuevo: nuevoVal };
+  return { field: label, base: baseVal, nuevo: nuevoVal, severity: 'changed' };
+}
+
+function itemKey(item) {
+  return JSON.stringify(sortKeys(item));
+}
+
+function diffList(field, baseArr, nuevoArr, kind = 'primitive') {
+  baseArr = baseArr ?? [];
+  nuevoArr = nuevoArr ?? [];
+  const missing = [];
+  const additions = [];
+  const changed = [];
+
+  if (kind === 'alternates') {
+    for (const b of baseArr) {
+      const n = nuevoArr.find((x) => x.hreflang === b.hreflang);
+      if (!n) missing.push(b);
+      else if (!deepEqual(b, n)) changed.push({ field, base: b, nuevo: n, severity: 'changed' });
+    }
+    for (const n of nuevoArr) {
+      if (!baseArr.some((b) => b.hreflang === n.hreflang)) additions.push(n);
+    }
+  } else {
+    const nuevoSet = new Set(nuevoArr.map(itemKey));
+    const baseSet = new Set(baseArr.map(itemKey));
+    for (const b of baseArr) {
+      if (!nuevoSet.has(itemKey(b))) missing.push(b);
+    }
+    for (const n of nuevoArr) {
+      if (!baseSet.has(itemKey(n))) additions.push(n);
+    }
+  }
+
+  const out = [];
+  if (missing.length) out.push({ field, base: missing, nuevo: [], severity: 'missing' });
+  out.push(...changed);
+  if (additions.length) out.push({ field, base: [], nuevo: additions, severity: 'addition' });
+  return out;
 }
 
 export function comparePage(basePage, nuevoPage) {
   const diffs = [];
   if (nuevoPage.missing) {
-    diffs.push({ field: 'exists', base: true, nuevo: false });
+    diffs.push({ field: 'exists', base: true, nuevo: false, severity: 'missing' });
     return diffs;
   }
   if (basePage.status !== nuevoPage.status) {
-    diffs.push({ field: 'status', base: basePage.status, nuevo: nuevoPage.status });
+    diffs.push({ field: 'status', base: basePage.status, nuevo: nuevoPage.status, severity: 'missing' });
   }
   if (basePage.status !== 200) return diffs;
 
-  const checks = [
+  const scalarChecks = [
     ['lang', norm(basePage.lang), norm(nuevoPage.lang)],
     ['title', norm(basePage.title), norm(nuevoPage.title)],
     ['description', norm(basePage.description), norm(nuevoPage.description)],
@@ -285,13 +323,24 @@ export function comparePage(basePage, nuevoPage) {
     ['alternates', basePage.alternates, nuevoPage.alternates],
     ['robots', norm(basePage.robots), norm(nuevoPage.robots)],
     ['jsonld', basePage.jsonld, nuevoPage.jsonld],
-    ['anchors', basePage.anchors, nuevoPage.anchors],
-    ['contacts', basePage.contacts, nuevoPage.contacts],
   ];
-  for (const [label, b, n] of checks) {
+  for (const [label, b, n] of scalarChecks) {
     const d = diffValue(label, b, n);
     if (d) diffs.push(d);
   }
+
+  diffs.push(...diffList('anchors', basePage.anchors, nuevoPage.anchors));
+
+  const contactKeys = ['forms', 'mailto', 'whatsapp', 'contactAnchors'];
+  const contactDiffs = [];
+  for (const key of contactKeys) {
+    contactDiffs.push(...diffList(`contacts.${key}`, basePage.contacts?.[key], nuevoPage.contacts?.[key]));
+  }
+  if (contactDiffs.some((d) => d.severity !== 'addition')) {
+    diffs.push({ field: 'contacts', base: basePage.contacts, nuevo: nuevoPage.contacts, severity: 'missing' });
+  }
+  diffs.push(...contactDiffs);
+
   return diffs;
 }
 
@@ -299,7 +348,7 @@ export function compareReport(base, nuevo) {
   const report = [];
   for (const route of Object.keys(base)) {
     if (!nuevo[route]) {
-      report.push({ route, diffs: [{ field: 'exists', base: true, nuevo: false }] });
+      report.push({ route, diffs: [{ field: 'exists', base: true, nuevo: false, severity: 'missing' }] });
       continue;
     }
     const diffs = comparePage(base[route], nuevo[route]);
@@ -307,10 +356,14 @@ export function compareReport(base, nuevo) {
   }
   for (const route of Object.keys(nuevo)) {
     if (!base[route]) {
-      report.push({ route, diffs: [{ field: 'exists', base: false, nuevo: true }] });
+      report.push({ route, diffs: [{ field: 'exists', base: false, nuevo: true, severity: 'addition' }] });
     }
   }
   return report;
+}
+
+export function reportFailures(report) {
+  return report.filter((entry) => entry.diffs.some((d) => d.severity !== 'addition'));
 }
 
 async function loadSiteYaml() {
@@ -365,13 +418,18 @@ async function main() {
       }
     }
     const report = compareReport(baseData.pages, nuevo.pages);
-    if (report.length === 0) {
+    const failures = reportFailures(report);
+    const additions = report.filter((entry) => entry.diffs.some((d) => d.severity === 'addition'));
+
+    if (failures.length === 0 && additions.length === 0) {
       console.log('OK: sin diferencias respecto de la base.');
       return 0;
     }
-    for (const { route, diffs } of report) {
+
+    for (const { route, diffs } of failures) {
       console.log(`\nDIFERENCIA ${route}`);
       for (const d of diffs) {
+        if (d.severity === 'addition') continue;
         console.log(`  · ${d.field}`);
         if (process.env.VERBOSE) {
           console.log('    base:', JSON.stringify(d.base, null, 2));
@@ -379,7 +437,19 @@ async function main() {
         }
       }
     }
-    return 1;
+
+    for (const { route, diffs } of additions) {
+      console.log(`\nADICIÓN ${route}`);
+      for (const d of diffs) {
+        if (d.severity !== 'addition') continue;
+        console.log(`  · + ${d.field}`);
+        if (process.env.VERBOSE) {
+          console.log('    nuevo:', JSON.stringify(d.nuevo, null, 2));
+        }
+      }
+    }
+
+    return failures.length > 0 ? 1 : 0;
   }
 
   console.log(`Uso:
