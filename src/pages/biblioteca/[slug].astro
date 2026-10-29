@@ -1,15 +1,14 @@
 ---
 // Ficha de un equipo de la biblioteca: visor 3D, servicios, experiencia, FAQ, otros equipos y contacto.
 import { getCollection, render } from 'astro:content';
-import Base from '@mcco/web-kit/layouts/Base.astro';
+import Sitio from '../../layouts/Sitio.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
 import Faq from '@mcco/web-kit/components/Faq.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';
-import Cabecera from '../../components/Cabecera.astro';
 import FormularioEquipo from '../../components/FormularioEquipo.astro';
 import TarjetaEquipo from '../../components/TarjetaEquipo.astro';
 import Visor3D from '../../components/Visor3D.astro';
 import { ETAPAS, otrosEquipos } from '../../scripts/biblioteca-logica.js';
-import '../../styles/theme.css';
 import '../../styles/biblioteca.css';
 
 export async function getStaticPaths() {
@@ -30,36 +29,28 @@ const jsonld = [
   { '@context': 'https://schema.org', '@type': 'Service', name: `Gemelo digital y procedimientos animados para ${d.nombre}`, serviceType: 'Gemelo digital, procedimientos animados y capacitación en 3D', provider: { '@type': 'Organization', '@id': `${site.domain}/#organization`, name: site.name, url: `${site.domain}/` }, areaServed: 'CL' },
 ];
 ---
-<Base title={`${d.nombre} en 3D: gemelo y procedimientos | ${site.name}`} description={d.descripcion} ogImage={`/biblioteca/${slug}/og.jpg`} jsonld={jsonld} bodyClass="bib-pagina">
-  <Fragment slot="head">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" />
-  </Fragment>
-  <Cabecera actual="biblioteca" />
-  <main>
+<Sitio title={`${d.nombre} en 3D: gemelo y procedimientos | ${site.name}`} description={d.descripcion} ogImage={`/biblioteca/${slug}/og.jpg`} jsonld={jsonld} bodyClass="bib-pagina">
     <Visor3D slug={slug} nombre={d.nombre} migas={ETAPAS[d.etapa]} bajada={d.bajada} />
     <div class="bib-contenedor"><p class="bib-pie-visor">Modelo 3D de referencia. Las marcas y modelos pertenecen a sus fabricantes.</p></div>
 
-    <section class="bib-bloque" style="border-top:0"><div class="bib-contenedor bib-dos">
+    <Bloque tono="claro" class="bib-bloque"><div class="bib-contenedor bib-dos">
       <div class="bib-texto">
         <div class="bib-rotulo">Servicios</div>
         <h2 class="bib-titular">{`Para qué usamos el modelo ${del} ${d.nombre}`}</h2>
         <Content />
       </div>
       <div><Faq items={d.faq} /></div>
-    </div></section>
+    </div></Bloque>
 
     {d.experiencia.length > 0 && (
-      <section class="bib-bloque"><div class="bib-contenedor">
+      <Bloque tono="parchment" class="bib-bloque"><div class="bib-contenedor">
         <div class="bib-rotulo">Experiencia</div>
         <h2 class="bib-titular">Dónde hemos trabajado con este equipo</h2>
         <ul class="bib-experiencia">{d.experiencia.map((x) => <li>{x}</li>)}</ul>
-      </div></section>
+      </div></Bloque>
     )}
 
-    <section class="bib-bloque"><div class="bib-contenedor">
+    <Bloque tono="parchment" class="bib-bloque"><div class="bib-contenedor">
       <div class="bib-rotulo">Biblioteca</div>
       <h2 class="bib-titular">Otros equipos</h2>
       <div class="bib-tarjetas">
@@ -70,15 +61,14 @@ const jsonld = [
           </a>
         )}
       </div>
-    </div></section>
+    </div></Bloque>
 
-    <section class="bib-bloque" id="contacto"><div class="bib-contenedor bib-cierre">
+    <Bloque tono="negro" class="bib-bloque" id="contacto"><div class="bib-contenedor bib-cierre">
       <div>
         <div class="bib-rotulo">Contacto</div>
         <h2 class="bib-titular">Quiero el gemelo de mi equipo</h2>
         <p class="bib-texto">Cuéntenos qué necesita resolver con este equipo. {site.contact.response_sla}</p>
       </div>
       <FormularioEquipo equipo={d.nombre} origen={`biblioteca/${slug}`} textoWa={`Hola, vi ${d.articulo} ${d.nombre} en la biblioteca de ${site.name} y quiero saber más`} />
-    </div></section>
-  </main>
-</Base>
+    </div></Bloque>
+</Sitio>

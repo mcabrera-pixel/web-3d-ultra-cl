@@ -10,7 +10,7 @@
     "build": "astro build",
     "postbuild": "node scripts/sin-modelos.mjs --dist dist",
     "preview": "astro preview",
-    "check": "mcco-check --dist dist && node scripts/sin-modelos.mjs",
+    "check": "mcco-check --dist dist && node scripts/sin-modelos.mjs && node scripts/verificar-adopcion.mjs --base docs/registros/adopcion-3d-ultra/seo-antes.json --nuevo dist && node --test \"test/build/*.test.mjs\"",
     "parity": "mcco-parity",
     "headers": "mcco-headers",
     "test": "node --test \"test/*.test.mjs\""

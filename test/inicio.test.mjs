@@ -6,7 +6,8 @@ import { enlaceConsulta, findBestMatch } from '../src/scripts/asistente-inicio.j
 import { verifyInicio } from '../scripts/verificar-adopcion.mjs';
 
 // prebuild valida datos y lógica sin depender de dist. Los contratos de tarjetas,
-// CTA, anclas, contenido y payload renderizados viven en verificar-adopcion.mjs.
+// CTA, anclas, contenido y payload renderizados se validan en npm run check,
+// con verificar-adopcion.mjs y test/build/inicio.test.mjs.
 test('los tres equipos conservan sus pósters locales y datos de tarjeta', () => {
   const files = readdirSync('src/content/equipos').filter(f => f.endsWith('.md'));
   assert.equal(files.length, 3);
