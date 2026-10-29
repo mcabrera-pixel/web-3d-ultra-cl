@@ -21,6 +21,7 @@
     "three": "0.160.0"
   },
   "devDependencies": {
+    "parse5": "8.0.0",
     "wrangler": "^4.62.0"
   },
   "engines": {
