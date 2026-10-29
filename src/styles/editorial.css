@@ -1,0 +1,9 @@
+/* Lectura y acciones de las páginas editoriales, sin afectar biblioteca ni visor. */
+.std .editorial { text-align: left; }
+.std .editorial > * { width: 100%; max-width: 800px; margin-inline: auto; }
+.std .editorial h1 { margin-bottom: 32px; overflow-wrap: anywhere; }
+.std .editorial p, .std .editorial ul { margin-block: 24px; line-height: 1.7; }
+.std .editorial ul { padding-left: 24px; }
+.std .editorial a:not(.std-pildora) { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+.std .editorial a.std-pildora { width: auto; }
+.std .editorial .editorial-codigo { color: var(--accion); font-size: 48px; font-weight: 600; }

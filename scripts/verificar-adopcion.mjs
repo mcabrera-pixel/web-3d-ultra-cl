@@ -439,6 +439,46 @@ async function verifyInicioDist(distDir) {
   return verifyInicio(fs.readFileSync(path.join(distDir, 'index.html'), 'utf8'), fichas, fs.readFileSync('src/legacy/index-body.html', 'utf8'));
 }
 
+// Suplemento de T6: conserva contenido editorial y OG que parity no compara.
+// La captura original de SEO sigue intacta; esta base procede de los seis HTML originales.
+export function extractInterior(html) {
+  const doc = parse5.parse(html);
+  const head = findOne(doc, 'head');
+  const article = findOne(doc, 'article') ?? allElements(doc).find(el => getAttr(el, 'class').split(/\s+/).includes('faq-section'));
+  return {
+    opengraph: findAll(head, 'meta').filter(el => getAttr(el, 'property').startsWith('og:'))
+      .map(el => ({ property: getAttr(el, 'property'), content: getAttr(el, 'content') })),
+    // Las respuestas, listas, encabezados y celdas deben sobrevivir al cambio de presentación.
+    contenido: allElements(article).filter(el => /^(h[1-6]|p|li|th|td)$/.test(el.nodeName)).map(textContent),
+    enlaces: findAll(article, 'a').map(el => ({ href: getAttr(el, 'href'), texto: textContent(el) })),
+  };
+}
+
+export function verifyInterior(html, base) {
+  const nuevo = extractInterior(html), errors = [];
+  const doc = parse5.parse(html), head = findOne(doc, 'head');
+  for (const key of ['opengraph', 'contenido', 'enlaces']) {
+    for (const item of base[key]) {
+      if (!nuevo[key].some(n => deepEqual(n, item))) errors.push(`Interior: pérdida en ${key}: ${JSON.stringify(item)}`);
+    }
+  }
+  const metas = findAll(head, 'meta');
+  for (const key of ['og:type', 'og:url', 'og:title', 'og:description', 'og:image']) {
+    const count = metas.filter(el => getAttr(el, 'property') === key).length;
+    if (count > 1 || (count === 0 && base.opengraph.some(el => el.property === key))) errors.push(`Interior: ${key} ausente o duplicado respecto de la base`);
+  }
+  if (findAll(head, 'link').filter(el => getAttr(el, 'rel') === 'canonical').length !== 1) errors.push('Interior: canonical debe aparecer una vez');
+  return errors;
+}
+
+function verifyInterioresDist(distDir) {
+  const base = JSON.parse(fs.readFileSync('docs/registros/adopcion-3d-ultra/interiores-antes.json', 'utf8'));
+  return Object.entries(base.pages).flatMap(([route, page]) => {
+    const file = resolveRouteToFile(route, distDir);
+    return fs.existsSync(file) ? verifyInterior(fs.readFileSync(file, 'utf8'), page).map(error => `${route}: ${error}`) : [`${route}: interior ausente`];
+  });
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const has = (flag) => args.includes(flag);
@@ -480,9 +520,9 @@ async function main() {
         nuevo.pages[route] = { route, url: new URL(route, domain).href, error: err.message };
       }
     }
-    const inicioErrors = /^https?:\/\//i.test(nuevoPath) ? [] : await verifyInicioDist(nuevoPath);
+    const inicioErrors = /^https?:\/\//i.test(nuevoPath) ? [] : [...await verifyInicioDist(nuevoPath), ...verifyInterioresDist(nuevoPath)];
     for (const error of inicioErrors) console.log(`FALLA ${error}`);
-    if (!/^https?:\/\//i.test(nuevoPath) && !inicioErrors.length) console.log('OK: contratos de portada renderizada.');
+    if (!/^https?:\/\//i.test(nuevoPath) && !inicioErrors.length) console.log('OK: contratos de portada e interiores renderizados.');
     const report = compareReport(baseData.pages, nuevo.pages);
     const failures = reportFailures(report);
     const additions = report.filter((entry) => entry.diffs.some((d) => d.severity === 'addition'));

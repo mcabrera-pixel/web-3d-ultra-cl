@@ -3,17 +3,15 @@
 import Sitio from '../layouts/Sitio.astro';
 import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import '../styles/editorial.css';
 const site = loadSite();
 const wa = site.contact.whatsapp?.replace(/\D/g, '');
 ---
 <Sitio title={`Gracias | ${site.name}`} description={`Recibimos tu solicitud en ${site.name}. Un ingeniero la revisa y te responde por correo o WhatsApp dentro de 24 horas hábiles.`} noindex={true}>
-  <Bloque class="thanks" tono="claro">
+  <Bloque class="editorial" tono="claro">
     <h1 class="std-h1">Recibimos tu solicitud</h1>
     <p class="std-tagline">{site.contact.response_sla ?? 'Te respondemos en menos de 24 horas hábiles.'}</p>
     {wa && <p>¿Es urgente? <a href={`https://wa.me/${wa}`} rel="noopener">Escríbenos por WhatsApp</a>.</p>}
     <p><a class="std-pildora std-pildora--fantasma" href="/">Volver al inicio</a></p>
   </Bloque>
 </Sitio>
-<style>
-  .thanks a:not(.std-pildora) { display: inline-flex; align-items: center; min-height: 44px; }
-</style>
