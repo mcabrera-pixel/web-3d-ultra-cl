@@ -1,0 +1,23 @@
+---
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+const site = loadSite();
+---
+<form class="inicio-formulario" method="post" action="/api/contact">
+  <input type="hidden" name="subject" value={`Nuevo contacto desde ${new URL(site.domain).hostname}`} />
+  <input type="hidden" name="from_name" value={site.name} />
+  <input class="inicio-trampa" type="text" name="website_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <label>Nombre<input name="nombre" type="text" autocomplete="name" /></label>
+  <label>Empresa / Cargo<input name="empresa" type="text" autocomplete="organization" /></label>
+  <label>Interés
+    <select name="servicio">
+      <option>Escaner Láser FARO / Nube de puntos</option>
+      <option>Modelado 3D BIM/LODS</option>
+      <option>Ingeniería / Simulaciones / Ing. Inversa</option>
+      <option>Arquitectura / Gestión / dibujo de Planos / Diseño</option>
+      <option>Gemelos digitales / Gestión remota de Activos / Integración IoT</option>
+      <option>Drones / Fotogrametría / Medición de espesor Aérea / videomapeo</option>
+    </select>
+  </label>
+  <label>Email Personal o Corporativo<input name="email" required type="email" autocomplete="email" /></label>
+  <button class="std-pildora" type="submit">Solicitar Reunión</button>
+</form>

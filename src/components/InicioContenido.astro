@@ -1,0 +1,143 @@
+---
+import { getCollection } from 'astro:content';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import HeroEstandar from '@mcco/web-kit/components/estandar/HeroEstandar.astro';
+import HistoriaNube from '@mcco/web-kit/components/estandar/HistoriaNube.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
+import GrillaProductos from '@mcco/web-kit/components/estandar/GrillaProductos.astro';
+import Producto from '@mcco/web-kit/components/estandar/Producto.astro';
+import Galeria from '@mcco/web-kit/components/estandar/Galeria.astro';
+import Acciones from '@mcco/web-kit/components/estandar/Acciones.astro';
+import FormularioInicio from './FormularioInicio.astro';
+import AsistenteInicio from './AsistenteInicio.astro';
+import { nube, activos, pasos, origen, rotulo } from '../data/nube';
+const site = loadSite();
+const equipos = (await getCollection('equipos')).sort((a, b) => a.data.orden - b.data.orden);
+// Contenido heredado, sin convertir sus afirmaciones en nuevos indicadores.
+const documental = [
+  ['Integración ERP/CMMS', 'Conexión directa con sistemas SAP o IBM Maximo. Visualice órdenes de trabajo activas directamente sobre el gemelo digital.'],
+  ['Onboarding Virtual', 'Reduzca la curva de aprendizaje y riesgos de seguridad permitiendo que nuevos operarios recorran la planta remotamente.'],
+  ['Gestión de Repuestos', 'Vinculación de inventario con el activo visual para agilizar los procesos de requisición y logística de mantenimiento.'],
+  ['Auditoría Remota', 'Inspecciones visuales certificadas y trazabilidad de activos críticos para cumplimiento normativo sin traslados.'],
+];
+const operacion = [
+  ['Mantenimiento Predictivo', 'Detección visual de anomalías y patrones de vibración/temperatura previos a la falla crítica.'],
+  ['Conciencia Situacional', 'Geolocalización instantánea de sensores activados para optimizar la respuesta de equipos de emergencia.'],
+  ['Simulación de Procesos', 'Entornos seguros para testear cambios en líneas de producción o flujos logísticos sin impacto operativo.'],
+];
+const proceso = [
+  ['Captura de Realidad', 'Desplegamos escáneres láser y drones para digitalizar sus activos con precisión milimétrica, sin interrumpir la operación.'],
+  ['Nube de Puntos', 'Procesamos billones de coordenadas XYZ para crear una réplica digital exacta (As-Built) geométrica y visualmente fiel.'],
+  ['Modelado Inteligente', 'Convertimos la data cruda en modelos BIM paramétricos, clasificando cada componente (tuberías, equipos, estructuras).'],
+  ['Gemelo Vivo', 'Conectamos el modelo 3D con sus sensores IoT (SCADA/BMS) para monitoreo en tiempo real y mantenimiento predictivo.'],
+];
+const casos = [
+  { href: '/casos/gemelo-digital-raf-potrerillos.html', tipo: 'Gemelo Digital', titulo: 'Área RAF, Fundición Potrerillos', texto: 'Planta virtual navegable con integración de datos operacionales para la planificación de paradas de planta.', etiquetas: ['Paradas de planta', 'Planta virtual'] },
+  { href: '/casos/analisis-chimenea-cps-salvador.html', tipo: 'Integridad Estructural', titulo: 'Chimenea CPS, División Salvador', texto: 'Detección de deformaciones fuera de tolerancia normativa que anticipó riesgo inminente de colapso.', etiquetas: ['Prevención colapso', '±1mm precisión'] },
+  { href: '/casos/rueda-moldeo-anodos-potrerillos.html', tipo: 'Simulación + Prototipado', titulo: 'Rueda de Moldeo, Ánodos CH', texto: 'Maquetas 3D a escala real para eliminar errores de montaje en la adaptación a formato Chuquicamata.', etiquetas: ['Montaje sin reprocesos', '0 reprocesos'] },
+  { href: '/casos/hornos-isasmelt-extension-vida-util.html', tipo: 'Simulación CFD/FEA', titulo: 'Hornos ISASMELT, Extensión de Vida', texto: 'Análisis termomecánico para decidir cuánto más puede operar el activo de fusión más crítico.', etiquetas: ['Vida remanente', 'CAPEX evitado'] },
+];
+// La ubicación del proveedor sale del manifiesto; se conserva el archivo existente.
+const video = `${site.csp.media_src[0]}/VID.mp4`;
+---
+<div class="inicio">
+  <HeroEstandar titulo="GEMELOS DIGITALES & PLANTAS VIRTUALES."
+    bajada="Del levantamiento láser al control total de activos. Centralice su operación y elimine la incertidumbre."
+    acciones={[{ href: '#contacto', texto: 'Hablar con un ingeniero' }, { href: '/biblioteca/', texto: 'Ver Demo Virtual', variante: 'fantasma' }]}
+    nube={nube} rotulo={rotulo} campo />
+
+  <Bloque id="social-proof" tono="claro" class="inicio-confianza" aria-label="Clientes">
+    <p class="std-fina">Han confiado en nuestro equipo</p>
+    <ul role="list">{site.clients_allowed.map((cliente: string) => <li>{cliente}</li>)}</ul>
+  </Bloque>
+
+  <HistoriaNube titulo="Equipos en tres dimensiones." bajada="Modelos de referencia de la biblioteca."
+    activos={activos} pasos={pasos} origen={origen} rotulo={rotulo} />
+
+  <section id="twins-2" aria-labelledby="equipos-titulo">
+    <Bloque tono="claro">
+      <p class="std-fina">Industria 4.0</p>
+      <h2 id="equipos-titulo" class="std-h2">Gestión de Activos Mineros</h2>
+      <p class="std-tagline">Cada ficha muestra un equipo en 3D y lo que podemos hacer con ese modelo.</p>
+      <Acciones acciones={[{ href: '/biblioteca/', texto: 'Ver la biblioteca completa', variante: 'fantasma' }]} />
+    </Bloque>
+    <GrillaProductos aria-label="Equipos de la biblioteca">
+      {equipos.map((equipo, i) => <Producto titulo={equipo.data.nombre} bajada={equipo.data.tipo} tono="parchment" ancho={i === 2}
+        acciones={[{ href: `/biblioteca/${equipo.id}`, texto: 'Ver equipo', oculto: `: ${equipo.data.nombre}` }]}
+        foto={{ src: `/biblioteca/${equipo.id}/poster.webp`, alt: `Modelo 3D de referencia: ${equipo.data.nombre}`, width: 1600, height: 1000, origen: 'render' }} />)}
+    </GrillaProductos>
+  </section>
+
+  <Bloque id="twins" tono="negro" aria-labelledby="servicios-titulo">
+    <p class="std-fina">05. Industria 4.0</p>
+    <h2 id="servicios-titulo" class="std-h2">Gemelos Digitales &amp; Gestión Remota de Activos</h2>
+    <p class="inicio-bajada">La transformación digital no es el futuro, es la ventaja competitiva de hoy. Centralice operaciones, reduzca OPEX y capacite a su personal en un entorno inmersivo idéntico a la realidad.</p>
+    <div class="inicio-servicio">
+      <p class="std-fina">Gestión del Conocimiento</p>
+      <h3 class="std-h3">Asset Tagging &amp; Centralización de Data</h3>
+      <p>Transformamos el modelo 3D en una base de datos visual estructurada. Al interactuar con cualquier activo, el sistema despliega su "ADN digital", vinculando la realidad física con su documentación técnica, historial y procedimientos.</p>
+      <h4>Gestión Documental Contextualizada</h4>
+      <p>Elimine la búsqueda manual de planos. Acceso inmediato a la data técnica.</p>
+      <div class="inicio-detalles">{documental.map(([titulo, texto]) => <article><h4>{titulo}</h4><p>{texto}</p></article>)}</div>
+    </div>
+    <div class="inicio-servicio">
+      <p class="std-fina">Inteligencia Operativa</p>
+      <h3 class="std-h3">Conectividad IoT &amp; Gemelos Vivos</h3>
+      <p>Inyectamos la data de sus sensores (BMS, SCADA, PLCs) directamente en el modelo tridimensional. Esto permite visualizar el comportamiento de la infraestructura en tiempo real, correlacionando alertas con su ubicación espacial exacta.</p>
+      <div class="inicio-detalles">{operacion.map(([titulo, texto]) => <article><h4>{titulo}</h4><p>{texto}</p></article>)}</div>
+    </div>
+    <h3 class="std-tagline">Ingeniería de datos aplicada a la realidad visual.</h3>
+    <Acciones acciones={[{ href: '#contacto', texto: 'Solicitar Demostración Técnica', variante: 'fantasma' }]} />
+  </Bloque>
+
+  <Bloque id="process" tono="parchment" aria-labelledby="proceso-titulo">
+    <p class="std-fina">Metodología</p>
+    <h2 id="proceso-titulo" class="std-h2">Cómo creamos su Gemelo Digital</h2>
+    <p class="inicio-bajada">Un flujo de trabajo validado para transformar instalaciones físicas en datos operables.</p>
+    <ol class="inicio-proceso">{proceso.map(([titulo, texto], i) => <li><span class="inicio-numero" aria-hidden="true">{i + 1}</span><h3>{titulo}</h3><p>{texto}</p></li>)}</ol>
+  </Bloque>
+
+  <Bloque id="casos" tono="claro" aria-labelledby="casos-titulo">
+    <p class="std-fina">Trabajos en CODELCO</p>
+    <h2 id="casos-titulo" class="std-h2">
+      Casos de Estudio en CODELCO
+    </h2>
+    <p class="inicio-bajada">Proyectos hechos en fundiciones y concentradoras de CODELCO.</p>
+    <div class="inicio-casos">{casos.map(caso => <a href={caso.href} data-std-oscuro>
+      <span class="std-fina">{caso.tipo}</span><h3>{caso.titulo}</h3><p>{caso.texto}</p>
+      <ul role="list">{caso.etiquetas.map(etiqueta => <li>{etiqueta}</li>)}</ul>
+    </a>)}</div>
+    <div class="inicio-galeria">
+      <Galeria formato="mosaico" items={[{ tipo: 'imagen', src: '/sim.JPG', width: 1200, height: 666, alt: 'Escaneo láser de un equipo industrial en planta.', origen: 'real', pie: 'Captura de Realidad' }]} />
+      {/* El original excede 8 MB y no tiene faststart. No usar reproducción automática hasta optimizarlo en R2. */}
+      <figure class="inicio-video" data-origen="captura">
+        <video controls muted playsinline preload="none" poster="/media/inicio/video-poster.webp" width="1920" height="1080" aria-label="Captura de simulación térmica" data-origen="captura">
+          <source src={video} type="video/mp4" />
+        </video>
+        <figcaption><span class="std-rotulo" data-rotulo>Captura de simulación</span> Ingeniería 4.0</figcaption>
+      </figure>
+    </div>
+  </Bloque>
+
+  <Bloque id="concierge" tono="parchment" aria-labelledby="concierge-titulo">
+    <div class="inicio-contacto">
+      <div>
+        <p class="std-fina">Concierge</p>
+        <h2 id="concierge-titulo" class="std-h2">Proyectemos su visión.</h2>
+        <p>Agende una sesión de consultoría inicial para discutir la viabilidad técnica y objetivos financieros de su inversión.</p>
+        <p>Línea Directa</p>
+        <a href={`tel:${site.contact.whatsapp}`}>{site.contact.phone}</a><br />
+        <a href="tel:+56966109611">+56 9 6610 9611</a>
+        <p>Consultas</p><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+      </div>
+      <FormularioInicio />
+    </div>
+  </Bloque>
+  <Bloque id="contacto" tono="claro" aria-labelledby="contacto-titulo">
+    <p class="std-fina">¿Tiene un problema similar?</p>
+    <h2 id="contacto-titulo" class="std-h2">Evaluamos su caso gratis</h2>
+    <p class="inicio-bajada">Envíenos fotos o planos de su proyecto. Le explicaremos cómo digitalizarlo.</p>
+    <Acciones acciones={[{ href: 'mailto:proyectos@mccocopper.cl', texto: 'Agendar Consultoría Técnica' }]} />
+  </Bloque>
+  <AsistenteInicio />
+</div>

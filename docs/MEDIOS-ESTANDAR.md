@@ -86,3 +86,28 @@ requiere el rótulo explícito para sustituir su texto predeterminado.
 
 Esta entrega prepara archivos y datos. La integración, el muestreo y las pruebas
 de respaldo con y sin WebGL/JS corresponden a la Tarea 4.
+
+## Portada integrada, B5-t4 (29-oct-2026)
+
+- `sim.JPG` se conserva sin modificar (1200 × 666). La revisión del archivo muestra una
+  **foto de faena**, con un escáner FARO, no una captura de simulación. Se publica en
+  `Galeria` mosaico, con `origen="real"`, sin estirar ni recortar. Se retiraron los
+  dos rótulos decorativos heredados de datos en vivo porque la imagen es una foto.
+- El video anterior del hero conserva la URL del origen R2 declarado en el manifiesto,
+  archivo `VID.mp4`. GET de revisión: **47 770 799 bytes**, 1920 × 1080, 20,033333 s,
+  pista `avc1` (H.264). La caja `mdat` empieza en 168 y `moov` en 47 752 049: **no
+  tiene faststart**. SHA-256: `8ec145f53aceb98e60e6154884ebcfe37cc9924fd534444295ad9015782809b6`.
+- Es una **captura de simulación térmica**, rotulada así en la galería. Usa controles
+  nativos, `muted`, `playsinline` y `preload="none"`, sin reproducción automática.
+  Network confirma que recorrer la portada no solicita el MP4. No se transcodificó
+  ni subió otro video. El original aún supera 8 MB y contiene una escala heredada;
+  requiere una entrega optimizada y revisada antes de declararlo conforme a todos
+  los requisitos de medios del estándar.
+- Póster propio `public/media/inicio/video-poster.webp`: fotograma de ese video a
+  3 s, recorte (320, 90, 1600, 900) del original para excluir escala y textos,
+  reducido proporcionalmente a 960 × 540, WebP calidad 0,8, **24 300 bytes**.
+  SHA-256: `b4b92aec4da54264b0f34a8c3dacd7b822b0eb336066ca9aa6e32b7635f3cdc7`.
+  Extraído con el Chrome disponible, sin IA ni dependencias nuevas. Script y copia
+  del original solo en `/home/cloud/webs/encargos/3d-ultra/B5-t4/`.
+- Los tres renders de nube y los tres pósters de biblioteca no cambiaron. Hero e
+  historia reciben el mismo origen `render` y el pie del hero dice «Render 3D».

@@ -376,6 +376,69 @@ async function loadSiteYaml() {
   }
 }
 
+// Contratos de la portada renderizada: se ejecutan después del build, nunca en prebuild.
+export function verifyInicio(html, fichas, legacyHtml) {
+  const doc = parse5.parse(html), errors = [];
+  const els = allElements(doc), links = findAll(doc, 'a');
+  const hasClass = (el, c) => getAttr(el, 'class').split(/\s+/).includes(c);
+  const check = (ok, message) => { if (!ok) errors.push(message); };
+  const hero = els.find(el => hasClass(el, 'std-hero'));
+  const equipos = els.find(el => getAttr(el, 'id') === 'twins-2');
+  check(findAll(doc, 'main').length === 1 && findAll(doc, 'h1').length === 1, 'Inicio: un main y un H1');
+  check(links.some(el => getAttr(el, 'href') === '/biblioteca/' && textContent(el) === 'Biblioteca'), 'Inicio: enlace de navegación a biblioteca');
+  check(findAll(hero, 'a').some(el => getAttr(el, 'href') === '/biblioteca/' && textContent(el) === 'Ver Demo Virtual'), 'Inicio: CTA Ver Demo Virtual');
+  check(getAttr(findAll(hero, 'a')[0], 'href') === '#contacto', 'Inicio: contacto como acción principal');
+  const tarjetas = findAll(equipos, 'article');
+  check(tarjetas.length === 3, 'Inicio: tres tarjetas de equipos');
+  for (const [slug, ficha] of Object.entries(fichas)) {
+    const tarjeta = tarjetas.find(t => findAll(t, 'a').some(a => getAttr(a, 'href') === `/biblioteca/${slug}`));
+    const img = findOne(tarjeta, 'img');
+    check(!!tarjeta && textContent(findOne(tarjeta, 'h3')) === ficha.nombre && findAll(tarjeta, 'p').some(p => textContent(p) === ficha.tipo), `Inicio: nombre y tipo de ${slug}`);
+    check(getAttr(img, 'src') === `/biblioteca/${slug}/poster.webp` && getAttr(img, 'alt') === `Modelo 3D de referencia: ${ficha.nombre}`, `Inicio: póster y alt de ${slug}`);
+  }
+  check(findAll(doc, 'iframe').length === 0 && !findAll(doc, 'script').some(s => /visor3d|three|\.glb/.test(getAttr(s, 'src'))), 'Inicio: sin visor, Three.js ni GLB');
+  check(els.filter(el => getAttr(el, 'data-std-nube') === 'hero').length === 1 && els.filter(el => el.attrs?.some(a => a.name === 'data-std-campo')).length === 1, 'Inicio: una nube y un campo');
+  check(els.filter(el => el.attrs?.some(a => a.name === 'data-std-paso')).length === 3, 'Inicio: tres pasos de historia');
+  const formas = els.filter(el => el.attrs?.some(a => a.name === 'data-std-forma'));
+  check(formas.length === 3 && formas.every(el => getAttr(el, 'data-origen') === 'render'), 'Inicio: tres renders rotulados');
+  const first = findAll(hero, 'img').find(el => getAttr(el, 'src').includes('/media/nube/'));
+  check(getAttr(first, 'src') === getAttr(formas[0], 'src') && getAttr(first, 'data-origen') === 'render', 'Inicio: hero y primer paso comparten el render');
+  check(els.filter(el => hasClass(el, 'std-hero__rotulo')).some(el => textContent(el) === 'Render 3D'), 'Inicio: pie del hero Render 3D');
+  const video = findOne(doc, 'video');
+  check(!!getAttr(video, 'poster') && getAttr(video, 'preload') === 'none' && !findAll(hero, 'video').length, 'Inicio: video fuera del hero, con póster y carga diferida');
+  if (legacyHtml) {
+    const legacy = parse5.parse(legacyHtml);
+    const formContract = root => findAll(root, 'form').filter(f => getAttr(f, 'action') === '/api/contact').map(f => ({
+      action: getAttr(f, 'action'), method: getAttr(f, 'method'),
+      fields: allElements(f).filter(e => ['input', 'select', 'textarea', 'button'].includes(e.nodeName)).map(e => ({
+        tag: e.nodeName, name: getAttr(e, 'name'), type: getAttr(e, 'type'), value: getAttr(e, 'value'),
+        required: e.attrs?.some(a => a.name === 'required') ?? false,
+        options: findAll(e, 'option').map(o => ({ value: getAttr(o, 'value'), text: textContent(o) })),
+      })),
+    }));
+    check(deepEqual(formContract(legacy), formContract(doc)), 'Inicio: payload, opciones y validación del formulario heredado');
+    const contenido = norm(textContent(doc)).toLowerCase();
+    // Párrafos/títulos de secciones: excluye scripts y la conversación del asistente.
+    for (const section of findAll(legacy, 'section')) {
+      for (const el of allElements(section).filter(e => /^(p|h[1-5])$/.test(e.nodeName))) {
+        const texto = norm(textContent(el)).replace(/ — /g, ', ').toLowerCase();
+        check(!texto || contenido.includes(texto), `Inicio: contenido heredado perdido: ${texto}`);
+      }
+    }
+    for (const a of findAll(legacy, 'a')) {
+      const href = getAttr(a, 'href');
+      if (/^(tel:|mailto:|https:\/\/(wa.me|instagram.com))/.test(href)) check(links.some(n => getAttr(n, 'href') === href), `Inicio: contacto auxiliar ${href}`);
+    }
+  }
+  return [...new Set(errors)];
+}
+
+async function verifyInicioDist(distDir) {
+  const yaml = await import('js-yaml');
+  const fichas = Object.fromEntries(fs.readdirSync('src/content/equipos').filter(f => f.endsWith('.md')).map(f => [f.replace(/\.md$/, ''), yaml.load(fs.readFileSync(`src/content/equipos/${f}`, 'utf8').split(/^---$/m)[1])]));
+  return verifyInicio(fs.readFileSync(path.join(distDir, 'index.html'), 'utf8'), fichas, fs.readFileSync('src/legacy/index-body.html', 'utf8'));
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const has = (flag) => args.includes(flag);
@@ -417,11 +480,14 @@ async function main() {
         nuevo.pages[route] = { route, url: new URL(route, domain).href, error: err.message };
       }
     }
+    const inicioErrors = /^https?:\/\//i.test(nuevoPath) ? [] : await verifyInicioDist(nuevoPath);
+    for (const error of inicioErrors) console.log(`FALLA ${error}`);
+    if (!/^https?:\/\//i.test(nuevoPath) && !inicioErrors.length) console.log('OK: contratos de portada renderizada.');
     const report = compareReport(baseData.pages, nuevo.pages);
     const failures = reportFailures(report);
     const additions = report.filter((entry) => entry.diffs.some((d) => d.severity === 'addition'));
 
-    if (failures.length === 0 && additions.length === 0) {
+    if (failures.length === 0 && additions.length === 0 && inicioErrors.length === 0) {
       console.log('OK: sin diferencias respecto de la base.');
       return 0;
     }
@@ -449,7 +515,7 @@ async function main() {
       }
     }
 
-    return failures.length > 0 ? 1 : 0;
+    return failures.length > 0 || inicioErrors.length > 0 ? 1 : 0;
   }
 
   console.log(`Uso:
