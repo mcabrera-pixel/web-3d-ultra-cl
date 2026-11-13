@@ -37,6 +37,10 @@ const casos = [
   { href: '/casos/rueda-moldeo-anodos-potrerillos.html', tipo: 'Simulación + Prototipado', titulo: 'Rueda de Moldeo, Ánodos CH', texto: 'Maquetas 3D a escala real para eliminar errores de montaje en la adaptación a formato Chuquicamata.', etiquetas: ['Montaje sin reprocesos', '0 reprocesos'] },
   { href: '/casos/hornos-isasmelt-extension-vida-util.html', tipo: 'Simulación CFD/FEA', titulo: 'Hornos ISASMELT, Extensión de Vida', texto: 'Análisis termomecánico para decidir cuánto más puede operar el activo de fusión más crítico.', etiquetas: ['Vida remanente', 'CAPEX evitado'] },
 ];
+// Caso de demostración de 3D Ultra con datos de ejemplo: va aparte de los trabajos para clientes.
+const demostracion = [
+  { href: '/casos/gemelo-digital-bomba-despiece-sap-pi', tipo: 'Caso de demostración', titulo: 'Bomba con despiece, SAP y PI', texto: 'Sala de bombas en 3D con despiece según el manual de partes y datos de ejemplo de mantenimiento y operación.', etiquetas: ['Datos de ejemplo', 'Muestra interactiva'] },
+];
 // La ubicación del proveedor sale del manifiesto; se conserva el archivo existente.
 const video = `${site.csp.media_src[0]}/VID.mp4`;
 ---
@@ -104,6 +108,11 @@ const video = `${site.csp.media_src[0]}/VID.mp4`;
     </h2>
     <p class="inicio-bajada">Proyectos hechos en fundiciones y concentradoras de CODELCO.</p>
     <div class="inicio-casos">{casos.map(caso => <a href={caso.href} data-std-oscuro>
+      <span class="std-fina">{caso.tipo}</span><h3>{caso.titulo}</h3><p>{caso.texto}</p>
+      <ul role="list">{caso.etiquetas.map(etiqueta => <li>{etiqueta}</li>)}</ul>
+    </a>)}</div>
+    <p class="inicio-bajada">Y un caso de demostración hecho por 3D Ultra, con datos de ejemplo, que se puede abrir en el navegador.</p>
+    <div class="inicio-casos">{demostracion.map(caso => <a href={caso.href} data-std-oscuro>
       <span class="std-fina">{caso.tipo}</span><h3>{caso.titulo}</h3><p>{caso.texto}</p>
       <ul role="list">{caso.etiquetas.map(etiqueta => <li>{etiqueta}</li>)}</ul>
     </a>)}</div>

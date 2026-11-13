@@ -39,3 +39,7 @@
 # Pósters de la biblioteca (imagen LCP de las fichas y de las tarjetas): 1 día
 /biblioteca/:slug/poster.webp
   Cache-Control: public, max-age=86400
+
+# Muestra interactiva del caso de la bomba: fuera de buscadores (además de su meta robots y fuera del sitemap)
+/muestras/*
+  X-Robots-Tag: noindex, nofollow

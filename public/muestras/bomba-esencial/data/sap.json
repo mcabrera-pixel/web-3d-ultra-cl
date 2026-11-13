@@ -1,0 +1,1508 @@
+{
+ "_aviso": "Datos de ejemplo. No corresponden a ningún equipo real.",
+ "sistema": {
+  "descripcion": "SAP S/4HANA PM y MM (estructura de ejemplo)",
+  "mandante": "100",
+  "centro": "CL01",
+  "fecha_extraccion": "2026-11-12 08:00"
+ },
+ "ubicacion_tecnica": {
+  "TPLNR": "CL01-PRO-SBA-PP101",
+  "PLTXT": "Posición bomba agua de proceso 1",
+  "ruta": [
+   {
+    "TPLNR": "CL01",
+    "PLTXT": "Planta de ejemplo"
+   },
+   {
+    "TPLNR": "CL01-PRO",
+    "PLTXT": "Área de procesos"
+   },
+   {
+    "TPLNR": "CL01-PRO-SBA",
+    "PLTXT": "Sala de bombas agua de proceso"
+   },
+   {
+    "TPLNR": "CL01-PRO-SBA-PP101",
+    "PLTXT": "Posición bomba agua de proceso 1"
+   }
+  ]
+ },
+ "equipo": {
+  "EQUNR": "10004521",
+  "EQKTX": "Bomba centrífuga horizontal agua de proceso",
+  "TIDNR": "PP-101",
+  "EQART": "BOMBA-CEN",
+  "EQTYP": "M",
+  "TPLNR": "CL01-PRO-SBA-PP101",
+  "SWERK": "CL01",
+  "INGRP": "M01",
+  "GEWRK": "MEC-SBA",
+  "ABCKZ": "A",
+  "BAUJJ": "2012",
+  "INBDT": "2013-04-15",
+  "TYPBZ": "Centrífuga horizontal de una etapa, aspiración axial, 150-315",
+  "STAT": "INST ESTB",
+  "caracteristicas": {
+   "Caudal nominal": "380 m³/h",
+   "Altura nominal": "30 m",
+   "Velocidad": "1.486 rpm",
+   "Potencia absorbida": "36 kW",
+   "Diámetro rodete": "314 mm",
+   "Aspiración / descarga": "DN 200 PN10 / DN 150 PN16",
+   "Cierre del eje": "Cierre mecánico simple",
+   "Soporte de cojinetes": "WE55, lubricado con grasa",
+   "Fluido": "Agua de proceso, 50 °C"
+  }
+ },
+ "subequipos": [
+  {
+   "EQUNR": "10004522",
+   "EQKTX": "Motor de inducción 100 HP 600 V 4 polos",
+   "TIDNR": "M-101",
+   "conjunto": "MOT",
+   "HEQUI": "10004521"
+  },
+  {
+   "EQUNR": "10004523",
+   "EQKTX": "Acoplamiento con espaciador 140 mm",
+   "TIDNR": "CP-101",
+   "conjunto": "ACO",
+   "HEQUI": "10004521"
+  }
+ ],
+ "avisos": [
+  {
+   "QMNUM": "10087412",
+   "QMART": "M1",
+   "QMTXT": "Goteo leve en conexión 8B de evacuación de fuga",
+   "PRIOK": "3",
+   "PRIOKX": "Media",
+   "QMDAT": "2026-11-03",
+   "STAT": "MEAB",
+   "posicion_manual": "8B",
+   "EQUNR": "10004521",
+   "TPLNR": "CL01-PRO-SBA-PP101",
+   "QMNAM": "OPERADOR T2"
+  },
+  {
+   "QMNUM": "10087433",
+   "QMART": "M1",
+   "QMTXT": "Pintura dañada en placa de base, lado motor",
+   "PRIOK": "4",
+   "PRIOKX": "Baja",
+   "QMDAT": "2026-10-21",
+   "STAT": "MEAB",
+   "posicion_manual": null,
+   "conjunto": "BAS",
+   "EQUNR": "10004521",
+   "TPLNR": "CL01-PRO-SBA-PP101",
+   "QMNAM": "INSPECTOR RUTA"
+  }
+ ],
+ "ordenes": [
+  {
+   "AUFNR": "4000712210",
+   "AUART": "PM01",
+   "KTEXT": "Cambio de rodamientos y anillos partidos",
+   "GSTRP": "2024-03-01",
+   "GLTRP": "2024-03-04",
+   "ISTAT": "CERR",
+   "ILART": "Correctivo",
+   "ARBPL": "MEC-SBA",
+   "costo_real_clp": 2380000,
+   "operaciones": [
+    {
+     "VORNR": "0010",
+     "LTXA1": "Bloqueo y vaciado del equipo",
+     "DAUNO": 1,
+     "ARBEI": "H"
+    },
+    {
+     "VORNR": "0020",
+     "LTXA1": "Desmontaje unidad extraíble",
+     "DAUNO": 4,
+     "ARBEI": "H"
+    },
+    {
+     "VORNR": "0030",
+     "LTXA1": "Cambio de rodamientos 321 y anillos 502.1/.2",
+     "DAUNO": 6,
+     "ARBEI": "H"
+    },
+    {
+     "VORNR": "0040",
+     "LTXA1": "Montaje, alineamiento y prueba",
+     "DAUNO": 4,
+     "ARBEI": "H"
+    }
+   ],
+   "componentes": [
+    {
+     "MATNR": "300045226",
+     "posicion_manual": "321",
+     "BDMNG": 2
+    },
+    {
+     "MATNR": "300045121",
+     "posicion_manual": "502.1/.2",
+     "BDMNG": 2
+    },
+    {
+     "MATNR": "300045247",
+     "posicion_manual": "932",
+     "BDMNG": 2
+    },
+    {
+     "MATNR": "300045135",
+     "posicion_manual": "920.1/.5",
+     "BDMNG": 1
+    }
+   ]
+  },
+  {
+   "AUFNR": "4000781245",
+   "AUART": "PM01",
+   "KTEXT": "Cambio de cierre mecánico por fuga",
+   "GSTRP": "2025-08-18",
+   "GLTRP": "2025-08-19",
+   "ISTAT": "CERR",
+   "ILART": "Correctivo",
+   "ARBPL": "MEC-SBA",
+   "costo_real_clp": 1890000,
+   "operaciones": [
+    {
+     "VORNR": "0010",
+     "LTXA1": "Bloqueo y vaciado",
+     "DAUNO": 1,
+     "ARBEI": "H"
+    },
+    {
+     "VORNR": "0020",
+     "LTXA1": "Cambio de cierre 433 y casquillo 523",
+     "DAUNO": 5,
+     "ARBEI": "H"
+    },
+    {
+     "VORNR": "0030",
+     "LTXA1": "Prueba de estanqueidad",
+     "DAUNO": 1,
+     "ARBEI": "H"
+    }
+   ],
+   "componentes": [
+    {
+     "MATNR": "300045191",
+     "posicion_manual": "433",
+     "BDMNG": 1
+    },
+    {
+     "MATNR": "300045212",
+     "posicion_manual": "523",
+     "BDMNG": 1
+    },
+    {
+     "MATNR": "300045114",
+     "posicion_manual": "400.1/.3",
+     "BDMNG": 1
+    },
+    {
+     "MATNR": "300045240",
+     "posicion_manual": "411",
+     "BDMNG": 2
+    }
+   ]
+  },
+  {
+   "AUFNR": "4000802117",
+   "AUART": "PM03",
+   "KTEXT": "Relubricación de rodamientos 2.000 h",
+   "GSTRP": "2026-09-29",
+   "GLTRP": "2026-09-29",
+   "ISTAT": "CERR",
+   "ILART": "Preventivo",
+   "ARBPL": "LUB-SBA",
+   "costo_real_clp": 45000,
+   "WARPL": "200341",
+   "operaciones": [
+    {
+     "VORNR": "0010",
+     "LTXA1": "Relubricar rodamientos 321 con grasa de litio",
+     "DAUNO": 0.5,
+     "ARBEI": "H"
+    }
+   ],
+   "componentes": []
+  },
+  {
+   "AUFNR": "4000815530",
+   "AUART": "PM03",
+   "KTEXT": "Ruta de vibraciones mensual",
+   "GSTRP": "2026-11-25",
+   "GLTRP": "2026-11-25",
+   "ISTAT": "LIB",
+   "ILART": "Predictivo",
+   "ARBPL": "PDM-SBA",
+   "WARPL": "200342",
+   "operaciones": [
+    {
+     "VORNR": "0010",
+     "LTXA1": "Medición de vibraciones en cojinetes LA y LL",
+     "DAUNO": 0.5,
+     "ARBEI": "H"
+    }
+   ],
+   "componentes": []
+  },
+  {
+   "AUFNR": "4000815611",
+   "AUART": "PM03",
+   "KTEXT": "Relubricación de rodamientos 2.000 h",
+   "GSTRP": "2026-12-21",
+   "GLTRP": "2026-12-21",
+   "ISTAT": "CRTD",
+   "ILART": "Preventivo",
+   "ARBPL": "LUB-SBA",
+   "WARPL": "200341",
+   "operaciones": [
+    {
+     "VORNR": "0010",
+     "LTXA1": "Relubricar rodamientos 321 con grasa de litio",
+     "DAUNO": 0.5,
+     "ARBEI": "H"
+    }
+   ],
+   "componentes": []
+  },
+  {
+   "AUFNR": "4000816002",
+   "AUART": "PM03",
+   "KTEXT": "Revisión de alineamiento y acoplamiento",
+   "GSTRP": "2027-01-12",
+   "GLTRP": "2027-01-12",
+   "ISTAT": "CRTD",
+   "ILART": "Preventivo",
+   "ARBPL": "MEC-SBA",
+   "WARPL": "200343",
+   "operaciones": [
+    {
+     "VORNR": "0010",
+     "LTXA1": "Alineamiento láser bomba y motor",
+     "DAUNO": 2,
+     "ARBEI": "H"
+    }
+   ],
+   "componentes": []
+  }
+ ],
+ "planes": [
+  {
+   "WARPL": "200341",
+   "WPTXT": "Relubricación rodamientos PP-101",
+   "ciclo": "2.000 h de operación",
+   "estrategia": "Por contador de horas (punto de medida 7001)",
+   "ultimo": "2026-09-29",
+   "proximo": "2026-12-21",
+   "tareas": [
+    "Relubricar rodamientos 321",
+    "Revisar juntas 411"
+   ]
+  },
+  {
+   "WARPL": "200342",
+   "WPTXT": "Ruta de vibraciones mensual",
+   "ciclo": "1 mes",
+   "estrategia": "Por tiempo",
+   "ultimo": "2026-10-28",
+   "proximo": "2026-11-25",
+   "tareas": [
+    "Vibración LA y LL",
+    "Temperatura de cojinetes"
+   ]
+  },
+  {
+   "WARPL": "200343",
+   "WPTXT": "Alineamiento anual",
+   "ciclo": "12 meses",
+   "estrategia": "Por tiempo",
+   "ultimo": "2026-01-14",
+   "proximo": "2027-01-12",
+   "tareas": [
+    "Alineamiento láser",
+    "Revisión de elementos elásticos del acoplamiento"
+   ]
+  },
+  {
+   "WARPL": "200344",
+   "WPTXT": "Overhaul unidad extraíble",
+   "ciclo": "36 meses",
+   "estrategia": "Por tiempo",
+   "ultimo": "2024-03-04",
+   "proximo": "2027-03-01",
+   "tareas": [
+    "Cambio 321, 502.1/.2, 433, 523, juntas",
+    "Inspección de rodete 230 y carcasa 102"
+   ]
+  }
+ ],
+ "lista_materiales": {
+  "STLNR": "00071234",
+  "STLAN": "4",
+  "EQUNR": "10004521",
+  "descripcion": "Lista de materiales de equipo, ordenada según la Tabla 28 del manual",
+  "items": [
+   {
+    "POSNR": "0010",
+    "POSTP": "L",
+    "IDNRK": "300045100",
+    "MAKTX": "Carcasa espiral",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "102",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0020",
+    "POSTP": "L",
+    "IDNRK": "300045107",
+    "MAKTX": "Cubierta de presión",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "163.2",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0030",
+    "POSTP": "L",
+    "IDNRK": "300045114",
+    "MAKTX": "Junta plana",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "400.1/.3",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0040",
+    "POSTP": "L",
+    "IDNRK": "300045121",
+    "MAKTX": "Anillo partido",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "502.1/.2",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0050",
+    "POSTP": "L",
+    "IDNRK": "300045128",
+    "MAKTX": "Perno roscado",
+    "MENGE": 8,
+    "MEINS": "UN",
+    "posicion_manual": "902.1-3",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0060",
+    "POSTP": "L",
+    "IDNRK": "300045135",
+    "MAKTX": "Tuerca",
+    "MENGE": 9,
+    "MEINS": "UN",
+    "posicion_manual": "920.1/.5",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0070",
+    "POSTP": "L",
+    "IDNRK": "300045142",
+    "MAKTX": "Tornillo de cierre",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "903.1",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0080",
+    "POSTP": "L",
+    "IDNRK": "300045149",
+    "MAKTX": "Eje",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "210",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0090",
+    "POSTP": "L",
+    "IDNRK": "300045156",
+    "MAKTX": "Rodete",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "230",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0100",
+    "POSTP": "L",
+    "IDNRK": "300045163",
+    "MAKTX": "Arandela",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "550",
+    "POTX1": "No se monta en esta ejecución (nota del manual)"
+   },
+   {
+    "POSNR": "0110",
+    "POSTP": "L",
+    "IDNRK": "300045170",
+    "MAKTX": "Seguro",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "930.3",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0120",
+    "POSTP": "L",
+    "IDNRK": "300045177",
+    "MAKTX": "Chaveta",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "940.2",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0130",
+    "POSTP": "L",
+    "IDNRK": "300045184",
+    "MAKTX": "Chaveta",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "940.3",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0140",
+    "POSTP": "L",
+    "IDNRK": "300045191",
+    "MAKTX": "Cierre mecánico",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "433",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0150",
+    "POSTP": "L",
+    "IDNRK": "300045198",
+    "MAKTX": "Soporte del anillo estacionario",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "476",
+    "POTX1": "No se monta en esta ejecución (nota del manual)"
+   },
+   {
+    "POSNR": "0160",
+    "POSTP": "L",
+    "IDNRK": "300045205",
+    "MAKTX": "Junta tórica",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "412",
+    "POTX1": "No se monta en esta ejecución (nota del manual)"
+   },
+   {
+    "POSNR": "0170",
+    "POSTP": "L",
+    "IDNRK": "300045212",
+    "MAKTX": "Casquillo protector del eje",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "523",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0180",
+    "POSTP": "L",
+    "IDNRK": "300045219",
+    "MAKTX": "Soporte de cojinetes",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "330",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0190",
+    "POSTP": "L",
+    "IDNRK": "300045226",
+    "MAKTX": "Rodamiento de bolas",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "321",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0200",
+    "POSTP": "L",
+    "IDNRK": "300045233",
+    "MAKTX": "Tapa de cojinetes",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "360.1",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0210",
+    "POSTP": "L",
+    "IDNRK": "300045240",
+    "MAKTX": "Junta anular",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "411",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0220",
+    "POSTP": "L",
+    "IDNRK": "300045247",
+    "MAKTX": "Anillo de seguridad",
+    "MENGE": 2,
+    "MEINS": "UN",
+    "posicion_manual": "932",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0230",
+    "POSTP": "L",
+    "IDNRK": "300045254",
+    "MAKTX": "Pie de apoyo",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "183",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0240",
+    "POSTP": "L",
+    "IDNRK": "300045261",
+    "MAKTX": "Chapa de cubierta",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "81-92",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0250",
+    "POSTP": "L",
+    "IDNRK": "300045268",
+    "MAKTX": "Tornillo hexagonal",
+    "MENGE": 3,
+    "MEINS": "UN",
+    "posicion_manual": "901.1-3",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0260",
+    "POSTP": "T",
+    "IDNRK": null,
+    "MAKTX": "Conexión de manómetro",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "1M",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0270",
+    "POSTP": "T",
+    "IDNRK": null,
+    "MAKTX": "Vaciado de líquido de bombeo",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "6B",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0280",
+    "POSTP": "T",
+    "IDNRK": null,
+    "MAKTX": "Llenado de líquido de bombeo",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "6D",
+    "POTX1": ""
+   },
+   {
+    "POSNR": "0290",
+    "POSTP": "T",
+    "IDNRK": null,
+    "MAKTX": "Evacuación de líquido de fuga",
+    "MENGE": 1,
+    "MEINS": "UN",
+    "posicion_manual": "8B",
+    "POTX1": ""
+   }
+  ]
+ },
+ "materiales": {
+  "300045100": {
+   "MATNR": "300045100",
+   "MAKTX": "CARCASA ESPIRAL POS 102 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "102",
+   "material_construccion": "Fundición gris JL 1040",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "A-01-01",
+     "LABST": 0
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 4850000,
+   "plazo_entrega_dias": 120,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045107": {
+   "MATNR": "300045107",
+   "MAKTX": "CUBIERTA DE PRESIÓN POS 163.2 BBA 150-31",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "163.2",
+   "material_construccion": "Fundición gris JL 1040",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "A-01-02",
+     "LABST": 1
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 1120000,
+   "plazo_entrega_dias": 120,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045114": {
+   "MATNR": "300045114",
+   "MAKTX": "JUNTA PLANA POS 400.1/.3 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "400.1/.3",
+   "material_construccion": "Fibra aramida sin amianto",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "C-03-11",
+     "LABST": 6
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 2
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 18500,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2025-08-19",
+    "AUFNR": "4000781245"
+   },
+   "aplica": true
+  },
+  "300045121": {
+   "MATNR": "300045121",
+   "MAKTX": "ANILLO PARTIDO POS 502.1/.2 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "502.1/.2",
+   "material_construccion": "Fundición gris",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "C-03-12",
+     "LABST": 4
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 145000,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2024-03-04",
+    "AUFNR": "4000712210"
+   },
+   "aplica": true
+  },
+  "300045128": {
+   "MATNR": "300045128",
+   "MAKTX": "PERNO ROSCADO POS 902.1-3 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "902.1-3",
+   "material_construccion": "Acero 8.8",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-01",
+     "LABST": 16
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 70882,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045135": {
+   "MATNR": "300045135",
+   "MAKTX": "TUERCA POS 920.1/.5 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "920.1/.5",
+   "material_construccion": "Acero 8",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-02",
+     "LABST": 20
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 4
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 35901,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2024-03-04",
+    "AUFNR": "4000712210"
+   },
+   "aplica": true
+  },
+  "300045142": {
+   "MATNR": "300045142",
+   "MAKTX": "TORNILLO DE CIERRE POS 903.1 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "903.1",
+   "material_construccion": "Acero",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-03",
+     "LABST": 10
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 2
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 59349,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045149": {
+   "MATNR": "300045149",
+   "MAKTX": "EJE POS 210 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "210",
+   "material_construccion": "Acero bonificado C45",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "A-02-01",
+     "LABST": 1
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 980000,
+   "plazo_entrega_dias": 120,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045156": {
+   "MATNR": "300045156",
+   "MAKTX": "RODETE POS 230 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "230",
+   "material_construccion": "Fundición gris JL 1040",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "A-02-02",
+     "LABST": 1
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 1650000,
+   "plazo_entrega_dias": 120,
+   "ultimo_cambio": {
+    "fecha": "2024-03-04",
+    "AUFNR": "4000712210"
+   },
+   "aplica": true
+  },
+  "300045163": {
+   "MATNR": "300045163",
+   "MAKTX": "ARANDELA POS 550 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "550",
+   "material_construccion": "Acero",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-04",
+     "LABST": 0
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 58239,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": false
+  },
+  "300045170": {
+   "MATNR": "300045170",
+   "MAKTX": "SEGURO POS 930.3 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "930.3",
+   "material_construccion": "Acero",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-05",
+     "LABST": 10
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 26950,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2024-03-04",
+    "AUFNR": "4000712210"
+   },
+   "aplica": true
+  },
+  "300045177": {
+   "MATNR": "300045177",
+   "MAKTX": "CHAVETA POS 940.2 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "940.2",
+   "material_construccion": "Acero C45K",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-06",
+     "LABST": 4
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 22569,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2024-03-04",
+    "AUFNR": "4000712210"
+   },
+   "aplica": true
+  },
+  "300045184": {
+   "MATNR": "300045184",
+   "MAKTX": "CHAVETA POS 940.3 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "940.3",
+   "material_construccion": "Acero C45K",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-07",
+     "LABST": 2
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 69579,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045191": {
+   "MATNR": "300045191",
+   "MAKTX": "CIERRE MECÁNICO POS 433 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "433",
+   "material_construccion": "Carbón / carburo de silicio / EPDM",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "B-04-01",
+     "LABST": 2
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 1
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 1240000,
+   "plazo_entrega_dias": 21,
+   "ultimo_cambio": {
+    "fecha": "2025-08-19",
+    "AUFNR": "4000781245"
+   },
+   "aplica": true
+  },
+  "300045198": {
+   "MATNR": "300045198",
+   "MAKTX": "SOPORTE DEL ANILLO ESTACIONARIO POS 476 ",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "476",
+   "material_construccion": "Acero inoxidable",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "B-04-02",
+     "LABST": 0
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 63978,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": false
+  },
+  "300045205": {
+   "MATNR": "300045205",
+   "MAKTX": "JUNTA TÓRICA POS 412 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "412",
+   "material_construccion": "EPDM",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "C-03-13",
+     "LABST": 0
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 50964,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": false
+  },
+  "300045212": {
+   "MATNR": "300045212",
+   "MAKTX": "CASQUILLO PROTECTOR DEL EJE POS 523 BBA ",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "523",
+   "material_construccion": "Acero CrNiMo 1.4571",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "B-04-03",
+     "LABST": 2
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 210000,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2025-08-19",
+    "AUFNR": "4000781245"
+   },
+   "aplica": true
+  },
+  "300045219": {
+   "MATNR": "300045219",
+   "MAKTX": "SOPORTE DE COJINETES POS 330 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "330",
+   "material_construccion": "Fundición gris JL 1040",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "A-01-03",
+     "LABST": 0
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 1890000,
+   "plazo_entrega_dias": 120,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045226": {
+   "MATNR": "300045226",
+   "MAKTX": "RODAMIENTO DE BOLAS POS 321 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "321",
+   "material_construccion": "Acero de rodamientos 100Cr6",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "B-05-01",
+     "LABST": 2
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 2
+    }
+   ],
+   "punto_pedido": 2,
+   "precio_clp": 168000,
+   "plazo_entrega_dias": 21,
+   "ultimo_cambio": {
+    "fecha": "2024-03-04",
+    "AUFNR": "4000712210"
+   },
+   "aplica": true
+  },
+  "300045233": {
+   "MATNR": "300045233",
+   "MAKTX": "TAPA DE COJINETES POS 360.1 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "360.1",
+   "material_construccion": "Fundición gris",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "B-05-02",
+     "LABST": 1
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 96000,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2024-03-04",
+    "AUFNR": "4000712210"
+   },
+   "aplica": true
+  },
+  "300045240": {
+   "MATNR": "300045240",
+   "MAKTX": "JUNTA ANULAR POS 411 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "411",
+   "material_construccion": "Junta sin amianto",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "C-03-14",
+     "LABST": 6
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 2
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 37057,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2025-08-19",
+    "AUFNR": "4000781245"
+   },
+   "aplica": true
+  },
+  "300045247": {
+   "MATNR": "300045247",
+   "MAKTX": "ANILLO DE SEGURIDAD POS 932 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "932",
+   "material_construccion": "Acero para resortes",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-08",
+     "LABST": 4
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 2
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 61460,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": {
+    "fecha": "2024-03-04",
+    "AUFNR": "4000712210"
+   },
+   "aplica": true
+  },
+  "300045254": {
+   "MATNR": "300045254",
+   "MAKTX": "PIE DE APOYO POS 183 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "183",
+   "material_construccion": "Acero",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "A-01-04",
+     "LABST": 0
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 61630,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045261": {
+   "MATNR": "300045261",
+   "MAKTX": "CHAPA DE CUBIERTA POS 81-92 BBA 150-315",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "81-92",
+   "material_construccion": "Chapa de acero",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-09",
+     "LABST": 1
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 43252,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": true
+  },
+  "300045268": {
+   "MATNR": "300045268",
+   "MAKTX": "TORNILLO HEXAGONAL POS 901.1-3 BBA 150-3",
+   "MTART": "ERSA",
+   "MATKL": "REP-BOMBAS",
+   "MEINS": "UN",
+   "posicion_manual": "901.1-3",
+   "material_construccion": "Acero 8.8",
+   "stock": [
+    {
+     "WERKS": "CL01",
+     "LGORT": "1100",
+     "LGOBE": "Bodega central de mantenimiento",
+     "LGPBE": "D-07-10",
+     "LABST": 12
+    },
+    {
+     "WERKS": "CL01",
+     "LGORT": "1150",
+     "LGOBE": "Pañol sala de bombas",
+     "LGPBE": "P-01",
+     "LABST": 0
+    }
+   ],
+   "punto_pedido": null,
+   "precio_clp": 72051,
+   "plazo_entrega_dias": 30,
+   "ultimo_cambio": null,
+   "aplica": true
+  }
+ },
+ "evento": {
+  "aviso": {
+   "QMNUM": "10087561",
+   "QMART": "M2",
+   "QMTXT": "Vibración alta cojinete lado acoplamiento (alarma PI)",
+   "PRIOK": "2",
+   "PRIOKX": "Alta",
+   "QMDAT": "2026-11-11",
+   "hora": "22:30",
+   "STAT": "MEAB",
+   "posicion_manual": "321",
+   "EQUNR": "10004521",
+   "TPLNR": "CL01-PRO-SBA-PP101",
+   "QMNAM": "INTERFAZ PI",
+   "origen": "PP101_VI_011.PV cruzó 2.8 mm/s"
+  },
+  "orden": {
+   "AUFNR": "4000816240",
+   "AUART": "PM01",
+   "KTEXT": "Cambio de rodamiento 321 lado acoplamiento",
+   "GSTRP": "2026-11-14",
+   "GLTRP": "2026-11-14",
+   "ISTAT": "LIB",
+   "ILART": "Correctivo",
+   "ARBPL": "MEC-SBA",
+   "QMNUM": "10087561",
+   "operaciones": [
+    {
+     "VORNR": "0010",
+     "LTXA1": "Confirmar con medición portátil y espectro",
+     "DAUNO": 1,
+     "ARBEI": "H"
+    },
+    {
+     "VORNR": "0020",
+     "LTXA1": "Bloqueo, desmontaje del acoplamiento y unidad extraíble",
+     "DAUNO": 4,
+     "ARBEI": "H"
+    },
+    {
+     "VORNR": "0030",
+     "LTXA1": "Cambio de rodamiento 321, anillo 932 y junta 411",
+     "DAUNO": 3,
+     "ARBEI": "H"
+    },
+    {
+     "VORNR": "0040",
+     "LTXA1": "Montaje, alineamiento y prueba de vibraciones",
+     "DAUNO": 3,
+     "ARBEI": "H"
+    }
+   ],
+   "componentes": [
+    {
+     "MATNR": "300045226",
+     "posicion_manual": "321",
+     "BDMNG": 1,
+     "LGORT": "1150"
+    },
+    {
+     "MATNR": "300045247",
+     "posicion_manual": "932",
+     "BDMNG": 1,
+     "LGORT": "1150"
+    },
+    {
+     "MATNR": "300045240",
+     "posicion_manual": "411",
+     "BDMNG": 1,
+     "LGORT": "1150"
+    }
+   ]
+  }
+ }
+}

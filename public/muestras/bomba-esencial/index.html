@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Versión esencial de la muestra de 3D Ultra: sala de bombas en 3D, despiece según el manual de partes y paneles de SAP y PI. Datos de ejemplo.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://3d-ultra.cl/muestras/bomba-esencial/">
+<meta property="og:title" content="Muestra esencial de gemelo digital: bomba PP-101 | 3D Ultra">
+<meta property="og:description" content="Versión esencial de la muestra de 3D Ultra: sala de bombas en 3D, despiece según el manual de partes y paneles de SAP y PI. Datos de ejemplo.">
+<title>3D Ultra · Sala de bombas PP-101 (muestra)</title>
+<link rel="icon" href="data:,">
+<style>
+:root{
+  --ink:#1b1714; --ink2:#3a332d; --mut:#776f67; --line:#e4dfd6; --bg:#efece6; --card:#fffffff2; --soft:#f7f5f1;
+  --cu:#ba521a; --cu2:#fbe9de; --blu:#2f6db5; --ok:#2e9d57; --warn:#c98a00; --crit:#c8382c;
+  --top:52px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:"Segoe UI",system-ui,Arial,sans-serif;color:var(--ink);font-size:13px}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+#c3d{position:absolute;inset:var(--top) 0 0 0;z-index:0}
+#c3d canvas{display:block;touch-action:none}
+/* barra superior */
+#top{position:absolute;left:0;right:0;top:0;height:var(--top);background:var(--ink);color:#fff;display:flex;align-items:center;gap:14px;padding:0 14px;z-index:10}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand .mk{width:22px;height:22px;border-radius:5px;background:linear-gradient(135deg,var(--cu) 0 50%,#e0a21a 50% 100%)}
+.brand b{letter-spacing:.16em;font-size:14px}
+.brand span{color:#bdb5ac;font-size:12.5px}
+.tagbox{display:flex;align-items:center;gap:6px;background:#2c2622;border-radius:7px;padding:0 8px;height:32px}
+.tagbox label{color:#9a918a;font-size:11.5px}
+.tagbox input{background:transparent;border:0;color:#fff;font:700 13px Consolas,monospace;width:92px;outline:none;letter-spacing:.03em}
+.seg{display:flex;background:#2c2622;border-radius:8px;padding:3px;gap:2px}
+.seg button{padding:5px 12px;border-radius:6px;color:#cfc7bf;font-weight:600;font-size:12.5px}
+.seg button.on{background:#fff;color:var(--ink)}
+.acts{margin-left:auto;display:flex;gap:8px;align-items:center}
+.btn{height:32px;padding:0 12px;border-radius:7px;border:1px solid #4a423b;color:#fff;font-weight:600;font-size:12.5px;white-space:nowrap}
+.btn:hover{border-color:#8a8076}
+.btn.cu{background:var(--cu);border-color:var(--cu)}
+.ejemplo{font-size:11px;font-weight:700;letter-spacing:.04em;color:#ffd9a8;border:1px dashed #b98a55;border-radius:5px;padding:3px 7px;white-space:nowrap}
+/* tarjetas */
+.card{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 22px rgba(30,20,10,.12);z-index:5}
+#left{left:12px;top:calc(var(--top) + 12px);width:262px;bottom:12px;display:flex;flex-direction:column;overflow:hidden}
+#left .hd{padding:12px 14px 8px;border-bottom:1px solid var(--line)}
+#left h3{font-size:11px;letter-spacing:.12em;color:var(--mut);text-transform:uppercase}
+#left .sub{font-size:11.5px;color:var(--mut);margin-top:3px}
+#lista{overflow:auto;padding:6px 8px 12px;flex:1}
+.gr{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin:10px 6px 4px}
+.it{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:6px;cursor:pointer;width:100%;text-align:left}
+.it:hover{background:#f3efe9}
+.it.sel{background:var(--cu2);color:var(--cu)}
+.it .n{font:700 12px Consolas,monospace;min-width:62px}
+.it .t{font-size:12.5px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.it .na{font-size:10px;color:var(--mut);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.it.alarma .n::after{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--crit);margin-left:5px;vertical-align:middle}
+#right{right:12px;top:calc(var(--top) + 12px);width:392px;bottom:12px;display:flex;flex-direction:column;overflow:hidden}
+.tabs{display:flex;border-bottom:1px solid var(--line);padding:0 8px;flex:none}
+.tabs button{padding:11px 12px 9px;font-weight:700;font-size:12.5px;color:var(--mut);border-bottom:2px solid transparent}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--cu)}
+.tabs .x{margin-left:auto;color:var(--mut);font-size:18px;padding:6px 8px}
+#panel{overflow-y:auto;overflow-x:hidden;flex:1;padding:14px 16px 18px}
+.banner{font-size:11px;font-weight:700;color:#8a5a12;background:#fff6e6;border:1px dashed #e3be7d;border-radius:6px;padding:4px 8px;margin-bottom:12px}
+.big{font:700 26px Consolas,monospace;letter-spacing:.01em}
+.ttl{font-size:15px;font-weight:700;margin-top:2px}
+.mut{color:var(--mut)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.chip{font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;border:1px solid #ddd6cc;background:#f7f4ef;color:var(--ink2);white-space:nowrap}
+.chip.ok{color:var(--ok);border-color:#bfe3cb;background:#effaf2}
+.chip.warn{color:#9a6a00;border-color:#f0dc9f;background:#fff8e3}
+.chip.crit{color:var(--crit);border-color:#f0c2bd;background:#fdf0ee}
+.chip.cu{color:var(--cu);border-color:#efc3a8;background:var(--cu2)}
+.sec{margin-top:16px}
+.sec h4{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-bottom:7px;display:flex;align-items:center;gap:6px}
+dl.kv{display:grid;grid-template-columns:132px 1fr;gap:5px 10px;font-size:12.5px}
+dl.kv dt{color:var(--mut)}
+dl.kv dd{font-weight:600}
+table.t{width:100%;border-collapse:collapse;font-size:12px}
+table.t th{text-align:left;font-size:10.5px;color:var(--mut);font-weight:700;padding:4px 4px;border-bottom:1px solid var(--line)}
+table.t td{padding:5px 4px;border-bottom:1px solid #f0ece6;vertical-align:top}
+table.t td:last-child{white-space:nowrap}
+table.t tr.lk{cursor:pointer}
+table.t tr.lk:hover td{background:#f7f3ee}
+table.t tr.sel td{background:var(--cu2)}
+table.t tr.nuevo td{background:#fdf0ee}
+.mono{font-family:Consolas,monospace}
+.r{text-align:right}
+.box{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#fff}
+.box+.box{margin-top:8px}
+.nota{font-size:12px;color:var(--ink2);background:var(--soft);border-radius:7px;padding:8px 10px;margin-top:8px;line-height:1.45}
+.link{color:var(--blu);font-weight:600;cursor:pointer}
+.link:hover{text-decoration:underline}
+/* PI */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.tile{min-width:0;border:1px solid var(--line);border-radius:8px;padding:8px 9px 6px;background:#fff;cursor:pointer;text-align:left}
+.tile.sel{border-color:var(--cu);box-shadow:0 0 0 1px var(--cu)}
+.tile .nm{font-size:11px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .v{font-size:18px;font-weight:700;margin-top:1px}
+.tile .v small{font-size:11px;color:var(--mut);font-weight:600;margin-left:3px}
+.tile .row{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.tile canvas{width:100%;height:26px;display:block;margin-top:3px}
+.est{font-size:10.5px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
+.est i{width:8px;height:8px;border-radius:2px;display:inline-block}
+.est.ok{color:var(--ok)} .est.ok i{background:var(--ok);border-radius:50%}
+.est.warn{color:#9a6a00} .est.warn i{background:var(--warn);transform:rotate(45deg)}
+.est.crit{color:var(--crit)} .est.crit i{background:var(--crit)}
+#trend{width:100%;height:210px;display:block}
+.rng{display:flex;gap:4px;flex:none}.rng button{white-space:nowrap}
+.rng button{font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;border:1px solid var(--line);color:var(--mut)}
+.rng button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tip{position:fixed;pointer-events:none;background:#1b1714;color:#fff;font-size:11.5px;padding:5px 8px;border-radius:6px;z-index:50;display:none;white-space:nowrap}
+/* etiquetas 3D */
+.lbl{font:700 11.5px Consolas,monospace;background:#1b1714e6;color:#fff;padding:3px 7px;border-radius:5px;pointer-events:auto;cursor:pointer;white-space:nowrap;transform:translateY(-10px)}
+.lbl.sec{background:#ffffffe6;color:var(--ink);border:1px solid var(--line);font-size:10.5px;padding:2px 6px}
+.lbl.sel{background:var(--cu);color:#fff;border-color:var(--cu)}
+.lbl.al{background:var(--crit);color:#fff;border-color:var(--crit)}
+.num{font:700 10.5px Consolas,monospace;background:#fff;color:var(--ink);border:1px solid #cfc7bd;padding:1px 5px;border-radius:4px;pointer-events:auto;cursor:pointer;white-space:nowrap}
+.num.sel{background:var(--cu);color:#fff;border-color:var(--cu)}
+.num.na{color:#9a918a;border-style:dashed}
+/* superposiciones */
+#rotulo{position:absolute;left:50%;transform:translateX(-50%);top:calc(var(--top) + 14px);z-index:6;background:#1b1714e0;color:#fff;font-weight:700;font-size:12.5px;padding:6px 12px;border-radius:7px;display:none;white-space:nowrap}
+#rotulo span{color:#ffd9a8;font-weight:600;margin-left:8px}
+#paso{position:absolute;left:290px;right:418px;bottom:16px;z-index:7;display:none}
+#paso .in{background:#1b1714f2;color:#fff;border-radius:12px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:640px;margin:0 auto}
+#paso .k{font-size:11px;letter-spacing:.14em;color:#ffb98a;font-weight:700;text-transform:uppercase}
+#paso h2{font-size:18px;margin:3px 0 4px}
+#paso p{font-size:13px;color:#e6dfd8;line-height:1.45}
+#paso .nav{display:flex;gap:6px;margin-top:10px;align-items:center}
+#paso .dots{display:flex;gap:5px;margin-right:auto}
+#paso .dots button{width:22px;height:22px;border-radius:50%;background:#3a332d;color:#cfc7bf;font-size:11px;font-weight:700}
+#paso .dots button.on{background:var(--cu);color:#fff}
+#paso .nav .btn{height:28px}
+#evento{position:absolute;left:290px;right:418px;top:calc(var(--top) + 12px);z-index:7;display:none}
+#evento .in{background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 22px rgba(30,20,10,.14);padding:10px 12px;max-width:640px;margin:0 auto}
+#evento .h{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--crit);display:flex;justify-content:space-between}
+#evento ol{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+#evento li{font-size:11.5px;border-top:3px solid var(--line);padding-top:5px;color:var(--mut);cursor:pointer}
+#evento li b{display:block;color:var(--ink2);font-size:12px}
+#evento li.on{border-top-color:var(--crit);color:var(--ink2)}
+#evento li.on b{color:var(--crit)}
+#carga{position:absolute;inset:0;display:grid;place-items:center;background:var(--bg);z-index:30;font-weight:600;color:var(--mut)}
+#abrirLista,#abrirPanel{display:none}
+body.panelCerrado #right{bottom:auto;height:44px}
+body.panelCerrado #panel{display:none}
+body.limpio #left,body.limpio #right,body.limpio #top .acts .btn:not(.keep){display:none}
+body.limpio #paso,body.limpio #evento{left:16px;right:16px}
+/* celular */
+@media (max-width:860px){
+  :root{--top:96px}
+  #top{flex-wrap:wrap;height:var(--top);padding:6px 10px;gap:6px 8px;align-content:center}
+  .brand span{display:none}
+  .acts{margin-left:auto}
+  .ejemplo{display:none}
+  .seg button{padding:5px 9px}
+  #left{display:none;left:8px;right:8px;width:auto;top:calc(var(--top) + 8px);bottom:auto;max-height:55%;z-index:9}
+  body.verLista #left{display:flex}
+  #right{left:0;right:0;width:auto;top:auto;bottom:0;height:46%;border-radius:12px 12px 0 0;z-index:8}
+  body.panelCerrado #right{height:44px}
+  #paso,#evento{left:8px;right:8px}
+  #paso{bottom:calc(46% + 8px)}
+  #evento{top:calc(var(--top) + 8px)}
+  #evento ol{grid-template-columns:1fr 1fr}
+  #abrirLista{display:inline-block}
+  .btn{padding:0 9px}
+  #rotulo{top:auto;bottom:calc(46% + 10px);font-size:11px}
+}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three.module.min.js"}}</script>
+<link rel="stylesheet" href="./conformidad-mcco.css">
+</head>
+<body>
+<div id="top">
+  <h1 class="brand" data-mcco-marca><div class="mk"></div><b>3D ULTRA</b><span>Sala de bombas agua de proceso</span></h1>
+  <div class="tagbox"><label for="tag">TAG</label><input id="tag" list="tags" value="PP-101" autocomplete="off" spellcheck="false"><datalist id="tags"></datalist></div>
+  <div class="seg" id="vistas"><button data-v="nube">Nube</button><button data-v="modelo" class="on">Modelo</button><button data-v="despiece">Despiece</button></div>
+  <div class="acts">
+    <span class="ejemplo">DATOS DE EJEMPLO</span>
+    <button class="btn" id="abrirLista">Piezas</button>
+    <button class="btn" id="btnEvento">Evento de ejemplo</button>
+    <button class="btn cu keep" id="btnPasos">Cómo se hace</button>
+  </div>
+</div>
+<div id="c3d"></div>
+<div id="rotulo"></div>
+<aside class="card" id="left">
+  <div class="hd"><h3>Piezas del manual</h3><div class="sub">Tabla 28 · ilustración 24 · pág. 63</div></div>
+  <div id="lista"></div><p class="mcco-entidad">3D Ultra · Inversiones MCCO SpA · <span class="mcco-rut">RUT 77.715.147-9</span> · Suecia 283, of. 402, Providencia, Santiago</p>
+</aside>
+<aside class="card" id="right">
+  <div class="tabs" id="tabs"><button data-p="ficha" class="on">Ficha</button><button data-p="sap">Mantenimiento SAP</button><button data-p="pi">Operación PI</button><button class="x" id="cerrarPanel" title="Contraer panel">–</button></div>
+  <div id="panel"></div>
+</aside>
+<div id="evento"><div class="in"><div class="h"><span>Evento de ejemplo · falla incipiente de rodamiento</span><span id="evHora"></span></div><ol id="evPasos"></ol></div></div>
+<div id="paso"><div class="in"><div class="k" id="pasoK"></div><h2 id="pasoT"></h2><p id="pasoP"></p>
+  <div class="nav"><div class="dots" id="pasoDots"></div><button class="btn" id="pasoAnt">Anterior</button><button class="btn cu" id="pasoSig">Siguiente</button><button class="btn" id="pasoCerrar">Cerrar</button></div></div></div>
+<div class="tip" id="tip"></div>
+<div id="carga">Cargando la sala de bombas…</div>
+<script type="module" src="./src/app.js"></script>
+</body>
+</html>

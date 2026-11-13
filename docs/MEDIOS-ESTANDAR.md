@@ -145,3 +145,35 @@ fuera del hero y del LCP. Un WebP más liviano es una mejora posible para la Tar
 El video de la galería sigue en R2 con 47 770 799 bytes, sin faststart. `mcco-check` no lo mide porque no está en
 `dist`. Sigue pendiente un reemplazo propio de 8 MB o menos, H.264 con faststart, sin la escala heredada. Esta
 tarea no fabrica ni sube videos.
+
+## Caso de demostración de la bomba (13-nov-2026)
+
+Capturas de la muestra interactiva de la bomba PP-101 (`/muestras/bomba/`), tomadas en Chrome headless a 1440 × 900
+desde `muestra-planta-bomba/comparacion/publico/` (PNG, fuera del repo). Son capturas de pantalla de un modelo propio
+con datos de ejemplo, no fotos de faena, renders de la biblioteca ni imágenes generadas con IA. Se redujeron con
+`sharp` a 1280 × 800 sin recorte, WebP calidad 82 (la nube, 74, para quedar bajo 150 KB). La imagen de vista previa es
+un recorte 1200 × 630 de la captura del modelo. Todas quedan bajo el límite de 150 KB de un hero.
+
+El rótulo visible de cada captura es «Captura de la muestra». La de la nube dice además «Nube simulada desde el
+modelo», porque la nube de la muestra pública se genera desde el modelo 3D y no viene de un escáner. El kit no tiene
+ese origen en `ROTULOS` (su `captura` dice «Captura de simulación», que aquí no es verdad), así que la página del caso
+escribe el rótulo con la misma clase `std-rotulo` y `data-rotulo` que usa el kit. Sumar un origen «muestra» al kit
+queda como mejora para un PR al kit.
+
+| Archivo en `public/media/captura/bomba/` | Origen | Dimensiones | Bytes | SHA-256 |
+|---|---|---|---:|---|
+| `bomba-modelo-1280.webp` | `03-modelo.png` | 1280 × 800 | 103782 | `0a919ab6c6ba7e3dd78826253f4e2d1baac2e6aa81f5b78a0609e8e8ed9567df` |
+| `bomba-nube-1280.webp` | `02-nube.png` | 1280 × 800 | 143924 | `a3a446edfa32ca19db784f3b0d3c98a94fec2d1edcebaf190559eac240dd688b` |
+| `bomba-despiece-1280.webp` | `04-despiece.png` | 1280 × 800 | 86874 | `a4e6d1f4f1000b3cf50c253fecdb5d0f71db1c6f1f87e1470ad924d2759ebbef` |
+| `bomba-pieza-230-1280.webp` | `05-pieza-230.png` | 1280 × 800 | 79026 | `ef26c81af0313dc95bb14b711fd477066ac80cfe6d456b168666d7a8862a2a68` |
+| `bomba-evento-1280.webp` | `09-evento.png` | 1280 × 800 | 106374 | `7f83c2285655e6167b5b61594126ca2562aebf02851e5bc26a2b96182723fbec` |
+| `bomba-operacion-pi-1280.webp` | `08-pi.png` | 1280 × 800 | 99916 | `61dd1f54583a2fc3948a04ac141dadd91f57c26af535bc2c28f41f0b6eb54acc` |
+| `bomba-esencial-modelo-1280.webp` | versión esencial, `comparacion/opus/03-modelo.png` | 1280 × 800 | 89434 | `465b93d9917281c00b561349cd6d31b5429bb0d23b8e5c79c4bb233f1fa86fa4` |
+| `og-bomba.webp` | `03-modelo.png`, recorte | 1200 × 630 | 79886 | `d3a8e923230e0af01c25d5d44195f32c47563838b2c46d6c33ea9018bd097b05` |
+
+Se revisaron las siete a 1280 px: no muestran marcas de fabricantes, nombres de clientes ni de faenas, y cada una lleva
+a la vista el rótulo «Datos de ejemplo» de la muestra. La muestra tiene dos versiones: la detallada en `public/muestras/bomba/`
+(7,5 MB, 6,4 MB de nube binaria) y la esencial en `public/muestras/bomba-esencial/` (5,7 MB, 4,8 MB de nube). Las dos
+se importan con `node scripts/importar-muestra.mjs --todas`, que aplica los ajustes de conformidad; las nubes no son
+imágenes y `mcco-check` no las mide. El video del paso
+a paso no entra al repo: cuando se suba, va a R2 (`csp.media_src`) con su póster y sus atributos de R12.

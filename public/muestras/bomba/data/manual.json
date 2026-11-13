@@ -1,0 +1,581 @@
+{
+  "rotulo": "Estructura tomada del manual de partes de la bomba. Sin marca ni dibujos del fabricante.",
+  "documento": {
+    "titulo": "Manual de instrucciones de servicio y montaje",
+    "variante": "Cierre mecánico normativo con cubierta de presión encajada",
+    "ilustracion": "Ilustración 24",
+    "tabla": "Tabla 28",
+    "pagina_corte": 17,
+    "pagina_despiece": 63,
+    "paginas_tabla": [
+      63,
+      64
+    ],
+    "desmontaje": [
+      46,
+      48
+    ],
+    "montaje": [
+      49,
+      54
+    ],
+    "pares_de_apriete": [
+      54,
+      55
+    ],
+    "repuestos_recomendados": 56,
+    "ejecucion": {
+      "material": "G",
+      "unidad_eje": "55",
+      "fuente": "hoja de datos de la bomba",
+      "texto": "material G y unidad de eje 55"
+    }
+  },
+  "grupos": [
+    "Hidráulica",
+    "Eje y cierre",
+    "Cojinetes",
+    "Juntas",
+    "Tornillería",
+    "Conexiones"
+  ],
+  "filas": [
+    "102",
+    "163.2",
+    "183",
+    "210",
+    "230",
+    "321",
+    "330",
+    "360.1",
+    "400.1/.3",
+    "411",
+    "412",
+    "433",
+    "476",
+    "502.1/.2",
+    "523",
+    "550",
+    "81-92",
+    "901.1-3",
+    "902.1-3",
+    "903.1",
+    "920.1/.5",
+    "930.3",
+    "932",
+    "940.2",
+    "940.3",
+    "1M",
+    "6B",
+    "6D",
+    "8B"
+  ],
+  "piezas": [
+    {
+      "numero": "102",
+      "fila": "102",
+      "nombre": "Carcasa espiral",
+      "grupo": "Hidráulica",
+      "cantidad": 1,
+      "material": "Fundición gris JL 1040",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        53
+      ],
+      "funcion": "Recoge el líquido que sale del rodete y lo lleva a la boca de impulsión. Queda en la cañería cuando se retira la unidad modular."
+    },
+    {
+      "numero": "163.2",
+      "fila": "163.2",
+      "nombre": "Cubierta de presión",
+      "grupo": "Hidráulica",
+      "cantidad": 1,
+      "material": "Fundición gris JL 1040",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        51
+      ],
+      "funcion": "Cierra la carcasa por el lado del accionamiento y aloja el cierre del eje. En esta variante va encajada entre la carcasa y el soporte."
+    },
+    {
+      "numero": "230",
+      "fila": "230",
+      "nombre": "Rodete",
+      "grupo": "Hidráulica",
+      "cantidad": 1,
+      "material": "Fundición gris JL 1040",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        52
+      ],
+      "funcion": "Rodete radial cerrado de álabes curvados. Diámetro de ejemplo: 314 mm."
+    },
+    {
+      "numero": "502.1",
+      "fila": "502.1/.2",
+      "nombre": "Anillo partido",
+      "grupo": "Hidráulica",
+      "cantidad": 1,
+      "material": "Fundición gris",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        41,
+        56
+      ],
+      "funcion": "Anillo de desgaste del lado de aspiración, montado en la carcasa."
+    },
+    {
+      "numero": "502.2",
+      "fila": "502.1/.2",
+      "nombre": "Anillo partido",
+      "grupo": "Hidráulica",
+      "cantidad": 1,
+      "material": "Fundición gris",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        41,
+        56
+      ],
+      "funcion": "Anillo de desgaste del lado de presión, montado en la cubierta."
+    },
+    {
+      "numero": "210",
+      "fila": "210",
+      "nombre": "Eje",
+      "grupo": "Eje y cierre",
+      "cantidad": 1,
+      "material": "Acero bonificado C45",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        48,
+        49
+      ]
+    },
+    {
+      "numero": "433",
+      "fila": "433",
+      "nombre": "Cierre mecánico",
+      "grupo": "Eje y cierre",
+      "cantidad": 1,
+      "material": "Carbón y carburo de silicio, EPDM, acero CrNiMo",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        50
+      ],
+      "funcion": "Cierre mecánico normalizado de efecto sencillo. Sella el paso del eje por la cubierta de presión."
+    },
+    {
+      "numero": "476",
+      "fila": "476",
+      "nombre": "Soporte del anillo estacionario",
+      "grupo": "Eje y cierre",
+      "cantidad": 1,
+      "material": "Acero CrNiMo",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        51
+      ],
+      "monta": false,
+      "motivo": "Nota 24 del manual: solo en las variantes de material B y S. Esta bomba es de material G: el anillo estacionario del cierre va directo en la cubierta de presión 163.2."
+    },
+    {
+      "numero": "523",
+      "fila": "523",
+      "nombre": "Casquillo protector del eje",
+      "grupo": "Eje y cierre",
+      "cantidad": 1,
+      "material": "Acero CrNiMo 1.4571",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        48,
+        50
+      ]
+    },
+    {
+      "numero": "550",
+      "fila": "550",
+      "nombre": "Arandela",
+      "grupo": "Eje y cierre",
+      "cantidad": 1,
+      "material": "Acero",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "monta": false,
+      "motivo": "Nota 22 del manual: solo en la unidad de eje 25. Esta bomba lleva la unidad de eje 55."
+    },
+    {
+      "numero": "940.2",
+      "fila": "940.2",
+      "nombre": "Chaveta",
+      "grupo": "Eje y cierre",
+      "cantidad": 2,
+      "material": "Acero C45",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47
+      ],
+      "nota": "Nota 21 del manual: en la unidad de eje 55 son 2 chavetas. Es el caso de esta bomba, así que se montan las dos."
+    },
+    {
+      "numero": "940.3",
+      "fila": "940.3",
+      "nombre": "Chaveta",
+      "grupo": "Eje y cierre",
+      "cantidad": 1,
+      "material": "Acero C45",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        48,
+        49
+      ]
+    },
+    {
+      "numero": "321",
+      "fila": "321",
+      "nombre": "Rodamiento de bolas",
+      "grupo": "Cojinetes",
+      "cantidad": 2,
+      "material": "Acero para rodamientos",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        48,
+        49
+      ],
+      "funcion": "Rodamiento rígido de bolas lubricado con grasa. Hay uno a cada lado del soporte de cojinetes."
+    },
+    {
+      "numero": "330",
+      "fila": "330",
+      "nombre": "Soporte de cojinetes",
+      "grupo": "Cojinetes",
+      "cantidad": 1,
+      "material": "Fundición gris JL 1040",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        49
+      ]
+    },
+    {
+      "numero": "360.1",
+      "fila": "360.1",
+      "nombre": "Tapa de cojinetes",
+      "grupo": "Cojinetes",
+      "cantidad": 2,
+      "material": "Fundición gris",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        48,
+        49
+      ]
+    },
+    {
+      "numero": "932",
+      "fila": "932",
+      "nombre": "Anillo de seguridad",
+      "grupo": "Cojinetes",
+      "cantidad": 2,
+      "material": "Acero para muelles",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        48,
+        49
+      ]
+    },
+    {
+      "numero": "183",
+      "fila": "183",
+      "nombre": "Pie de apoyo",
+      "grupo": "Cojinetes",
+      "cantidad": 1,
+      "material": "Acero",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        53
+      ]
+    },
+    {
+      "numero": "81-92",
+      "fila": "81-92",
+      "nombre": "Chapa de cubierta",
+      "grupo": "Cojinetes",
+      "cantidad": 2,
+      "material": "Acero galvanizado",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "funcion": "Protección de las ventanas de la linterna del soporte."
+    },
+    {
+      "numero": "400.1",
+      "fila": "400.1/.3",
+      "nombre": "Junta plana",
+      "grupo": "Juntas",
+      "cantidad": 1,
+      "material": "Placa de fibra sin amianto",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        53
+      ],
+      "funcion": "Entre la carcasa espiral y la cubierta de presión. Se cambia en cada desmontaje."
+    },
+    {
+      "numero": "400.3",
+      "fila": "400.1/.3",
+      "nombre": "Junta plana",
+      "grupo": "Juntas",
+      "cantidad": 1,
+      "material": "Placa de fibra sin amianto",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        48,
+        50
+      ],
+      "funcion": "En el casquillo protector del eje. Se cambia en cada desmontaje."
+    },
+    {
+      "numero": "411",
+      "fila": "411",
+      "nombre": "Junta anular",
+      "grupo": "Juntas",
+      "cantidad": 2,
+      "material": "Elastómero NBR",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        48,
+        49
+      ],
+      "funcion": "Junta anular axial que sella cada tapa de cojinetes sobre el eje."
+    },
+    {
+      "numero": "412",
+      "fila": "412",
+      "nombre": "Junta tórica",
+      "grupo": "Juntas",
+      "cantidad": 1,
+      "material": "Elastómero EPDM",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "monta": false,
+      "motivo": "Nota 24 del manual: solo en las variantes de material B y S. Esta bomba es de material G y no lleva el soporte 476 sobre el que va esta junta."
+    },
+    {
+      "numero": "901.1",
+      "fila": "901.1-3",
+      "nombre": "Tornillo hexagonal",
+      "grupo": "Tornillería",
+      "cantidad": 1,
+      "material": "Acero 8.8",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63
+    },
+    {
+      "numero": "901.2",
+      "fila": "901.1-3",
+      "nombre": "Tornillo hexagonal",
+      "grupo": "Tornillería",
+      "cantidad": 2,
+      "material": "Acero 8.8",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "funcion": "Une el pie de apoyo 183 al soporte de cojinetes."
+    },
+    {
+      "numero": "901.3",
+      "fila": "901.1-3",
+      "nombre": "Tornillo hexagonal",
+      "grupo": "Tornillería",
+      "cantidad": 2,
+      "material": "Acero 8.8",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "funcion": "Fija la chapa de cubierta 81-92."
+    },
+    {
+      "numero": "902.3",
+      "fila": "902.1-3",
+      "nombre": "Perno roscado",
+      "grupo": "Tornillería",
+      "cantidad": 8,
+      "material": "Acero 8.8",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        53,
+        54
+      ],
+      "nota": "La tabla cita el rango 902.1-3. En esta variante la ilustración solo muestra el 902.3: no lleva tapa de prensaestopas ni cubierta atornillada."
+    },
+    {
+      "numero": "903.1",
+      "fila": "903.1",
+      "nombre": "Tornillo de cierre",
+      "grupo": "Tornillería",
+      "cantidad": 3,
+      "material": "Acero",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "nota": "Nota 23 del manual: las variantes C y S llevan una junta anular adicional 411.5, que no está representada. Esta bomba es de material G y no la lleva."
+    },
+    {
+      "numero": "920.1",
+      "fila": "920.1/.5",
+      "nombre": "Tuerca",
+      "grupo": "Tornillería",
+      "cantidad": 1,
+      "material": "Acero clase 8",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        52
+      ],
+      "funcion": "Tuerca del rodete, rosca a derechas."
+    },
+    {
+      "numero": "920.5",
+      "fila": "920.1/.5",
+      "nombre": "Tuerca",
+      "grupo": "Tornillería",
+      "cantidad": 8,
+      "material": "Acero clase 8",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "procedimiento": [
+        47,
+        53
+      ],
+      "funcion": "Tuercas de la unión entre la carcasa, la cubierta encajada y el soporte."
+    },
+    {
+      "numero": "930.3",
+      "fila": "930.3",
+      "nombre": "Seguro",
+      "grupo": "Tornillería",
+      "cantidad": 3,
+      "material": "Acero para muelles",
+      "fuente_material": "ejemplo",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "nota": "En la ilustración, el seguro de la tuerca del rodete figura como 930."
+    },
+    {
+      "numero": "1M",
+      "fila": "1M",
+      "nombre": "Conexión de manómetro",
+      "grupo": "Conexiones",
+      "cantidad": 1,
+      "material": "Rosca Rc 1/2",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "conexion": true
+    },
+    {
+      "numero": "6B",
+      "fila": "6B",
+      "nombre": "Vaciado de líquido de bombeo",
+      "grupo": "Conexiones",
+      "cantidad": 1,
+      "material": "Rosca G 1/2",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "conexion": true
+    },
+    {
+      "numero": "6D",
+      "fila": "6D",
+      "nombre": "Llenado de líquido de bombeo",
+      "grupo": "Conexiones",
+      "cantidad": 1,
+      "material": "Rosca Rc 1/2",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 63,
+      "pagina_despiece": 63,
+      "conexion": true
+    },
+    {
+      "numero": "8B",
+      "fila": "8B",
+      "nombre": "Evacuación de líquido de fuga",
+      "grupo": "Conexiones",
+      "cantidad": 1,
+      "material": "Rosca G 1/2",
+      "fuente_material": "hoja de datos",
+      "pagina_tabla": 64,
+      "pagina_despiece": 63,
+      "conexion": true
+    }
+  ],
+  "conjuntos": [
+    {
+      "id": "motor",
+      "nombre": "Motor eléctrico",
+      "detalle": "Trifásico, 4 polos, 75 kW, carcasa 280M, 1.486 rpm"
+    },
+    {
+      "id": "acoplamiento",
+      "nombre": "Acoplamiento",
+      "detalle": "Flexible con pieza de separación de 140 mm y defensa"
+    },
+    {
+      "id": "base",
+      "nombre": "Base",
+      "detalle": "Bancada de perfiles con placa, sobre fundación de hormigón"
+    }
+  ]
+}

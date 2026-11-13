@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 640" width="1120" height="640" font-family="Segoe UI, Arial, sans-serif" font-size="14">
+  <defs>
+    <marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1a1a1a"/></marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#d32f2f"/></marker>
+  </defs>
+  <rect width="1120" height="640" fill="#ffffff"/>
+
+  <!-- ===== arriba: por dónde viajan los datos ===== -->
+  <text x="30" y="34" font-size="13" font-weight="700" fill="#555" letter-spacing="1.5">1 · POR DÓNDE VIAJAN LOS DATOS</text>
+
+  <rect x="370" y="52" width="720" height="250" rx="10" fill="#f4f6f8" stroke="#9aa3ab" stroke-dasharray="6 5"/>
+  <text x="386" y="74" font-size="12.5" font-weight="700" fill="#555">Red del cliente</text>
+
+  <rect x="30" y="104" width="250" height="150" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="46" y="130" font-weight="700" font-size="15">Plataforma web 3D Ultra</text>
+  <text x="46" y="154" fill="#555">Navegador del usuario</text>
+  <text x="46" y="184">Modelo 3D, despiece y fichas</text>
+  <text x="46" y="206">No guarda credenciales</text>
+  <text x="46" y="228">No habla con SAP ni con PI</text>
+
+  <rect x="410" y="94" width="290" height="186" rx="8" fill="#fff" stroke="#d32f2f" stroke-width="2.5"/>
+  <text x="426" y="122" font-weight="700" font-size="15">Intermediario de solo lectura</text>
+  <text x="426" y="146" fill="#555">Un servicio pequeño de la plataforma</text>
+  <text x="426" y="176">· Tabla de llaves</text>
+  <text x="426" y="198">· Usuario de servicio y sus credenciales</text>
+  <text x="426" y="220">· Caché, para no cargar SAP ni PI</text>
+  <text x="426" y="242">· Registro de cada consulta</text>
+  <text x="426" y="264">· Solo expone lo que la plataforma usa</text>
+
+  <rect x="820" y="88" width="240" height="88" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="836" y="114" font-weight="700" font-size="15">SAP PM y MM</text>
+  <text x="836" y="136">Equipo, avisos, órdenes, plan,</text>
+  <text x="836" y="156">lista de materiales y stock</text>
+
+  <rect x="820" y="198" width="240" height="88" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="836" y="224" font-weight="700" font-size="15">PI</text>
+  <text x="836" y="246">Valor actual y series de tiempo</text>
+  <text x="836" y="266">de cada punto</text>
+
+  <line x1="280" y1="179" x2="408" y2="179" stroke="#d32f2f" stroke-width="2" marker-end="url(#g)" marker-start="url(#g)"/>
+  <text x="344" y="168" text-anchor="middle" font-size="12.5" fill="#d32f2f" font-weight="700">HTTPS</text>
+  <text x="344" y="198" text-anchor="middle" font-size="12" fill="#555">sesión del usuario</text>
+
+  <line x1="700" y1="150" x2="818" y2="132" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#f)"/>
+  <text x="760" y="126" text-anchor="middle" font-size="12.5" font-weight="700">OData</text>
+  <text x="760" y="160" text-anchor="middle" font-size="12" fill="#555">SAP Gateway</text>
+  <line x1="700" y1="226" x2="818" y2="242" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#f)"/>
+  <text x="760" y="222" text-anchor="middle" font-size="12.5" font-weight="700">REST</text>
+  <text x="760" y="256" text-anchor="middle" font-size="12" fill="#555">PI Web API</text>
+
+  <!-- ===== abajo: la llave común ===== -->
+  <text x="30" y="352" font-size="13" font-weight="700" fill="#555" letter-spacing="1.5">2 · LA LLAVE COMÚN (EJEMPLO DE LA MUESTRA)</text>
+
+  <rect x="420" y="376" width="280" height="76" rx="8" fill="#1a1a1a"/>
+  <text x="560" y="404" text-anchor="middle" fill="#fff" font-weight="700" font-size="16">TAG de terreno PP-101</text>
+  <text x="560" y="428" text-anchor="middle" fill="#cfd3d7" font-size="13">el objeto que se selecciona en el modelo 3D</text>
+
+  <rect x="30" y="376" width="300" height="76" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="46" y="402" font-weight="700">SAP · equipo 10004521</text>
+  <text x="46" y="424" font-size="13">Ubicación técnica PLA-AGP-SB01-PP101</text>
+  <text x="46" y="443" font-size="12" fill="#555">Avisos, órdenes y plan cuelgan de aquí</text>
+
+  <rect x="790" y="376" width="300" height="76" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="806" y="402" font-weight="700">PI · elemento PP-101</text>
+  <text x="806" y="424" font-size="13">…\Sala de bombas 01\PP-101</text>
+  <text x="806" y="443" font-size="12" fill="#555">Sus atributos apuntan a los puntos de PI</text>
+
+  <line x1="418" y1="414" x2="332" y2="414" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#f)"/>
+  <line x1="702" y1="414" x2="788" y2="414" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#f)"/>
+
+  <rect x="420" y="520" width="280" height="76" rx="8" fill="#d32f2f"/>
+  <text x="560" y="548" text-anchor="middle" fill="#fff" font-weight="700" font-size="16">Pieza del manual 321</text>
+  <text x="560" y="572" text-anchor="middle" fill="#ffe1df" font-size="13">el objeto que se selecciona en el despiece</text>
+  <line x1="560" y1="454" x2="560" y2="518" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#f)"/>
+  <text x="572" y="490" font-size="12" fill="#555">Tabla 28 del manual</text>
+
+  <rect x="30" y="520" width="300" height="76" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="46" y="546" font-weight="700">SAP · lista de materiales 00081452</text>
+  <text x="46" y="568" font-size="13">Posición 0130 → material 40001321</text>
+  <text x="46" y="587" font-size="12" fill="#555">Del material salen el stock y la bodega</text>
+
+  <rect x="790" y="520" width="300" height="76" rx="8" fill="#fff" stroke="#1a1a1a" stroke-width="1.5"/>
+  <text x="806" y="546" font-weight="700">PI · puntos que vigilan la pieza</text>
+  <text x="806" y="568" font-size="13">PP-101.VT-101A · PP-101.TT-101A</text>
+  <text x="806" y="587" font-size="12" fill="#555">Vibración y temperatura del rodamiento</text>
+
+  <line x1="418" y1="558" x2="332" y2="558" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#f)"/>
+  <line x1="702" y1="558" x2="788" y2="558" stroke="#1a1a1a" stroke-width="1.6" marker-end="url(#f)"/>
+  <line x1="180" y1="454" x2="180" y2="518" stroke="#9aa3ab" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#f)"/>
+  <line x1="940" y1="454" x2="940" y2="518" stroke="#9aa3ab" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#f)"/>
+  <text x="560" y="626" text-anchor="middle" font-size="12.5" fill="#555">Todos los números son datos de ejemplo de la muestra.</text>
+</svg>

@@ -69,6 +69,7 @@ llms:
     - { title: "Caso: análisis estructural de chimenea CPS", url: /casos/analisis-chimenea-cps-salvador }
     - { title: "Caso: hornos Isasmelt, extensión de vida útil", url: /casos/hornos-isasmelt-extension-vida-util }
     - { title: "Caso: rueda de moldeo de ánodos, Potrerillos", url: /casos/rueda-moldeo-anodos-potrerillos }
+    - { title: "Caso de demostración: gemelo digital de una bomba con despiece, SAP y PI", url: /casos/gemelo-digital-bomba-despiece-sap-pi }
     - { title: "Guía: gemelos digitales en fundiciones de cobre", url: /guias/gemelos-digitales-fundiciones-cobre }
     - { title: "Digital twin FAQ (English)", url: /en/faq }
 
