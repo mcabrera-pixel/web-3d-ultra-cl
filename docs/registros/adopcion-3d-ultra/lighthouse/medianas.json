@@ -1,0 +1,57 @@
+{
+  "prev-caso-bomba": {
+    "corridas": 3,
+    "validas": 3,
+    "perf": 99,
+    "perfs": "99 98 100",
+    "a11y": 100,
+    "cls": 0,
+    "lcp_s": 1.67,
+    "tbt_ms": 72,
+    "lcp": "<h1 class=\"std-h1\" data-astro-cid-y4nfk5o4=\"\">"
+  },
+  "prev-ficha": {
+    "corridas": 5,
+    "validas": 5,
+    "perf": 100,
+    "perfs": "100 100 100 100 100",
+    "a11y": 100,
+    "cls": 0,
+    "lcp_s": 1.59,
+    "tbt_ms": 5,
+    "lcp": "<img class=\"bib-poster\" src=\"/biblioteca/komatsu-930e-5/poster.webp\" a"
+  },
+  "prev-portada": {
+    "corridas": 5,
+    "validas": 5,
+    "perf": 97,
+    "perfs": "98 98 96 97 97",
+    "a11y": 100,
+    "cls": 0,
+    "lcp_s": 2.04,
+    "tbt_ms": 161,
+    "lcp": "<img class=\"std-nube__respaldo\" src=\"/media/nube/hero-komatsu-930e-5-9"
+  },
+  "prod-ficha": {
+    "corridas": 5,
+    "validas": 5,
+    "perf": 91,
+    "perfs": "91 91 91 91 91",
+    "a11y": 100,
+    "cls": 0,
+    "lcp_s": 2.97,
+    "tbt_ms": 0,
+    "lcp": "<img class=\"bib-poster\" src=\"/biblioteca/komatsu-930e-5/poster.webp\" a"
+  },
+  "prod-portada": {
+    "corridas": 5,
+    "validas": 5,
+    "perf": 81,
+    "perfs": "81 81 81 80 81",
+    "a11y": 76,
+    "cls": 0,
+    "lcp_s": 4.3,
+    "tbt_ms": 0,
+    "lcp": "<h1 class=\"hero-title\">"
+  }
+}
