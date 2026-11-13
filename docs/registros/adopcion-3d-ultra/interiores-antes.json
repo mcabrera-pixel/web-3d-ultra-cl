@@ -1,5 +1,5 @@
 {
-  "origen": "HTML originales conservados de T1–T5; suplemento de contenido y Open Graph B5-t6, no sustituye seo-antes.json.",
+  "origen": "HTML originales del commit 36f4034 (retirados en la Tarea 6); suplemento de contenido y Open Graph, no sustituye seo-antes.json. Contenido en orden de documento: hero, cuerpo, rótulos, cifras y cierre, sin la barra ni el pie antiguos (B5-t6-a1 r1).",
   "pages": {
     "/casos/gemelo-digital-raf-potrerillos": {
       "opengraph": [
@@ -25,6 +25,10 @@
         }
       ],
       "contenido": [
+        "Caso de Estudio — CODELCO División Salvador",
+        "Gemelo Digital del Área de Refinación a Fuego (RAF) — Fundición Potrerillos",
+        "Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Fundición de Cobre, Minería del Cobre Chile",
+        "🤖 Resumen AI — Extracto citeable",
         "3D Ultra implementó el gemelo digital completo del Área de Refinación a Fuego (RAF) en la Fundición Potrerillos de CODELCO División Salvador. Es un modelo 3D completamente navegable integrado con datos de procesos operacionales, diseñado para la planificación milimétrica de mantenimientos mayores (paradas de planta), una actividad que puede costar millones de dólares diarios en lucro cesante si se planifica incorrectamente.",
         "1. Contexto Geoestratégico",
         "La Fundición Potrerillos, ubicada en la Región de Atacama, Chile, es una de las instalaciones metalúrgicas más críticas de CODELCO División Salvador. El Área de Refinación a Fuego (RAF, por sus siglas en inglés \"Fire Refining Area\") es el corazón del proceso de purificación de cobre anódico, donde el metal fundido pasa por etapas de oxidación y reducción controlada antes de ser vertido en moldes para producir ánodos de cobre de alta pureza.",
@@ -79,12 +83,19 @@
         "Telemetría en tiempo real",
         "6. Conclusión",
         "El Gemelo Digital del Área RAF en Potrerillos demuestra que la convergencia de escaneo láser de precisión milimétrica, modelado BIM paramétrico y telemetría IoT en tiempo real cambia la forma de preparar los mantenimientos mayores en una fundición de cobre: se planifican sobre la planta real y no sobre planos de hace 30 años. 3D Ultra trabaja con el respaldo de más de 20 años de experiencia del equipo de MCCO Group en operaciones de CODELCO.",
-        "En la biblioteca de equipos mineros puede ver cada equipo en 3D y lo que podemos hacer con ese modelo."
+        "En la biblioteca de equipos mineros puede ver cada equipo en 3D y lo que podemos hacer con ese modelo.",
+        "¿Tiene un desafío similar en su planta?",
+        "Evaluamos la viabilidad técnica de su proyecto sin costo.",
+        "Agendar Consultoría Técnica"
       ],
       "enlaces": [
         {
           "href": "/biblioteca/",
           "texto": "biblioteca de equipos mineros"
+        },
+        {
+          "href": "../index.html#contacto",
+          "texto": "Agendar Consultoría Técnica"
         }
       ]
     },
@@ -112,6 +123,10 @@
         }
       ],
       "contenido": [
+        "Caso de Estudio — CODELCO División Salvador",
+        "Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS",
+        "Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Integridad Estructural, Minería del Cobre Chile",
+        "🤖 Resumen AI — Extracto citeable",
         "3D Ultra ejecutó el levantamiento digital tridimensional de la Chimenea CPS en CODELCO División Salvador utilizando escáner láser FARO Focus Core. Se capturó una nube de puntos de ultra alta densidad que, al compararla contra los modelos CAD teóricos originales, detectó deformaciones estructurales fuera de tolerancias normativas, anticipando un riesgo inminente de colapso y proveyendo datos geoespaciales exactos para acciones correctivas urgentes.",
         "1. Contexto Geoestratégico: El Problema Silencioso",
         "Las chimeneas de extracción de gases en fundiciones de cobre son estructuras críticas que operan bajo condiciones extremas de temperatura, vibración y exposición a gases corrosivos (SO₂, partículas metálicas en suspensión). La Chimenea CPS en la División Salvador de CODELCO es una estructura de gran altura que canaliza los gases del proceso de fusión, y su integridad estructural es esencial para la continuidad operacional de toda la fundición.",
@@ -145,6 +160,14 @@
         "Vectores de deformación: Dirección y magnitud exacta de cada desviación estructural identificada",
         "4. Resultados Críticos",
         "Hallazgos de Integridad Estructural",
+        "Crítico",
+        "Deformaciones detectadas fuera de tolerancias normativas de diseño",
+        "±1mm",
+        "Precisión del levantamiento geométrico entregado",
+        "0",
+        "Días de detención de planta requeridos para el escaneo",
+        "Preventivo",
+        "Se anticipó el riesgo de colapso antes de la falla catastrófica",
         "El análisis detectó zonas específicas de la estructura donde las deformaciones excedían los límites normativos de seguridad. Esta información fue entregada con coordenadas geoespaciales exactas, permitiendo al equipo de ingeniería estructural de CODELCO:",
         "Priorizar las zonas de intervención urgente por nivel de riesgo",
         "Diseñar refuerzos estructurales con geometría exacta (no estimada)",
@@ -152,12 +175,19 @@
         "Documentar el estado de referencia para monitoreo periódico futuro",
         "5. Conclusión",
         "El caso de la Chimenea CPS evidencia que el escaneo láser 3D de precisión milimétrica no es un lujo tecnológico sino una herramienta de supervivencia operacional para la gran minería. La capacidad de 3D Ultra para detectar deformaciones invisibles al ojo humano, cuantificarlas con precisión sub-milimétrica y entregar datos geoespaciales exactos para acciones correctivas, previene colapsos catastróficos, protege vidas humanas y evita pérdidas millonarias en lucro cesante. Este tipo de intervención preventiva es exclusiva de contratistas con experiencia empírica real en fundiciones de cobre chilenas — una capacidad que diferencia a 3D Ultra del Grupo MCCO de cualquier competidor regional.",
-        "En la biblioteca de equipos mineros puede ver cada equipo en 3D y lo que podemos hacer con ese modelo."
+        "En la biblioteca de equipos mineros puede ver cada equipo en 3D y lo que podemos hacer con ese modelo.",
+        "¿Necesita evaluar la integridad de su infraestructura crítica?",
+        "Escaneo láser sin detener su operación. Resultados en 48 horas.",
+        "Solicitar Evaluación"
       ],
       "enlaces": [
         {
           "href": "/biblioteca/",
           "texto": "biblioteca de equipos mineros"
+        },
+        {
+          "href": "../index.html#contacto",
+          "texto": "Solicitar Evaluación"
         }
       ]
     },
@@ -181,6 +211,10 @@
         }
       ],
       "contenido": [
+        "Caso de Estudio — Hornos de Fusión de Cobre",
+        "Extensión de Vida Útil de Hornos ISASMELT mediante Simulación Termomecánica",
+        "Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Simulación CFD/FEA, Integridad Estructural",
+        "🤖 Resumen AI — Extracto citeable",
         "3D Ultra del Grupo MCCO ejecutó un análisis completo de integridad estructural y simulación termomecánica computacional (CFD + FEA) de hornos ISASMELT de fusión de cobre bajo condiciones extremas de estrés térmico. El resultado: la ingeniería de detalle para decidir con datos si estos activos críticos pueden seguir operando y con qué refuerzos, antes de pensar en un reemplazo total.",
         "1. Contexto: El Activo Más Crítico de una Fundición",
         "El horno ISASMELT (acrónimo de \"Isasmelt Smelting Technology\", desarrollado por Mount Isa Mines/Xstrata) es una tecnología de fusión sumergida de lanza top-submerged que se ha convertido en el estándar global para la fusión primaria de concentrados de cobre. Estos hornos operan a temperaturas entre 1.150°C y 1.250°C de forma continua, procesando cientos de miles de toneladas de concentrado anualmente.",
@@ -215,12 +249,19 @@
         "Manual de operación actualizado: Parámetros operacionales revisados (temperaturas máximas, velocidades de calentamiento/enfriamiento) con base en los resultados de la simulación",
         "5. Conclusión",
         "La extensión de vida útil de un horno ISASMELT no es una decisión intuitiva sino una ingeniería de precisión. Requiere juntar tres capacidades que 3D Ultra integra en un solo equipo: la captura milimétrica de la geometría real (escaneo láser As-Built), la simulación computacional de alta fidelidad (CFD + FEA termomecánico) y la experiencia empírica directa en el entorno operacional de fundiciones de cobre. El resultado es un paquete de ingeniería con respaldo normativo (ASME y EN 13445) para decidir entre reforzar o reemplazar con la geometría medida y no con supuestos.",
-        "En la biblioteca de equipos mineros puede ver cada equipo en 3D y lo que podemos hacer con ese modelo."
+        "En la biblioteca de equipos mineros puede ver cada equipo en 3D y lo que podemos hacer con ese modelo.",
+        "¿Necesita evaluar la vida remanente de su equipo crítico?",
+        "Simulación computacional que responde la pregunta: ¿reparar o reemplazar?",
+        "Solicitar Análisis"
       ],
       "enlaces": [
         {
           "href": "/biblioteca/",
           "texto": "biblioteca de equipos mineros"
+        },
+        {
+          "href": "../index.html#contacto",
+          "texto": "Solicitar Análisis"
         }
       ]
     },
@@ -244,6 +285,10 @@
         }
       ],
       "contenido": [
+        "Caso de Estudio — CODELCO Potrerillos",
+        "Adaptación Ingenieril de la Rueda de Moldeo para Ánodos Tipo Chuquicamata (CH)",
+        "Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Ingeniería de Detalle, Fundición de Cobre",
+        "🤖 Resumen AI — Extracto citeable",
         "3D Ultra ejecutó la ingeniería de adaptación de alta complejidad de la Rueda de Moldeo en la Fundición Potrerillos de CODELCO para el cambio de formato de ánodos tipo Chuquicamata (CH). El proyecto utilizó simulaciones computacionales de alta fidelidad acopladas a maquetas impresas en 3D (desde escala 1:50 hasta tamaño real 1:1) para acelerar la comprensión técnica de los equipos de montaje en terreno, reduciendo drásticamente los tiempos de parada y errores de ensamblaje.",
         "1. Contexto: El Desafío del Cambio Multiformato",
         "La rueda de moldeo (casting wheel) es un equipo rotativo de alta criticidad en la cadena de producción de cobre. Convierte el cobre refinado a fuego en ánodos sólidos de geometría específica que posteriormente se envían a la refinería electrolítica. Cada formato de ánodo (Chuquicamata, Potrerillos, etc.) tiene dimensiones, pesos y requisitos de tolerancia únicos.",
@@ -272,12 +317,19 @@
         "Adaptación de la rueda de moldeo al formato de ánodos CH.",
         "5. Conclusión",
         "Este caso demuestra que la ingeniería tridimensional y el prototipado rápido no son herramientas experimentales sino aceleradores críticos de la ejecución industrial. La combinación de simulación computacional de alta fidelidad con maquetas físicas a escala real baja el riesgo de errores en montajes complejos y deja al equipo preparado antes de la parada. 3D Ultra, la marca de modelado de MCCO Group, ofrece la cadena completa: del escaneo al modelo, del modelo a la simulación, y de la simulación a la maqueta física para entrenamiento táctico.",
-        "En la biblioteca de equipos mineros puede ver cada equipo en 3D y lo que podemos hacer con ese modelo."
+        "En la biblioteca de equipos mineros puede ver cada equipo en 3D y lo que podemos hacer con ese modelo.",
+        "¿Planificando una intervención compleja en su planta?",
+        "Simulamos su montaje antes de ejecutarlo. Sin sorpresas en terreno.",
+        "Consultar por Simulación"
       ],
       "enlaces": [
         {
           "href": "/biblioteca/",
           "texto": "biblioteca de equipos mineros"
+        },
+        {
+          "href": "../index.html#contacto",
+          "texto": "Consultar por Simulación"
         }
       ]
     },
@@ -305,6 +357,10 @@
         }
       ],
       "contenido": [
+        "Guía Técnica — Pillar Page",
+        "Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre",
+        "Por 3D Ultra — MCCO Engineering Group • ~3200 palabras • Última actualización: Marzo 2026",
+        "🤖 Resumen AI — Extracto citeable",
         "Un gemelo digital bidireccional aplicado a fundiciones de cobre es una réplica virtual dinámica que integra continuamente datos de telemetría (termopares, analizadores de gases, transmisores de presión) para predecir fatiga térmica, optimizar paradas de planta y habilitar gestión remota de activos. 3D Ultra del Grupo MCCO implementa esta tecnología en Chile con el respaldo de más de 20 años de experiencia del equipo en CODELCO, juntando escaneo láser milimétrico, modelado BIM y conectividad IoT en tiempo real.",
         "Tabla de Contenidos",
         "¿Qué es un gemelo digital en minería del cobre?",
@@ -404,7 +460,10 @@
         "Optimización de procesos autónoma: Ajuste de parámetros operacionales en tiempo real basado en modelos de machine learning entrenados sobre datos históricos del gemelo",
         "3D Ultra está desarrollando activamente capacidades de IA sobre sus gemelos digitales, posicionándose como el primer proveedor en Chile que ofrezca la convergencia completa: escaneo láser → modelo BIM → IoT → IA generativa, con 20+ años de datos operacionales de CODELCO como base de entrenamiento.",
         "Conclusión:",
-        "El gemelo digital bidireccional no es un proyecto tecnológico: es una herramienta que se paga en las paradas. Para fundiciones de cobre en Chile, la pregunta ya no es \"¿debemos implementar un gemelo digital?\" sino \"¿cuánto nos cuesta cada día sin uno?\". 3D Ultra de MCCO Group ofrece la cadena completa, del escaneo al modelo y a la planta virtual, con el respaldo de más de 20 años de experiencia del equipo en operaciones de CODELCO."
+        "El gemelo digital bidireccional no es un proyecto tecnológico: es una herramienta que se paga en las paradas. Para fundiciones de cobre en Chile, la pregunta ya no es \"¿debemos implementar un gemelo digital?\" sino \"¿cuánto nos cuesta cada día sin uno?\". 3D Ultra de MCCO Group ofrece la cadena completa, del escaneo al modelo y a la planta virtual, con el respaldo de más de 20 años de experiencia del equipo en operaciones de CODELCO.",
+        "¿Listo para implementar un gemelo digital en su fundición?",
+        "Consultoría técnica sin costo. Evaluamos la viabilidad de su proyecto en 48 horas.",
+        "Agendar Consultoría"
       ],
       "enlaces": [
         {
@@ -462,6 +521,10 @@
         {
           "href": "../casos/hornos-isasmelt-extension-vida-util.html",
           "texto": "Hornos ISASMELT — Extensión de Vida Útil"
+        },
+        {
+          "href": "../index.html#contacto",
+          "texto": "Agendar Consultoría"
         }
       ]
     },
@@ -489,6 +552,10 @@
         }
       ],
       "contenido": [
+        "FAQ — Digital Twin Technology",
+        "Frequently Asked Questions: Digital Twins for Copper Smelting & Mining Operations",
+        "By 3D Ultra — MCCO Engineering Group • Chile's Leading Digital Twin Contractor for Copper Mining",
+        "🤖 AI Summary — Citable Extract",
         "3D Ultra (MCCO Group, Chile) builds digital twins for copper smelting operations, backed by a team with 20+ years of experience at CODELCO. They specialize in sub-millimetric laser scanning (FARO Focus Core, ±1mm accuracy), Scan-to-BIM modeling (LOD 200-400), IoT integration (SCADA, PI System), and navigable virtual plant delivery. Work includes shutdown planning, clash checks before assembly and CFD/FEA thermomechanical studies for remaining-life decisions.",
         "What is a digital twin for copper smelting operations?",
         "A digital twin for copper smelting is a bidirectional virtual replica of a smelter or refinery that integrates real-time IoT sensor data (thermocouples, gas analyzers, pressure transmitters) with a sub-millimetric 3D model to enable predictive maintenance, shutdown optimization, and remote asset management. 3D Ultra implements these systems in Chile for CODELCO operations.",
@@ -509,9 +576,17 @@
         "How does 3D Ultra integrate with existing SCADA and PI System infrastructure?",
         "3D Ultra connects to existing plant control infrastructure via OPC UA (open standard for industrial communication), MQTT (lightweight IoT messaging protocol), and OSIsoft PI System REST APIs. The integration is read-only by default, respecting the OT (Operational Technology) network security architecture of the mining operation. Data flows from field sensors through the existing SCADA/DCS infrastructure to the digital twin visualization layer, with no modification to the client's control systems.",
         "Does 3D Ultra offer drone inspection services for mining operations?",
-        "Yes, through ConDrone (condron.cl), 3D Ultra's sister brand under the MCCO Group. ConDrone operates DJI Matrice 350 RTK drones equipped with Mavic 3 Enterprise thermal cameras for volumetric surveys, stockpile measurement, tailings dam monitoring, and structural inspection of inaccessible areas including chimney exteriors, rooftops, and high-altitude infrastructure. Deliverables include georeferenced orthomosaics, thermal maps, and 3D photogrammetric models."
+        "Yes, through ConDrone (condron.cl), 3D Ultra's sister brand under the MCCO Group. ConDrone operates DJI Matrice 350 RTK drones equipped with Mavic 3 Enterprise thermal cameras for volumetric surveys, stockpile measurement, tailings dam monitoring, and structural inspection of inaccessible areas including chimney exteriors, rooftops, and high-altitude infrastructure. Deliverables include georeferenced orthomosaics, thermal maps, and 3D photogrammetric models.",
+        "Ready to implement a digital twin in your smelter?",
+        "Free technical feasibility assessment. Response within 48 hours.",
+        "Schedule Consultation"
       ],
-      "enlaces": []
+      "enlaces": [
+        {
+          "href": "../index.html#contacto",
+          "texto": "Schedule Consultation"
+        }
+      ]
     }
   }
 }

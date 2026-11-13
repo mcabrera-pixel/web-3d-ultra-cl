@@ -76,5 +76,5 @@ llms:
 forbidden: ["Leica", "RTC360", "tupagina-de-activos", "foundingDate\":\"2003", "condrone.cl"]
 clients_allowed: [CODELCO, BHP, Aster, Capstone Copper, El Abra]
 
-legacy_pages: true                  # casos/, guias/ y en/ siguen como .html con canonical manual (fase C pendiente)
+legacy_pages: false                 # casos/, guias/ y en/ migrados a .astro con el kit v1.4.0 (Tarea 6)
 indexnow_key: c3e70c36be4a27623ec717c2b2f92d77

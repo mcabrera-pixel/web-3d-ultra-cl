@@ -7,6 +7,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import * as parse5 from 'parse5';
+import { load as yamlLoad } from 'js-yaml';
+import { slug as githubSlug } from 'github-slugger';
 
 const INDEXABLES = [
   '/',
@@ -441,26 +443,79 @@ async function verifyInicioDist(distDir) {
 
 // Suplemento de T6: conserva contenido editorial y OG que parity no compara.
 // La captura original de SEO sigue intacta; esta base procede de los seis HTML originales.
+// El cuerpo es <main> en las páginas del estándar y <body> en los originales, que no tenían <main>. Se omiten la
+// barra y el pie antiguos (.top-bar, footer) y las piezas del kit (barra global, sub-navegación y bloque Grupo).
+const CLASES_TEXTO = ['label', 'stat-number', 'stat-label', 'tag'];
+function fueraDelCuerpo(el) {
+  const clases = getAttr(el, 'class').split(/\s+/);
+  return el.nodeName === 'footer' || ['script', 'style', 'template'].includes(el.nodeName)
+    || clases.some(c => ['top-bar', 'std-gnav', 'std-subnav'].includes(c)) || getAttr(el, 'data-mcco') === 'grupo';
+}
+const esTexto = el => /^(h[1-6]|p|li|th|td)$/.test(el.nodeName) || getAttr(el, 'class').split(/\s+/).some(c => CLASES_TEXTO.includes(c));
+
 export function extractInterior(html) {
   const doc = parse5.parse(html);
   const head = findOne(doc, 'head');
-  const article = findOne(doc, 'article') ?? allElements(doc).find(el => getAttr(el, 'class').split(/\s+/).includes('faq-section'));
+  const cuerpo = findOne(doc, 'main') ?? findOne(doc, 'body') ?? doc;
+  const contenido = [], enlaces = [];
+  const visitar = (node, dentroDeTexto) => {
+    for (const el of node.childNodes ?? []) {
+      if (!isElement(el) || fueraDelCuerpo(el)) continue;
+      const texto = esTexto(el);
+      // Encabezados, párrafos, listas, celdas, rótulos y cifras; un enlace suelto (la píldora del cierre) también.
+      if (texto || (el.nodeName === 'a' && !dentroDeTexto)) contenido.push(textContent(el));
+      if (el.nodeName === 'a') enlaces.push({ href: getAttr(el, 'href'), texto: textContent(el) });
+      visitar(el, dentroDeTexto || texto || el.nodeName === 'a');
+    }
+  };
+  visitar(cuerpo, false);
   return {
     opengraph: findAll(head, 'meta').filter(el => getAttr(el, 'property').startsWith('og:'))
       .map(el => ({ property: getAttr(el, 'property'), content: getAttr(el, 'content') })),
-    // Las respuestas, listas, encabezados y celdas deben sobrevivir al cambio de presentación.
-    contenido: allElements(article).filter(el => /^(h[1-6]|p|li|th|td)$/.test(el.nodeName)).map(textContent),
-    enlaces: findAll(article, 'a').map(el => ({ href: getAttr(el, 'href'), texto: textContent(el) })),
+    // Las respuestas, listas, encabezados, celdas, rótulos y el cierre deben sobrevivir al cambio de presentación.
+    contenido,
+    enlaces,
   };
+}
+
+// Una imagen de vista previa que la base no tenía (o distinta) no es una pérdida: se avisa sin fallar. Con el kit
+// v1.4.0, Head siempre emite og:image y twitter:image; la omisión espera ogImage={false} en v1.4.1.
+export function interiorWarnings(html, base) {
+  const doc = parse5.parse(html), metas = findAll(findOne(doc, 'head'), 'meta');
+  const previa = base.opengraph.find(m => m.property === 'og:image')?.content;
+  const avisos = [];
+  for (const [attr, key] of [['property', 'og:image'], ['name', 'twitter:image']]) {
+    for (const el of metas.filter(m => getAttr(m, attr) === key)) {
+      const valor = getAttr(el, 'content');
+      if (!previa) avisos.push(`Interior: ${key} agregada (${valor}); la base no tenía imagen de vista previa`);
+      else if (valor !== previa) avisos.push(`Interior: ${key} distinta de la base (${valor}; antes ${previa})`);
+    }
+  }
+  return avisos;
+}
+
+// Busca la secuencia base dentro de la nueva, en el mismo orden y con sus repeticiones. La presentación puede
+// intercalar piezas propias, pero no reordenar, fusionar ni perder lo heredado (una celda movida a otra fila falla).
+export function firstSequenceLoss(base, nuevo) {
+  let i = 0;
+  for (const [pos, item] of base.entries()) {
+    while (i < nuevo.length && !deepEqual(nuevo[i], item)) i++;
+    if (i === nuevo.length) return { pos, item };
+    i++;
+  }
+  return null;
 }
 
 export function verifyInterior(html, base) {
   const nuevo = extractInterior(html), errors = [];
   const doc = parse5.parse(html), head = findOne(doc, 'head');
-  for (const key of ['opengraph', 'contenido', 'enlaces']) {
-    for (const item of base[key]) {
-      if (!nuevo[key].some(n => deepEqual(n, item))) errors.push(`Interior: pérdida en ${key}: ${JSON.stringify(item)}`);
-    }
+  // OG es un conjunto de metas: el orden en la cabecera no importa.
+  for (const item of base.opengraph) {
+    if (!nuevo.opengraph.some(n => deepEqual(n, item))) errors.push(`Interior: pérdida en opengraph: ${JSON.stringify(item)}`);
+  }
+  for (const key of ['contenido', 'enlaces']) {
+    const loss = firstSequenceLoss(base[key], nuevo[key]);
+    if (loss) errors.push(`Interior: pérdida o cambio de orden en ${key} (posición ${loss.pos + 1} de ${base[key].length}): ${JSON.stringify(loss.item)}`);
   }
   const metas = findAll(head, 'meta');
   for (const key of ['og:type', 'og:url', 'og:title', 'og:description', 'og:image']) {
@@ -471,12 +526,50 @@ export function verifyInterior(html, base) {
   return errors;
 }
 
+// Índice del blog (Estándar v2 §4): sin entradas publicadas, noindex y sin enlaces a artículos; con entradas,
+// indexable y con un enlace por cada una. La expectativa sale de las entradas, no de un estado fijo.
+export function verifyBlogIndex(html, slugs) {
+  const doc = parse5.parse(html), head = findOne(doc, 'head') ?? doc, errors = [];
+  const robots = norm(getAttr(findAll(head, 'meta').find(m => getAttr(m, 'name').toLowerCase() === 'robots'), 'content'));
+  const enlazados = [...new Set(findAll(doc, 'a').map(a => getAttr(a, 'href').match(/^\/blog\/(.+?)\/?$/)?.[1]).filter(Boolean))].sort();
+  const esperados = [...new Set(slugs)].sort();
+  if (!esperados.length) {
+    if (robots !== 'noindex, nofollow') errors.push(`Blog: sin entradas publicadas debe llevar noindex (robots: "${robots}")`);
+  } else if (/noindex/i.test(robots)) {
+    errors.push(`Blog: con ${esperados.length} entradas publicadas debe ser indexable (robots: "${robots}")`);
+  }
+  for (const s of esperados) if (!enlazados.includes(s)) errors.push(`Blog: falta el enlace a /blog/${s}`);
+  for (const s of enlazados) if (!esperados.includes(s)) errors.push(`Blog: enlace a /blog/${s}, que no es una entrada publicada`);
+  return errors;
+}
+
+// Entradas publicadas de la colección blog con el id que les da el loader glob de Astro (src/content.config.ts):
+// Markdown cuyo nombre no empieza con «_», sin draft: true; id = slug del frontmatter o ruta con github-slugger.
+export function publishedBlogSlugs(dir) {
+  if (!fs.existsSync(dir)) return [];
+  const archivos = fs.readdirSync(dir, { recursive: true }).map(String)
+    .filter(f => f.endsWith('.md') && !path.basename(f).startsWith('_'));
+  return archivos.flatMap(rel => {
+    const texto = fs.readFileSync(path.join(dir, rel), 'utf8');
+    const fm = texto.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    const data = (fm && yamlLoad(fm[1])) || {};
+    if (data.draft === true) return [];
+    if (data.slug) return [String(data.slug)];
+    return [rel.replace(/\.md$/, '').split(path.sep).map(seg => githubSlug(seg)).join('/').replace(/\/index$/, '')];
+  }).sort();
+}
+
 function verifyInterioresDist(distDir) {
   const base = JSON.parse(fs.readFileSync('docs/registros/adopcion-3d-ultra/interiores-antes.json', 'utf8'));
-  return Object.entries(base.pages).flatMap(([route, page]) => {
+  const errores = [], avisos = [];
+  for (const [route, page] of Object.entries(base.pages)) {
     const file = resolveRouteToFile(route, distDir);
-    return fs.existsSync(file) ? verifyInterior(fs.readFileSync(file, 'utf8'), page).map(error => `${route}: ${error}`) : [`${route}: interior ausente`];
-  });
+    if (!fs.existsSync(file)) { errores.push(`${route}: interior ausente`); continue; }
+    const html = fs.readFileSync(file, 'utf8');
+    errores.push(...verifyInterior(html, page).map(error => `${route}: ${error}`));
+    avisos.push(...interiorWarnings(html, page).map(aviso => `${route}: ${aviso}`));
+  }
+  return { errores, avisos };
 }
 
 async function main() {
@@ -520,14 +613,17 @@ async function main() {
         nuevo.pages[route] = { route, url: new URL(route, domain).href, error: err.message };
       }
     }
-    const inicioErrors = /^https?:\/\//i.test(nuevoPath) ? [] : [...await verifyInicioDist(nuevoPath), ...verifyInterioresDist(nuevoPath)];
+    const interiores = /^https?:\/\//i.test(nuevoPath) ? { errores: [], avisos: [] } : verifyInterioresDist(nuevoPath);
+    const inicioErrors = /^https?:\/\//i.test(nuevoPath) ? [] : [...await verifyInicioDist(nuevoPath), ...interiores.errores];
     for (const error of inicioErrors) console.log(`FALLA ${error}`);
+    // Avisos visibles que no fallan, como las adiciones: imágenes de vista previa que la base no tenía.
+    for (const aviso of interiores.avisos) console.log(`AVISO ${aviso}`);
     if (!/^https?:\/\//i.test(nuevoPath) && !inicioErrors.length) console.log('OK: contratos de portada e interiores renderizados.');
     const report = compareReport(baseData.pages, nuevo.pages);
     const failures = reportFailures(report);
     const additions = report.filter((entry) => entry.diffs.some((d) => d.severity === 'addition'));
 
-    if (failures.length === 0 && additions.length === 0 && inicioErrors.length === 0) {
+    if (failures.length === 0 && additions.length === 0 && inicioErrors.length === 0 && interiores.avisos.length === 0) {
       console.log('OK: sin diferencias respecto de la base.');
       return 0;
     }

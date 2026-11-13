@@ -1,45 +1,16 @@
-# Tarea 6: auxiliares integradas, interiores pendientes del kit
+# Tarea 6: interiores y auxiliares con el kit v1.4.0
 
 ## Estado
 
-Entrega parcial B5-t6. Blog, gracias, contacto-error y 404 usan `Sitio`, conservan
-metadatos y `noindex`, con un solo `main`, H1 y bloque Grupo. No se modifica la
-plantilla de posts ni se crean entradas o URLs del blog.
+Blog, gracias, contacto-error y 404 usan `Sitio` desde B5-t6. En B5-t6-a1 los cuatro casos, la guía y la FAQ
+inglesa pasan a `.astro` con `Sitio` y el kit v1.4.0, y sus seis HTML se retiran en el mismo cambio.
+`legacy_pages` queda en `false`: ya no hay interiores heredados.
 
-Los cuatro casos, la guía y la FAQ inglesa conservan sus HTML originales. **No se
-han migrado ni retirado** y `legacy_pages` sigue en `true`. El verde del verificador
-significa conservación de contratos; no certifica la adopción visual de esos seis
-interiores. No se incorporan props inventadas, manipulación de idioma por JS,
-`lang` sobre un bloque, copias del layout ni modificaciones al kit instalado.
+## Mapa de sustitución
 
-## Dependencias comprobadas en v1.3.1
+Cada ruta limpia y su alias `.html` salen del mismo archivo (`build.format: 'preserve'` del kit).
 
-- `node_modules/@mcco/web-kit/layouts/Base.astro:12` fija `<html lang={site.lang}>`.
-  `Head.astro:8` y `Estandar.astro:16` no ofrecen idioma por página. El manifiesto
-  es `es-CL`; los cinco interiores españoles usan `es` y la FAQ `en`. Cambiarlos
-  ahora rompe la comparación estricta existente. El documento inglés permanece
-  realmente `lang="en"` porque se conserva `src/pages/en/faq.html`.
-- `Head.astro:37` siempre emite robots; los seis originales no tienen esa meta.
-  No existe prop para conservar su ausencia. No se relaja el verificador.
-- `Head.astro:41` fija `og:url` al canonical limpio, mientras los seis originales
-  usan `.html`. `:42`/`:43` fijan título y descripción OG a los de SEO, diferentes
-  en los originales. El slot puede añadir metadatos pero no sustituirlos sin
-  duplicarlos. Hace falta una interfaz publicada que permita conservarlos.
-- Los alternates sí pueden preservarse manualmente en el slot `head`, pasando
-  `alternates=[]`, para evitar el `x-default` automático de `Head.astro:51`.
-  La guía usa `.html` en es/en/x-default; la FAQ usa `/` en es/x-default y `.html`
-  en en. No se normalizan silenciosamente.
-
-El plan exige resolver la API antes de convertir y retirar cada HTML junto con
-su reemplazo. Por eso tampoco se cambia el manifiesto. El encargo prohíbe tocar
-el kit/dependencias y pide registrar esta carencia; no se solicita ni realiza
-publicación externa.
-
-## Mapa de sustitución pendiente
-
-Cada ruta limpia y su alias `.html` deben seguir resolviendo el mismo contenido:
-
-| Ruta limpia | Fuente actual | Reemplazo pendiente |
+| Ruta limpia | Fuente retirada | Fuente nueva |
 |---|---|---|
 | `/casos/gemelo-digital-raf-potrerillos` | `src/pages/casos/gemelo-digital-raf-potrerillos.html` | mismo nombre `.astro` |
 | `/casos/analisis-chimenea-cps-salvador` | `src/pages/casos/analisis-chimenea-cps-salvador.html` | mismo nombre `.astro` |
@@ -48,34 +19,56 @@ Cada ruta limpia y su alias `.html` deben seguir resolviendo el mismo contenido:
 | `/guias/gemelos-digitales-fundiciones-cobre` | `src/pages/guias/gemelos-digitales-fundiciones-cobre.html` | mismo nombre `.astro` |
 | `/en/faq` | `src/pages/en/faq.html` | `src/pages/en/faq.astro` |
 
-El grep exigido está en `B5-t6/logs/grep-previo.log`. Sus referencias desde portada,
-biblioteca, guía, manifiesto y pruebas siguen válidas; no se elimina ningún destino.
-La guía conserva `#definicion`, `#tipos`, `#componentes`, `#aplicaciones`,
-`#metodologia`, `#roi`, `#casos` y `#futuro`.
+El grep previo a la eliminación está en `B5-t6-a1/logs/grep-previo.log`. Las referencias de portada,
+`site.yaml`, guía y pruebas apuntan a rutas que siguen existiendo; no se cambió ningún destino.
 
-## Guardianes y límites
+## Qué se conserva y cómo
 
-- `seo-antes.json` permanece intacto. El comparador sigue rechazando cambios de
-  idioma, title, description, H1, canonical, robots, alternates y JSON-LD.
-- `interiores-antes.json` añade una captura de los seis HTML originales: Open
-  Graph, párrafos, títulos, listas, celdas y enlaces del cuerpo. No es una
-  recaptura para aceptar regresiones. Dos casos ya carecen de `og:image`.
-- `scripts/verificar-adopcion.mjs` comprueba esa captura sobre `dist`, además de
-  rechazar duplicados canonical/OG. Las pruebas de build comprueban cuatro
-  enlaces a biblioteca, las diez preguntas inglesas, idioma y las auxiliares.
-- Los tests previos de casos admiten `.html` o `.astro` y exigen cuatro rutas
-  distintas; no se elimina la garantía durante una conversión futura.
-- En Chrome a 390 px las tablas RAF (419,34 px) y guía (525,89 px) desbordan.
-  Son defectos del HTML conservado. No se certifica todavía la aceptación móvil
-  de los interiores. Las cuatro auxiliares no desbordan a 390 y 1440 px.
-- La FAQ original es estática: diez preguntas y respuestas siempre visibles.
-  Su cierre se alcanza con Tab; no existe acordeón que abrir por teclado.
-- Las ocho anclas de la guía siguen en el HTML y cambian el hash. El arnés no
-  confirma consistentemente su colocación visual con smooth scroll en Chrome
-  headless; esa aceptación queda pendiente, sin ocultar sus resultados fallidos.
-- La prueba local de HTTP/404 usa un servidor estático de QA. No equivale a
-  Cloudflare Pages. La prueba de Pages para la nueva versión queda pendiente:
-  el encargo prohíbe Wrangler y publicar.
+- Idioma: prop `lang` del kit v1.4.0 (`es` en los cinco españoles, `en` en la FAQ). Llega a `<html lang>`
+  y a `og:locale`, sin tocar `site.yaml` ni usar JS.
+- Title, description, canonical y JSON-LD: props de `Sitio`, con los valores literales del HTML original.
+- Open Graph: `type`, `ogTitle`, `ogDescription` y `ogUrl` (con su `.html` original).
+- Robots: `robots={false}`, porque los originales no tenían esa meta.
+- Alternates: `alternates={[]}` y los tres enlaces originales en el slot `head`, sin el `x-default`
+  automático. La guía apunta a `.html` en es/x-default y a `/en/faq.html` en en; la FAQ apunta a `/` en
+  es/x-default y a `.html` en en. Son diferencias previas con el canonical limpio, no se normalizan.
+- `keywords` y `author` van en el slot `head`: `Head` no las emite, así que no se duplican.
+- Cuerpo: H1, cápsula, encabezados, párrafos, listas, tablas, enlaces y anclas de la guía, en el mismo orden.
+  El cierre conserva su título, texto y destino `../index.html#contacto`.
 
-Informe, comparación por ruta, capturas y resultados completos:
-`/home/cloud/webs/encargos/3d-ultra/B5-t6/RESULTADO.md`.
+## Lo que el kit agrega y no se puede evitar con v1.4.0
+
+- `og:site_name`, `og:locale` y las cuatro metas `twitter:*` en las seis páginas.
+- `og:image` (la imagen por defecto `/og.webp`) en hornos ISASMELT y rueda de moldeo, que no la tenían.
+  `Head` siempre emite `og:image`; omitirla necesita una opción nueva del kit. Desviación aceptada por el
+  controlador, pendiente de `ogImage={false}` en el kit v1.4.1 antes de publicar.
+
+## Presentación
+
+- Hero claro con rótulo, H1 y línea de autor; el cuerpo se reparte en bloques parchment y blanco por cada
+  H2; cierre en bloque negro con una píldora.
+- Las tablas del caso RAF, del caso CPS y de la guía se desplazan dentro de su propio contenedor
+  (`.interior-tabla`, enfocable con teclado); la página no se desborda a 390 px.
+- Las anclas de la guía caen bajo la sub-navegación fija gracias al `scroll-padding-top` del kit.
+- La FAQ usa barra, acción y pie en inglés con los textos y destinos del original. Las etiquetas internas
+  del kit (menú, «inicio», bloque Grupo MCCO) siguen en español sin `lang="es"` (WCAG 3.1.2). Desviación
+  aceptada, pendiente de idioma o `lang` en `NavGlobal`, `SubNav` y `FooterGrupo` en el kit v1.4.1 antes de publicar.
+
+## Guardianes
+
+- `scripts/verificar-adopcion.mjs` compara la secuencia del cuerpo (orden y repeticiones) contra
+  `interiores-antes.json`; una celda movida a otra fila falla. El cuerpo se lee en orden de documento sobre
+  `<main>` (en los originales, `<body>` sin la barra ni el pie antiguos) y sin las piezas del kit: hero,
+  encabezados, párrafos, listas, celdas, rótulo de la cápsula, cifras y etiquetas del recuadro CPS, y el cierre
+  con el texto de su botón. `interiores-antes.json` se recalculó con ese extractor desde los HTML del commit
+  36f4034, no desde `dist`.
+- **Límite del guardián:** admite texto añadido. Exige que lo heredado siga completo, en el mismo orden y con sus
+  repeticiones, pero un párrafo o rótulo nuevo intercalado no falla. Es deliberado, para que la presentación
+  pueda sumar piezas; un texto nuevo en estas páginas se revisa en el diff, no lo detecta el verificador.
+- Una `og:image` o `twitter:image` que la base no tenía, o distinta, sale como `AVISO` en el verificador, sin
+  fallar. Hoy avisa en hornos ISASMELT y rueda de moldeo (ver arriba).
+- `test/build/interiores.test.mjs` exige idioma, un `main`, el bloque Grupo, ausencia de robots y el número de
+  tablas (una en RAF, una en CPS, una en la guía), cada una en un contenedor desplazable; y juzga el índice del
+  blog según sus entradas publicadas.
+
+Informe completo: `/home/cloud/webs/encargos/3d-ultra/B5-t6-a1/RESULTADO.md`.

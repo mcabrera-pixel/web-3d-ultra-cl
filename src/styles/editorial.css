@@ -7,3 +7,61 @@
 .std .editorial a:not(.std-pildora) { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
 .std .editorial a.std-pildora { width: auto; }
 .std .editorial .editorial-codigo { color: var(--accion); font-size: 48px; font-weight: 600; }
+
+/* Interiores (casos, guía y FAQ inglesa): el cuerpo heredado con la escala del estándar. */
+.std .interior-etiqueta, .std .interior-linea { color: var(--std-gris); font-size: 14px; line-height: 1.43; }
+.std .interior-etiqueta { margin: 0 auto 12px; font-weight: 600; }
+.std .editorial.interior-hero h1 { margin-bottom: 0; }
+.std .interior-linea { margin-bottom: 0; }
+.std .interior-bloque h2 { margin: 0 auto 24px; font: 600 34px/1.12 var(--std-fuente-display); letter-spacing: -.015em; text-wrap: balance; }
+.std .interior-bloque h3 { margin: 40px auto 12px; font: 600 21px/1.24 var(--std-fuente-display); letter-spacing: .011em; }
+.std .interior-bloque h4 { margin: 0 0 8px; font-size: 17px; font-weight: 600; }
+.std .interior-bloque ol { margin-block: 24px; padding-left: 24px; line-height: 1.7; }
+.std .interior-bloque li + li { margin-top: 8px; }
+/* Enlaces dentro del texto: se leen en línea; la excepción de WCAG 2.5.8 cubre los enlaces de un párrafo. */
+.std .interior-bloque :is(p, li) a { display: inline; min-height: 0; }
+
+/* Cápsula, índice y recuadros: tarjetas de 18 px que contrastan con el tono del bloque. */
+.std .interior-bloque :is(.ai-capsule, .toc, .results-box, .highlight-box) {
+  margin-block: 32px; padding: 24px; border-radius: 18px; background: var(--std-parchment);
+}
+.std .std-bloque--parchment :is(.ai-capsule, .toc, .results-box, .highlight-box) { background: var(--std-blanco); }
+.std .interior-bloque .ai-capsule { margin-block: 0; }
+.std .interior-bloque :is(.ai-capsule, .toc, .results-box, .highlight-box) > :first-child { margin-top: 0; }
+.std .interior-bloque :is(.ai-capsule, .toc, .results-box, .highlight-box) > :last-child { margin-bottom: 0; }
+.std .ai-capsule .label { color: var(--std-gris); font-size: 14px; font-weight: 600; }
+.std .ai-capsule .label + p { margin-top: 12px; }
+.std .toc ol a { display: inline-flex; align-items: center; min-height: 44px; }
+.std .toc li + li { margin-top: 0; }
+
+/* Recuadro de hallazgos del caso CPS: el texto heredado en grilla, sin convertirlo en cifras destacadas. */
+.std .results-box:has(.stat) { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.std .results-box:has(.stat) > h3 { grid-column: 1 / -1; }
+.std .results-box .stat { display: grid; gap: 4px; align-content: start; }
+.std .results-box .stat-number { font-size: 21px; font-weight: 600; }
+.std .results-box .stat-label { color: var(--std-gris); font-size: 14px; line-height: 1.43; }
+
+/* Las tablas se desplazan dentro de su contenedor: la página no se desborda en un teléfono. */
+.std .interior-tabla { margin-block: 32px; overflow-x: auto; border: 1px solid var(--std-linea); border-radius: 18px; background: var(--std-blanco); }
+.std .interior-tabla table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px; line-height: 1.47; }
+.std .interior-tabla :is(th, td) { padding: 12px 16px; border-bottom: 1px solid var(--std-linea); text-align: left; vertical-align: top; }
+.std .interior-tabla tr:last-child :is(th, td) { border-bottom: 0; }
+.std .interior-tabla th { font-weight: 600; background: var(--std-parchment); }
+
+/* Preguntas frecuentes: diez pares de pregunta y respuesta, siempre visibles. */
+.std .faq-item { padding-block: 24px; border-bottom: 1px solid var(--std-linea); }
+.std .faq-item:last-child { border-bottom: 0; }
+.std .interior-bloque .faq-question { margin: 0 0 12px; font-size: 21px; line-height: 1.24; }
+.std .interior-bloque .faq-answer { margin: 0; }
+
+/* Cierre en negro y pie propio de la FAQ inglesa. */
+.std .editorial.interior-cierre { text-align: center; }
+.std .interior-cierre p { color: var(--std-linea); }
+.std .interior-pie { background: var(--std-parchment); color: var(--std-tinta); }
+.std .interior-pie p { max-width: 1024px; margin: 0 auto; padding: 56px 22px; }
+.std .interior-pie a { display: inline-flex; align-items: center; min-height: 44px; }
+
+@media (max-width: 640px) {
+  .std .interior-bloque h2 { font-size: 28px; }
+  .std .interior-bloque :is(.ai-capsule, .toc, .results-box, .highlight-box) { padding: 20px; }
+}

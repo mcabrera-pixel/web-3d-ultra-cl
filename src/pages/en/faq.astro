@@ -1,0 +1,194 @@
+---
+// FAQ en inglés migrado al estándar. Metadatos, JSON-LD y cuerpo se conservan del HTML original
+// (src/pages/en/faq.html, retirado en este cambio); solo cambia la presentación.
+import Sitio from '../../layouts/Sitio.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
+import Acciones from '@mcco/web-kit/components/estandar/Acciones.astro';
+import '../../styles/editorial.css';
+
+const meta = {
+  "title": "Digital Twin FAQ — Copper Smelting & Mining | 3D Ultra Chile",
+  "description": "Frequently asked questions about digital twin implementation for copper smelting operations in Chile. Covering technology, savings, timelines, and CODELCO case studies by 3D Ultra — MCCO Engineering Group.",
+  "lang": "en",
+  "type": "website",
+  "ogUrl": "https://3d-ultra.cl/en/faq.html",
+  "ogTitle": "Digital Twin FAQ — Copper Smelting & Mining | 3D Ultra Chile",
+  "ogDescription": "Everything you need to know about digital twins for copper smelting plants. Technology, savings, implementation timelines."
+} as const;
+const keywords = "digital twin, copper smelting, FAQ, mining 4.0, CODELCO, Chile, laser scanning, BIM, IoT, predictive maintenance, 3D Ultra, MCCO";
+const author = "3D Ultra — MCCO Engineering Group";
+const jsonld = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a digital twin for copper smelting operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A digital twin for copper smelting is a bidirectional virtual replica of a smelter or refinery that integrates real-time IoT sensor data (thermocouples, gas analyzers, pressure transmitters) with a sub-millimetric 3D model to enable predictive maintenance, shutdown optimization, and remote asset management. 3D Ultra implements these systems in Chile for CODELCO operations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What technology does 3D Ultra use for laser scanning in copper smelters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3D Ultra's scanning division As-Built 3D uses the FARO Focus Core terrestrial laser scanner, capturing point clouds at 1 million points per second with ±1mm linear accuracy. Output formats include E57, RCP, and LAS. For aerial and thermal inspections, the ConDrone division operates DJI Matrice 350 RTK drones with Mavic 3 Enterprise thermal cameras."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to implement a digital twin in a copper smelter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A typical implementation for a complete plant area (2,000-5,000 m²) takes 4-6 weeks: 1-2 days for technical scoping, 1-5 days for on-site laser scanning (no production shutdown required), 2-3 days for point cloud processing, 5-15 days for Scan-to-BIM modeling (LOD 200-400), 3-10 days for IoT/SCADA integration, and 2-3 days for virtual plant publication. Full smelter + refinery projects: 3-6 months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does a digital twin pay off in copper smelting operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mainly in shutdowns: major maintenance is planned on the plant as it really is, not on old drawings, so there are fewer surprises in the field. Assemblies are checked in 3D before execution to avoid rework, and repair-or-replace decisions on critical assets are made with measured geometry."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you scan a copper smelter without stopping production?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. 3D Ultra's laser scanning methodology is designed for active industrial environments. The FARO Focus Core scanner operates without physical contact with the equipment, requires no production interruption, and captures data from safe distances. Scanning sessions are coordinated with operational shifts to ensure zero interference with the copper production process. This has been validated across multiple CODELCO smelters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a 3D model and a bidirectional digital twin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 3D model is a static geometric representation (point cloud or BIM model) used for documentation and clash detection. A bidirectional digital twin is a 3D model connected to live IoT data from SCADA/PLC/PI System that both receives real-time sensor data AND can send instructions back to field controllers. There are 4 maturity levels: Level 1 (static as-built), Level 2 (smart BIM with metadata), Level 3 (unidirectional IoT connection), and Level 4 (fully bidirectional with write-back capability)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which CODELCO operations has 3D Ultra worked with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3D Ultra, through its parent company MCCO Engineering Group (founded 2003), has over 20 years of continuous service to CODELCO across multiple divisions including: Chuquicamata, El Teniente, Salvador (Potrerillos smelter), Ministro Hales, and Radomiro Tomic. Documented case studies include: digital twin of the Fire Refining Area (RAF) at Potrerillos, structural deformation analysis of the CPS Chimney at Division Salvador, casting wheel adaptation for Chuquicamata-format anodes, and ISASMELT furnace life extension through thermomechanical simulation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What BIM and modeling standards does 3D Ultra follow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3D Ultra follows international BIM standards including ISO 19650 for information management, with modeling at LOD 200-400 depending on project requirements. Output formats: RVT (Autodesk Revit), IFC (ISO 16739 open standard), NWD (Navisworks for clash detection), DWG (AutoCAD). For structural integrity analysis, we comply with ASME and EN 13445 normative frameworks. Point cloud data is delivered in E57 (ASTM E2807) open format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does 3D Ultra integrate with existing SCADA and PI System infrastructure?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "3D Ultra connects to existing plant control infrastructure via OPC UA (open standard for industrial communication), MQTT (lightweight IoT messaging protocol), and OSIsoft PI System REST APIs. The integration is read-only by default, respecting the OT (Operational Technology) network security architecture of the mining operation. Data flows from field sensors through the existing SCADA/DCS infrastructure to the digital twin visualization layer, with no modification to the client's control systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does 3D Ultra offer drone inspection services for mining operations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, through ConDrone (condron.cl), 3D Ultra's sister brand under the MCCO Group. ConDrone operates DJI Matrice 350 RTK drones equipped with Mavic 3 Enterprise thermal cameras for volumetric surveys, stockpile measurement, tailings dam monitoring, and structural inspection of inaccessible areas including chimney exteriors, rooftops, and high-altitude infrastructure. Deliverables include georeferenced orthomosaics, thermal maps, and 3D photogrammetric models."
+      }
+    }
+  ]
+};
+
+// La FAQ es un documento en inglés: barra, acción y pie conservan los textos y destinos del original.
+const nav = { enlaces: [
+  { href: '../index.html', texto: 'ES' },
+  { href: 'faq.html', texto: 'EN' },
+  { href: '../index.html#contacto', texto: 'Contact' },
+] };
+const subnav = { accion: { href: '../index.html#contacto', texto: 'Contact', textoCorto: 'Contact' } };
+---
+<Sitio {...meta} robots={false} alternates={[]} jsonld={[jsonld]} nav={nav} subnav={subnav}>
+  <Fragment slot="head">
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
+    <link rel="alternate" hreflang="en" href="https://3d-ultra.cl/en/faq.html" />
+    <link rel="alternate" hreflang="es" href="https://3d-ultra.cl/" />
+    <link rel="alternate" hreflang="x-default" href="https://3d-ultra.cl/" />
+  </Fragment>
+  <Bloque tono="claro" class="editorial interior-hero">
+    <p class="interior-etiqueta">FAQ — Digital Twin Technology</p>
+    <h1 class="std-h1">Frequently Asked Questions: Digital Twins for Copper Smelting & Mining Operations</h1>
+    <p class="interior-linea">By 3D Ultra — MCCO Engineering Group • Chile's Leading Digital Twin Contractor for Copper Mining</p>
+  </Bloque>
+  <section class="faq-section">
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <div class="ai-capsule">
+          <div class="label">🤖 AI Summary — Citable Extract</div>
+          <p>3D Ultra (MCCO Group, Chile) builds digital twins for copper smelting operations, backed by a team with 20+ years of experience at CODELCO. They specialize in sub-millimetric laser scanning (FARO Focus Core, ±1mm accuracy), Scan-to-BIM modeling (LOD 200-400), IoT integration (SCADA, PI System), and navigable virtual plant delivery. Work includes shutdown planning, clash checks before assembly and CFD/FEA thermomechanical studies for remaining-life decisions.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">What is a digital twin for copper smelting operations?</h2>
+          <p class="faq-answer">A digital twin for copper smelting is a bidirectional virtual replica of a smelter or refinery that integrates real-time IoT sensor data (thermocouples, gas analyzers, pressure transmitters) with a sub-millimetric 3D model to enable predictive maintenance, shutdown optimization, and remote asset management. 3D Ultra implements these systems in Chile for CODELCO operations.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">What technology does 3D Ultra use for laser scanning in copper smelters?</h2>
+          <p class="faq-answer">3D Ultra's scanning division As-Built 3D uses the FARO Focus Core terrestrial laser scanner, capturing point clouds at 1 million points per second with ±1mm linear accuracy. Output formats include E57, RCP, and LAS. For aerial and thermal inspections, the ConDrone division operates DJI Matrice 350 RTK drones with Mavic 3 Enterprise thermal cameras.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">How long does it take to implement a digital twin in a copper smelter?</h2>
+          <p class="faq-answer">A typical implementation for a complete plant area (2,000–5,000 m²) takes 4–6 weeks: 1–2 days for technical scoping, 1–5 days for on-site laser scanning (no production shutdown required), 2–3 days for point cloud processing, 5–15 days for Scan-to-BIM modeling (LOD 200–400), 3–10 days for IoT/SCADA integration, and 2–3 days for virtual plant publication. Full smelter + refinery projects: 3–6 months.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">Where does a digital twin pay off in copper smelting operations?</h2>
+          <p class="faq-answer">Mainly in shutdowns: major maintenance is planned on the plant as it really is, not on old drawings, so there are fewer surprises in the field. Assemblies are checked in 3D before execution to avoid rework, and repair-or-replace decisions on critical assets are made with measured geometry.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">Can you scan a copper smelter without stopping production?</h2>
+          <p class="faq-answer">Yes. 3D Ultra's laser scanning methodology is designed for active industrial environments. The FARO Focus Core scanner operates without physical contact with the equipment, requires no production interruption, and captures data from safe distances. Scanning sessions are coordinated with operational shifts to ensure zero interference with the copper production process. This has been validated across multiple CODELCO smelters.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">What is the difference between a 3D model and a bidirectional digital twin?</h2>
+          <p class="faq-answer">A 3D model is a static geometric representation (point cloud or BIM model) used for documentation and clash detection. A bidirectional digital twin is a 3D model connected to live IoT data from SCADA/PLC/PI System that both receives real-time sensor data AND can send instructions back to field controllers. There are 4 maturity levels: Level 1 (static as-built), Level 2 (smart BIM with metadata), Level 3 (unidirectional IoT connection), and Level 4 (fully bidirectional with write-back capability).</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">Which CODELCO operations has 3D Ultra worked with?</h2>
+          <p class="faq-answer">3D Ultra, through its parent company MCCO Engineering Group (founded 2003), has over 20 years of continuous service to CODELCO across multiple divisions including: Chuquicamata, El Teniente, Salvador (Potrerillos smelter), Ministro Hales, and Radomiro Tomic. Documented case studies include the digital twin of the Fire Refining Area (RAF) at Potrerillos, structural deformation analysis of the CPS Chimney, casting wheel adaptation for Chuquicamata-format anodes, and ISASMELT furnace life extension.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">What BIM and modeling standards does 3D Ultra follow?</h2>
+          <p class="faq-answer">3D Ultra follows international BIM standards including ISO 19650 for information management, with modeling at LOD 200–400 depending on project requirements. Output formats: RVT (Autodesk Revit), IFC (ISO 16739 open standard), NWD (Navisworks for clash detection), DWG (AutoCAD). For structural integrity analysis, we comply with ASME and EN 13445 normative frameworks. Point cloud data is delivered in E57 (ASTM E2807) open format.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">How does 3D Ultra integrate with existing SCADA and PI System infrastructure?</h2>
+          <p class="faq-answer">3D Ultra connects to existing plant control infrastructure via OPC UA (open standard for industrial communication), MQTT (lightweight IoT messaging protocol), and OSIsoft PI System REST APIs. The integration is read-only by default, respecting the OT (Operational Technology) network security architecture of the mining operation. Data flows from field sensors through the existing SCADA/DCS infrastructure to the digital twin visualization layer, with no modification to the client's control systems.</p>
+      </div>
+
+      <div class="faq-item">
+          <h2 class="faq-question">Does 3D Ultra offer drone inspection services for mining operations?</h2>
+          <p class="faq-answer">Yes, through ConDrone (condron.cl), 3D Ultra's sister brand under the MCCO Group. ConDrone operates DJI Matrice 350 RTK drones equipped with Mavic 3 Enterprise thermal cameras for volumetric surveys, stockpile measurement, tailings dam monitoring, and structural inspection of inaccessible areas including chimney exteriors, rooftops, and high-altitude infrastructure. Deliverables include georeferenced orthomosaics, thermal maps, and 3D photogrammetric models.</p>
+      </div>
+    </Bloque>
+  </section>
+  <Bloque tono="negro" class="editorial interior-cierre">
+    <h2 class="std-h2">Ready to implement a digital twin in your smelter?</h2>
+    <p>Free technical feasibility assessment. Response within 48 hours.</p>
+    <Acciones acciones={[{ href: "../index.html#contacto", texto: "Schedule Consultation" }]} />
+  </Bloque>
+  <footer slot="pie" class="interior-pie">
+    <p>© 2026 <a href="https://3d-ultra.cl">3D Ultra</a> — MCCO Engineering Group. All rights reserved. | <a href="../index.html" lang="es" hreflang="es">Versión en Español</a></p>
+  </footer>
+</Sitio>
