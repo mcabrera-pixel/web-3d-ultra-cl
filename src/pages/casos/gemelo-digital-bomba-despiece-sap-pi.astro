@@ -1,7 +1,8 @@
 ---
 // Caso de demostración (13-nov-2026): lo hizo 3D Ultra con datos de ejemplo, no es un proyecto de un cliente.
-// Abre la muestra interactiva publicada en /muestras/bomba/ (noindex, fuera del sitemap). Las capturas vienen de esa
-// muestra y llevan el rótulo «Captura de la muestra»; procedencia y pesos en docs/MEDIOS-ESTANDAR.md.
+// Abre las dos versiones de la muestra interactiva, /muestras/bomba/ (detallada) y /muestras/bomba-esencial/ (esencial),
+// ambas noindex y fuera del sitemap; se importan con scripts/importar-muestra.mjs. Las capturas vienen de esas muestras
+// y llevan el rótulo «Captura de la muestra»; procedencia y pesos en docs/MEDIOS-ESTANDAR.md.
 import Sitio from '../../layouts/Sitio.astro';
 import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
 import Acciones from '@mcco/web-kit/components/estandar/Acciones.astro';
@@ -9,7 +10,6 @@ import '@mcco/web-kit/styles/estandar-componentes.css';
 import '../../styles/editorial.css';
 
 const URL_CASO = 'https://3d-ultra.cl/casos/gemelo-digital-bomba-despiece-sap-pi';
-const MUESTRA = '/muestras/bomba/';
 const meta = {
   title: 'Gemelo digital de una bomba con SAP y PI | 3D Ultra',
   description: 'Caso de demostración de 3D Ultra: una sala de bombas en 3D, con despiece según el manual de partes y datos de ejemplo de SAP y PI enlazados por TAG.',
@@ -39,8 +39,13 @@ const capturas: Record<string, Captura> = {
   despiece: { src: '/media/captura/bomba/bomba-despiece-1280.webp', rotulo: ROTULO, alt: 'Despiece de la bomba a lo largo del eje, en dos filas, con el número de cada pieza del manual.', pie: 'Despiece en dos filas: hidráulica y cierre al fondo, eje y cojinetes al frente.' },
   pieza: { src: '/media/captura/bomba/bomba-pieza-230-1280.webp', rotulo: ROTULO, alt: 'Ficha del rodete, pieza 230 del manual, con su material, código SAP, stock en bodega y página del manual.', pie: 'Ficha de la pieza 230, el rodete.' },
   evento: { src: '/media/captura/bomba/bomba-evento-1280.webp', rotulo: ROTULO, alt: 'Evento de ejemplo: la vibración del rodamiento sube, la pieza 321 se destaca en el modelo y aparecen el aviso y la orden.', pie: 'Evento de ejemplo en cuatro pasos: operación, modelo 3D, mantenimiento y repuesto.' },
+  esencial: { src: '/media/captura/bomba/bomba-esencial-modelo-1280.webp', rotulo: ROTULO, alt: 'Versión esencial de la muestra: sala de bombas en 3D con la lista de piezas del manual a la izquierda y la ficha del equipo a la derecha.', pie: 'Versión esencial: la lista de piezas, el modelo y la ficha del equipo en una sola vista.' },
   pi: { src: '/media/captura/bomba/bomba-operacion-pi-1280.webp', rotulo: ROTULO, alt: 'Panel de operación con las señales de la bomba, su estado y sus umbrales de alarma.', pie: 'Señales de operación con tendencia y umbrales. Datos de ejemplo.' },
 };
+const versiones = [
+  { nombre: 'Versión detallada', base: '/muestras/bomba/', despiece: '/muestras/bomba/?vista=despiece&pieza=230', evento: '/muestras/bomba/?evento=1', texto: 'Geometría más fiel de la bomba, con corte por el eje y rayos X para ver las piezas internas sin desarmar.', captura: 'modelo' },
+  { nombre: 'Versión esencial', base: '/muestras/bomba-esencial/', despiece: '/muestras/bomba-esencial/?vista=despiece&pieza=230', evento: '/muestras/bomba-esencial/?evento=1', texto: 'Clara y directa, con la ficha de cada pieza y los paneles de SAP y PI a la vista.', captura: 'esencial' },
+] as const;
 const etapas = [
   { titulo: 'Levantamiento con escáner láser', texto: 'El escáner se instala en varias estaciones alrededor de las bombas y mide la sala tal como está construida, con dianas en los muros para unir las estaciones después. En la muestra son cuatro estaciones simuladas.' },
   { titulo: 'Nube de puntos registrada', texto: 'Las estaciones se unen en una sola nube, en metros y con coordenadas comunes. Sobre ella se mide y se modela. La muestra trae una nube simulada desde el modelo y acepta una nube real del escáner con el mismo formato, sin cambiar la página.' },
@@ -59,9 +64,8 @@ const etapas = [
     <h1 class="std-h1">Gemelo digital de una bomba: del escáner láser al despiece con SAP y PI</h1>
     <p class="interior-linea">Por 3D Ultra · Noviembre de 2026 · Bombas de agua de proceso</p>
     <Acciones acciones={[
-      { href: MUESTRA, texto: 'Abrir la muestra interactiva' },
-      { href: '/muestras/bomba/?vista=despiece&pieza=230', texto: 'Ver el despiece', variante: 'fantasma' },
-      { href: '/muestras/bomba/?evento=1', texto: 'Ver el evento de ejemplo', variante: 'fantasma' },
+      { href: '/muestras/bomba/', texto: 'Abrir la muestra interactiva' },
+      { href: '/muestras/bomba-esencial/', texto: 'Abrir la versión esencial', variante: 'fantasma' },
     ]} />
   </Bloque>
   <article>
@@ -70,16 +74,33 @@ const etapas = [
         <h2>Qué es este caso</h2>
         <p>Es un caso de demostración que armó 3D Ultra para mostrar cómo se ve el resultado. No es un proyecto de un cliente. La sala, la bomba PP-101 y todos los datos de SAP y PI son de ejemplo, y la página lo dice a la vista. La nube de puntos de la muestra pública está simulada desde el modelo. En un proyecto real se reemplaza por la nube del escáner.</p>
       </div>
-      <figure class="caso-figura">
-        <div class="caso-marco"><img src={capturas.modelo.src} alt={capturas.modelo.alt} width="1280" height="800" decoding="async" fetchpriority="high" data-origen="captura" /><span class="std-rotulo" data-rotulo>{capturas.modelo.rotulo}</span></div>
-        <figcaption class="std-galeria__pie">{capturas.modelo.pie}</figcaption>
-      </figure>
     </Bloque>
     <Bloque tono="claro" class="editorial interior-bloque">
+      <h2>Dos versiones de la misma muestra</h2>
+      <p>La muestra se abre en dos versiones, con la misma sala, la misma bomba y los mismos datos de ejemplo. Cada una abre también directo en el despiece, con el rodete seleccionado, o en el evento de ejemplo.</p>
+      <ul class="caso-versiones" role="list">
+        {versiones.map((v, i) => (
+          <li>
+            <h3>{v.nombre}</h3>
+            <p>{v.texto}</p>
+            <figure class="caso-figura">
+              <div class="caso-marco"><img src={capturas[v.captura].src} alt={capturas[v.captura].alt} width="1280" height="800" decoding="async" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} data-origen="captura" /><span class="std-rotulo" data-rotulo>{capturas[v.captura].rotulo}</span></div>
+              <figcaption class="std-galeria__pie">{capturas[v.captura].pie}</figcaption>
+            </figure>
+            <Acciones tamano="chica" acciones={[
+              { href: v.base, texto: 'Abrir', oculto: ` la ${v.nombre.toLowerCase()}` },
+              { href: v.despiece, texto: 'Ver el despiece', variante: 'fantasma', oculto: ` en la ${v.nombre.toLowerCase()}` },
+              { href: v.evento, texto: 'Ver el evento', variante: 'fantasma', oculto: ` en la ${v.nombre.toLowerCase()}` },
+            ]} />
+          </li>
+        ))}
+      </ul>
+    </Bloque>
+    <Bloque tono="parchment" class="editorial interior-bloque">
       <h2>La pregunta</h2>
       <p>En una reunión, un cliente minero preguntó cómo se vería su planta levantada con escáner láser y llevada a 3D en la web. Quería seleccionar una bomba, ver su despiece según el manual de partes y tener al lado los datos de mantenimiento y de operación. Este caso responde esa pregunta con una sala de bombas de agua de proceso y una bomba centrífuga horizontal de una etapa.</p>
     </Bloque>
-    <Bloque tono="parchment" class="editorial interior-bloque">
+    <Bloque tono="claro" class="editorial interior-bloque">
       <h2>El recorrido en seis etapas</h2>
       <ol class="caso-etapas">
         {etapas.map((e, i) => <li><h3>{i + 1}. {e.titulo}</h3><p>{e.texto}</p></li>)}
@@ -95,12 +116,15 @@ const etapas = [
         ))}
       </ul>
     </Bloque>
-    <Bloque tono="claro" class="editorial interior-bloque">
+    <Bloque tono="parchment" class="editorial interior-bloque">
       <h2>El evento de ejemplo</h2>
       <p>La muestra trae un evento que recorre el camino completo. Sube la vibración del rodamiento del lado acoplamiento y cruza la alarma en PI. La pieza 321, el rodamiento de bolas, se destaca en el modelo. En SAP aparecen el aviso y la orden para cambiarlo. La ficha de la pieza muestra el repuesto con su stock y su bodega.</p>
-      <Acciones acciones={[{ href: '/muestras/bomba/?evento=1', texto: 'Ver el evento de ejemplo', variante: 'fantasma' }]} />
+      <Acciones acciones={[
+        { href: '/muestras/bomba/?evento=1', texto: 'Ver el evento en la versión detallada', variante: 'fantasma' },
+        { href: '/muestras/bomba-esencial/?evento=1', texto: 'Ver el evento en la versión esencial', variante: 'fantasma' },
+      ]} />
     </Bloque>
-    <Bloque tono="parchment" class="editorial interior-bloque">
+    <Bloque tono="claro" class="editorial interior-bloque">
       <h2>Qué resuelve para mantenimiento</h2>
       <ul>
         <li>Ubicar una pieza y su número de manual en el equipo, sin buscar en el PDF.</li>
@@ -110,7 +134,7 @@ const etapas = [
         <li>Mandar un enlace al estado exacto que hay que revisar: una pieza, una señal o un evento.</li>
       </ul>
     </Bloque>
-    <Bloque tono="claro" class="editorial interior-bloque">
+    <Bloque tono="parchment" class="editorial interior-bloque">
       <h2>Qué entrega 3D Ultra</h2>
       <ul>
         <li>Levantamiento con escáner láser y nube de puntos registrada de la sala.</li>
@@ -132,11 +156,18 @@ const etapas = [
 </Sitio>
 
 <style>
-  .caso-figura { margin: 32px 0 0; }
+  /* Las figuras que son hijas de la columna editorial quedan centradas: solo llevan margen en bloque, porque el margen
+     en línea (auto) lo pone .std .editorial > *. Las que van dentro de una lista ocupan su celda entera. */
+  .caso-figura { margin-block: 24px 0; }
+  .caso-galeria figure, .caso-versiones figure { margin-inline: 0; }
   .caso-marco { position: relative; overflow: hidden; border-radius: var(--std-radio-tarjeta, 18px); background: #050505; }
   .caso-marco img { display: block; width: 100%; height: auto; }
-  .caso-etapas { list-style: none; padding: 0; }
+  /* :global(.std) iguala la especificidad de las listas editoriales (.std .editorial ul) para quitarles la sangría. */
+  :global(.std) .caso-etapas { list-style: none; padding: 0; }
   .caso-etapas li + li { margin-top: 20px; }
-  .caso-galeria { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
-  @media (max-width: 833px) { .caso-galeria { grid-template-columns: 1fr; } }
+  :global(.std) .caso-galeria { list-style: none; padding: 0; margin-block: 8px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+  :global(.std) .caso-versiones { list-style: none; padding: 0; margin-block: 24px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 24px; }
+  .caso-versiones h3 { margin-block: 0 8px; }
+  .caso-versiones figure { margin-block: 16px; }
+  @media (max-width: 833px) { :global(.std) .caso-galeria, :global(.std) .caso-versiones { grid-template-columns: 1fr; } }
 </style>
