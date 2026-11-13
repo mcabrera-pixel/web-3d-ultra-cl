@@ -1,0 +1,142 @@
+---
+// Caso de demostración (13-nov-2026): lo hizo 3D Ultra con datos de ejemplo, no es un proyecto de un cliente.
+// Abre la muestra interactiva publicada en /muestras/bomba/ (noindex, fuera del sitemap). Las capturas vienen de esa
+// muestra y llevan el rótulo «Captura de la muestra»; procedencia y pesos en docs/MEDIOS-ESTANDAR.md.
+import Sitio from '../../layouts/Sitio.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
+import Acciones from '@mcco/web-kit/components/estandar/Acciones.astro';
+import '@mcco/web-kit/styles/estandar-componentes.css';
+import '../../styles/editorial.css';
+
+const URL_CASO = 'https://3d-ultra.cl/casos/gemelo-digital-bomba-despiece-sap-pi';
+const MUESTRA = '/muestras/bomba/';
+const meta = {
+  title: 'Gemelo digital de una bomba con SAP y PI | 3D Ultra',
+  description: 'Caso de demostración de 3D Ultra: una sala de bombas en 3D, con despiece según el manual de partes y datos de ejemplo de SAP y PI enlazados por TAG.',
+  lang: 'es',
+  type: 'article' as const,
+  ogImage: '/media/captura/bomba/og-bomba.webp',
+};
+const jsonld = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'Gemelo digital de una bomba: del escáner láser al despiece con SAP y PI',
+  description: 'Caso de demostración hecho por 3D Ultra con datos de ejemplo: levantamiento, nube de puntos, modelo 3D con TAG, despiece según el manual de partes y conexión con datos de mantenimiento (SAP) y de operación (PI).',
+  author: { '@type': 'Organization', name: '3D Ultra', url: 'https://3d-ultra.cl' },
+  publisher: { '@type': 'Organization', name: '3D Ultra', url: 'https://3d-ultra.cl' },
+  datePublished: '2026-11-13',
+  dateModified: '2026-11-13',
+  mainEntityOfPage: URL_CASO,
+  inLanguage: 'es-CL',
+  about: ['Digital Twin Technology', 'Centrifugal Pump Maintenance', 'Exploded View', 'SAP Plant Maintenance', 'Process Historian'],
+};
+
+interface Captura { src: string; alt: string; rotulo: string; pie?: string }
+const ROTULO = 'Captura de la muestra';
+const capturas: Record<string, Captura> = {
+  modelo: { src: '/media/captura/bomba/bomba-modelo-1280.webp', rotulo: ROTULO, alt: 'Sala de bombas en 3D con la bomba PP-101, la bomba de respaldo PP-102, las tuberías y los TAG de cada instrumento.', pie: 'Modelo 3D con TAG. A la derecha, la ficha del equipo con sus señales de operación.' },
+  nube: { src: '/media/captura/bomba/bomba-nube-1280.webp', rotulo: `${ROTULO} · Nube simulada desde el modelo`, alt: 'Nube de puntos de la sala de bombas con las cuatro estaciones del escáner marcadas.', pie: 'La nube de la muestra pública está simulada desde el modelo, con cuatro estaciones de escáner.' },
+  despiece: { src: '/media/captura/bomba/bomba-despiece-1280.webp', rotulo: ROTULO, alt: 'Despiece de la bomba a lo largo del eje, en dos filas, con el número de cada pieza del manual.', pie: 'Despiece en dos filas: hidráulica y cierre al fondo, eje y cojinetes al frente.' },
+  pieza: { src: '/media/captura/bomba/bomba-pieza-230-1280.webp', rotulo: ROTULO, alt: 'Ficha del rodete, pieza 230 del manual, con su material, código SAP, stock en bodega y página del manual.', pie: 'Ficha de la pieza 230, el rodete.' },
+  evento: { src: '/media/captura/bomba/bomba-evento-1280.webp', rotulo: ROTULO, alt: 'Evento de ejemplo: la vibración del rodamiento sube, la pieza 321 se destaca en el modelo y aparecen el aviso y la orden.', pie: 'Evento de ejemplo en cuatro pasos: operación, modelo 3D, mantenimiento y repuesto.' },
+  pi: { src: '/media/captura/bomba/bomba-operacion-pi-1280.webp', rotulo: ROTULO, alt: 'Panel de operación con las señales de la bomba, su estado y sus umbrales de alarma.', pie: 'Señales de operación con tendencia y umbrales. Datos de ejemplo.' },
+};
+const etapas = [
+  { titulo: 'Levantamiento con escáner láser', texto: 'El escáner se instala en varias estaciones alrededor de las bombas y mide la sala tal como está construida, con dianas en los muros para unir las estaciones después. En la muestra son cuatro estaciones simuladas.' },
+  { titulo: 'Nube de puntos registrada', texto: 'Las estaciones se unen en una sola nube, en metros y con coordenadas comunes. Sobre ella se mide y se modela. La muestra trae una nube simulada desde el modelo y acepta una nube real del escáner con el mismo formato, sin cambiar la página.' },
+  { titulo: 'Modelo 3D con TAG', texto: 'Cada equipo y cada instrumento se modela sobre la nube y recibe su TAG de planta: la bomba PP-101 en servicio, la PP-102 de respaldo, el motor, las válvulas y los transmisores de caudal, presión, vibración y temperatura.' },
+  { titulo: 'Despiece según el manual de partes', texto: 'La bomba se separa a lo largo del eje con la numeración de la tabla de piezas del manual del fabricante. Cada pieza es un objeto propio con su número, su denominación, su material, su código SAP, su stock y la página del manual donde aparece. Las piezas que el manual excluye para esta ejecución quedan marcadas.' },
+  { titulo: 'Conexión con SAP y PI', texto: 'El TAG es la llave común. De SAP salen el equipo, la ubicación técnica, los avisos, las órdenes, los planes y la lista de materiales enlazada con las piezas del 3D. De PI salen caudal, presiones, corriente del motor, vibración y temperatura de los rodamientos, con sus umbrales de alarma.' },
+  { titulo: 'Plataforma web', texto: 'Todo queda en una página que se abre en el navegador, también en el celular, sin instalar programas. Cada estado tiene su propio enlace, así que se puede mandar al equipo de mantenimiento la pieza o el evento exacto que hay que revisar.' },
+];
+---
+<Sitio {...meta} robots={false} alternates={[]} jsonld={[jsonld]}>
+  <Fragment slot="head">
+    <meta name="author" content="3D Ultra" />
+  </Fragment>
+  <Bloque tono="claro" class="editorial interior-hero">
+    <p class="interior-etiqueta">Caso de demostración · Datos de ejemplo</p>
+    <h1 class="std-h1">Gemelo digital de una bomba: del escáner láser al despiece con SAP y PI</h1>
+    <p class="interior-linea">Por 3D Ultra · Noviembre de 2026 · Bombas de agua de proceso</p>
+    <Acciones acciones={[
+      { href: MUESTRA, texto: 'Abrir la muestra interactiva' },
+      { href: '/muestras/bomba/?vista=despiece&pieza=230', texto: 'Ver el despiece', variante: 'fantasma' },
+      { href: '/muestras/bomba/?evento=1', texto: 'Ver el evento de ejemplo', variante: 'fantasma' },
+    ]} />
+  </Bloque>
+  <article>
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <div class="highlight-box">
+        <h2>Qué es este caso</h2>
+        <p>Es un caso de demostración que armó 3D Ultra para mostrar cómo se ve el resultado. No es un proyecto de un cliente. La sala, la bomba PP-101 y todos los datos de SAP y PI son de ejemplo, y la página lo dice a la vista. La nube de puntos de la muestra pública está simulada desde el modelo. En un proyecto real se reemplaza por la nube del escáner.</p>
+      </div>
+      <figure class="caso-figura">
+        <div class="caso-marco"><img src={capturas.modelo.src} alt={capturas.modelo.alt} width="1280" height="800" decoding="async" fetchpriority="high" data-origen="captura" /><span class="std-rotulo" data-rotulo>{capturas.modelo.rotulo}</span></div>
+        <figcaption class="std-galeria__pie">{capturas.modelo.pie}</figcaption>
+      </figure>
+    </Bloque>
+    <Bloque tono="claro" class="editorial interior-bloque">
+      <h2>La pregunta</h2>
+      <p>En una reunión, un cliente minero preguntó cómo se vería su planta levantada con escáner láser y llevada a 3D en la web. Quería seleccionar una bomba, ver su despiece según el manual de partes y tener al lado los datos de mantenimiento y de operación. Este caso responde esa pregunta con una sala de bombas de agua de proceso y una bomba centrífuga horizontal de una etapa.</p>
+    </Bloque>
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <h2>El recorrido en seis etapas</h2>
+      <ol class="caso-etapas">
+        {etapas.map((e, i) => <li><h3>{i + 1}. {e.titulo}</h3><p>{e.texto}</p></li>)}
+      </ol>
+      <ul class="caso-galeria" role="list">
+        {[capturas.nube, capturas.despiece, capturas.pieza, capturas.evento, capturas.pi].map((c) => (
+          <li>
+            <figure class="caso-figura">
+              <div class="caso-marco"><img src={c.src} alt={c.alt} width="1280" height="800" loading="lazy" decoding="async" data-origen="captura" /><span class="std-rotulo" data-rotulo>{c.rotulo}</span></div>
+              <figcaption class="std-galeria__pie">{c.pie}</figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </Bloque>
+    <Bloque tono="claro" class="editorial interior-bloque">
+      <h2>El evento de ejemplo</h2>
+      <p>La muestra trae un evento que recorre el camino completo. Sube la vibración del rodamiento del lado acoplamiento y cruza la alarma en PI. La pieza 321, el rodamiento de bolas, se destaca en el modelo. En SAP aparecen el aviso y la orden para cambiarlo. La ficha de la pieza muestra el repuesto con su stock y su bodega.</p>
+      <Acciones acciones={[{ href: '/muestras/bomba/?evento=1', texto: 'Ver el evento de ejemplo', variante: 'fantasma' }]} />
+    </Bloque>
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <h2>Qué resuelve para mantenimiento</h2>
+      <ul>
+        <li>Ubicar una pieza y su número de manual en el equipo, sin buscar en el PDF.</li>
+        <li>Ver el stock y la bodega del repuesto antes de planificar el trabajo.</li>
+        <li>Ver la tendencia que originó un aviso junto a la orden que lo atiende.</li>
+        <li>Preparar el desarme con el despiece del equipo, pieza por pieza.</li>
+        <li>Mandar un enlace al estado exacto que hay que revisar: una pieza, una señal o un evento.</li>
+      </ul>
+    </Bloque>
+    <Bloque tono="claro" class="editorial interior-bloque">
+      <h2>Qué entrega 3D Ultra</h2>
+      <ul>
+        <li>Levantamiento con escáner láser y nube de puntos registrada de la sala.</li>
+        <li>Modelo 3D de equipos, tuberías e instrumentos, cada uno con su TAG de planta.</li>
+        <li>Despiece de los equipos críticos según su manual de partes.</li>
+        <li>Tabla de enlace entre TAG, equipo SAP, punto de PI y pieza del manual, validada con mantenimiento.</li>
+        <li>Plataforma web con acceso para el equipo del cliente, en computador y celular.</li>
+        <li>Conexión de solo lectura con SAP y PI a través de un intermediario, con las credenciales fuera de la página.</li>
+      </ul>
+      <p>Para pasar de los datos de ejemplo a los reales, el cliente entrega la lista de TAG con su equipo SAP, los puntos de PI con sus límites de alarma, los manuales de partes o las listas de materiales, y un acceso de solo lectura a ambos sistemas.</p>
+      <p>En la <a href="/biblioteca/">biblioteca de equipos mineros</a> puede ver otros equipos en 3D y lo que podemos hacer con ese modelo.</p>
+    </Bloque>
+  </article>
+  <Bloque tono="negro" class="editorial interior-cierre">
+    <h2 class="std-h2">¿Quiere ver sus equipos así?</h2>
+    <p>Evaluamos la viabilidad técnica de su proyecto sin costo.</p>
+    <Acciones acciones={[{ href: '/#contacto', texto: 'Hablar con un ingeniero' }]} />
+  </Bloque>
+</Sitio>
+
+<style>
+  .caso-figura { margin: 32px 0 0; }
+  .caso-marco { position: relative; overflow: hidden; border-radius: var(--std-radio-tarjeta, 18px); background: #050505; }
+  .caso-marco img { display: block; width: 100%; height: auto; }
+  .caso-etapas { list-style: none; padding: 0; }
+  .caso-etapas li + li { margin-top: 20px; }
+  .caso-galeria { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+  @media (max-width: 833px) { .caso-galeria { grid-template-columns: 1fr; } }
+</style>
