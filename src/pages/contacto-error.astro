@@ -1,19 +1,21 @@
 ---
-import Base from '@mcco/web-kit/layouts/Base.astro';
+import Sitio from '../layouts/Sitio.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';
-import '../styles/theme.css';
+import '../styles/editorial.css';
 const site = loadSite();
 const wa = site.contact.whatsapp?.replace(/\D/g, '');
 ---
-<Base title={`No pudimos enviar tu mensaje | ${site.name}`} description="El formulario no se pudo enviar. Escríbenos por WhatsApp o correo y te respondemos igual." noindex={true}>
-  <main class="thanks">
-    <h1>No pudimos enviar tu mensaje</h1>
-    <p>Algo falló al procesar el formulario. Puedes intentarlo de nuevo o escribirnos directo:</p>
+<Sitio title={`No pudimos enviar tu mensaje | ${site.name}`} description="El formulario no se pudo enviar. Escríbenos por WhatsApp o correo y te respondemos igual." noindex={true}>
+  <Bloque tono="claro" class="editorial">
+    <h1 class="std-h1">No pudimos enviar tu mensaje</h1>
+    {/* Con reason=demora el Worker pudo recibir el lead aunque venció el plazo. El texto es el mismo para todos los
+        motivos (página estática, sin JS) y por eso no invita a reenviar sin advertir el riesgo de duplicarlo. */}
+    <p>Algo falló al procesar el formulario. Si la página tardó en responder, tu mensaje pudo llegar igual. Antes de enviarlo otra vez, escríbenos directo y te confirmamos si lo recibimos.</p>
     <ul>
       {wa && <li><a href={`https://wa.me/${wa}`} rel="noopener">WhatsApp</a></li>}
       {site.contact.email && <li><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>}
     </ul>
     <p><a href="/#contacto">Volver al formulario</a></p>
-  </main>
-</Base>
-<style>.thanks { max-width: 640px; margin: 0 auto; padding: 4rem 1rem; }</style>
+  </Bloque>
+</Sitio>

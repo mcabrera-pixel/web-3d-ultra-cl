@@ -1,0 +1,20 @@
+{
+ "origen": "simulada",
+ "puntos": 320000,
+ "archivo": "nube.bin",
+ "caja": [
+  -6.628,
+  -0.102,
+  -5.627,
+  6.502,
+  6.202,
+  5.002
+ ],
+ "estaciones": [
+  87958,
+  138286,
+  24122,
+  69634
+ ],
+ "nota": "Nube simulada desde el modelo 3D: muestreo de superficies con ruido de 5 mm. Se reemplaza por la nube registrada del escáner con el mismo formato."
+}

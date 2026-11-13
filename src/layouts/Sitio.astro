@@ -1,0 +1,46 @@
+---
+import type { ComponentProps } from 'astro/types';
+import Estandar from '@mcco/web-kit/layouts/Estandar.astro';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import PieSitio from '../components/PieSitio.astro';
+import { enlaces, accionContacto } from '../data/navegacion';
+import '../styles/theme.css';
+
+type EstandarProps = ComponentProps<typeof Estandar>;
+// Hereda íntegro el contrato de Head y bodyClass. El bloque corporativo
+// pertenece a Estandar; el slot pie reemplaza solo el pie local.
+interface Props extends Omit<EstandarProps, 'nav' | 'subnav' | 'footer'> {
+  nav?: Partial<EstandarProps['nav']>;
+  subnav?: Partial<EstandarProps['subnav']>;
+}
+const { nav, subnav, ...metadatos } = Astro.props;
+const site = loadSite();
+const navegacion: EstandarProps['nav'] = {
+  logo: { src: site.seo.logo, alt: site.name, width: 512, height: 512 },
+  enlaces,
+  ...nav,
+};
+const secundaria: EstandarProps['subnav'] = {
+  titulo: site.name,
+  enlaces: [],
+  accion: accionContacto(Astro.url.pathname),
+  ...subnav,
+};
+---
+<Estandar {...metadatos} nav={navegacion} subnav={secundaria}>
+  <Fragment slot="head">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <slot name="head" />
+  </Fragment>
+  <slot />
+  <slot name="pie" slot="pie"><PieSitio /></slot>
+</Estandar>
+
+<style>
+  /* El original cuadrado tiene margen vacío. El encuadre conserva toda
+     la marca y su color, sin generar otra imagen ni alterar el archivo. */
+  :global(body.std .std-gnav .std-gnav__logo img) { width: 72px; height: 44px; object-fit: cover; }
+  /* La barra negra no lleva data-std-oscuro en v1.2.0. */
+  :global(.std .std-gnav :focus-visible),
+  :global(.std .std-subnav.is-oscura :focus-visible) { outline-color: var(--accion-oscuro); }
+</style>

@@ -10,17 +10,18 @@
     "build": "astro build",
     "postbuild": "node scripts/sin-modelos.mjs --dist dist",
     "preview": "astro preview",
-    "check": "mcco-check --dist dist && node scripts/sin-modelos.mjs",
+    "check": "mcco-check --dist dist && node scripts/sin-modelos.mjs && node scripts/verificar-adopcion.mjs --base docs/registros/adopcion-3d-ultra/seo-antes.json --nuevo dist && node --test \"test/build/*.test.mjs\"",
     "parity": "mcco-parity",
     "headers": "mcco-headers",
     "test": "node --test \"test/*.test.mjs\""
   },
   "dependencies": {
-    "@mcco/web-kit": "github:mcabrera-pixel/mcco-web-kit#v1.1.3",
+    "@mcco/web-kit": "github:mcabrera-pixel/mcco-web-kit#v1.4.0",
     "astro": "^7.3.4",
     "three": "0.160.0"
   },
   "devDependencies": {
+    "parse5": "8.0.0",
     "wrangler": "^4.62.0"
   },
   "engines": {

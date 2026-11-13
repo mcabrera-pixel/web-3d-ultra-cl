@@ -1,0 +1,231 @@
+---
+// Guía migrado al estándar. Metadatos, JSON-LD y cuerpo se conservan del HTML original
+// (src/pages/guias/gemelos-digitales-fundiciones-cobre.html, retirado en este cambio); solo cambia la presentación.
+import Sitio from '../../layouts/Sitio.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
+import Acciones from '@mcco/web-kit/components/estandar/Acciones.astro';
+import '../../styles/editorial.css';
+
+const meta = {
+  "title": "Guía Definitiva: Gemelos Digitales en Fundiciones de Cobre — 3D Ultra",
+  "description": "Guía técnica completa sobre la implementación de gemelos digitales bidireccionales en fundiciones y refinerías de cobre. Metodología, ahorro, tecnología y casos reales documentados por 3D Ultra en CODELCO Chile.",
+  "lang": "es",
+  "type": "article",
+  "ogUrl": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html",
+  "ogTitle": "Guía Definitiva: Gemelos Digitales en Fundiciones de Cobre",
+  "ogDescription": "Guía técnica de 3D Ultra sobre gemelos digitales para fundiciones de cobre. Metodología, ahorro y casos reales en CODELCO."
+} as const;
+const keywords = "gemelo digital, digital twin, fundición de cobre, copper smelting, CODELCO, planta virtual, mantenimiento predictivo, IoT, SCADA, escaneo láser, BIM, simulación CFD, minería 4.0, 3D Ultra, MCCO";
+const author = "3D Ultra — MCCO Engineering Group";
+const jsonld = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre",
+  "description": "Guía técnica completa sobre la implementación de gemelos digitales bidireccionales en fundiciones de cobre. Cubre desde la captura de realidad con escaneo láser hasta la integración IoT y el cálculo del ahorro.",
+  "author": {
+    "@type": "Organization",
+    "name": "3D Ultra — MCCO Engineering Group",
+    "url": "https://3d-ultra.cl"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "3D Ultra",
+    "url": "https://3d-ultra.cl"
+  },
+  "datePublished": "2026-03-16",
+  "dateModified": "2026-03-16",
+  "mainEntityOfPage": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html",
+  "articleSection": "Guías Técnicas",
+  "wordCount": 3200,
+  "about": [
+    "Digital Twin",
+    "Copper Smelting",
+    "Predictive Maintenance",
+    "IoT Integration",
+    "3D Laser Scanning",
+    "BIM Modeling"
+  ],
+  "keywords": "gemelo digital, digital twin, fundición cobre, copper smelting, CODELCO, mantenimiento predictivo, IoT, SCADA, escaneo láser, BIM, CFD, minería 4.0"
+};
+---
+<Sitio {...meta} robots={false} alternates={[]} jsonld={[jsonld]}>
+  <Fragment slot="head">
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={author} />
+    <link rel="alternate" hreflang="es" href="https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html" />
+    <link rel="alternate" hreflang="en" href="https://3d-ultra.cl/en/faq.html" />
+    <link rel="alternate" hreflang="x-default" href="https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html" />
+  </Fragment>
+  <Bloque tono="claro" class="editorial interior-hero">
+    <p class="interior-etiqueta">Guía Técnica — Pillar Page</p>
+    <h1 class="std-h1">Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre</h1>
+    <p class="interior-linea">Por 3D Ultra — MCCO Engineering Group • ~3200 palabras • Última actualización: Marzo 2026</p>
+  </Bloque>
+  <article>
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <div class="ai-capsule">
+          <div class="label">🤖 Resumen AI — Extracto citeable</div>
+          <p>Un gemelo digital bidireccional aplicado a fundiciones de cobre es una réplica virtual dinámica que integra continuamente datos de telemetría (termopares, analizadores de gases, transmisores de presión) para predecir fatiga térmica, optimizar paradas de planta y habilitar gestión remota de activos. 3D Ultra del Grupo MCCO implementa esta tecnología en Chile con el respaldo de más de 20 años de experiencia del equipo en CODELCO, juntando escaneo láser milimétrico, modelado BIM y conectividad IoT en tiempo real.</p>
+      </div>
+
+      <nav class="toc">
+          <h3>Tabla de Contenidos</h3>
+          <ol>
+              <li><a href="#definicion">¿Qué es un gemelo digital en minería del cobre?</a></li>
+              <li><a href="#tipos">Tipos de gemelos digitales: Estático vs. Bidireccional</a></li>
+              <li><a href="#componentes">Los 4 pilares tecnológicos</a></li>
+              <li><a href="#aplicaciones">Aplicaciones estratégicas en fundiciones de cobre</a></li>
+              <li><a href="#metodologia">Metodología de implementación paso a paso</a></li>
+              <li><a href="#roi">Dónde está el ahorro</a></li>
+              <li><a href="#casos">Casos reales documentados en CODELCO</a></li>
+              <li><a href="#futuro">El futuro: IA generativa sobre gemelos digitales</a></li>
+          </ol>
+      </nav>
+    </Bloque>
+    <Bloque tono="claro" class="editorial interior-bloque">
+      <h2 id="definicion">1. ¿Qué es un gemelo digital aplicado a la minería extractiva del cobre?</h2>
+
+      <p>Un gemelo digital (digital twin) es una réplica virtual de un activo físico, un proceso o un sistema completo que integra datos del mundo real para representar, analizar y predecir su comportamiento. En el contexto específico de la minería del cobre y las fundiciones metalúrgicas, este concepto adquiere una dimensión crítica: no se trata de un simple modelo 3D estático, sino de un sistema bidireccional que recibe y procesa continuamente datos de sensores de campo (termopares, analizadores de gases SO₂, transmisores de presión, vibración y flujo) para ofrecer una vista unificada del estado real de la planta en tiempo real.</p>
+
+      <p>La diferencia fundamental entre un modelo 3D convencional y un gemelo digital radica en la <strong>bidireccionalidad</strong>: el modelo no es solo una representación visual, sino un sistema que recibe datos del mundo físico (telemetría IoT) y, en su forma más avanzada, puede enviar instrucciones de vuelta a los controladores de campo (PLCs, DCS) para ajustar parámetros operacionales.</p>
+
+      <div class="highlight-box">
+          <h4>Definición técnica precisa:</h4>
+          <p>Un gemelo digital de fundición de cobre es un modelo digital georreferenciado, parametrizado y conectado en tiempo real que replica la geometría sub-milimétrica, la topología de sistemas (tuberías, eléctrica, instrumentación), los datos operacionales (temperaturas, flujos, presiones) y el historial de mantenimiento de una instalación metalúrgica, con el propósito de optimizar la planificación de paradas de planta, predecir fallas, capacitar personal y gestionar activos de forma remota.</p>
+      </div>
+    </Bloque>
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <h2 id="tipos">2. Tipos de gemelos digitales: Estático vs. Bidireccional</h2>
+
+      <p>Es crucial distinguir entre los diferentes niveles de madurez de un gemelo digital, ya que determinan su valor operacional y su costo de implementación:</p>
+
+      <div class="interior-tabla" role="region" aria-label="2. Tipos de gemelos digitales: Estático vs. Bidireccional" tabindex="0">
+        <table>
+          <tr><th>Nivel</th><th>Tipo</th><th>Características</th><th>Valor para la operación</th></tr>
+          <tr><td>1</td><td>Modelo 3D estático (As-Built)</td><td>Nube de puntos + modelo geométrico sin datos operacionales</td><td>Documentación, clash detection, planificación de montajes</td></tr>
+          <tr><td>2</td><td>Modelo BIM inteligente</td><td>Modelo paramétrico con metadata por componente (tags, especificaciones, manuales)</td><td>Gestión de activos, inventario de repuestos, onboarding</td></tr>
+          <tr><td>3</td><td>Gemelo digital unidireccional</td><td>Modelo 3D + datos de sensores en tiempo real (solo lectura)</td><td>Monitoreo, conciencia situacional, alarmas geolocalizadas</td></tr>
+          <tr><td>4</td><td><strong>Gemelo digital bidireccional</strong></td><td>Modelo 3D + IoT + capacidad de enviar instrucciones al sistema físico</td><td>Mantenimiento predictivo, optimización de procesos, simulación de escenarios</td></tr>
+      </table>
+      </div>
+
+      <p>3D Ultra implementa gemelos digitales desde el Nivel 1 hasta el Nivel 4, dependiendo de las necesidades y la madurez digital del cliente. La mayoría de las fundiciones de cobre en Chile se encuentran actualmente entre el Nivel 1 y el Nivel 2, con una oportunidad significativa de saltar directamente al Nivel 3-4 aprovechando la infraestructura SCADA existente.</p>
+    </Bloque>
+    <Bloque tono="claro" class="editorial interior-bloque">
+      <h2 id="componentes">3. Los 4 pilares tecnológicos de un gemelo digital industrial</h2>
+
+      <h3>Pilar 1: Captura de realidad (escaneo láser as-built)</h3>
+      <p>La base de cualquier gemelo digital es una representación geométrica precisa del activo real — no un modelo teórico de diseño, sino la geometría exacta del estado actual de la planta. Esta captura se realiza mediante escáneres láser terrestres (TLS) como el FARO Focus Core, que captura 1 millón de puntos por segundo con una precisión sub-milimétrica de ±1mm de error lineal.</p>
+      <p>El resultado es una nube de puntos en formato E57 que contiene las coordenadas XYZ exactas de cada superficie visible en la planta. Este modelo de datos es la "verdad geométrica" sobre la cual se construyen todas las capas superiores del gemelo digital. En fundiciones de cobre, donde las modificaciones de ingeniería se acumulan durante décadas sin actualizar los planos originales, esta captura as-built es literalmente irreemplazable.</p>
+
+      <h3>Pilar 2: Modelado BIM paramétrico (Scan-to-BIM)</h3>
+      <p>La nube de puntos cruda se convierte en un modelo BIM paramétrico en Autodesk Revit (LOD 200-400), donde cada componente (tubería, equipo, estructura) se modela como un objeto inteligente con metadata técnica asociada: especificaciones de material, número de tag, fecha de instalación, historial de mantenimiento, y vínculos a documentación técnica (P&IDs, manuales, procedimientos).</p>
+      <p>Los formatos de salida incluyen RVT (Revit nativo), IFC (estándar abierto BIM), NWD (Navisworks para revisión de interferencias) y DWG (AutoCAD para planos 2D derivados). Esta capa permite la detección de interferencias (clash detection) antes de cualquier intervención física, eliminando los reprocesos de soldadura y montaje que son endémicos en proyectos brownfield de fundiciones.</p>
+
+      <h3>Pilar 3: Conectividad IoT (SCADA / BMS / PLC)</h3>
+      <p>La capa que transforma un modelo estático en un gemelo digital "vivo". Se establecen conexiones con los sistemas de control de planta existentes:</p>
+      <ul>
+          <li><strong>SCADA (Supervisory Control and Data Acquisition):</strong> Temperaturas de proceso, flujos de gases, niveles de mata fundida</li>
+          <li><strong>BMS (Building Management System):</strong> Sistemas de ventilación, climatización y seguridad de edificios auxiliares</li>
+          <li><strong>PLCs (Programmable Logic Controllers):</strong> Estados de bombas, válvulas, actuadores y secuencias de proceso</li>
+          <li><strong>PI System (OSIsoft):</strong> Historiador de datos de proceso para análisis de tendencias y correlaciones</li>
+      </ul>
+      <p>Los protocolos de comunicación más comunes en el entorno minero chileno son OPC UA (estándar abierto para comunicación industrial), MQTT (mensajería ligera para IoT) y las APIs REST del sistema PI/AF de OSIsoft. La integración respeta siempre la arquitectura de seguridad de la red OT (Operation Technology) del cliente.</p>
+
+      <h3>Pilar 4: Visualización y gemelo navegable</h3>
+      <p>El modelo integrado se presenta como una planta virtual navegable accesible desde cualquier navegador web moderno, sin necesidad de instalar software especializado. Las tecnologías de renderizado incluyen WebGL, Three.js y, para experiencias inmersivas de mayor fidelidad, Unreal Engine. La navegación permite:</p>
+      <ul>
+          <li>Recorrido virtual libre en primera persona por toda la planta</li>
+          <li>Click en cualquier equipo para ver su "ADN digital" (tag, datos en tiempo real, historial, documentos vinculados)</li>
+          <li>Capas de información activables: temperaturas, alarmas, órdenes de trabajo activas, fechas de último mantenimiento</li>
+          <li>Acceso multiplataforma: desktop, tablet, mobile, VR headset</li>
+      </ul>
+    </Bloque>
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <h2 id="aplicaciones">4. Aplicaciones estratégicas en fundiciones de cobre</h2>
+
+      <h3>4.1 Planificación de paradas de planta (shutdown optimization)</h3>
+      <p>La aplicación de mayor impacto financiero. Una parada de planta mal planificada puede costar más de USD $1 millón diario en lucro cesante. El gemelo digital permite planificar cada intervención con certeza milimétrica: verificar accesos, dimensionar repuestos, anticipar interferencias, programar secuencias de trabajo y entrenar a los equipos antes de la parada real.</p>
+
+      <h3>4.2 Monitoreo de integridad estructural</h3>
+      <p>Mediante escaneos láser periódicos comparados contra la línea base as-built, se detectan deformaciones acumuladas en chimeneas, estructuras metálicas y equipos críticos antes de que alcancen niveles de riesgo. Caso documentado: la <a href="../casos/analisis-chimenea-cps-salvador.html">Chimenea CPS en CODELCO Salvador</a>, donde este método anticipó un riesgo inminente de colapso.</p>
+
+      <h3>4.3 Extensión de vida útil de activos críticos</h3>
+      <p>La combinación de escaneo as-built + simulación CFD/FEA permite evaluar con rigor normativo (ASME, EN 13445) si un activo que se acerca al fin de su vida de diseño puede continuar operando de forma segura. Caso documentado: <a href="../casos/hornos-isasmelt-extension-vida-util.html">la evaluación de vida remanente de hornos ISASMELT</a>, para decidir entre reforzar o reemplazar con la geometría medida.</p>
+
+      <h3>4.4 Capacitación y onboarding virtual</h3>
+      <p>Los nuevos operarios pueden recorrer la planta virtualmente antes de ingresar al entorno real de alta temperatura y riesgo. Esto reduce la curva de aprendizaje, disminuye incidentes de seguridad y permite entrenar simulaciones de evacuación sin riesgo.</p>
+
+      <h3>4.5 Ingeniería inversa y fabricación de emergencia</h3>
+      <p>Cuando un componente crítico falla y no existen planos OEM disponibles, el escaneo paramétrico del componente dañado permite generar un modelo CAD para fabricación de emergencia. Caso documentado: un eje principal de molino de bolas fabricado en 12 días desde el escaneo hasta la entrega en terreno.</p>
+    </Bloque>
+    <Bloque tono="claro" class="editorial interior-bloque">
+      <h2 id="metodologia">5. Metodología de implementación paso a paso</h2>
+
+      <p>La implementación de un gemelo digital en una fundición de cobre activa sigue un flujo de trabajo validado por 3D Ultra en más de 20 años de operaciones con CODELCO:</p>
+
+      <ol>
+          <li><strong>Visita técnica y scoping (1-2 días):</strong> Identificación del alcance, restricciones operacionales, sistemas SCADA existentes, y definición de las preguntas de negocio que el gemelo digital debe responder</li>
+          <li><strong>Captura de realidad (1-5 días en campo):</strong> Escaneo láser sin detención de planta. Cobertura de hasta 3.000 m² por día. Entregable: nube de puntos E57 georreferenciada</li>
+          <li><strong>Procesamiento y registro (2-3 días):</strong> Unificación de estaciones de escaneo, limpieza de ruido, clasificación de nubes. Entregable: modelo de nube de puntos unificado en RCP</li>
+          <li><strong>Modelado BIM (5-15 días):</strong> Conversión Scan-to-BIM con LOD 200-400 según requerimiento. Entregable: modelo Revit RVT + IFC + NWD</li>
+          <li><strong>Integración IoT (3-10 días):</strong> Conexión con sistemas SCADA/PI existentes. Configuración de capa de datos en tiempo real. Entregable: modelo conectado con datos live</li>
+          <li><strong>Publicación y entrega (2-3 días):</strong> Generación de planta virtual navegable en plataforma web. Capacitación del equipo del cliente. Entregable: URL accesible multiplataforma</li>
+      </ol>
+
+      <p><strong>Plazo total típico:</strong> 4-6 semanas para un área de planta completa (2.000-5.000 m²). Proyectos de planta completa (fundición + refinería): 3-6 meses.</p>
+    </Bloque>
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <h2 id="roi">6. Dónde está el ahorro</h2>
+
+      <p>En una fundición de cobre, un gemelo digital se paga en tres frentes:</p>
+
+      <div class="results-box">
+          <h3>Dónde aparece</h3>
+          <ul>
+              <li>Paradas mayores planificadas sobre la planta real, no sobre planos antiguos.</li>
+              <li>Montajes revisados en 3D antes de entrar a terreno, para evitar reprocesos.</li>
+              <li>Decisiones de reforzar o reemplazar un activo crítico tomadas con la geometría medida.</li>
+          </ul>
+      </div>
+
+      <p>La cuenta es simple: en una fundición cada día de parada es producción perdida. Si el modelo acorta una parada programada aunque sea en un día, ya se pagó. Además evita reprocesos de montaje y ayuda a ver a tiempo daños que podrían terminar en un colapso.</p>
+    </Bloque>
+    <Bloque tono="claro" class="editorial interior-bloque">
+      <h2 id="casos">7. Casos reales documentados en CODELCO</h2>
+
+      <p>3D Ultra, como la marca especializada del Grupo MCCO, ha documentado los siguientes casos de implementación en fundiciones de cobre de CODELCO:</p>
+
+      <ul>
+          <li><strong><a href="../casos/gemelo-digital-raf-potrerillos.html">Gemelo Digital Área RAF (Potrerillos)</a>:</strong> Planta virtual navegable del área de refinación a fuego, integrada con datos operacionales para planificación de paradas.</li>
+          <li><strong><a href="../casos/analisis-chimenea-cps-salvador.html">Chimenea CPS (División Salvador)</a>:</strong> Control dimensional as-built que detectó deformaciones fuera de tolerancia normativa, anticipando riesgo de colapso catastrófico.</li>
+          <li><strong><a href="../casos/rueda-moldeo-anodos-potrerillos.html">Rueda de Moldeo — Ánodos CH (Potrerillos)</a>:</strong> Simulación computacional + maquetas 3D a escala real para adaptación de formato de ánodos.</li>
+          <li><strong><a href="../casos/hornos-isasmelt-extension-vida-util.html">Hornos ISASMELT — Extensión de Vida Útil</a>:</strong> Análisis termomecánico CFD/FEA para evaluar cuánto más puede operar el activo de fusión más crítico antes de reemplazarlo.</li>
+      </ul>
+    </Bloque>
+    <Bloque tono="parchment" class="editorial interior-bloque">
+      <h2 id="futuro">8. El futuro: IA generativa sobre gemelos digitales</h2>
+
+      <p>La próxima frontera en la evolución de los gemelos digitales es la integración de modelos de inteligencia artificial generativa (LLMs) directamente sobre el modelo 3D conectado. Esto permitirá:</p>
+
+      <ul>
+          <li><strong>Consultas en lenguaje natural:</strong> "¿Cuál fue la temperatura máxima del termopar TC-4521 durante la última parada?" — respuesta instantánea desde el gemelo digital sin necesidad de navegar múltiples sistemas</li>
+          <li><strong>Generación automática de reportes:</strong> Resúmenes ejecutivos de estado de activos generados por IA basándose en la telemetría del gemelo</li>
+          <li><strong>Predicción de fallas con explicabilidad:</strong> No solo "esta bomba va a fallar en 72 horas" sino "va a fallar porque el patrón de vibración correlaciona con degradación del rodamiento, basado en los últimos 6 casos similares en esta fundición"</li>
+          <li><strong>Optimización de procesos autónoma:</strong> Ajuste de parámetros operacionales en tiempo real basado en modelos de machine learning entrenados sobre datos históricos del gemelo</li>
+      </ul>
+
+      <p>3D Ultra está desarrollando activamente capacidades de IA sobre sus gemelos digitales, posicionándose como el primer proveedor en Chile que ofrezca la convergencia completa: escaneo láser → modelo BIM → IoT → IA generativa, con 20+ años de datos operacionales de CODELCO como base de entrenamiento.</p>
+
+      <div class="highlight-box">
+          <h4>Conclusión:</h4>
+          <p>El gemelo digital bidireccional no es un proyecto tecnológico: es una herramienta que se paga en las paradas. Para fundiciones de cobre en Chile, la pregunta ya no es "¿debemos implementar un gemelo digital?" sino "¿cuánto nos cuesta cada día sin uno?". 3D Ultra de MCCO Group ofrece la cadena completa, del escaneo al modelo y a la planta virtual, con el respaldo de más de 20 años de experiencia del equipo en operaciones de CODELCO.</p>
+      </div>
+    </Bloque>
+  </article>
+  <Bloque tono="negro" class="editorial interior-cierre">
+    <h2 class="std-h2">¿Listo para implementar un gemelo digital en su fundición?</h2>
+    <p>Consultoría técnica sin costo. Evaluamos la viabilidad de su proyecto en 48 horas.</p>
+    <Acciones acciones={[{ href: "../index.html#contacto", texto: "Agendar Consultoría" }]} />
+  </Bloque>
+</Sitio>

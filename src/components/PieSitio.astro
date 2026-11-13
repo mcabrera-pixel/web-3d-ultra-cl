@@ -1,0 +1,25 @@
+---
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import { enlaces } from '../data/navegacion';
+const site = loadSite();
+---
+<footer class="pie-sitio">
+  <div class="pie-sitio__interior">
+    <p><strong>{site.name}</strong><br />{site.tagline}</p>
+    <nav aria-label="Navegación al pie">
+      <ul>{enlaces.map((enlace) => <li><a href={enlace.href}>{enlace.texto}</a></li>)}</ul>
+    </nav>
+    <address>
+      {site.contact.email && <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>}
+      {site.contact.phone && <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`}>{site.contact.phone}</a>}
+    </address>
+  </div>
+</footer>
+<style>
+  .pie-sitio { background: var(--color-bg-alt); color: var(--color-text); font-family: var(--font-body); }
+  .pie-sitio__interior { max-width: var(--maxw); margin: 0 auto; padding: 56px var(--space); }
+  p { margin: 0 0 22px; max-width: 640px; }
+  ul { display: flex; flex-wrap: wrap; gap: 0 22px; margin: 0; padding: 0; list-style: none; }
+  a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+  address { display: flex; flex-wrap: wrap; gap: 0 22px; margin-top: 22px; font-style: normal; }
+</style>

@@ -17,7 +17,7 @@ const wa = (site.contact.whatsapp ?? '').replace(/\D/g, '');
   <label for="f-correo">Correo<input id="f-correo" name="email" type="email" autocomplete="email" required /></label>
   <label for="f-mensaje">Qué necesita<textarea id="f-mensaje" name="mensaje" rows="3"></textarea></label>
   <div class="bib-acciones">
-    <button class="bib-btn bib-btn-blanco" type="submit">Enviar solicitud</button>
+    <button class="bib-btn bib-btn-accion" type="submit">Enviar solicitud</button>
     {wa && <a class="bib-btn bib-btn-borde" href={`https://wa.me/${wa}?text=${encodeURIComponent(textoWa)}`} target="_blank" rel="noopener">WhatsApp</a>}
   </div>
 </form>

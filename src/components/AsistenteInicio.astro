@@ -1,0 +1,33 @@
+---
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+const site = loadSite();
+const whatsapp = `https://wa.me/${site.contact.whatsapp.replace(/\D/g, '')}`;
+---
+<aside class="inicio-asistente" data-whatsapp={whatsapp} aria-label="Asistente y redes sociales">
+  <div class="inicio-redes">
+    <a href="https://instagram.com/3dultra_cl" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href={whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  </div>
+  <button id="ai-toggle" class="std-pildora" type="button" aria-controls="ai-window" aria-expanded="false" hidden>Asistente</button>
+  <div id="ai-window" role="dialog" aria-labelledby="ai-titulo" hidden>
+    <div class="ai-header" data-std-oscuro>
+      <div><h2 id="ai-titulo">Ingeniería 3DUltra</h2><span>En línea ahora</span></div>
+      <button id="ai-close" type="button" aria-label="Cerrar asistente">×</button>
+    </div>
+    <div id="ai-body" role="log" aria-live="polite" aria-relevant="additions">
+      <div class="msg-row bot"><div class="msg-bubble">
+        Hola, soy el asistente virtual de 3DUltra.<br />
+        Tengo acceso inmediato a nuestra documentación técnica, normas y listas de precios.<br /><br />
+        <strong>¿Qué necesitas resolver hoy?</strong>
+      </div></div>
+    </div>
+    <div id="ai-typing" role="status" hidden>Escribiendo…</div>
+    <a class="agent-link ai-derivacion" href={`${whatsapp}?text=Hola,%20consulta:%20`} target="_blank" rel="noopener noreferrer">Hablar con Ingeniero (WhatsApp)</a>
+    <div class="ai-footer">
+      <label class="std-oculto" for="ai-input">Consulta al asistente</label>
+      <input type="text" id="ai-input" placeholder="Pregunta sobre BIM, Escáner, Costos..." autocomplete="off" />
+      <button id="ai-send" type="button" class="std-pildora">Enviar</button>
+    </div>
+  </div>
+</aside>
+<script>import '../scripts/asistente-inicio.js';</script>

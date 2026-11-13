@@ -10,5 +10,5 @@ const d = equipo.data;
 ---
 <a class="bib-tarjeta" href={`/biblioteca/${equipo.id}`} data-etapa={d.etapa}>
   <span class="bib-franja"><img src={`/biblioteca/${equipo.id}/poster.webp`} alt={`Modelo 3D de referencia: ${d.nombre}`} width="1600" height="1000" loading={prioridad ? undefined : 'lazy'} fetchpriority={prioridad ? 'high' : undefined} decoding="async" /></span>
-  <span class="bib-info"><span class="bib-etapa">{ETAPAS[d.etapa]}</span><b>{d.nombre}</b><span class="bib-bajada">{d.bajada}</span></span>
+  <span class="bib-info"><span class="bib-origen">Render 3D · Modelo de referencia</span><span class="bib-etapa">{ETAPAS[d.etapa]}</span><b>{d.nombre}</b><span class="bib-bajada">{d.bajada}</span></span>
 </a>

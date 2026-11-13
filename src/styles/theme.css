@@ -1,15 +1,31 @@
-/* theme.css — VALORES de los tokens de 3d-ultra.cl (nombres fijados por @mcco/web-kit/styles/tokens.css).
-   Reflejan la identidad vigente del sitio (ver DESIGN.md). El CSS original del home sigue en site.css. */
+/* El estándar se estrena solo con Sitio.astro. Los tokens v1 de :root
+   conservan la presentación de las páginas pendientes de migración. */
 :root {
+  --accion: #d32f2f;
+  --accion-boton: #d32f2f;
+  --accion-foco: #d32f2f;
+  --accion-oscuro: #ff8a80;
+  --campo-claro: #ff8a80;
+  --campo-oscuro: #d32f2f;
+
   --color-bg: #ffffff;
   --color-bg-alt: #f4f6f8;
   --color-text: #1a1a1a;
   --color-muted: #555555;
   --color-accent: #d32f2f;
   --color-border: #e1e1e1;
-  --font-body: 'Montserrat', system-ui, sans-serif;
-  --font-display: 'Montserrat', system-ui, sans-serif;
+  /* Fuente del sistema e Inter local, como el estándar; sin fuentes remotas. */
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
   --space: 1rem;
   --radius: 4px;
   --maxw: 1440px;
+}
+
+/* Estandar enlaza en .std los tokens v1 y sus alias --mcco-* con la
+   paleta y las fuentes locales --std-*. Se completa aquí el radio v1.
+   No importar estandar.css en las páginas que aún usan Base. */
+.std {
+  --radius: var(--std-radio-tarjeta);
+  --mcco-radius: var(--radius);
 }

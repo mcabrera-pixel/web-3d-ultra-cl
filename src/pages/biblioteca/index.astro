@@ -1,13 +1,12 @@
 ---
 // Hub de la biblioteca de equipos 3D: grilla filtrable por etapa (sin JS se ve completa).
 import { getCollection } from 'astro:content';
-import Base from '@mcco/web-kit/layouts/Base.astro';
+import Sitio from '../../layouts/Sitio.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';
-import Cabecera from '../../components/Cabecera.astro';
 import FormularioEquipo from '../../components/FormularioEquipo.astro';
 import TarjetaEquipo from '../../components/TarjetaEquipo.astro';
 import { ETAPAS } from '../../scripts/biblioteca-logica.js';
-import '../../styles/theme.css';
 import '../../styles/biblioteca.css';
 
 const equipos = (await getCollection('equipos')).sort((a, b) => a.data.orden - b.data.orden);
@@ -15,23 +14,17 @@ const etapas = [...new Set(equipos.map((e) => e.data.etapa))];
 const site = loadSite();
 const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', name: 'Biblioteca de equipos 3D', url: new URL('/biblioteca/', site.domain).href, hasPart: equipos.map((e) => ({ '@type': 'WebPage', name: `${e.data.nombre} en 3D`, url: new URL(`/biblioteca/${e.id}`, site.domain).href })) }];
 ---
-<Base title={`Biblioteca de equipos mineros en 3D | ${site.name}`} description="Camiones, palas y cargadores mineros en 3D. Vea qué podemos hacer con cada modelo: planificar mantenciones, animar procedimientos y capacitar operadores." jsonld={jsonld} bodyClass="bib-pagina">
+<Sitio title={`Biblioteca de equipos mineros en 3D | ${site.name}`} description="Camiones, palas y cargadores mineros en 3D. Vea qué podemos hacer con cada modelo: planificar mantenciones, animar procedimientos y capacitar operadores." jsonld={jsonld} bodyClass="bib-pagina">
   <Fragment slot="head">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" />
     {/* Sin JS el filtro no sirve: se oculta aquí y no desde el script, para que las tarjetas no se corran al cargar (CLS) */}
     <noscript><style>.bib-filtros { display: none !important; }</style></noscript>
   </Fragment>
-  <Cabecera actual="biblioteca" />
-  <main>
-    <section class="bib-hub-cabeza"><div class="bib-contenedor">
+    <Bloque tono="claro" class="bib-hub-cabeza"><div class="bib-contenedor">
       <div class="bib-rotulo">Biblioteca de equipos</div>
       <h1>Equipos mineros en 3D</h1>
       <p class="bib-texto" style="margin-top:16px">Cada ficha muestra un equipo en 3D y lo que podemos hacer con ese modelo.</p>
-    </div></section>
-    <section class="bib-bloque" style="border-top:0;padding-top:0"><div class="bib-contenedor">
+    </div></Bloque>
+    <Bloque tono="claro" class="bib-catalogo"><div class="bib-contenedor">
       <div class="bib-filtros" role="group" aria-label="Filtrar por etapa">
         <button type="button" data-etapa="" aria-pressed="true">Todos</button>
         {etapas.map((e) => <button type="button" data-etapa={e} aria-pressed="false">{ETAPAS[e]}</button>)}
@@ -39,16 +32,15 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
       <div class="bib-tarjetas">
         {equipos.map((e, i) => <TarjetaEquipo equipo={e} prioridad={i === 0} />)}
       </div>
-    </div></section>
-    <section class="bib-bloque" id="contacto"><div class="bib-contenedor bib-cierre">
+    </div></Bloque>
+    <Bloque tono="negro" class="bib-bloque" id="contacto"><div class="bib-contenedor bib-cierre">
       <div>
         <div class="bib-rotulo">Contacto</div>
         <h2 class="bib-titular">¿Su equipo no está en la lista?</h2>
         <p class="bib-texto">Modelamos el equipo que usted opera, con sus medidas reales. {site.contact.response_sla}</p>
       </div>
       <FormularioEquipo origen="biblioteca/" textoWa={`Hola, vi la biblioteca de equipos de ${site.name} y quiero saber más`} />
-    </div></section>
-  </main>
+    </div></Bloque>
   {/* El script va dentro del layout: Astro lo emite donde se declara. */}
   <script>
     // Filtro por etapa: sin JS los botones quedan ocultos (regla en <noscript>) y se ven todos los equipos.
@@ -65,4 +57,4 @@ const jsonld = [{ '@context': 'https://schema.org', '@type': 'CollectionPage', n
       });
     }
   </script>
-</Base>
+</Sitio>

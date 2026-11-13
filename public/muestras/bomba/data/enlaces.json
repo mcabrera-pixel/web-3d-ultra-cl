@@ -1,0 +1,232 @@
+{
+  "rotulo": "Datos de ejemplo",
+  "nota": "Tabla de llaves. Une el TAG de terreno con el equipo de SAP, el elemento de PI y las piezas del manual. Es lo único que la plataforma necesita mantener para cruzar los sistemas.",
+  "tag": "PP-101",
+  "descripcion": "Bomba de agua de proceso",
+  "equipo_sap": "10004521",
+  "ubicacion_tecnica": "PLA-AGP-SB01-PP101",
+  "lista_materiales": "00081452",
+  "elemento_pi": "\\\\PI-EJEMPLO\\Planta de ejemplo\\Agua de proceso\\Sala de bombas 01\\PP-101",
+  "conjuntos": [
+    {
+      "id": "bomba",
+      "equipo_sap": "10004521"
+    },
+    {
+      "id": "motor",
+      "equipo_sap": "10004522"
+    },
+    {
+      "id": "acoplamiento",
+      "equipo_sap": "10004523"
+    },
+    {
+      "id": "base",
+      "equipo_sap": "10004524"
+    }
+  ],
+  "piezas": [
+    {
+      "pieza_manual": "102",
+      "material_sap": "40001102",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "163.2",
+      "material_sap": "40001163",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "230",
+      "material_sap": "40001230",
+      "puntos_pi": [
+        "PP-101.FIT-101",
+        "PP-101.PIT-102"
+      ]
+    },
+    {
+      "pieza_manual": "502.1",
+      "material_sap": "40001502",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "502.2",
+      "material_sap": "40001503",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "210",
+      "material_sap": "40001210",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "433",
+      "material_sap": "40001433",
+      "puntos_pi": [
+        "PP-101.PIT-101"
+      ]
+    },
+    {
+      "pieza_manual": "523",
+      "material_sap": "40001523",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "940.2",
+      "material_sap": "40001940",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "940.3",
+      "material_sap": "40001943",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "321",
+      "material_sap": "40001321",
+      "puntos_pi": [
+        "PP-101.VT-101A",
+        "PP-101.VT-101B",
+        "PP-101.TT-101A",
+        "PP-101.TT-101B"
+      ]
+    },
+    {
+      "pieza_manual": "330",
+      "material_sap": "40001330",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "360.1",
+      "material_sap": "40001360",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "932",
+      "material_sap": "40001932",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "183",
+      "material_sap": "40001183",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "81-92",
+      "material_sap": "40001892",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "400.1",
+      "material_sap": "40001400",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "400.3",
+      "material_sap": "40001403",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "411",
+      "material_sap": "40001411",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "901.1",
+      "material_sap": "40001901",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "901.2",
+      "material_sap": "40001905",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "901.3",
+      "material_sap": "40001906",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "902.3",
+      "material_sap": "40001902",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "903.1",
+      "material_sap": "40001903",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "920.1",
+      "material_sap": "40001920",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "920.5",
+      "material_sap": "40001925",
+      "puntos_pi": []
+    },
+    {
+      "pieza_manual": "930.3",
+      "material_sap": "40001930",
+      "puntos_pi": []
+    }
+  ],
+  "instrumentos": [
+    {
+      "tag": "FIT-101",
+      "punto_pi": "PP-101.FIT-101"
+    },
+    {
+      "tag": "PIT-101",
+      "punto_pi": "PP-101.PIT-101"
+    },
+    {
+      "tag": "PIT-102",
+      "punto_pi": "PP-101.PIT-102"
+    },
+    {
+      "tag": "IT-101",
+      "punto_pi": "PP-101.IT-101",
+      "conjunto": "motor"
+    },
+    {
+      "tag": "VT-101A",
+      "punto_pi": "PP-101.VT-101A",
+      "pieza_manual": "321",
+      "instancia": "LA"
+    },
+    {
+      "tag": "VT-101B",
+      "punto_pi": "PP-101.VT-101B",
+      "pieza_manual": "321",
+      "instancia": "LL"
+    },
+    {
+      "tag": "TT-101A",
+      "punto_pi": "PP-101.TT-101A",
+      "pieza_manual": "321",
+      "instancia": "LA"
+    },
+    {
+      "tag": "TT-101B",
+      "punto_pi": "PP-101.TT-101B",
+      "pieza_manual": "321",
+      "instancia": "LL"
+    }
+  ],
+  "valvulas": [
+    {
+      "tag": "HV-101",
+      "descripcion": "Válvula de compuerta de succión DN 200"
+    },
+    {
+      "tag": "CV-101",
+      "descripcion": "Válvula de retención de descarga DN 150"
+    },
+    {
+      "tag": "HV-102",
+      "descripcion": "Válvula de compuerta de descarga DN 150"
+    }
+  ]
+}

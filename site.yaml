@@ -43,9 +43,9 @@ seo:
 
 csp:
   script_src: ["'wasm-unsafe-eval'"]   # decodificador meshopt (WebAssembly) del visor de la biblioteca
-  style_src: []
+  style_src: []                       # sin Google Fonts: Inter local del kit; el permiso heredado lo pone mcco-headers (ver contacto-csp.md)
   font_src: []
-  img_src: [https://images.unsplash.com]
+  img_src: []                         # sin imágenes remotas: la foto de stock de Unsplash se retiró en la Tarea 4
   media_src: [https://pub-dd66483f8e7f497f9490ea37068612b0.r2.dev]
   connect_src: ["blob:"]                # texturas del visor 3D: GLTFLoader las lee con fetch() desde blob: (Chrome y Firefox)
   frame_src: []
@@ -69,6 +69,7 @@ llms:
     - { title: "Caso: análisis estructural de chimenea CPS", url: /casos/analisis-chimenea-cps-salvador }
     - { title: "Caso: hornos Isasmelt, extensión de vida útil", url: /casos/hornos-isasmelt-extension-vida-util }
     - { title: "Caso: rueda de moldeo de ánodos, Potrerillos", url: /casos/rueda-moldeo-anodos-potrerillos }
+    - { title: "Caso de demostración: gemelo digital de una bomba con despiece, SAP y PI", url: /casos/gemelo-digital-bomba-despiece-sap-pi }
     - { title: "Guía: gemelos digitales en fundiciones de cobre", url: /guias/gemelos-digitales-fundiciones-cobre }
     - { title: "Digital twin FAQ (English)", url: /en/faq }
 
@@ -76,5 +77,8 @@ llms:
 forbidden: ["Leica", "RTC360", "tupagina-de-activos", "foundingDate\":\"2003", "condrone.cl"]
 clients_allowed: [CODELCO, BHP, Aster, Capstone Copper, El Abra]
 
-legacy_pages: true                  # casos/, guias/ y en/ siguen como .html con canonical manual (fase C pendiente)
+check:
+  visual: error                     # R11-R13 de mcco-check como error (Tarea 7)
+
+legacy_pages: false                 # casos/, guias/ y en/ migrados a .astro con el kit v1.4.0 (Tarea 6)
 indexnow_key: c3e70c36be4a27623ec717c2b2f92d77

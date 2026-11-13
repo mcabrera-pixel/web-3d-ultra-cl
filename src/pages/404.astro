@@ -1,5 +1,21 @@
 ---
-import NotFound from '@mcco/web-kit/pages/NotFound.astro';
-import '../styles/theme.css';
+import Sitio from '../layouts/Sitio.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
+import Acciones from '@mcco/web-kit/components/estandar/Acciones.astro';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import '../styles/editorial.css';
+const site = loadSite();
+const wa = site.contact.whatsapp?.replace(/\D/g, '');
 ---
-<NotFound />
+<Sitio title={`Página no encontrada | ${site.name}`} description={`La página que buscas no existe en ${site.name}. Vuelve al inicio o escríbenos.`} noindex={true} path="/404">
+  <Bloque tono="claro" class="editorial">
+    <p class="editorial-codigo">404</p>
+    <h1 class="std-h1">Esta página no existe</h1>
+    <p>Puede que el enlace esté desactualizado. Estas rutas sí funcionan:</p>
+    <Acciones acciones={[
+      { href: '/', texto: 'Inicio' },
+      { href: '/blog/', texto: 'Blog', variante: 'fantasma' },
+    ]} />
+    {wa && <p><a href={`https://wa.me/${wa}`} rel="noopener">Escríbenos por WhatsApp</a></p>}
+  </Bloque>
+</Sitio>

@@ -1,0 +1,1358 @@
+{
+  "rotulo": "Datos de ejemplo",
+  "fecha_referencia": "2026-11-10T12:00:00-03:00",
+  "nota": "Datos inventados para la muestra, con la forma de los objetos de SAP PM (equipo, ubicación técnica, avisos, órdenes, plan) y MM (materiales, stock, lista de materiales). Los nombres de campo son los de las tablas estándar.",
+  "equipo": {
+    "EQUNR": "10004521",
+    "EQKTX": "BOMBA CENTRIFUGA HORIZONTAL PP-101",
+    "EQTYP": "M",
+    "EQART": "BOMBA-CENT",
+    "TPLNR": "PLA-AGP-SB01-PP101",
+    "IWERK": "1000",
+    "SWERK": "1000",
+    "INGRP": "P10",
+    "GEWRK": "MEC-01",
+    "KOSTL": "CC-AGP-01",
+    "ABCKZ": "A",
+    "TYPBZ": "EN 733 150-315",
+    "SERGE": "EJ-2019-00101",
+    "BAUJJ": "2018",
+    "INBDT": "2019-03-18",
+    "TIDNR": "PP-101",
+    "caracteristicas": [
+      {
+        "ATNAM": "CAUDAL_NOMINAL",
+        "ATBEZ": "Caudal nominal",
+        "ATWRT": "380",
+        "unidad": "m³/h"
+      },
+      {
+        "ATNAM": "ALTURA_NOMINAL",
+        "ATBEZ": "Altura de bombeo",
+        "ATWRT": "30",
+        "unidad": "m"
+      },
+      {
+        "ATNAM": "VELOCIDAD",
+        "ATBEZ": "Velocidad",
+        "ATWRT": "1486",
+        "unidad": "rpm"
+      },
+      {
+        "ATNAM": "POTENCIA_ABS",
+        "ATBEZ": "Potencia absorbida",
+        "ATWRT": "36",
+        "unidad": "kW"
+      },
+      {
+        "ATNAM": "DIAM_RODETE",
+        "ATBEZ": "Diámetro del rodete",
+        "ATWRT": "314",
+        "unidad": "mm"
+      },
+      {
+        "ATNAM": "DN_ASPIRACION",
+        "ATBEZ": "Boca de aspiración",
+        "ATWRT": "DN 200",
+        "unidad": ""
+      },
+      {
+        "ATNAM": "DN_IMPULSION",
+        "ATBEZ": "Boca de impulsión",
+        "ATWRT": "DN 150",
+        "unidad": ""
+      },
+      {
+        "ATNAM": "CIERRE_EJE",
+        "ATBEZ": "Cierre del eje",
+        "ATWRT": "Cierre mecánico sencillo",
+        "unidad": ""
+      }
+    ]
+  },
+  "subequipos": [
+    {
+      "EQUNR": "10004522",
+      "EQKTX": "MOTOR ELECTRICO 75 KW 4P PP-101",
+      "HEQUI": "10004521",
+      "EQART": "MOTOR-BT",
+      "conjunto": "motor",
+      "TYPBZ": "280M B3",
+      "ABCKZ": "A"
+    },
+    {
+      "EQUNR": "10004523",
+      "EQKTX": "ACOPLAMIENTO FLEXIBLE CON ESPACIADOR PP-101",
+      "HEQUI": "10004521",
+      "EQART": "ACOPLAM",
+      "conjunto": "acoplamiento",
+      "TYPBZ": "Espaciador 140 mm",
+      "ABCKZ": "B"
+    },
+    {
+      "EQUNR": "10004524",
+      "EQKTX": "BASE COMUN BOMBA Y MOTOR PP-101",
+      "HEQUI": "10004521",
+      "EQART": "ESTRUCT",
+      "conjunto": "base",
+      "TYPBZ": "1800 x 780 mm",
+      "ABCKZ": "C"
+    }
+  ],
+  "ubicacion_tecnica": {
+    "TPLNR": "PLA-AGP-SB01-PP101",
+    "PLTXT": "BOMBA AGUA DE PROCESO PP-101",
+    "FLTYP": "M",
+    "TPLMA": "PLA-AGP-SB01",
+    "jerarquia": [
+      {
+        "TPLNR": "PLA",
+        "PLTXT": "PLANTA DE EJEMPLO"
+      },
+      {
+        "TPLNR": "PLA-AGP",
+        "PLTXT": "AGUA DE PROCESO"
+      },
+      {
+        "TPLNR": "PLA-AGP-SB01",
+        "PLTXT": "SALA DE BOMBAS 01"
+      },
+      {
+        "TPLNR": "PLA-AGP-SB01-PP101",
+        "PLTXT": "BOMBA AGUA DE PROCESO PP-101"
+      }
+    ]
+  },
+  "avisos": [
+    {
+      "QMNUM": "10038642",
+      "QMART": "M1",
+      "QMTXT": "VIBRACION ALTA RODAMIENTO LADO ACOPLAMIENTO",
+      "PRIOK": "2",
+      "prioridad": "Alta",
+      "QMDAT": "2026-11-10",
+      "MZEIT": "02:15",
+      "QMNAM": "MONITOREO",
+      "estado": "MEAB ORAS",
+      "abierto": true,
+      "EQUNR": "10004521",
+      "TPLNR": "PLA-AGP-SB01-PP101",
+      "AUFNR": "4000127",
+      "pieza_manual": "321",
+      "instancia": "LA",
+      "punto_pi": "PP-101.VT-101A",
+      "del_evento": true,
+      "texto_largo": "Alarma alta de vibración en el rodamiento del lado acoplamiento. Valor medido 4,7 mm/s RMS, umbral 4,5 mm/s. La tendencia sube desde hace tres días y la temperatura del rodamiento acompaña.",
+      "catalogo": {
+        "parte_objeto": "Rodamiento",
+        "sintoma": "Vibración alta",
+        "causa": "Por determinar en el desarme"
+      }
+    },
+    {
+      "QMNUM": "10038517",
+      "QMART": "M1",
+      "QMTXT": "GOTEO LEVE POR CIERRE MECANICO",
+      "PRIOK": "3",
+      "prioridad": "Media",
+      "QMDAT": "2026-10-27",
+      "MZEIT": "10:40",
+      "QMNAM": "RUTA-INSP",
+      "estado": "MEAB",
+      "abierto": true,
+      "EQUNR": "10004521",
+      "TPLNR": "PLA-AGP-SB01-PP101",
+      "AUFNR": null,
+      "pieza_manual": "433",
+      "instancia": null,
+      "texto_largo": "Goteo visible en la evacuación de líquido de fuga 8B durante la ruta de inspección. Sin aumento en la semana siguiente. Se mantiene en observación.",
+      "catalogo": {
+        "parte_objeto": "Cierre mecánico",
+        "sintoma": "Fuga",
+        "causa": "Desgaste de las caras"
+      }
+    },
+    {
+      "QMNUM": "10031204",
+      "QMART": "M2",
+      "QMTXT": "FUGA POR CIERRE MECANICO",
+      "PRIOK": "1",
+      "prioridad": "Muy alta",
+      "QMDAT": "2025-09-07",
+      "MZEIT": "22:10",
+      "QMNAM": "OPERACIONES",
+      "estado": "MECE",
+      "abierto": false,
+      "EQUNR": "10004521",
+      "TPLNR": "PLA-AGP-SB01-PP101",
+      "AUFNR": "4000071",
+      "pieza_manual": "433",
+      "instancia": null,
+      "texto_largo": "Fuga continua por el cierre del eje. Se detiene la bomba y entra PP-102.",
+      "catalogo": {
+        "parte_objeto": "Cierre mecánico",
+        "sintoma": "Fuga",
+        "causa": "Caras dañadas por marcha en seco"
+      }
+    }
+  ],
+  "ordenes": [
+    {
+      "AUFNR": "4000019",
+      "AUART": "PM01",
+      "KTEXT": "CAMBIO DE RODETE POR DESGASTE PP-101",
+      "estado": "CTEC",
+      "GSTRP": "2023-06-12",
+      "GLTRP": "2023-06-13",
+      "IDAT2": "2023-06-13",
+      "ARBPL": "MEC-01",
+      "horas": 9,
+      "componentes": [
+        {
+          "MATNR": "40001230",
+          "MAKTX": "RODETE D314 BBA 150-315 JL1040",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "230"
+        },
+        {
+          "MATNR": "40001502",
+          "MAKTX": "ANILLO PARTIDO 150-315 ASPIRACION",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "502.1"
+        },
+        {
+          "MATNR": "40001503",
+          "MAKTX": "ANILLO PARTIDO 150-315 PRESION",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "502.2"
+        },
+        {
+          "MATNR": "40001920",
+          "MAKTX": "TUERCA RODETE M24X1,5 CLASE 8",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "920.1"
+        },
+        {
+          "MATNR": "40001940",
+          "MAKTX": "CHAVETA 10X8X50 C45",
+          "MENGE": 2,
+          "MEINS": "UN",
+          "pieza_manual": "940.2"
+        },
+        {
+          "MATNR": "40001400",
+          "MAKTX": "JUNTA PLANA CARCASA 150-315 S/AMIANTO",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "400.1"
+        }
+      ]
+    },
+    {
+      "AUFNR": "4000052",
+      "AUART": "PM02",
+      "KTEXT": "MANTENCION MAYOR BOMBA PP-101",
+      "estado": "CTEC",
+      "GSTRP": "2024-11-18",
+      "GLTRP": "2024-11-21",
+      "IDAT2": "2024-11-20",
+      "ARBPL": "MEC-01",
+      "horas": 26,
+      "WARPL": "45210",
+      "componentes": [
+        {
+          "MATNR": "40001321",
+          "MAKTX": "RODAMIENTO RIGIDO DE BOLAS 6311 C3",
+          "MENGE": 2,
+          "MEINS": "UN",
+          "pieza_manual": "321"
+        },
+        {
+          "MATNR": "40001411",
+          "MAKTX": "JUNTA ANULAR AXIAL V-55 NBR",
+          "MENGE": 2,
+          "MEINS": "UN",
+          "pieza_manual": "411"
+        },
+        {
+          "MATNR": "40001932",
+          "MAKTX": "ANILLO DE SEGURIDAD INTERIOR D120",
+          "MENGE": 2,
+          "MEINS": "UN",
+          "pieza_manual": "932"
+        },
+        {
+          "MATNR": "40001433",
+          "MAKTX": "CIERRE MECANICO NORMALIZADO D55 BQ1EGG",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "433"
+        },
+        {
+          "MATNR": "40001523",
+          "MAKTX": "CASQUILLO PROTECTOR EJE D55 1.4571",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "523"
+        },
+        {
+          "MATNR": "40001400",
+          "MAKTX": "JUNTA PLANA CARCASA 150-315 S/AMIANTO",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "400.1"
+        },
+        {
+          "MATNR": "40001403",
+          "MAKTX": "JUNTA PLANA CASQUILLO EJE D45",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "400.3"
+        },
+        {
+          "MATNR": "40001502",
+          "MAKTX": "ANILLO PARTIDO 150-315 ASPIRACION",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "502.1"
+        },
+        {
+          "MATNR": "40001503",
+          "MAKTX": "ANILLO PARTIDO 150-315 PRESION",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "502.2"
+        },
+        {
+          "MATNR": "40007002",
+          "MAKTX": "GRASA DE LITIO EP2 CARTUCHO 400 G",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": null
+        }
+      ]
+    },
+    {
+      "AUFNR": "4000071",
+      "AUART": "PM01",
+      "KTEXT": "CAMBIO DE CIERRE MECANICO POR FUGA PP-101",
+      "estado": "CTEC",
+      "GSTRP": "2025-09-08",
+      "GLTRP": "2025-09-09",
+      "IDAT2": "2025-09-09",
+      "ARBPL": "MEC-01",
+      "horas": 7,
+      "QMNUM": "10031204",
+      "componentes": [
+        {
+          "MATNR": "40001433",
+          "MAKTX": "CIERRE MECANICO NORMALIZADO D55 BQ1EGG",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "433"
+        },
+        {
+          "MATNR": "40001403",
+          "MAKTX": "JUNTA PLANA CASQUILLO EJE D45",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "400.3"
+        },
+        {
+          "MATNR": "40001400",
+          "MAKTX": "JUNTA PLANA CARCASA 150-315 S/AMIANTO",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "400.1"
+        }
+      ]
+    },
+    {
+      "AUFNR": "4000083",
+      "AUART": "PM02",
+      "KTEXT": "INSPECCION Y RELUBRICACION DE RODAMIENTOS",
+      "estado": "CTEC",
+      "GSTRP": "2026-02-16",
+      "GLTRP": "2026-02-16",
+      "IDAT2": "2026-02-16",
+      "ARBPL": "LUB-01",
+      "horas": 1.5,
+      "WARPL": "45210",
+      "componentes": [
+        {
+          "MATNR": "40007002",
+          "MAKTX": "GRASA DE LITIO EP2 CARTUCHO 400 G",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": null
+        }
+      ]
+    },
+    {
+      "AUFNR": "4000096",
+      "AUART": "PM02",
+      "KTEXT": "ALINEAMIENTO Y REVISION DEL ACOPLAMIENTO",
+      "estado": "CTEC",
+      "GSTRP": "2026-05-11",
+      "GLTRP": "2026-05-11",
+      "IDAT2": "2026-05-11",
+      "ARBPL": "MEC-01",
+      "horas": 3,
+      "WARPL": "45210",
+      "componentes": []
+    },
+    {
+      "AUFNR": "4000108",
+      "AUART": "PM02",
+      "KTEXT": "INSPECCION Y RELUBRICACION DE RODAMIENTOS",
+      "estado": "CTEC",
+      "GSTRP": "2026-08-17",
+      "GLTRP": "2026-08-17",
+      "IDAT2": "2026-08-17",
+      "ARBPL": "LUB-01",
+      "horas": 1.5,
+      "WARPL": "45210",
+      "componentes": [
+        {
+          "MATNR": "40007002",
+          "MAKTX": "GRASA DE LITIO EP2 CARTUCHO 400 G",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": null
+        }
+      ]
+    },
+    {
+      "AUFNR": "4000127",
+      "AUART": "PM01",
+      "KTEXT": "CAMBIO DE RODAMIENTOS PP-101 POR VIBRACION ALTA",
+      "estado": "LIB.",
+      "ERDAT": "2026-11-10",
+      "ERZEIT": "08:15",
+      "GSTRP": "2026-11-14",
+      "GLTRP": "2026-11-14",
+      "ARBPL": "MEC-01",
+      "horas": 6,
+      "QMNUM": "10038642",
+      "del_evento": true,
+      "operaciones": [
+        {
+          "VORNR": "0010",
+          "LTXA1": "Bloqueo y aislación de energías",
+          "ARBEI": 0.5
+        },
+        {
+          "VORNR": "0020",
+          "LTXA1": "Retirar la pieza de separación del acoplamiento y extraer la unidad modular",
+          "ARBEI": 1
+        },
+        {
+          "VORNR": "0030",
+          "LTXA1": "Desmontar rodete, cierre mecánico y cubierta de presión",
+          "ARBEI": 1
+        },
+        {
+          "VORNR": "0040",
+          "LTXA1": "Cambiar los dos rodamientos 321, juntas anulares 411 y anillos de seguridad 932",
+          "ARBEI": 1.5
+        },
+        {
+          "VORNR": "0050",
+          "LTXA1": "Montar con junta plana 400.1 nueva, apretar según tabla de pares y alinear",
+          "ARBEI": 1.5
+        },
+        {
+          "VORNR": "0060",
+          "LTXA1": "Poner en marcha y medir vibraciones y temperatura",
+          "ARBEI": 0.5
+        }
+      ],
+      "componentes": [
+        {
+          "MATNR": "40001321",
+          "MAKTX": "RODAMIENTO RIGIDO DE BOLAS 6311 C3",
+          "MENGE": 2,
+          "MEINS": "UN",
+          "pieza_manual": "321",
+          "reserva": "0000083412"
+        },
+        {
+          "MATNR": "40001411",
+          "MAKTX": "JUNTA ANULAR AXIAL V-55 NBR",
+          "MENGE": 2,
+          "MEINS": "UN",
+          "pieza_manual": "411",
+          "reserva": "0000083412"
+        },
+        {
+          "MATNR": "40001932",
+          "MAKTX": "ANILLO DE SEGURIDAD INTERIOR D120",
+          "MENGE": 2,
+          "MEINS": "UN",
+          "pieza_manual": "932",
+          "reserva": "0000083412"
+        },
+        {
+          "MATNR": "40001400",
+          "MAKTX": "JUNTA PLANA CARCASA 150-315 S/AMIANTO",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": "400.1",
+          "reserva": "0000083412"
+        },
+        {
+          "MATNR": "40007002",
+          "MAKTX": "GRASA DE LITIO EP2 CARTUCHO 400 G",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": null,
+          "reserva": "0000083412"
+        }
+      ]
+    },
+    {
+      "AUFNR": "4000131",
+      "AUART": "PM02",
+      "KTEXT": "INSPECCION Y RELUBRICACION DE RODAMIENTOS",
+      "estado": "ABIE",
+      "GSTRP": "2026-11-16",
+      "GLTRP": "2026-11-16",
+      "ARBPL": "LUB-01",
+      "horas": 1.5,
+      "WARPL": "45210",
+      "componentes": [
+        {
+          "MATNR": "40007002",
+          "MAKTX": "GRASA DE LITIO EP2 CARTUCHO 400 G",
+          "MENGE": 1,
+          "MEINS": "UN",
+          "pieza_manual": null
+        }
+      ]
+    },
+    {
+      "AUFNR": "4000136",
+      "AUART": "PM02",
+      "KTEXT": "ALINEAMIENTO Y REVISION DEL ACOPLAMIENTO",
+      "estado": "ABIE",
+      "GSTRP": "2026-11-23",
+      "GLTRP": "2026-11-23",
+      "ARBPL": "MEC-01",
+      "horas": 3,
+      "WARPL": "45210",
+      "componentes": []
+    }
+  ],
+  "plan_mantenimiento": {
+    "WARPL": "45210",
+    "WPTXT": "PLAN PREVENTIVO BOMBA PP-101",
+    "STRAT": "ZB-BOMBAS",
+    "EQUNR": "10004521",
+    "posiciones": [
+      {
+        "WAPOS": "0001",
+        "PSTXT": "Ruta de inspección en marcha",
+        "ciclo": "Cada 7 días",
+        "ZYKL1": 7,
+        "ZEIEH": "D",
+        "ultima": "2026-11-09",
+        "proxima": "2026-11-16",
+        "ARBPL": "OPE-01"
+      },
+      {
+        "WAPOS": "0002",
+        "PSTXT": "Medición de vibraciones y temperatura",
+        "ciclo": "Cada 30 días",
+        "ZYKL1": 30,
+        "ZEIEH": "D",
+        "ultima": "2026-11-02",
+        "proxima": "2026-12-02",
+        "ARBPL": "PRE-01"
+      },
+      {
+        "WAPOS": "0003",
+        "PSTXT": "Inspección y relubricación de rodamientos",
+        "ciclo": "Cada 3 meses",
+        "ZYKL1": 3,
+        "ZEIEH": "MES",
+        "ultima": "2026-08-17",
+        "proxima": "2026-11-16",
+        "ARBPL": "LUB-01",
+        "AUFNR": "4000131"
+      },
+      {
+        "WAPOS": "0004",
+        "PSTXT": "Alineamiento y revisión del acoplamiento",
+        "ciclo": "Cada 6 meses",
+        "ZYKL1": 6,
+        "ZEIEH": "MES",
+        "ultima": "2026-05-11",
+        "proxima": "2026-11-23",
+        "ARBPL": "MEC-01",
+        "AUFNR": "4000136"
+      },
+      {
+        "WAPOS": "0005",
+        "PSTXT": "Mantención mayor: rodamientos, cierre y anillos partidos",
+        "ciclo": "Cada 36 meses",
+        "ZYKL1": 36,
+        "ZEIEH": "MES",
+        "ultima": "2024-11-20",
+        "proxima": "2027-11-22",
+        "ARBPL": "MEC-01"
+      }
+    ]
+  },
+  "lista_materiales": {
+    "STLTY": "E",
+    "STLNR": "00081452",
+    "STLAL": "01",
+    "EQUNR": "10004521",
+    "STKTX": "LISTA DE MATERIALES BOMBA PP-101",
+    "posiciones": [
+      {
+        "POSNR": "0010",
+        "POSTP": "L",
+        "IDNRK": "40001102",
+        "MAKTX": "CARCASA ESPIRAL BBA 150-315 JL1040",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "102"
+      },
+      {
+        "POSNR": "0020",
+        "POSTP": "L",
+        "IDNRK": "40001163",
+        "MAKTX": "CUBIERTA DE PRESION BBA 150-315",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "163.2"
+      },
+      {
+        "POSNR": "0030",
+        "POSTP": "L",
+        "IDNRK": "40001230",
+        "MAKTX": "RODETE D314 BBA 150-315 JL1040",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "230"
+      },
+      {
+        "POSNR": "0040",
+        "POSTP": "L",
+        "IDNRK": "40001502",
+        "MAKTX": "ANILLO PARTIDO 150-315 ASPIRACION",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "502.1"
+      },
+      {
+        "POSNR": "0050",
+        "POSTP": "L",
+        "IDNRK": "40001503",
+        "MAKTX": "ANILLO PARTIDO 150-315 PRESION",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "502.2"
+      },
+      {
+        "POSNR": "0060",
+        "POSTP": "L",
+        "IDNRK": "40001210",
+        "MAKTX": "EJE BBA 150-315 UNIDAD 55 C45",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "210"
+      },
+      {
+        "POSNR": "0070",
+        "POSTP": "L",
+        "IDNRK": "40001433",
+        "MAKTX": "CIERRE MECANICO NORMALIZADO D55 BQ1EGG",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "433"
+      },
+      {
+        "POSNR": "0090",
+        "POSTP": "L",
+        "IDNRK": "40001523",
+        "MAKTX": "CASQUILLO PROTECTOR EJE D55 1.4571",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "523"
+      },
+      {
+        "POSNR": "0110",
+        "POSTP": "L",
+        "IDNRK": "40001940",
+        "MAKTX": "CHAVETA 10X8X50 C45",
+        "MENGE": 2,
+        "MEINS": "UN",
+        "pieza_manual": "940.2"
+      },
+      {
+        "POSNR": "0120",
+        "POSTP": "L",
+        "IDNRK": "40001943",
+        "MAKTX": "CHAVETA 12X8X63 C45",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "940.3"
+      },
+      {
+        "POSNR": "0130",
+        "POSTP": "L",
+        "IDNRK": "40001321",
+        "MAKTX": "RODAMIENTO RIGIDO DE BOLAS 6311 C3",
+        "MENGE": 2,
+        "MEINS": "UN",
+        "pieza_manual": "321"
+      },
+      {
+        "POSNR": "0140",
+        "POSTP": "L",
+        "IDNRK": "40001330",
+        "MAKTX": "SOPORTE DE COJINETES UNIDAD 55",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "330"
+      },
+      {
+        "POSNR": "0150",
+        "POSTP": "L",
+        "IDNRK": "40001360",
+        "MAKTX": "TAPA DE COJINETES UNIDAD 55",
+        "MENGE": 2,
+        "MEINS": "UN",
+        "pieza_manual": "360.1"
+      },
+      {
+        "POSNR": "0160",
+        "POSTP": "L",
+        "IDNRK": "40001932",
+        "MAKTX": "ANILLO DE SEGURIDAD INTERIOR D120",
+        "MENGE": 2,
+        "MEINS": "UN",
+        "pieza_manual": "932"
+      },
+      {
+        "POSNR": "0170",
+        "POSTP": "L",
+        "IDNRK": "40001183",
+        "MAKTX": "PIE DE APOYO SOPORTE COJINETES 55",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "183"
+      },
+      {
+        "POSNR": "0180",
+        "POSTP": "L",
+        "IDNRK": "40001892",
+        "MAKTX": "CHAPA DE CUBIERTA LINTERNA UNIDAD 55",
+        "MENGE": 2,
+        "MEINS": "UN",
+        "pieza_manual": "81-92"
+      },
+      {
+        "POSNR": "0190",
+        "POSTP": "L",
+        "IDNRK": "40001400",
+        "MAKTX": "JUNTA PLANA CARCASA 150-315 S/AMIANTO",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "400.1"
+      },
+      {
+        "POSNR": "0200",
+        "POSTP": "L",
+        "IDNRK": "40001403",
+        "MAKTX": "JUNTA PLANA CASQUILLO EJE D45",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "400.3"
+      },
+      {
+        "POSNR": "0210",
+        "POSTP": "L",
+        "IDNRK": "40001411",
+        "MAKTX": "JUNTA ANULAR AXIAL V-55 NBR",
+        "MENGE": 2,
+        "MEINS": "UN",
+        "pieza_manual": "411"
+      },
+      {
+        "POSNR": "0230",
+        "POSTP": "L",
+        "IDNRK": "40001901",
+        "MAKTX": "TORNILLO HEXAGONAL M10X20 8.8",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "901.1"
+      },
+      {
+        "POSNR": "0240",
+        "POSTP": "L",
+        "IDNRK": "40001905",
+        "MAKTX": "TORNILLO HEXAGONAL M12X30 8.8",
+        "MENGE": 2,
+        "MEINS": "UN",
+        "pieza_manual": "901.2"
+      },
+      {
+        "POSNR": "0250",
+        "POSTP": "L",
+        "IDNRK": "40001906",
+        "MAKTX": "TORNILLO HEXAGONAL M6X12 8.8",
+        "MENGE": 2,
+        "MEINS": "UN",
+        "pieza_manual": "901.3"
+      },
+      {
+        "POSNR": "0260",
+        "POSTP": "L",
+        "IDNRK": "40001902",
+        "MAKTX": "PERNO ROSCADO M16X65 8.8",
+        "MENGE": 8,
+        "MEINS": "UN",
+        "pieza_manual": "902.3"
+      },
+      {
+        "POSNR": "0270",
+        "POSTP": "L",
+        "IDNRK": "40001903",
+        "MAKTX": "TORNILLO DE CIERRE G1/2 ACERO",
+        "MENGE": 3,
+        "MEINS": "UN",
+        "pieza_manual": "903.1"
+      },
+      {
+        "POSNR": "0280",
+        "POSTP": "L",
+        "IDNRK": "40001920",
+        "MAKTX": "TUERCA RODETE M24X1,5 CLASE 8",
+        "MENGE": 1,
+        "MEINS": "UN",
+        "pieza_manual": "920.1"
+      },
+      {
+        "POSNR": "0290",
+        "POSTP": "L",
+        "IDNRK": "40001925",
+        "MAKTX": "TUERCA HEXAGONAL M16 CLASE 8",
+        "MENGE": 8,
+        "MEINS": "UN",
+        "pieza_manual": "920.5"
+      },
+      {
+        "POSNR": "0300",
+        "POSTP": "L",
+        "IDNRK": "40001930",
+        "MAKTX": "ARANDELA DE SEGURIDAD",
+        "MENGE": 3,
+        "MEINS": "UN",
+        "pieza_manual": "930.3"
+      }
+    ]
+  },
+  "materiales": [
+    {
+      "MATNR": "40001102",
+      "MAKTX": "CARCASA ESPIRAL BBA 150-315 JL1040",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "102",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "",
+        "LABST": 0,
+        "reservado": 0,
+        "MINBE": 0,
+        "PLIFZ": 112
+      }
+    },
+    {
+      "MATNR": "40001163",
+      "MAKTX": "CUBIERTA DE PRESION BBA 150-315",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "163.2",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "",
+        "LABST": 0,
+        "reservado": 0,
+        "MINBE": 0,
+        "PLIFZ": 84
+      }
+    },
+    {
+      "MATNR": "40001183",
+      "MAKTX": "PIE DE APOYO SOPORTE COJINETES 55",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "183",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "",
+        "LABST": 0,
+        "reservado": 0,
+        "MINBE": 0,
+        "PLIFZ": 56
+      }
+    },
+    {
+      "MATNR": "40001210",
+      "MAKTX": "EJE BBA 150-315 UNIDAD 55 C45",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "210",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "E-04-02",
+        "LABST": 1,
+        "reservado": 0,
+        "MINBE": 1,
+        "PLIFZ": 70
+      }
+    },
+    {
+      "MATNR": "40001230",
+      "MAKTX": "RODETE D314 BBA 150-315 JL1040",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "230",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "E-04-01",
+        "LABST": 1,
+        "reservado": 0,
+        "MINBE": 1,
+        "PLIFZ": 84
+      }
+    },
+    {
+      "MATNR": "40001321",
+      "MAKTX": "RODAMIENTO RIGIDO DE BOLAS 6311 C3",
+      "MEINS": "UN",
+      "MATKL": "RODAMIENTOS",
+      "pieza_manual": "321",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "A-12-03",
+        "LABST": 4,
+        "reservado": 2,
+        "MINBE": 2,
+        "PLIFZ": 14
+      }
+    },
+    {
+      "MATNR": "40001330",
+      "MAKTX": "SOPORTE DE COJINETES UNIDAD 55",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "330",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "",
+        "LABST": 0,
+        "reservado": 0,
+        "MINBE": 0,
+        "PLIFZ": 84
+      }
+    },
+    {
+      "MATNR": "40001360",
+      "MAKTX": "TAPA DE COJINETES UNIDAD 55",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "360.1",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "A-12-05",
+        "LABST": 2,
+        "reservado": 0,
+        "MINBE": 2,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001400",
+      "MAKTX": "JUNTA PLANA CARCASA 150-315 S/AMIANTO",
+      "MEINS": "UN",
+      "MATKL": "JUNTAS",
+      "pieza_manual": "400.1",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "C-02-07",
+        "LABST": 3,
+        "reservado": 1,
+        "MINBE": 2,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001403",
+      "MAKTX": "JUNTA PLANA CASQUILLO EJE D45",
+      "MEINS": "UN",
+      "MATKL": "JUNTAS",
+      "pieza_manual": "400.3",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "C-02-08",
+        "LABST": 4,
+        "reservado": 0,
+        "MINBE": 2,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001411",
+      "MAKTX": "JUNTA ANULAR AXIAL V-55 NBR",
+      "MEINS": "UN",
+      "MATKL": "JUNTAS",
+      "pieza_manual": "411",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "C-02-11",
+        "LABST": 6,
+        "reservado": 2,
+        "MINBE": 4,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001433",
+      "MAKTX": "CIERRE MECANICO NORMALIZADO D55 BQ1EGG",
+      "MEINS": "UN",
+      "MATKL": "SELLOS",
+      "pieza_manual": "433",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "B-03-01",
+        "LABST": 1,
+        "reservado": 0,
+        "MINBE": 1,
+        "PLIFZ": 45
+      }
+    },
+    {
+      "MATNR": "40001502",
+      "MAKTX": "ANILLO PARTIDO 150-315 ASPIRACION",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "502.1",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "E-04-05",
+        "LABST": 2,
+        "reservado": 0,
+        "MINBE": 1,
+        "PLIFZ": 45
+      }
+    },
+    {
+      "MATNR": "40001503",
+      "MAKTX": "ANILLO PARTIDO 150-315 PRESION",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "502.2",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "E-04-06",
+        "LABST": 2,
+        "reservado": 0,
+        "MINBE": 1,
+        "PLIFZ": 45
+      }
+    },
+    {
+      "MATNR": "40001523",
+      "MAKTX": "CASQUILLO PROTECTOR EJE D55 1.4571",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "523",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "B-03-04",
+        "LABST": 1,
+        "reservado": 0,
+        "MINBE": 1,
+        "PLIFZ": 45
+      }
+    },
+    {
+      "MATNR": "40001892",
+      "MAKTX": "CHAPA DE CUBIERTA LINTERNA UNIDAD 55",
+      "MEINS": "UN",
+      "MATKL": "REP-BOMBAS",
+      "pieza_manual": "81-92",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "D-06-01",
+        "LABST": 2,
+        "reservado": 0,
+        "MINBE": 0,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001901",
+      "MAKTX": "TORNILLO HEXAGONAL M10X20 8.8",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "901.1",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-01-10",
+        "LABST": 40,
+        "reservado": 0,
+        "MINBE": 20,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001905",
+      "MAKTX": "TORNILLO HEXAGONAL M12X30 8.8",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "901.2",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-01-12",
+        "LABST": 60,
+        "reservado": 0,
+        "MINBE": 20,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001906",
+      "MAKTX": "TORNILLO HEXAGONAL M6X12 8.8",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "901.3",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-01-06",
+        "LABST": 80,
+        "reservado": 0,
+        "MINBE": 20,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001902",
+      "MAKTX": "PERNO ROSCADO M16X65 8.8",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "902.3",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-02-16",
+        "LABST": 24,
+        "reservado": 0,
+        "MINBE": 16,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001903",
+      "MAKTX": "TORNILLO DE CIERRE G1/2 ACERO",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "903.1",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-04-01",
+        "LABST": 12,
+        "reservado": 0,
+        "MINBE": 6,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001920",
+      "MAKTX": "TUERCA RODETE M24X1,5 CLASE 8",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "920.1",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-03-24",
+        "LABST": 2,
+        "reservado": 0,
+        "MINBE": 1,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001925",
+      "MAKTX": "TUERCA HEXAGONAL M16 CLASE 8",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "920.5",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-03-16",
+        "LABST": 96,
+        "reservado": 0,
+        "MINBE": 32,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001930",
+      "MAKTX": "ARANDELA DE SEGURIDAD",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "930.3",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-05-01",
+        "LABST": 50,
+        "reservado": 0,
+        "MINBE": 20,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001932",
+      "MAKTX": "ANILLO DE SEGURIDAD INTERIOR D120",
+      "MEINS": "UN",
+      "MATKL": "RODAMIENTOS",
+      "pieza_manual": "932",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "A-12-08",
+        "LABST": 6,
+        "reservado": 2,
+        "MINBE": 4,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001940",
+      "MAKTX": "CHAVETA 10X8X50 C45",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "940.2",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-06-10",
+        "LABST": 8,
+        "reservado": 0,
+        "MINBE": 4,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40001943",
+      "MAKTX": "CHAVETA 12X8X63 C45",
+      "MEINS": "UN",
+      "MATKL": "PERNERIA",
+      "pieza_manual": "940.3",
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "T-06-12",
+        "LABST": 6,
+        "reservado": 0,
+        "MINBE": 4,
+        "PLIFZ": 30
+      }
+    },
+    {
+      "MATNR": "40007002",
+      "MAKTX": "GRASA DE LITIO EP2 CARTUCHO 400 G",
+      "MEINS": "UN",
+      "MATKL": "LUBRICANTES",
+      "pieza_manual": null,
+      "stock": {
+        "WERKS": "1000",
+        "LGORT": "B001",
+        "LGOBE": "Bodega central",
+        "LGPBE": "L-01-01",
+        "LABST": 24,
+        "reservado": 1,
+        "MINBE": 12,
+        "PLIFZ": 30
+      }
+    }
+  ],
+  "textos": {
+    "AUART": {
+      "PM01": "Correctivo",
+      "PM02": "Preventivo"
+    },
+    "QMART": {
+      "M1": "Solicitud de mantenimiento",
+      "M2": "Aviso de avería"
+    },
+    "estado": {
+      "CTEC": "Cerrada técnicamente",
+      "LIB.": "Liberada",
+      "ABIE": "Abierta",
+      "MEAB": "Aviso abierto",
+      "MEAB ORAS": "Abierto, con orden asignada",
+      "MECE": "Cerrado"
+    }
+  }
+}
