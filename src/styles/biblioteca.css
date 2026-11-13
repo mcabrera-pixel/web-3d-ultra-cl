@@ -1,6 +1,7 @@
 /* Biblioteca: superficies del kit y estilos propios acotados a bib-. El visor tiene su propia hoja. */
 .bib-pagina [hidden] { display: none !important; }
-/* El fondo propio del visor permanece detrás de las superficies y del pie. */
+/* Superficies y pie con su propio plano de apilamiento. Lo creó el fondo de partículas, retirado en la Tarea 7;
+   se conserva para no mover nada más de la presentación. */
 .bib-pagina main > section, .bib-pagina main > .bib-contenedor, .bib-pagina .mcco-grupo { position: relative; z-index: 1; }
 .bib-contenedor { max-width: 1200px; margin: 0 auto; text-align: left; }
 .bib-pagina main > .bib-contenedor { max-width: none; padding-inline: 24px; background: var(--std-blanco); }

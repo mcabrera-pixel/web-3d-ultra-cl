@@ -125,3 +125,17 @@ pruebas sobre HTML construido, incluidas mutaciones del CTA y de cada tarjeta de
 Resultados: 85/85 comprobaciones del sitio, 36/36 ensayos de presentación y 16/16
 complementarias. La última corrección limita el traslado del panel cerrado para que
 la pestaña no pierda 5 px fuera del escenario; se repitieron build, check y presentación.
+
+## Tarea 7: fondo de partículas retirado (13-nov-2026)
+
+La revisión OCR de la Tarea 5 encontró que el fondo de partículas WebGL (`fondo-particulas.js`, hasta 24 000
+puntos) seguía dibujando en cada cuadro detrás de los bloques opacos de las fichas, sin verse. En la Tarea 7 el
+visor deja de crearlo y de animarlo: `visor3d.js` ya no importa ni llama a `iniciarFondo`, y el bucle de render
+solo dibuja el visor cuando está en pantalla. Se borraron `src/scripts/fondo-particulas.js`, las tres funciones
+que solo usaba él en `visor3d-logica.js` (`avanceScroll`, `aperturaNube`, `giroNube`) con sus pruebas, y los
+estilos de `.bib-fondo`. Cámara, geometría, controles, carga y Meshopt no cambian.
+
+`test/build/visor-fondo.test.mjs` revisa el JS y el CSS que cargan las tres fichas construidas: el visor conserva
+su lienzo y su bucle, y nada crea ni estiliza `.bib-fondo`. En el navegador, con un GLB sintético solo del servidor
+de QA, la ficha llega a «modelo cargado» y al bajar hasta el contacto hay un solo canvas y un solo contexto WebGL,
+los del visor.

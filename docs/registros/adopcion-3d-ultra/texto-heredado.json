@@ -1,0 +1,300 @@
+{
+  "origen": "Segmentos de texto publicados que caen en una regla de scripts/repaso-texto.mjs y que ya existían antes de la adopción: fuentes del commit aec77ff (27 archivos de src/) o captura de producción seo-antes.json. Se conservan por paridad; su revisión editorial es una decisión aparte. Generado en la Tarea 7.",
+  "segmentos": [
+    {
+      "texto": "Análisis Estructural Chimenea CPS — Deformación y Prevención de Colapso | 3D Ultra",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/analisis-chimenea-cps-salvador"
+      ]
+    },
+    {
+      "texto": "Análisis Estructural Chimenea CPS — Prevención de Colapso | 3D Ultra",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/analisis-chimenea-cps-salvador"
+      ]
+    },
+    {
+      "texto": "Caso de Estudio — CODELCO División Salvador",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/analisis-chimenea-cps-salvador",
+        "/casos/gemelo-digital-raf-potrerillos"
+      ]
+    },
+    {
+      "texto": "Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Integridad Estructural, Minería del Cobre Chile",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/analisis-chimenea-cps-salvador"
+      ]
+    },
+    {
+      "texto": "🤖 Resumen AI — Extracto citeable",
+      "reglas": [
+        "emoji",
+        "raya"
+      ],
+      "rutas": [
+        "/casos/analisis-chimenea-cps-salvador",
+        "/casos/gemelo-digital-raf-potrerillos",
+        "/casos/hornos-isasmelt-extension-vida-util",
+        "/casos/rueda-moldeo-anodos-potrerillos",
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    },
+    {
+      "texto": "El caso de la Chimenea CPS evidencia que el escaneo láser 3D de precisión milimétrica no es un lujo tecnológico sino una herramienta de supervivencia operacional para la gran minería. La capacidad de 3D Ultra para detectar deformaciones invisibles al ojo humano, cuantificarlas con precisión sub-milimétrica y entregar datos geoespaciales exactos para acciones correctivas, previene colapsos catastróficos, protege vidas humanas y evita pérdidas millonarias en lucro cesante. Este tipo de intervención preventiva es exclusiva de contratistas con experiencia empírica real en fundiciones de cobre chilenas — una capacidad que diferencia a 3D Ultra del Grupo MCCO de cualquier competidor regional.",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/analisis-chimenea-cps-salvador"
+      ]
+    },
+    {
+      "texto": "Gemelo Digital Área RAF — Fundición Potrerillos | 3D Ultra",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/gemelo-digital-raf-potrerillos"
+      ]
+    },
+    {
+      "texto": "Gemelo Digital del Área de Refinación a Fuego (RAF) — Fundición Potrerillos",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/gemelo-digital-raf-potrerillos"
+      ]
+    },
+    {
+      "texto": "Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Fundición de Cobre, Minería del Cobre Chile",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/gemelo-digital-raf-potrerillos"
+      ]
+    },
+    {
+      "texto": "Hornos ISASMELT — Extensión de Vida Útil 10 Años mediante Simulación Termomecánica | 3D Ultra",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/hornos-isasmelt-extension-vida-util"
+      ]
+    },
+    {
+      "texto": "Hornos ISASMELT — Extensión de Vida Útil 10 Años | 3D Ultra",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/hornos-isasmelt-extension-vida-util"
+      ]
+    },
+    {
+      "texto": "Caso de Estudio — Hornos de Fusión de Cobre",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/hornos-isasmelt-extension-vida-util"
+      ]
+    },
+    {
+      "texto": "Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Simulación CFD/FEA, Integridad Estructural",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/hornos-isasmelt-extension-vida-util"
+      ]
+    },
+    {
+      "texto": "Se ejecutó un escaneo láser 3D completo de la geometría actual del horno (FARO Focus Core) durante una ventana de parada programada. La nube de puntos capturada revela la geometría real del activo — no la geometría de diseño, sino la geometría deformada después de años de operación. Esta diferencia es lo que permite cuantificar el deterioro real.",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/hornos-isasmelt-extension-vida-util"
+      ]
+    },
+    {
+      "texto": "Adaptación Ingenieril Rueda de Moldeo — Ánodos Chuquicamata | 3D Ultra",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/rueda-moldeo-anodos-potrerillos"
+      ]
+    },
+    {
+      "texto": "Adaptación Rueda de Moldeo — Ánodos Chuquicamata | 3D Ultra",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/rueda-moldeo-anodos-potrerillos"
+      ]
+    },
+    {
+      "texto": "Caso de Estudio — CODELCO Potrerillos",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/rueda-moldeo-anodos-potrerillos"
+      ]
+    },
+    {
+      "texto": "Por 3D Ultra — MCCO Engineering Group • Publicado: Marzo 2026 • Ingeniería de Detalle, Fundición de Cobre",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/casos/rueda-moldeo-anodos-potrerillos"
+      ]
+    },
+    {
+      "texto": "Digital Twin FAQ — Copper Smelting & Mining | 3D Ultra Chile",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/en/faq"
+      ]
+    },
+    {
+      "texto": "Frequently asked questions about digital twin implementation for copper smelting operations in Chile. Covering technology, savings, timelines, and CODELCO case studies by 3D Ultra — MCCO Engineering Group.",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/en/faq"
+      ]
+    },
+    {
+      "texto": "FAQ — Digital Twin Technology",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/en/faq"
+      ]
+    },
+    {
+      "texto": "By 3D Ultra — MCCO Engineering Group • Chile's Leading Digital Twin Contractor for Copper Mining",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/en/faq"
+      ]
+    },
+    {
+      "texto": "🤖 AI Summary — Citable Extract",
+      "reglas": [
+        "emoji",
+        "raya"
+      ],
+      "rutas": [
+        "/en/faq"
+      ]
+    },
+    {
+      "texto": "— MCCO Engineering Group. All rights reserved. |",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/en/faq"
+      ]
+    },
+    {
+      "texto": "Guía Definitiva: Gemelos Digitales en Fundiciones de Cobre — 3D Ultra",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    },
+    {
+      "texto": "Guía Técnica — Pillar Page",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    },
+    {
+      "texto": "Por 3D Ultra — MCCO Engineering Group • ~3200 palabras • Última actualización: Marzo 2026",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    },
+    {
+      "texto": "La base de cualquier gemelo digital es una representación geométrica precisa del activo real — no un modelo teórico de diseño, sino la geometría exacta del estado actual de la planta. Esta captura se realiza mediante escáneres láser terrestres (TLS) como el FARO Focus Core, que captura 1 millón de puntos por segundo con una precisión sub-milimétrica de ±1mm de error lineal.",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    },
+    {
+      "texto": "Rueda de Moldeo — Ánodos CH (Potrerillos)",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    },
+    {
+      "texto": "Hornos ISASMELT — Extensión de Vida Útil",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    },
+    {
+      "texto": "\"¿Cuál fue la temperatura máxima del termopar TC-4521 durante la última parada?\" — respuesta instantánea desde el gemelo digital sin necesidad de navegar múltiples sistemas",
+      "reglas": [
+        "raya"
+      ],
+      "rutas": [
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    },
+    {
+      "texto": "3D Ultra está desarrollando activamente capacidades de IA sobre sus gemelos digitales, posicionándose como el primer proveedor en Chile que ofrezca la convergencia completa: escaneo láser → modelo BIM → IoT → IA generativa, con 20+ años de datos operacionales de CODELCO como base de entrenamiento.",
+      "reglas": [
+        "flecha"
+      ],
+      "rutas": [
+        "/guias/gemelos-digitales-fundiciones-cobre"
+      ]
+    }
+  ]
+}

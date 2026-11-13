@@ -14,8 +14,9 @@
   --color-muted: #555555;
   --color-accent: #d32f2f;
   --color-border: #e1e1e1;
-  --font-body: 'Montserrat', system-ui, sans-serif;
-  --font-display: 'Montserrat', system-ui, sans-serif;
+  /* Fuente del sistema e Inter local, como el estándar; sin fuentes remotas. */
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
   --space: 1rem;
   --radius: 4px;
   --maxw: 1440px;

@@ -3,10 +3,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import yaml from 'js-yaml';
-import { verifyInicio } from '../../scripts/verificar-adopcion.mjs';
+import { verifyInicio, INICIO_ANTES } from '../../scripts/verificar-adopcion.mjs';
 
 const html = readFileSync('dist/index.html', 'utf8');
-const legacy = readFileSync('src/legacy/index-body.html', 'utf8');
+// Base congelada de la portada heredada; el HTML original se retiró en la Tarea 7.
+const legacy = JSON.parse(readFileSync(INICIO_ANTES, 'utf8'));
 const fichas = Object.fromEntries(readdirSync('src/content/equipos').filter(f => f.endsWith('.md')).map(f => [f.replace(/\.md$/, ''), yaml.load(readFileSync(`src/content/equipos/${f}`, 'utf8').split(/^---$/m)[1])]));
 test('la portada construida conserva sus contratos', () => {
   assert.deepEqual(verifyInicio(html, fichas, legacy), []);

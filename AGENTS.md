@@ -7,12 +7,12 @@ Web de marketing de **3D Ultra**, división de **MCCO Group SpA** (Chile): gemel
 | Ruta | Qué es | Regla |
 |---|---|---|
 | `site.yaml` | Manifiesto: dominio, proyecto Cloudflare, contacto, CSP, prohibidos, páginas para llms.txt | Única fuente de verdad. Nada de esto se hardcodea. |
-| `src/pages/index.astro` | Home: cabecera, JSON-LD y bloque Grupo del kit; cuerpo = `src/legacy/index-body.html` (HTML original) | Al tocar el home, editar `src/legacy/index-body.html` o componentizar la sección en `.astro`. |
-| `src/pages/casos/*.html`, `guias/*.html`, `en/faq.html` | Páginas legado byte-idénticas a producción (con canonical manual) | Permitidas mientras `legacy_pages: true`. Al editarlas de fondo, convertirlas a `.astro` con `Base`. |
+| `src/pages/index.astro` | Portada con `Sitio` (layout `Estandar` del kit): hero, nube, historia, servicios, casos, asistente y formulario en `src/components/InicioContenido.astro` y vecinos | Mismos H1, title, descripción, FAQ JSON-LD (`src/legacy/index-faq.jsonld`) y destinos. El contrato de la portada antigua quedó en `docs/registros/adopcion-3d-ultra/inicio-antes.json`. |
+| `src/pages/casos/*.astro`, `guias/*.astro`, `en/faq.astro` | Casos, guía y FAQ inglesa con `Sitio`, contenido heredado tal cual | `legacy_pages: false`. Los alias `.html` se siguen generando. No cambiar title, H1, canonical ni JSON-LD. |
 | `src/content/blog/*.md` | Artículos (colección validada por Zod). Aún vacía: el índice `/blog/` lleva `noindex` hasta el primer post | El motor de contenido y los agentes escriben **solo aquí**. |
-| `src/styles/theme.css` · `site.css` · `DESIGN.md` | Tokens del sitio · CSS original del home · identidad | El kit fija nombres de tokens, no la estética. |
-| `public/` | `og.webp`, `logo.png` (provisional), `sim.JPG`, `mcco_foto.png`, favicon, clave IndexNow | `_headers` y `_redirects` los genera `mcco-headers`: **no editar a mano**. |
-| `functions/api/contact.js` | Formulario del home → Pages Function del kit (honeypot + Turnstile + Web3Forms) | Variables en Cloudflare Pages → Settings: `WEB3FORMS_KEY` (obligatoria para que envíe), `TURNSTILE_SECRET`, `RESEND_API_KEY`, `ACUSE_FROM`, `SITE_NAME`, `WHATSAPP`. |
+| `src/styles/theme.css` · `DESIGN.md` | Tokens del sitio (rojo de acción y sus variantes) · identidad | Estética del Estándar del kit: blanco, parchment y bloques negros, con SF Pro del sistema e Inter local del kit. Sin fuentes remotas (Montserrat y Google Fonts retirados en la Tarea 7). |
+| `public/` | `og.webp`, `logo.png` (provisional), `sim.JPG`, `media/` (nube e inicio), pósters de biblioteca, favicon y clave IndexNow. `mcco_foto.png` ya no lo usa ninguna página | `_headers` y `_redirects` los genera `mcco-headers`: **no editar a mano**. |
+| `functions/api/contact.js` | Reexport de la Pages Function del kit para los formularios de portada, hub y fichas: honeypot, Turnstile si hay secreto, lead al Worker `formularios-mcco`, acuse opcional y 302 a `/gracias` o `/contacto-error` | Variables en Cloudflare Pages, Settings: `FORMULARIOS_URL`, `FORMULARIOS_CLAVE` y `MARCA` (obligatorias), y `TURNSTILE_SECRET`, `RESEND_API_KEY`, `ACUSE_FROM`, `SITE_NAME`, `WHATSAPP`, `WEB` (opcionales). Web3Forms ya no se usa. Contrato y pruebas: `docs/registros/adopcion-3d-ultra/contacto-csp.md`. |
 | `.github/workflows/ci.yml`, `deploy.yml` | Llaman a los workflows reutilizables del kit | No duplicar lógica de CI. |
 
 Carpetas hermanas en disco (`02_Marketing/`, `03_Documentos/`, `04_Propuestas/`, `05_Codigo/`, `06_Recursos/`) son trabajo local de la división y **no se versionan** (`.gitignore`). `06_Recursos/LargeVideos/` guarda los mp4 originales; los videos del sitio se sirven desde Cloudflare R2 (`https://pub-dd66483f8e7f497f9490ea37068612b0.r2.dev/`).
@@ -24,6 +24,7 @@ npm ci
 npm run dev                                   # http://localhost:4321
 npm run build                                 # prebuild: mcco-headers → astro build → dist/
 npm run check                                 # mcco-check: OBLIGATORIO verde antes de PR
+node scripts/repaso-texto.mjs                 # repaso editorial de dist: sin hallazgos antes de PR
 npm run parity -- --old https://3d-ultra.cl   # migraciones: producción vs dist
 ```
 
@@ -43,20 +44,20 @@ Rama → PR → CI (build + `mcco-check` + preview si hay credenciales Cloudflar
 - Entidad desde el kit: MCCO Group SpA · RUT 77.715.147-9 · constituida en 2022 (el JSON-LD antiguo decía 2003: corregido por el kit) · Suecia 283, of. 402, Providencia, Santiago · cargo único "Gerente General, MCCO Group SpA".
 - Equipo real: escáner **FARO Focus** (nunca Leica; `site.yaml → forbidden` lo rechaza). Drones DJI vía ConDron.
 - Contacto publicado: WhatsApp +56 9 7986 0843 · mcabrera@mccocopper.cl · proyectos@mccocopper.cl.
-- Imágenes: 3D Ultra usa renders y capturas propias, no IA. Heroes WebP ≤ 150 KB.
+- Imágenes: 3D Ultra usa renders y capturas propias, no IA. Heroes WebP ≤ 150 KB y todo medio bajo 400 KB. `site.yaml` tiene `check: { visual: error }`, así que `mcco-check` falla con medios pesados, ilustraciones sin rótulo o animación sin movimiento reducido.
 
 ## 6. Qué no hacer
 
 - No editar `dist/`, `public/_headers` ni `public/_redirects` a mano.
 - No subir videos al repo (R2). No agregar `<script src>` externo sin declararlo en `site.yaml → csp`.
-- No copiar componentes del kit al sitio: PR al kit. No reformatear `src/legacy/index-body.html` completo (2.000 líneas: diffs ilegibles).
+- No copiar componentes del kit al sitio: PR al kit.
 - No volver a crear `01_Web/`, `CNAME`, `.nojekyll` ni el workflow de GitHub Pages: producción es Cloudflare Pages.
 
 ## 7. Datos de este sitio
 
 - Dominio `https://3d-ultra.cl` · proyecto Cloudflare `3d-ultra` · zona: checklist §9 del estándar **pendiente** (AI Crawl Control, robots gestionado, Crawler Hints, custom domain www).
 - Secrets de CI (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`): **pendientes** (hasta entonces el deploy es manual: `npx wrangler pages deploy dist --project-name 3d-ultra --branch main` tras `npm run build && npm run check`).
-- Idiomas: es (todo) + en (`/en/faq`). Analítica: ninguna configurada (agregar `cf_beacon_token` o GA4 en `site.yaml`).
+- Idiomas: es (todo) + en (`/en/faq`). Analítica: ninguna configurada (agregar `cf_beacon_token` o GA4 en `site.yaml`). Sin IDs no se mide ninguna conversión: la conversión funcional es el formulario, `/gracias` y WhatsApp.
 - Backlog de contenido (fuera del alcance de la migración): título del home más descriptivo; convertir casos/guía a colecciones; componentizar el home por secciones; logo oficial.
 
 ## 8. Commits

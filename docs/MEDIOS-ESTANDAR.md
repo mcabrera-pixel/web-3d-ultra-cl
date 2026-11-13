@@ -111,3 +111,37 @@ de respaldo con y sin WebGL/JS corresponden a la Tarea 4.
   del original solo en `/home/cloud/webs/encargos/3d-ultra/B5-t4/`.
 - Los tres renders de nube y los tres pósters de biblioteca no cambiaron. Hero e
   historia reciben el mismo origen `render` y el pie del hero dice «Render 3D».
+
+## Presupuesto de medios, Tarea 7 (13-nov-2026)
+
+Revisión de todos los medios que publica `dist` después de retirar la portada heredada. Bytes medidos en el
+archivo y dimensiones leídas con `sharp`. Límites: todo medio bajo 400 KB, heroes de 150 KB o menos y videos de
+8 MB o menos. Desde esta tarea `site.yaml` declara `check: { visual: error }`, así que `mcco-check` falla si un
+medio de `dist` pasa de 400 KB.
+
+| Archivo | Uso | Dimensiones | Bytes antes | Bytes después |
+|---|---|---|---:|---:|
+| `sim.JPG` | Galería de la portada, foto real | 1200 × 666 | 236276 | 236276 |
+| `media/nube/hero-komatsu-930e-5-960.webp` | Hero e historia, «Render 3D» | 960 × 540 | 86298 | 86298 |
+| `media/nube/hero-pala-ph-4100xpc-960.webp` | Historia, «Render 3D» | 960 × 540 | 81730 | 81730 |
+| `media/nube/hero-sandvik-lh621-960.webp` | Historia, «Render 3D» | 960 × 540 | 75380 | 75380 |
+| `media/inicio/video-poster.webp` | Póster del video, «Captura de simulación» | 960 × 540 | 24300 | 24300 |
+| `biblioteca/komatsu-930e-5/poster.webp` | Póster del visor y tarjeta | 1600 × 1000 | 80002 | 80002 |
+| `biblioteca/pala-ph-4100xpc/poster.webp` | Póster del visor y tarjeta | 1600 × 1000 | 74346 | 74346 |
+| `biblioteca/sandvik-lh621/poster.webp` | Póster del visor y tarjeta | 1600 × 1000 | 47346 | 47346 |
+| `biblioteca/*/og.jpg` (tres) | Vista previa de las fichas | 1200 × 630 | 73267, 58038, 62269 | sin cambio |
+| `og.webp` | Vista previa del sitio | 1200 × 630 | 44358 | 44358 |
+| `logo.png` | Barra global (provisional) | 512 × 512 | 8336 | 8336 |
+
+Ningún medio del repositorio pasa de 400 KB ni ningún hero de 150 KB, así que no hubo que generar derivados en
+`public/media/render/` ni en `public/media/captura/` y no se borró ningún medio. `sim.JPG` queda sobre la
+referencia de 100 a 200 KB que el plan da para la nube, pero no es un render de la nube: es la foto de la galería,
+fuera del hero y del LCP. Un WebP más liviano es una mejora posible para la Tarea 8, con su propio grep y registro.
+
+`mcco_foto.png` (83476 bytes, 2030 × 1288) ya no lo usa ninguna página: lo usaban solo la portada heredada y
+`Cabecera.astro`, retirados en esta tarea. Se conserva porque su URL pública pudo enlazarse desde fuera del sitio
+(es un logo). Retirarlo es una decisión de Mario.
+
+El video de la galería sigue en R2 con 47 770 799 bytes, sin faststart. `mcco-check` no lo mide porque no está en
+`dist`. Sigue pendiente un reemplazo propio de 8 MB o menos, H.264 con faststart, sin la escala heredada. Esta
+tarea no fabrica ni sube videos.

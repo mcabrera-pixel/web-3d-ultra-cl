@@ -1,5 +1,7 @@
 ---
-// Destino del formulario. La analítica sigue dependiendo del manifiesto.
+// Destino del formulario: functions/api/contact.js redirige aquí con 302 cuando el Worker acepta el lead.
+// Hoy no hay medición de conversiones: GA4, Ads y beacon están vacíos en site.yaml y el Analytics del layout no
+// emite nada. Si se configuran, la medición sale de ese único Analytics; no agregar eventos ni etiquetas aquí.
 import Sitio from '../layouts/Sitio.astro';
 import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';

@@ -378,8 +378,35 @@ async function loadSiteYaml() {
   }
 }
 
+// Contrato del formulario de contacto: acción, método, campos, valores, validación y opciones, en orden.
+function formContract(root) {
+  return findAll(root, 'form').filter(f => getAttr(f, 'action') === '/api/contact').map(f => ({
+    action: getAttr(f, 'action'), method: getAttr(f, 'method'),
+    fields: allElements(f).filter(e => ['input', 'select', 'textarea', 'button'].includes(e.nodeName)).map(e => ({
+      tag: e.nodeName, name: getAttr(e, 'name'), type: getAttr(e, 'type'), value: getAttr(e, 'value'),
+      required: e.attrs?.some(a => a.name === 'required') ?? false,
+      options: findAll(e, 'option').map(o => ({ value: getAttr(o, 'value'), text: textContent(o) })),
+    })),
+  }));
+}
+
+// Base congelada de la portada heredada (Tarea 7): formulario, párrafos y títulos de sus secciones (sin scripts ni
+// la conversación del asistente) y contactos auxiliares. Se guarda en docs/registros/adopcion-3d-ultra/inicio-antes.json.
+export function extractInicioBase(legacyHtml) {
+  const legacy = parse5.parse(legacyHtml);
+  const contenido = [];
+  for (const section of findAll(legacy, 'section')) {
+    for (const el of allElements(section).filter(e => /^(p|h[1-5])$/.test(e.nodeName))) {
+      const texto = norm(textContent(el)).replace(/ — /g, ', ').toLowerCase();
+      if (texto) contenido.push(texto);
+    }
+  }
+  const contactos = [...new Set(findAll(legacy, 'a').map(a => getAttr(a, 'href')).filter(href => /^(tel:|mailto:|https:\/\/(wa.me|instagram.com))/.test(href)))];
+  return { formularios: formContract(legacy), contenido, contactos };
+}
+
 // Contratos de la portada renderizada: se ejecutan después del build, nunca en prebuild.
-export function verifyInicio(html, fichas, legacyHtml) {
+export function verifyInicio(html, fichas, base) {
   const doc = parse5.parse(html), errors = [];
   const els = allElements(doc), links = findAll(doc, 'a');
   const hasClass = (el, c) => getAttr(el, 'class').split(/\s+/).includes(c);
@@ -408,37 +435,20 @@ export function verifyInicio(html, fichas, legacyHtml) {
   check(els.filter(el => hasClass(el, 'std-hero__rotulo')).some(el => textContent(el) === 'Render 3D'), 'Inicio: pie del hero Render 3D');
   const video = findOne(doc, 'video');
   check(!!getAttr(video, 'poster') && getAttr(video, 'preload') === 'none' && !findAll(hero, 'video').length, 'Inicio: video fuera del hero, con póster y carga diferida');
-  if (legacyHtml) {
-    const legacy = parse5.parse(legacyHtml);
-    const formContract = root => findAll(root, 'form').filter(f => getAttr(f, 'action') === '/api/contact').map(f => ({
-      action: getAttr(f, 'action'), method: getAttr(f, 'method'),
-      fields: allElements(f).filter(e => ['input', 'select', 'textarea', 'button'].includes(e.nodeName)).map(e => ({
-        tag: e.nodeName, name: getAttr(e, 'name'), type: getAttr(e, 'type'), value: getAttr(e, 'value'),
-        required: e.attrs?.some(a => a.name === 'required') ?? false,
-        options: findAll(e, 'option').map(o => ({ value: getAttr(o, 'value'), text: textContent(o) })),
-      })),
-    }));
-    check(deepEqual(formContract(legacy), formContract(doc)), 'Inicio: payload, opciones y validación del formulario heredado');
+  if (base) {
+    check(deepEqual(base.formularios, formContract(doc)), 'Inicio: payload, opciones y validación del formulario heredado');
     const contenido = norm(textContent(doc)).toLowerCase();
-    // Párrafos/títulos de secciones: excluye scripts y la conversación del asistente.
-    for (const section of findAll(legacy, 'section')) {
-      for (const el of allElements(section).filter(e => /^(p|h[1-5])$/.test(e.nodeName))) {
-        const texto = norm(textContent(el)).replace(/ — /g, ', ').toLowerCase();
-        check(!texto || contenido.includes(texto), `Inicio: contenido heredado perdido: ${texto}`);
-      }
-    }
-    for (const a of findAll(legacy, 'a')) {
-      const href = getAttr(a, 'href');
-      if (/^(tel:|mailto:|https:\/\/(wa.me|instagram.com))/.test(href)) check(links.some(n => getAttr(n, 'href') === href), `Inicio: contacto auxiliar ${href}`);
-    }
+    for (const texto of base.contenido) check(contenido.includes(texto), `Inicio: contenido heredado perdido: ${texto}`);
+    for (const href of base.contactos) check(links.some(n => getAttr(n, 'href') === href), `Inicio: contacto auxiliar ${href}`);
   }
   return [...new Set(errors)];
 }
 
+export const INICIO_ANTES = 'docs/registros/adopcion-3d-ultra/inicio-antes.json';
 async function verifyInicioDist(distDir) {
   const yaml = await import('js-yaml');
   const fichas = Object.fromEntries(fs.readdirSync('src/content/equipos').filter(f => f.endsWith('.md')).map(f => [f.replace(/\.md$/, ''), yaml.load(fs.readFileSync(`src/content/equipos/${f}`, 'utf8').split(/^---$/m)[1])]));
-  return verifyInicio(fs.readFileSync(path.join(distDir, 'index.html'), 'utf8'), fichas, fs.readFileSync('src/legacy/index-body.html', 'utf8'));
+  return verifyInicio(fs.readFileSync(path.join(distDir, 'index.html'), 'utf8'), fichas, JSON.parse(fs.readFileSync(INICIO_ANTES, 'utf8')));
 }
 
 // Suplemento de T6: conserva contenido editorial y OG que parity no compara.

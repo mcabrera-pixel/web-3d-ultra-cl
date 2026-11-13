@@ -1,0 +1,171 @@
+{
+  "origen": "src/legacy/index-body.html del commit a3dc917 (retirado en la Tarea 7). Contrato que el verificador derivaba de ese archivo: formulario, párrafos y títulos de sus secciones (normalizados) y contactos auxiliares.",
+  "formularios": [
+    {
+      "action": "/api/contact",
+      "method": "post",
+      "fields": [
+        {
+          "tag": "input",
+          "name": "subject",
+          "type": "hidden",
+          "value": "Nuevo contacto desde 3d-ultra.cl",
+          "required": false,
+          "options": []
+        },
+        {
+          "tag": "input",
+          "name": "from_name",
+          "type": "hidden",
+          "value": "3D Ultra",
+          "required": false,
+          "options": []
+        },
+        {
+          "tag": "input",
+          "name": "website_url",
+          "type": "text",
+          "value": "",
+          "required": false,
+          "options": []
+        },
+        {
+          "tag": "input",
+          "name": "nombre",
+          "type": "text",
+          "value": "",
+          "required": false,
+          "options": []
+        },
+        {
+          "tag": "input",
+          "name": "empresa",
+          "type": "text",
+          "value": "",
+          "required": false,
+          "options": []
+        },
+        {
+          "tag": "select",
+          "name": "servicio",
+          "type": "",
+          "value": "",
+          "required": false,
+          "options": [
+            {
+              "value": "",
+              "text": "Escaner Láser FARO / Nube de puntos"
+            },
+            {
+              "value": "",
+              "text": "Modelado 3D BIM/LODS"
+            },
+            {
+              "value": "",
+              "text": "Ingeniería / Simulaciones / Ing. Inversa"
+            },
+            {
+              "value": "",
+              "text": "Arquitectura / Gestión / dibujo de Planos / Diseño"
+            },
+            {
+              "value": "",
+              "text": "Gemelos digitales / Gestión remota de Activos / Integración IoT"
+            },
+            {
+              "value": "",
+              "text": "Drones / Fotogrametría / Medición de espesor Aérea / videomapeo"
+            }
+          ]
+        },
+        {
+          "tag": "input",
+          "name": "email",
+          "type": "email",
+          "value": "",
+          "required": true,
+          "options": []
+        },
+        {
+          "tag": "button",
+          "name": "",
+          "type": "submit",
+          "value": "",
+          "required": false,
+          "options": []
+        }
+      ]
+    }
+  ],
+  "contenido": [
+    "gemelos digitales & plantas virtuales.",
+    "del levantamiento láser al control total de activos. centralice su operación y elimine la incertidumbre.",
+    "han confiado en nuestro equipo",
+    "codelco",
+    "bhp",
+    "capstone copper",
+    "el abra",
+    "aster",
+    "gemelos digitales & gestión remota de activos",
+    "la transformación digital no es el futuro, es la ventaja competitiva de hoy. centralice operaciones, reduzca opex y capacite a su personal en un entorno inmersivo idéntico a la realidad.",
+    "gestión documental contextualizada",
+    "elimine la búsqueda manual de planos. acceso inmediato a la data técnica.",
+    "asset tagging & centralización de data",
+    "transformamos el modelo 3d en una base de datos visual estructurada. al interactuar con cualquier activo, el sistema despliega su \"adn digital\", vinculando la realidad física con su documentación técnica, historial y procedimientos.",
+    "integración erp/cmms",
+    "conexión directa con sistemas sap o ibm maximo. visualice órdenes de trabajo activas directamente sobre el gemelo digital.",
+    "onboarding virtual",
+    "reduzca la curva de aprendizaje y riesgos de seguridad permitiendo que nuevos operarios recorran la planta remotamente.",
+    "gestión de repuestos",
+    "vinculación de inventario con el activo visual para agilizar los procesos de requisición y logística de mantenimiento.",
+    "auditoría remota",
+    "inspecciones visuales certificadas y trazabilidad de activos críticos para cumplimiento normativo sin traslados.",
+    "gestión de activos mineros",
+    "cada ficha muestra un equipo en 3d y lo que podemos hacer con ese modelo.",
+    "ver la biblioteca completa",
+    "conectividad iot & gemelos vivos",
+    "inyectamos la data de sus sensores (bms, scada, plcs) directamente en el modelo tridimensional. esto permite visualizar el comportamiento de la infraestructura en tiempo real, correlacionando alertas con su ubicación espacial exacta.",
+    "mantenimiento predictivo",
+    "detección visual de anomalías y patrones de vibración/temperatura previos a la falla crítica.",
+    "conciencia situacional",
+    "geolocalización instantánea de sensores activados para optimizar la respuesta de equipos de emergencia.",
+    "simulación de procesos",
+    "entornos seguros para testear cambios en líneas de producción o flujos logísticos sin impacto operativo.",
+    "ingeniería de datos aplicada a la realidad visual.",
+    "gestión de activos mineros",
+    "cada ficha muestra un equipo en 3d y lo que podemos hacer con ese modelo.",
+    "ver la biblioteca completa",
+    "casos de estudio en codelco",
+    "proyectos hechos en fundiciones y concentradoras de codelco.",
+    "área raf, fundición potrerillos",
+    "planta virtual navegable con integración de datos operacionales para la planificación de paradas de planta.",
+    "chimenea cps, división salvador",
+    "detección de deformaciones fuera de tolerancia normativa que anticipó riesgo inminente de colapso.",
+    "rueda de moldeo, ánodos ch",
+    "maquetas 3d a escala real para eliminar errores de montaje en la adaptación a formato chuquicamata.",
+    "hornos isasmelt, extensión de vida",
+    "análisis termomecánico para decidir cuánto más puede operar el activo de fusión más crítico.",
+    "cómo creamos su gemelo digital",
+    "un flujo de trabajo validado para transformar instalaciones físicas en datos operables.",
+    "captura de realidad",
+    "desplegamos escáneres láser y drones para digitalizar sus activos con precisión milimétrica, sin interrumpir la operación.",
+    "nube de puntos",
+    "procesamos billones de coordenadas xyz para crear una réplica digital exacta (as-built) geométrica y visualmente fiel.",
+    "modelado inteligente",
+    "convertimos la data cruda en modelos bim paramétricos, clasificando cada componente (tuberías, equipos, estructuras).",
+    "gemelo vivo",
+    "conectamos el modelo 3d con sus sensores iot (scada/bms) para monitoreo en tiempo real y mantenimiento predictivo.",
+    "proyectemos su visión.",
+    "agende una sesión de consultoría inicial para discutir la viabilidad técnica y objetivos financieros de su inversión.",
+    "evaluamos su caso gratis",
+    "envíenos fotos o planos de su proyecto. le explicaremos cómo digitalizarlo."
+  ],
+  "contactos": [
+    "tel:+56979860843",
+    "tel:+56966109611",
+    "mailto:mcabrera@mccocopper.cl",
+    "mailto:proyectos@mccocopper.cl",
+    "https://instagram.com/3dultra_cl",
+    "https://wa.me/56979860843"
+  ]
+}

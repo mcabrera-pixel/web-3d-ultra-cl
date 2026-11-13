@@ -9,7 +9,9 @@ const wa = site.contact.whatsapp?.replace(/\D/g, '');
 <Sitio title={`No pudimos enviar tu mensaje | ${site.name}`} description="El formulario no se pudo enviar. Escríbenos por WhatsApp o correo y te respondemos igual." noindex={true}>
   <Bloque tono="claro" class="editorial">
     <h1 class="std-h1">No pudimos enviar tu mensaje</h1>
-    <p>Algo falló al procesar el formulario. Puedes intentarlo de nuevo o escribirnos directo:</p>
+    {/* Con reason=demora el Worker pudo recibir el lead aunque venció el plazo. El texto es el mismo para todos los
+        motivos (página estática, sin JS) y por eso no invita a reenviar sin advertir el riesgo de duplicarlo. */}
+    <p>Algo falló al procesar el formulario. Si la página tardó en responder, tu mensaje pudo llegar igual. Antes de enviarlo otra vez, escríbenos directo y te confirmamos si lo recibimos.</p>
     <ul>
       {wa && <li><a href={`https://wa.me/${wa}`} rel="noopener">WhatsApp</a></li>}
       {site.contact.email && <li><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>}

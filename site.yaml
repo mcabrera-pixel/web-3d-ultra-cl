@@ -43,9 +43,9 @@ seo:
 
 csp:
   script_src: ["'wasm-unsafe-eval'"]   # decodificador meshopt (WebAssembly) del visor de la biblioteca
-  style_src: []
+  style_src: []                       # sin Google Fonts: Inter local del kit; el permiso heredado lo pone mcco-headers (ver contacto-csp.md)
   font_src: []
-  img_src: [https://images.unsplash.com]
+  img_src: []                         # sin imágenes remotas: la foto de stock de Unsplash se retiró en la Tarea 4
   media_src: [https://pub-dd66483f8e7f497f9490ea37068612b0.r2.dev]
   connect_src: ["blob:"]                # texturas del visor 3D: GLTFLoader las lee con fetch() desde blob: (Chrome y Firefox)
   frame_src: []
@@ -75,6 +75,9 @@ llms:
 # Verdad del sitio: si alguno de estos strings aparece en dist/, mcco-check falla.
 forbidden: ["Leica", "RTC360", "tupagina-de-activos", "foundingDate\":\"2003", "condrone.cl"]
 clients_allowed: [CODELCO, BHP, Aster, Capstone Copper, El Abra]
+
+check:
+  visual: error                     # R11-R13 de mcco-check como error (Tarea 7)
 
 legacy_pages: false                 # casos/, guias/ y en/ migrados a .astro con el kit v1.4.0 (Tarea 6)
 indexnow_key: c3e70c36be4a27623ec717c2b2f92d77

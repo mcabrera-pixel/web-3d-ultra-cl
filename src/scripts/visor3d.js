@@ -5,7 +5,6 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { distanciaEncuadre, pasoExplosion, ladoVisible, alternarSeleccion, nombrePieza, ruedaAcerca, porcentajeCarga, etiquetasAVer } from './visor3d-logica.js';
-import { iniciarFondo } from './fondo-particulas.js';
 
 const suave = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 
@@ -61,7 +60,7 @@ export function iniciarVisor(raiz) {
   lienzo.style.touchAction = 'pan-y'; // OrbitControls pone 'none': así un dedo vertical baja la página
 
   const fantasma = new THREE.MeshStandardMaterial({ color: 0x94a3b8, transparent: true, opacity: 0.12, depthWrite: false });
-  const e = { modelo: null, radio: 1, altura: 1, partes: [], piezas: [], elegida: null, vuelo: null, tocado: false, resaltada: null, fondo: null, visible: true };
+  const e = { modelo: null, radio: 1, altura: 1, partes: [], piezas: [], elegida: null, vuelo: null, tocado: false, resaltada: null, visible: true };
 
   // --- encuadre y cámara ---
   function desplazar() {
@@ -93,18 +92,11 @@ export function iniciarVisor(raiz) {
   const observador = new ResizeObserver(ajustar);
   observador.observe(raiz);
   observador.observe(titulo); // también cambia de alto cuando llega la fuente
+  // Fuera de pantalla no se dibuja. El fondo de partículas que se armaba aquí quedó retirado (Tarea 7): en las fichas
+  // del estándar lo tapan bloques opacos y seguía dibujando sin verse.
   new IntersectionObserver((entradas) => {
-    const ultima = entradas[entradas.length - 1];
-    e.visible = ultima.isIntersecting;
-    if (ultima.intersectionRatio < 0.9) armarFondo(); // el visor empieza a salir de pantalla
+    e.visible = entradas[entradas.length - 1].isIntersecting;
   }, { threshold: [0, 0.9] }).observe(raiz);
-
-  // La nube del fondo se arma en una tarea aparte, no en la que procesa el modelo: en tiempo ocioso o apenas el visor
-  // empieza a salir de pantalla, lo que pase primero.
-  function armarFondo() {
-    if (e.fondo || !e.modelo) return;
-    e.fondo = iniciarFondo({ modelo: e.modelo, radio: e.radio, altura: e.altura, escenario: raiz, angosto: angosto(), reducir });
-  }
 
   // --- selección ---
   function detenerGiro() {
@@ -230,8 +222,6 @@ export function iniciarVisor(raiz) {
     controles.minDistance = e.radio * 0.25; controles.maxDistance = e.radio * 6; controles.maxPolarAngle = Math.PI * 0.49;
     camara.near = e.radio / 300; camara.far = e.radio * 40; camara.updateProjectionMatrix();
     carga.hidden = true; controlesEl.hidden = false; poster.classList.add('bib-oculto'); poster.setAttribute('aria-hidden', 'true');
-    if ('requestIdleCallback' in window) requestIdleCallback(armarFondo, { timeout: 2000 });
-    else setTimeout(armarFondo, 300);
   });
 
   // --- controles ---
@@ -338,7 +328,7 @@ export function iniciarVisor(raiz) {
     });
     etiquetasAVer(visibles, w).forEach((ver, i) => marcadas[i].el.classList.toggle('bib-oculta', !ver));
   }
-  renderer.setAnimationLoop((t) => {
+  renderer.setAnimationLoop(() => {
     if (e.vuelo) {
       const k = Math.min(1, (performance.now() - e.vuelo.t0) / e.vuelo.ms);
       camara.position.lerpVectors(e.vuelo.desdePos, e.vuelo.aPos, suave(k));
@@ -360,7 +350,6 @@ export function iniciarVisor(raiz) {
       }
       if (e.modelo) etiquetas();
     }
-    e.fondo?.dibujar(t);
   });
   // Si el modelo no llega, no se sigue dibujando una escena vacía: Visor3D.astro deja el póster con el aviso
   return listo.catch((error) => {
