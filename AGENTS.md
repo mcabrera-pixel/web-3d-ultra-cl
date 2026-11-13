@@ -34,7 +34,7 @@ Rama → PR → CI (build + `mcco-check` + preview si hay credenciales Cloudflar
 
 ## 4. URLs y SEO/GEO
 
-- Canónica = URL limpia (sin `.html`, carpetas con `/`). Rutas actuales: `/`, `/casos/<slug>`, `/guias/gemelos-digitales-fundiciones-cobre`, `/en/faq`, `/blog/` (noindex hasta tener posts). `/casos/gemelo-digital-bomba-despiece-sap-pi` es un caso de demostración con datos de ejemplo y abre la muestra estática `/muestras/bomba/`, que va con `noindex` (meta y `X-Robots-Tag` en la sección del sitio de `_headers`) y fuera del sitemap. No renombrar sin 301 en `_redirects`.
+- Canónica = URL limpia (sin `.html`, carpetas con `/`). Rutas actuales: `/`, `/casos/<slug>`, `/guias/gemelos-digitales-fundiciones-cobre`, `/en/faq`, `/blog/` (noindex hasta tener posts). `/casos/gemelo-digital-bomba-despiece-sap-pi` es un caso de demostración con datos de ejemplo y abre la muestra estática en dos versiones, `/muestras/bomba/` (detallada) y `/muestras/bomba-esencial/` (esencial), con `noindex` (meta y `X-Robots-Tag` en la sección del sitio de `_headers`) y fuera del sitemap. Se importan con `node scripts/importar-muestra.mjs --todas`, que copia desde las carpetas de origen y aplica los ajustes de conformidad; no se editan a mano. No renombrar sin 301 en `_redirects`.
 - Artículo nuevo: `src/content/blog/<slug>.md` con `title`, `description` (70-160), `date`, `capsule`, `faq` (3-8), `related` (casos/guías propias), `sister` (as-built.cl o condron.cl), `sources`. Sin eso no compila.
 - Caso nuevo: preferir `src/content/casos/<slug>.md` (`casoSchema`, `kind: real`, `client` nombrable, métricas con fuente) sobre otra página `.html`.
 

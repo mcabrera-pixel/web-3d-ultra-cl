@@ -168,9 +168,12 @@ queda como mejora para un PR al kit.
 | `bomba-pieza-230-1280.webp` | `05-pieza-230.png` | 1280 × 800 | 79026 | `ef26c81af0313dc95bb14b711fd477066ac80cfe6d456b168666d7a8862a2a68` |
 | `bomba-evento-1280.webp` | `09-evento.png` | 1280 × 800 | 106374 | `7f83c2285655e6167b5b61594126ca2562aebf02851e5bc26a2b96182723fbec` |
 | `bomba-operacion-pi-1280.webp` | `08-pi.png` | 1280 × 800 | 99916 | `61dd1f54583a2fc3948a04ac141dadd91f57c26af535bc2c28f41f0b6eb54acc` |
+| `bomba-esencial-modelo-1280.webp` | versión esencial, `comparacion/opus/03-modelo.png` | 1280 × 800 | 89434 | `465b93d9917281c00b561349cd6d31b5429bb0d23b8e5c79c4bb233f1fa86fa4` |
 | `og-bomba.webp` | `03-modelo.png`, recorte | 1200 × 630 | 79886 | `d3a8e923230e0af01c25d5d44195f32c47563838b2c46d6c33ea9018bd097b05` |
 
-Se revisaron las seis a 1280 px: no muestran marcas de fabricantes, nombres de clientes ni de faenas, y cada una lleva
-a la vista el rótulo «Datos de ejemplo» de la muestra. La muestra en `public/muestras/bomba/` pesa 7,2 MB, de los
-cuales 6,4 MB son la nube binaria `data/nube/nube.bin` (no es una imagen y `mcco-check` no la mide). El video del paso
+Se revisaron las siete a 1280 px: no muestran marcas de fabricantes, nombres de clientes ni de faenas, y cada una lleva
+a la vista el rótulo «Datos de ejemplo» de la muestra. La muestra tiene dos versiones: la detallada en `public/muestras/bomba/`
+(7,5 MB, 6,4 MB de nube binaria) y la esencial en `public/muestras/bomba-esencial/` (5,7 MB, 4,8 MB de nube). Las dos
+se importan con `node scripts/importar-muestra.mjs --todas`, que aplica los ajustes de conformidad; las nubes no son
+imágenes y `mcco-check` no las mide. El video del paso
 a paso no entra al repo: cuando se suba, va a R2 (`csp.media_src`) con su póster y sus atributos de R12.
