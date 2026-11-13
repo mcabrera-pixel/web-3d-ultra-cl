@@ -8,7 +8,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { width: 100%; height: 100%; overflow: hidden; background: var(--fondo); color: var(--texto);
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 13px; line-height: 1.4; -webkit-font-smoothing: antialiased; }
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 13px; line-height: 1.4; -webkit-font-smoothing: antialiased; }
 button, input { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; }
 :focus-visible { outline: 2px solid var(--acento2); outline-offset: 2px; }
@@ -16,7 +16,7 @@ button { cursor: pointer; background: none; border: 0; }
 
 /* ---------- barra superior ---------- */
 #barra { height: var(--barra); flex: none; background: #050505; border-bottom: 1px solid var(--linea); display: flex; align-items: center; gap: 16px; padding: 0 14px; z-index: 20; }
-.marca { margin: 0; font-size: inherit; font-weight: inherit; display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1 1 0; }
+.marca { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1 1 0; }
 .sello { width: 14px; height: 14px; background: var(--acento); border-radius: 2px; flex: none; }
 .marca .nombre { font-weight: 800; letter-spacing: .16em; font-size: 14px; white-space: nowrap; }
 .marca .sub { color: var(--tenue); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 10px; border-left: 1px solid var(--linea2); }

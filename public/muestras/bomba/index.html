@@ -5,17 +5,19 @@
 <title>3D Ultra · Muestra de gemelo digital: bomba PP-101</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Muestra de 3D Ultra: una sala de bombas en 3D, con despiece según el manual de partes y datos de mantenimiento y operación. Datos de ejemplo.">
-<meta name="theme-color" content="#050505">
 <meta name="robots" content="noindex, nofollow">
 <link rel="canonical" href="https://3d-ultra.cl/muestras/bomba/">
 <meta property="og:title" content="Muestra de gemelo digital: bomba PP-101 | 3D Ultra">
+<meta property="og:description" content="Muestra de 3D Ultra: una sala de bombas en 3D, con despiece según el manual de partes y datos de mantenimiento y operación. Datos de ejemplo.">
+<meta name="theme-color" content="#050505">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./src/estilos.css">
+<link rel="stylesheet" href="./conformidad-mcco.css">
 </head>
 <body>
 <div id="app" data-vista="modelo">
   <header id="barra">
-    <h1 class="marca">
+    <h1 class="marca" data-mcco-marca>
       <span class="sello" aria-hidden="true"></span>
       <span class="nombre">3D&nbsp;ULTRA</span>
       <span class="sub">Gemelo digital · Sala de bombas 01</span>
@@ -46,7 +48,7 @@
         <input id="filtro" type="search" placeholder="Buscar número o nombre" autocomplete="off" aria-label="Buscar pieza">
       </div>
       <div id="lista" class="desliza" tabindex="0"></div>
-      <div class="panel-pie">Piezas según la Tabla 28 del manual de la bomba<br>3D Ultra · Inversiones MCCO SpA · <span style="white-space:nowrap">RUT 77.715.147-9</span> · Suecia 283, of. 402, Providencia, Santiago</div>
+      <div class="panel-pie">Piezas según la Tabla 28 del manual de la bomba</div><p class="mcco-entidad">3D Ultra · Inversiones MCCO SpA · <span class="mcco-rut">RUT 77.715.147-9</span> · Suecia 283, of. 402, Providencia, Santiago</p>
     </aside>
 
     <aside id="der" class="panel" aria-label="Ficha, mantenimiento y operación">
