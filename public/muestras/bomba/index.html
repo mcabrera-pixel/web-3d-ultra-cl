@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>3D Ultra · Muestra de gemelo digital: bomba PP-101</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Muestra de 3D Ultra: una sala de bombas en 3D, con despiece según el manual de partes y datos de mantenimiento y operación. Datos de ejemplo.">
+<meta name="theme-color" content="#050505">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://3d-ultra.cl/muestras/bomba/">
+<meta property="og:title" content="Muestra de gemelo digital: bomba PP-101 | 3D Ultra">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./src/estilos.css">
+</head>
+<body>
+<div id="app" data-vista="modelo">
+  <header id="barra">
+    <h1 class="marca">
+      <span class="sello" aria-hidden="true"></span>
+      <span class="nombre">3D&nbsp;ULTRA</span>
+      <span class="sub">Gemelo digital · Sala de bombas 01</span>
+    </h1>
+    <nav id="vistas" class="segmentos" aria-label="Vistas del activo">
+      <button type="button" data-vista="nube">Nube de puntos</button>
+      <button type="button" data-vista="modelo">Modelo 3D</button>
+      <button type="button" data-vista="despiece">Despiece</button>
+    </nav>
+    <div class="acciones">
+      <span class="ejemplo" title="Todos los datos de SAP y de PI de esta página son inventados">Datos de ejemplo</span>
+      <button type="button" id="btn-evento" class="boton primario">Evento de ejemplo</button>
+      <button type="button" id="btn-pasos" class="boton">Cómo se hace</button>
+    </div>
+  </header>
+
+  <main id="escenario">
+    <div id="lienzo" aria-label="Vista 3D de la sala de bombas"></div>
+
+    <button type="button" id="btn-lista" class="boton flotante" aria-controls="izq">Piezas</button>
+
+    <aside id="izq" class="panel" aria-label="Activo y piezas del manual">
+      <div class="panel-cab">
+        <div class="migas">Planta de ejemplo › Agua de proceso › Sala de bombas 01</div>
+        <div id="arbol"></div>
+      </div>
+      <div class="buscar">
+        <input id="filtro" type="search" placeholder="Buscar número o nombre" autocomplete="off" aria-label="Buscar pieza">
+      </div>
+      <div id="lista" class="desliza" tabindex="0"></div>
+      <div class="panel-pie">Piezas según la Tabla 28 del manual de la bomba<br>3D Ultra · Inversiones MCCO SpA · <span style="white-space:nowrap">RUT 77.715.147-9</span> · Suecia 283, of. 402, Providencia, Santiago</div>
+    </aside>
+
+    <aside id="der" class="panel" aria-label="Ficha, mantenimiento y operación">
+      <div id="der-cab"></div>
+      <div id="pestanas" class="pestanas" role="tablist">
+        <button type="button" role="tab" data-panel="ficha">Ficha</button>
+        <button type="button" role="tab" data-panel="sap">Mantenimiento · SAP</button>
+        <button type="button" role="tab" data-panel="pi">Operación · PI</button>
+      </div>
+      <div id="der-cuerpo" class="desliza" tabindex="0"></div>
+    </aside>
+
+    <div id="evento" hidden>
+      <div class="ev-tit"><b>Evento de ejemplo</b><span>Del dato de operación a la orden de trabajo</span><button type="button" id="ev-cerrar" aria-label="Cerrar el evento">Cerrar</button></div>
+      <ol id="ev-pasos"></ol>
+    </div>
+
+    <div id="pie">
+      <div id="rotulo-vista"></div>
+      <div id="controles"></div>
+    </div>
+
+    <section id="pasos" hidden aria-label="Cómo se hace">
+      <div class="pasos-cab">
+        <b>Cómo se hace</b>
+        <ol id="pasos-nav"></ol>
+        <button type="button" id="pasos-cerrar" aria-label="Cerrar">Cerrar</button>
+      </div>
+      <div id="pasos-cuerpo"></div>
+    </section>
+
+    <aside id="toma-panel" hidden aria-label="Evento de ejemplo"></aside>
+    <div id="aviso" hidden role="status"></div>
+    <div id="ayuda"></div>
+    <div id="cargando"><span class="sello"></span><p>Cargando la sala de bombas</p></div>
+  </main>
+</div>
+<noscript>Esta muestra necesita JavaScript y WebGL.</noscript>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "nota": "Nubes de puntos disponibles. Lo escribe tools/nubes.mjs según las carpetas que existen en data/. La real es opcional.",
+  "simulada": {
+    "carpeta": "nube",
+    "origen": "simulada",
+    "puntos": 427243,
+    "mb": 6.1,
+    "estaciones": null,
+    "sala_m": null,
+    "voxel_m": null
+  },
+  "real": null
+}
