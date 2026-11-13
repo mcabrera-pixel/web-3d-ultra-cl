@@ -8,6 +8,7 @@ import { crearPaneles } from './paneles.js';
 import { crearGuia } from './guia.js';
 import { crearTomas } from './tomas.js';
 import { V, lerp } from './geo.js';
+import { paleta } from './graficos.js';
 
 const $ = (s) => document.querySelector(s);
 const q = new URLSearchParams(location.search);
@@ -55,15 +56,21 @@ async function iniciar() {
     vista: 'modelo', sel: { tipo: 'tag', id: enlaces.tag }, panel: 'ficha', f: 0, mezcla: 1, paso: 0, evento: 0,
     tags: q.get('tags') !== '0', numeros: window.innerWidth > 860, rayosx: false, corte: q.get('corte') === '1', altura: q.get('color') === 'altura', mezclaManual: false,
     senal: 'VT-101A', dias: 7, ordenes: 'programadas', sobre: null, alarma3d: false, progreso: 1, nube: 'simulada', toma: 0,
+    tema: document.documentElement.dataset.tema === 'claro' ? 'claro' : 'oscuro', // lo fijó src/tema.js antes del primer pintado
   };
 
   // ---------- materiales de resalte ----------
+  // colores del 3D que dependen del tema: rayos X, piezas atenuadas, resalte de la selección y líneas
+  const TEMA3D = {
+    oscuro: { fantasma: 0xb4c6cf, opFantasma: 0.15, atenuado: 0xaeb8c0, opAtenuado: 0.3, sel: 0xe53935, selLuz: 0xd32f2f, piso: 0x74787c, mesa: 0x2b3036, ejes: 0x6f7780, barra: '#050505' },
+    claro: { fantasma: 0x51616e, opFantasma: 0.13, atenuado: 0x77828c, opAtenuado: 0.36, sel: 0xb8542a, selLuz: 0xb8542a, piso: 0x8a8b8f, mesa: 0xa9aaaf, ejes: 0x7d7e83, barra: '#ffffff' },
+  };
   const fantasma = new THREE.MeshStandardMaterial({ color: 0xb4c6cf, transparent: true, opacity: 0.15, roughness: 0.5, metalness: 0.1, depthWrite: false });
   const variantes = new Map();
   const variante = (base, tipo) => {
     const k = base.uuid + tipo; if (variantes.has(k)) return variantes.get(k);
     const m = base.clone();
-    if (tipo === 'sel') { m.color = m.color.clone().lerp(new THREE.Color(0xe53935), 0.72); m.emissive = new THREE.Color(0xd32f2f); m.emissiveIntensity = 0.38; }
+    if (tipo === 'sel') { const T = TEMA3D[est.tema]; m.color = m.color.clone().lerp(new THREE.Color(T.sel), 0.72); m.emissive = new THREE.Color(T.selLuz); m.emissiveIntensity = 0.38; }
     if (tipo === 'alarma') { m.color = m.color.clone().lerp(new THREE.Color(0xf0a52b), 0.7); m.emissive = new THREE.Color(0xf0a52b); m.emissiveIntensity = 0.9; m.userData.pulso = true; }
     if (tipo === 'sobre') { m.emissive = new THREE.Color(0xffffff); m.emissiveIntensity = 0.16; }
     if (m.transparent) m.opacity = Math.min(1, m.opacity + 0.25);
@@ -125,9 +132,9 @@ async function iniciar() {
     for (let x = -0.6; x <= 2.05; x += 0.25) pts.push(x, EJE_Y - 0.319, -0.62, x, EJE_Y - 0.319, 1.34);
     for (let z = -0.6; z <= 1.35; z += 0.25) pts.push(-0.62, EJE_Y - 0.319, z, 2.06, EJE_Y - 0.319, z);
     const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pts, 3));
-    mesa.add(new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: 0x2b3036 })));
+    const lm = new THREE.LineSegments(g, new THREE.LineBasicMaterial({ color: 0x2b3036 })); mesa.add(lm); mesa.userData.lineas = lm;
     const ejes = new THREE.BufferGeometry(); ejes.setAttribute('position', new THREE.Float32BufferAttribute([-0.45, EJE_Y, 0, 1.9, EJE_Y, 0, -0.45, EJE_Y, S.bomba.filaB, 1.9, EJE_Y, S.bomba.filaB], 3));
-    const le = new THREE.LineSegments(ejes, new THREE.LineDashedMaterial({ color: 0x6f7780, dashSize: 0.05, gapSize: 0.03 })); le.computeLineDistances(); mesa.add(le);
+    const le = new THREE.LineSegments(ejes, new THREE.LineDashedMaterial({ color: 0x6f7780, dashSize: 0.05, gapSize: 0.03 })); le.computeLineDistances(); mesa.add(le); mesa.userData.ejes = le;
     E.scene.add(mesa);
   }
 
@@ -265,6 +272,7 @@ async function iniciar() {
     est.mezcla = m;
     const x = lerp(X0 - 0.4, X1 + 0.4, m), hayModelo = m > 0.001, hayNube = m < 0.999;
     S.bomba.grupo.visible = hayModelo; S.contexto.visible = hayModelo && est.f < 0.02;
+    E.cont.classList.toggle('con-nube', hayNube); // la nube va siempre sobre fondo oscuro, también en el tema claro
     E.renderer.clippingPlanes = hayModelo && hayNube ? [plano] : []; plano.constant = x;
     const real = realActiva();
     nube.visible = hayNube && !real; nube.material.uniforms.uLado.value = hayModelo ? 1 : 0; nube.material.uniforms.uCorte.value = x;
@@ -409,6 +417,7 @@ async function iniciar() {
     if (est.corte && est.vista === 'modelo') u.set('corte', '1');
     if (est.paso) u.set('paso', est.paso);
     u.set('vista', est.vista);
+    u.set('tema', est.tema);
     if (est.sel.tipo === 'pieza') u.set('pieza', est.sel.inst || est.sel.numero);
     else if (est.sel.tipo !== 'tag') u.set('pieza', est.sel.id);
     if (est.panel !== 'ficha') u.set('panel', est.panel);
@@ -416,6 +425,24 @@ async function iniciar() {
     history.replaceState(null, '', location.pathname + '?' + u.toString().replace(/%2F/g, '/'));
   }
   function refrescar() { pintar(); rotulos(); controlesVista(); paneles.dibujar(); guia.dibujar(); margenesSiCambia(); sincronizarURL(); E.invalidar(); }
+
+  // ---------- tema oscuro o claro ----------
+  const lineasPiso = []; S.contexto.traverse((o) => { if (o.isLineSegments) lineasPiso.push(o); });
+  function aplicarTema(nombre, o = {}) {
+    est.tema = nombre === 'claro' ? 'claro' : 'oscuro';
+    const T = TEMA3D[est.tema];
+    document.documentElement.dataset.tema = est.tema;
+    E.tema(est.tema);
+    fantasma.color.set(T.fantasma); fantasma.opacity = T.opFantasma; atenuado.color.set(T.atenuado); atenuado.opacity = T.opAtenuado;
+    for (const l of lineasPiso) l.material.color.set(T.piso);
+    mesa.userData.lineas.material.color.set(T.mesa); mesa.userData.ejes.material.color.set(T.ejes);
+    for (const m of variantes.values()) m.dispose(); variantes.clear(); // el resalte de la selección cambia de color con el tema
+    const meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.content = T.barra;
+    const b = $('#btn-tema'); b.textContent = est.tema === 'claro' ? 'Tema oscuro' : 'Tema claro';
+    if (o.recordar) { try { localStorage.setItem('muestra-tema', est.tema); } catch { /* sin localStorage: el tema vale solo para esta visita */ } }
+    if (window.muestra.lista) refrescar(); else E.invalidar();
+    return est.tema;
+  }
 
   // ---------- la aplicación, para los paneles y la guía ----------
   const A = {
@@ -480,6 +507,8 @@ async function iniciar() {
   $('#btn-evento').onclick = () => guia.evento(1);
   $('#btn-pasos').onclick = () => (est.paso ? guia.cerrarPasos() : guia.paso(1));
   $('#btn-lista').onclick = () => app.classList.toggle('lista-abierta');
+  $('#btn-tema').onclick = () => aplicarTema(est.tema === 'claro' ? 'oscuro' : 'claro', { recordar: true });
+  aplicarTema(est.tema);
 
   // ---------- márgenes según la disposición ----------
   function margenes() {
@@ -522,13 +551,15 @@ async function iniciar() {
     panel: (n) => setPanel(String(n)),
     paso: (n) => guia.paso(Number(n)),
     evento: (n) => guia.evento(n ? Number(n) : 1),
+    tema: (nombre, recordar = false) => aplicarTema(String(nombre), { recordar }), // 'oscuro' o 'claro'; con true también lo recuerda
+    paleta: () => ({ ...paleta() }),                 // colores vigentes de los gráficos
     nube: (cual) => usarNube(String(cual)),          // 'simulada' o 'real'; devuelve una promesa
     toma: tomas.estado,                              // estado de la toma de grabación en curso
     camara: () => ({ pos: E.camera.position.toArray().map((v) => Number(v.toFixed(4))), obj: E.controls.target.toArray().map((v) => Number(v.toFixed(4))) }),
     tomar: (n) => tomas.iniciar(Number(n)),          // prepara la toma n y la corre
     piezas: () => manual.piezas.map((p) => ({ numero: p.numero, nombre: p.nombre, grupo: p.grupo, fila: p.fila, monta: p.monta !== false, cantidad: porNumero.get(p.numero)?.length || 0, instancias: (porNumero.get(p.numero) || []).map((i) => i.id) })),
     conjuntos: () => manual.conjuntos.map((c) => ({ id: c.id, nombre: c.nombre })),
-    estado: () => ({ vista: est.vista, seleccion: { ...est.sel }, panel: est.panel, paso: est.paso, evento: est.evento, despiece: est.f, mezcla: est.mezcla, nube: realActiva() ? { activa: 'real', origen: datosReal.origen, puntos: datosReal.total || datosReal.n, deArchivo: true, realDisponible } : { activa: 'simulada', origen: datosNube.origen, puntos: datosNube.n, deArchivo: delArchivo, realDisponible }, toma: est.toma, incoherencias }),
+    estado: () => ({ tema: est.tema, vista: est.vista, seleccion: { ...est.sel }, panel: est.panel, paso: est.paso, evento: est.evento, despiece: est.f, mezcla: est.mezcla, nube: realActiva() ? { activa: 'real', origen: datosReal.origen, puntos: datosReal.total || datosReal.n, deArchivo: true, realDisponible } : { activa: 'simulada', origen: datosNube.origen, puntos: datosNube.n, deArchivo: delArchivo, realDisponible }, toma: est.toma, incoherencias }),
     exportarNube: () => { // devuelve la nube simulada en el formato del contrato (binario en base64)
       const f = est.f; S.bomba.despiezar(0);
       const d = simularNube([S.contexto, S.bomba.grupo], S.estaciones, { densidad: 5200 }); const x = exportarNube(d);

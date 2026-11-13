@@ -40,7 +40,7 @@ export function crearEscena(cont) {
     scene.environment = pm.fromScene(s, 0.035).texture;
     pm.dispose();
   }
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x8a8f96, 0.5));
+  const hemi = new THREE.HemisphereLight(0xffffff, 0x8a8f96, 0.5); scene.add(hemi);
   const sol = new THREE.DirectionalLight(0xffffff, 1.9);
   sol.position.set(5.5, 9, 6.5); sol.castShadow = true;
   sol.shadow.mapSize.set(2048, 2048);
@@ -65,6 +65,22 @@ export function crearEscena(cont) {
     defensa: m(0xe0b01c, 0.6, 0.2, { transparent: true, opacity: 0.42, side: THREE.DoubleSide, depthWrite: false }),
     mesa: m(0x15171a, 0.9, 0.1), blanco: m(0xeceeef, 0.6, 0),
   };
+
+  // ---------- temas: exposición, luces y colores de la sala ----------
+  // En el tema claro la sala es clara y el fondo también. Para que la bomba no se lave se baja la exposición, se sube
+  // el sol (sombras más marcadas) y se baja el relleno, que es la luz que aplana.
+  const TEMAS = {
+    oscuro: { exposicion: 1.08, hemi: 0.5, suelo: 0x8a8f96, sol: 1.9, relleno: 0.45, colores: { hormigon: 0x63676b, hormigon2: 0x7b7f83, muro: 0x84898e, mesa: 0x15171a } },
+    claro: { exposicion: 0.96, hemi: 0.52, suelo: 0xa9acb2, sol: 2.3, relleno: 0.22, colores: { hormigon: 0xa9aaad, hormigon2: 0x8f9195, muro: 0xc6c7cb, mesa: 0xb4b5b9 } },
+  };
+  // la nube simulada conserva siempre los colores del levantamiento, sea cual sea el tema de la interfaz
+  for (const [k, v] of Object.entries(TEMAS.oscuro.colores)) mat[k].userData.colorNube = new THREE.Color(v);
+  function tema(nombre) {
+    const t = TEMAS[nombre] || TEMAS.oscuro;
+    renderer.toneMappingExposure = t.exposicion; hemi.intensity = t.hemi; hemi.groundColor.set(t.suelo); sol.intensity = t.sol; relleno.intensity = t.relleno;
+    for (const [k, v] of Object.entries(t.colores)) mat[k].color.set(v);
+    sucio = true;
+  }
 
   // ---------- bucle de dibujo: solo se dibuja cuando algo cambió ----------
   let sucio = true; const tareas = new Set(); const vivos = new Set(); const despues = new Set();
@@ -125,5 +141,5 @@ export function crearEscena(cont) {
     const d = document.createElement('div'); d.className = clase; d.innerHTML = html;
     const o = new CSS2DObject(d); o.position.copy(pos); (padre || scene).add(o); return o;
   }
-  return { THREE, renderer, scene, camera, controls, mat, invalidar, animar, alFrame, alDibujar, volar, cancelarVuelo: () => { if (vuelo) { vuelo.cancelar(); vuelo = null; } }, margenes, distanciaPara, rotulo, cont, sol };
+  return { THREE, renderer, scene, camera, controls, mat, tema, invalidar, animar, alFrame, alDibujar, volar, cancelarVuelo: () => { if (vuelo) { vuelo.cancelar(); vuelo = null; } }, margenes, distanciaPara, rotulo, cont, sol };
 }

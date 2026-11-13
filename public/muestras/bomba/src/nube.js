@@ -63,7 +63,7 @@ export function simularNube(raices, estaciones, { densidad = 5200, semilla = 7 }
     if (o.isMesh && o.geometry && o.geometry.attributes.position) {
       const g = o.geometry, pos = g.attributes.position, idx = g.index, colv = g.attributes.color, m = o.matrixWorld;
       const doble = o.material.side === THREE.DoubleSide;
-      o.material.color.getRGB(rgb, THREE.SRGBColorSpace);
+      (o.material.userData.colorNube || o.material.color).getRGB(rgb, THREE.SRGBColorSpace);
       if (!g.boundingBox) g.computeBoundingBox();
       const tam = g.boundingBox.getSize(d), grande = Math.max(tam.x, tam.z) > 6;
       const dens = grande ? densidad * 0.3 : o.userData.sel && o.userData.sel.tipo === 'pieza' ? densidad * 1.8 : densidad;

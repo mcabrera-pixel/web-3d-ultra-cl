@@ -1,5 +1,14 @@
 // Gráficos de tendencia en canvas 2D, sin librerías.
-const C = { texto: '#949ba3', linea: '#2b3036', serie: '#e9ecef', alerta: '#f0a52b', rojo: '#ef5350', fondo: '#1b1e22' };
+// Los colores salen de las variables CSS del tema vigente (--graf-*), así los gráficos cambian con el tema.
+let cache = null, cacheTema = null;
+export function paleta() {
+  const t = document.documentElement.dataset.tema || 'oscuro';
+  if (cache && cacheTema === t) return cache;
+  const cs = getComputedStyle(document.documentElement), v = (n) => cs.getPropertyValue(n).trim();
+  cache = { tema: t, texto: v('--graf-texto'), linea: v('--graf-linea'), serie: v('--graf-serie'), alerta: v('--graf-alerta'), alertaTexto: v('--graf-alerta-texto'),
+    rojo: v('--graf-rojo'), rojoTexto: v('--graf-rojo-texto'), marca: v('--graf-marca'), zona: v('--graf-zona'), chispa: v('--graf-chispa'), fondo: v('--panel2'), fondoToma: v('--panel') };
+  cacheTema = t; return cache;
+}
 
 export const num = (v, dec = 1) => (v == null || Number.isNaN(v) ? 's/d' : Number(v).toLocaleString('es-CL', { minimumFractionDigits: dec, maximumFractionDigits: dec }));
 // Fechas en hora de Chile continental (UTC-3 en la fecha de la muestra), sin depender de la zona del navegador.
@@ -17,7 +26,7 @@ function preparar(canvas) {
 
 // Tendencia con umbrales. o: { valores, inicioMs, pasoMs, desde, hasta, limites, dec, hastaDibujo, marca: { i, texto } }
 export function tendencia(canvas, o) {
-  const { ctx, w, h } = preparar(canvas);
+  const { ctx, w, h } = preparar(canvas), C = paleta();
   const kf = (o.fuente || 10.5) / 10.5, mi = Math.round(38 * kf), md = 10, ms = 8, mb = Math.round(20 * kf), pw = w - mi - md, ph = h - ms - mb;
   const i0 = Math.max(0, o.desde | 0), i1 = Math.min(o.valores.length - 1, o.hasta | 0), fin = Math.min(i1, o.hastaDibujo ?? i1);
   let lo = Infinity, hi = -Infinity;
@@ -49,11 +58,11 @@ export function tendencia(canvas, o) {
   }
   // umbrales
   ctx.setLineDash([5, 4]); ctx.textAlign = 'left'; ctx.textBaseline = 'bottom';
-  for (const [k, col] of [['H', C.alerta], ['L', C.alerta], ['HH', C.rojo], ['LL', C.rojo]]) {
+  for (const [k, col, colTexto] of [['H', C.alerta, C.alertaTexto], ['L', C.alerta, C.alertaTexto], ['HH', C.rojo, C.rojoTexto], ['LL', C.rojo, C.rojoTexto]]) {
     if (lim[k] == null || lim[k] < lo || lim[k] > hi) continue;
     const y = Math.round(Y(lim[k])) + 0.5;
     ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(mi, y); ctx.lineTo(w - md, y); ctx.stroke();
-    ctx.fillStyle = col; ctx.fillText(`${k} ${num(lim[k], o.dec > 1 ? 1 : o.dec)}`, mi + 4, y - 2);
+    ctx.fillStyle = colTexto; ctx.fillText(`${k} ${num(lim[k], o.dec > 1 ? 1 : o.dec)}`, mi + 4, y - 2);
   }
   ctx.setLineDash([]);
   // serie
@@ -61,33 +70,33 @@ export function tendencia(canvas, o) {
   ctx.lineWidth = 1.6; ctx.lineJoin = 'round'; ctx.strokeStyle = C.serie; trazar(); ctx.stroke();
   if (lim.H != null && lim.H < hi) {
     ctx.save(); ctx.beginPath(); ctx.rect(mi, ms, pw, Math.max(0, Y(lim.H) - ms)); ctx.clip();
-    ctx.fillStyle = 'rgba(240,165,43,.07)'; ctx.fillRect(mi, ms, pw, ph);
+    ctx.fillStyle = C.zona; ctx.fillRect(mi, ms, pw, ph);
     ctx.strokeStyle = C.alerta; ctx.lineWidth = 2; trazar(); ctx.stroke(); ctx.restore();
   }
   // marca del evento y último valor
   if (o.marca && o.marca.i >= i0 && o.marca.i <= fin) {
     const x = Math.round(X(o.marca.i)) + 0.5;
-    ctx.strokeStyle = '#fff'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, ms); ctx.lineTo(x, ms + ph); ctx.stroke();
-    ctx.fillStyle = '#fff'; ctx.textAlign = x > w - 120 ? 'right' : 'left'; ctx.textBaseline = 'top'; ctx.font = `600 ${o.fuente || 10.5}px "Segoe UI", system-ui, sans-serif`;
+    ctx.strokeStyle = C.marca; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, ms); ctx.lineTo(x, ms + ph); ctx.stroke();
+    ctx.fillStyle = C.marca; ctx.textAlign = x > w - 120 ? 'right' : 'left'; ctx.textBaseline = 'top'; ctx.font = `600 ${o.fuente || 10.5}px "Segoe UI", system-ui, sans-serif`;
     ctx.fillText(o.marca.texto, x + (x > w - 120 ? -5 : 5), ms + 2);
   }
   const xf = X(fin), yf = Y(o.valores[fin]), alta = lim.H != null && o.valores[fin] > lim.H;
-  ctx.fillStyle = alta ? C.alerta : '#fff'; ctx.beginPath(); ctx.arc(xf, yf, 3.4, 0, Math.PI * 2); ctx.fill();
+  ctx.fillStyle = alta ? C.alerta : C.marca; ctx.beginPath(); ctx.arc(xf, yf, 3.4, 0, Math.PI * 2); ctx.fill();
   if (o.cursor != null && o.cursor >= i0 && o.cursor <= i1) {
     const x = Math.round(X(o.cursor)) + 0.5;
-    ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, ms); ctx.lineTo(x, ms + ph); ctx.stroke();
-    ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(x, Y(o.valores[o.cursor]), 3, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = 0.5; ctx.strokeStyle = C.marca; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(x, ms); ctx.lineTo(x, ms + ph); ctx.stroke(); ctx.globalAlpha = 1;
+    ctx.fillStyle = C.marca; ctx.beginPath(); ctx.arc(x, Y(o.valores[o.cursor]), 3, 0, Math.PI * 2); ctx.fill();
   }
   return { indiceEn: (px) => Math.round(i0 + ((px - mi) / pw) * (i1 - i0)), i0, i1 };
 }
 
 export function chispa(canvas, valores, desde, alerta) {
-  const { ctx, w, h } = preparar(canvas);
+  const { ctx, w, h } = preparar(canvas), C = paleta();
   let lo = Infinity, hi = -Infinity; const n = valores.length - 1, paso = Math.max(1, Math.floor((n - desde) / 160));
   for (let i = desde; i <= n; i += paso) { const v = valores[i]; if (v < lo) lo = v; if (v > hi) hi = v; }
   const amp = hi - lo || 1;
-  ctx.strokeStyle = alerta ? C.alerta : '#aeb5bc'; ctx.lineWidth = 1.3; ctx.lineJoin = 'round'; ctx.beginPath();
+  ctx.strokeStyle = alerta ? C.alerta : C.chispa; ctx.lineWidth = 1.3; ctx.lineJoin = 'round'; ctx.beginPath();
   let x = 0, y = 0;
   for (let i = desde; i <= n; i += paso) { x = 2 + ((i - desde) / (n - desde)) * (w - 8); y = 3 + (1 - (valores[i] - lo) / amp) * (h - 6); if (i === desde) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
-  ctx.stroke(); ctx.fillStyle = alerta ? C.alerta : '#fff'; ctx.beginPath(); ctx.arc(x, y, 2.4, 0, Math.PI * 2); ctx.fill();
+  ctx.stroke(); ctx.fillStyle = alerta ? C.alerta : C.marca; ctx.beginPath(); ctx.arc(x, y, 2.4, 0, Math.PI * 2); ctx.fill();
 }
