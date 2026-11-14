@@ -7,11 +7,11 @@ Web de marketing de **3D Ultra**, división de **MCCO Group SpA** (Chile): gemel
 | Ruta | Qué es | Regla |
 |---|---|---|
 | `site.yaml` | Manifiesto: dominio, proyecto Cloudflare, contacto, CSP, prohibidos, páginas para llms.txt | Única fuente de verdad. Nada de esto se hardcodea. |
-| `src/pages/index.astro` | Portada con `Sitio` (layout `Estandar` del kit): hero, nube, historia, servicios, casos, asistente y formulario en `src/components/InicioContenido.astro` y vecinos | Mismos H1, title, descripción, FAQ JSON-LD (`src/legacy/index-faq.jsonld`) y destinos. El contrato de la portada antigua quedó en `docs/registros/adopcion-3d-ultra/inicio-antes.json`. |
+| `src/pages/index.astro` | Portada con `Sitio` (layout `Estandar` del kit): hero, nube, historia, servicios, casos, asistente y formulario en `src/components/InicioContenido.astro` y vecinos | Mismos H1, title, descripción y destinos. Sin FAQ JSON-LD: la portada no muestra esas preguntas (se quitó en el encargo F6-faq). El contrato de la portada antigua quedó en `docs/registros/adopcion-3d-ultra/inicio-antes.json`. |
 | `src/pages/casos/*.astro`, `guias/*.astro`, `en/faq.astro` | Casos, guía y FAQ inglesa con `Sitio`, contenido heredado tal cual | `legacy_pages: false`. Los alias `.html` se siguen generando. No cambiar title, H1, canonical ni JSON-LD. |
 | `src/content/blog/*.md` | Artículos (colección validada por Zod). Aún vacía: el índice `/blog/` lleva `noindex` hasta el primer post | El motor de contenido y los agentes escriben **solo aquí**. |
 | `src/styles/theme.css` · `DESIGN.md` | Tokens del sitio (rojo de acción y sus variantes) · identidad | Estética del Estándar del kit: blanco, parchment y bloques negros, con SF Pro del sistema e Inter local del kit. Sin fuentes remotas (Montserrat y Google Fonts retirados en la Tarea 7). |
-| `public/` | `og.webp`, `logo.png` (provisional), `sim.JPG`, `media/` (nube e inicio), pósters de biblioteca, favicon y clave IndexNow. `mcco_foto.png` ya no lo usa ninguna página | `_headers` y `_redirects` los genera `mcco-headers`: **no editar a mano**. |
+| `public/` | `og.webp`, `logo.png` (provisional), `sim.JPG`, `media/` (nube e inicio), pósters de biblioteca, `favicon.svg` (origen del favicon), `favicon.ico` (16, 32 y 48 px; el único ícono que declaran las páginas, desde `Sitio.astro`) y clave IndexNow. `mcco_foto.png` ya no lo usa ninguna página | `_headers` y `_redirects` los genera `mcco-headers`: **no editar a mano**. |
 | `functions/api/contact.js` | Reexport de la Pages Function del kit para los formularios de portada, hub y fichas: honeypot, Turnstile si hay secreto, lead al Worker `formularios-mcco`, acuse opcional y 302 a `/gracias` o `/contacto-error` | Variables en Cloudflare Pages, Settings: `FORMULARIOS_URL`, `FORMULARIOS_CLAVE` y `MARCA` (obligatorias), y `TURNSTILE_SECRET`, `RESEND_API_KEY`, `ACUSE_FROM`, `SITE_NAME`, `WHATSAPP`, `WEB` (opcionales). Web3Forms ya no se usa. Contrato y pruebas: `docs/registros/adopcion-3d-ultra/contacto-csp.md`. |
 | `.github/workflows/ci.yml`, `deploy.yml` | Llaman a los workflows reutilizables del kit | No duplicar lógica de CI. |
 
@@ -23,7 +23,8 @@ Carpetas hermanas en disco (`02_Marketing/`, `03_Documentos/`, `04_Propuestas/`,
 npm ci
 npm run dev                                   # http://localhost:4321
 npm run build                                 # prebuild: mcco-headers → astro build → dist/
-npm run check                                 # mcco-check: OBLIGATORIO verde antes de PR
+npm test                                      # pruebas de test/ (también las corre prebuild)
+npm run check                                 # mcco-check, verificador de adopción y test/build: OBLIGATORIO verde antes de PR
 node scripts/repaso-texto.mjs                 # repaso editorial de dist: sin hallazgos antes de PR
 npm run parity -- --old https://3d-ultra.cl   # migraciones: producción vs dist
 ```
@@ -63,3 +64,5 @@ Rama → PR → CI (build + `mcco-check` + preview si hay credenciales Cloudflar
 ## 8. Commits
 
 Conventional Commits en español: `feat(web): …`, `fix(seo): …`, `content(casos): …`, `chore(kit): sube @mcco/web-kit a vX`.
+
+Al subir el kit cambian juntos, en el mismo commit, `package.json`, el lockfile (regenerado en Linux con npm 11.19.0) y los dos workflows; `test/kit-version.test.mjs` fija el tag y el commit del kit y hay que actualizarlo antes de la subida. `test/build/saltar-contenido.test.mjs` exige un solo enlace de salto por página, el del kit (v1.4.2), y que ningún enlace a un ancla quede sin destino. `test/build/favicon.test.mjs` exige que `/favicon.ico` sea un ICO con 16, 32 y 48 px y que cada página con `Estandar` lo declare una sola vez; las muestras de `/muestras/` conservan su propio ícono y los artículos con `Post`, que no tiene slot `head` en el kit, quedan como excepción listada (hoy no hay ninguno). Desde el kit v1.4.3 el campo y la nube crean su contexto WebGL2 400 ms después de quedar a la vista; el sitio no cambia nada por eso.
