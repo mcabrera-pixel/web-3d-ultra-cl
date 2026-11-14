@@ -228,13 +228,13 @@
       "url": "https://3d-ultra.cl/casos/gemelo-digital-raf-potrerillos",
       "lang": "es",
       "title": "Gemelo Digital Área RAF — Fundición Potrerillos | 3D Ultra",
-      "description": "Caso de estudio: Implementación del gemelo digital bidireccional en el Área de Refinación a Fuego (RAF) de la Fundición Potrerillos, CODELCO División Salvador. Modelo 3D navegable integrado con datos operacionales.",
+      "description": "Gemelo digital del Área de Refinación a Fuego (RAF) de la Fundición Potrerillos, CODELCO División Salvador. Modelo 3D navegable con datos operacionales.",
       "h1": "Gemelo Digital del Área de Refinación a Fuego (RAF) — Fundición Potrerillos",
       "canonical": "https://3d-ultra.cl/casos/gemelo-digital-raf-potrerillos",
       "alternates": [],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Digital Twin Technology\",\n    \"Copper Smelting\",\n    \"Fire Refining\",\n    \"Predictive Maintenance\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Implementación de un modelo 3D completamente navegable e integrado con datos de procesos operacionales para la optimización de paradas de planta en la fundición de cobre más importante de la División Salvador de CODELCO.\",\n  \"headline\": \"Gemelo Digital del Área de Refinación a Fuego (RAF) — Fundición Potrerillos, CODELCO División Salvador\",\n  \"keywords\": \"gemelo digital, fundición Potrerillos, CODELCO Salvador, RAF, refinación a fuego, planta virtual, mantenimiento predictivo, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/gemelo-digital-raf-potrerillos.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Digital Twin Technology\",\n    \"Copper Smelting\",\n    \"Fire Refining\",\n    \"Predictive Maintenance\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Implementación de un modelo 3D completamente navegable e integrado con datos de procesos operacionales para la optimización de paradas de planta en la fundición de cobre más importante de la División Salvador de CODELCO.\",\n  \"headline\": \"Gemelo Digital del Área de Refinación a Fuego (RAF) — Fundición Potrerillos, CODELCO División Salvador\",\n  \"keywords\": \"gemelo digital, fundición Potrerillos, CODELCO Salvador, RAF, refinación a fuego, planta virtual, mantenimiento predictivo, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/gemelo-digital-raf-potrerillos\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
       ],
       "anchors": [],
       "contacts": {
@@ -252,14 +252,14 @@
       "route": "/casos/analisis-chimenea-cps-salvador",
       "url": "https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador",
       "lang": "es",
-      "title": "Análisis Estructural Chimenea CPS — Deformación y Prevención de Colapso | 3D Ultra",
-      "description": "Caso de estudio: Análisis de deformación estructural de la Chimenea CPS en CODELCO División Salvador mediante escaneo láser FARO Focus Core. Detección de deformaciones fuera de tolerancia normativa que anticiparon riesgo de colapso.",
+      "title": "Análisis estructural de la Chimenea CPS | 3D Ultra",
+      "description": "Escaneo láser de la Chimenea CPS de CODELCO División Salvador. El análisis detectó deformaciones fuera de tolerancia y anticipó un riesgo de colapso.",
       "h1": "Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS",
       "canonical": "https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador",
       "alternates": [],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Structural Deformation Analysis\",\n    \"Laser Scanning\",\n    \"Chimney Inspection\",\n    \"Collapse Prevention\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Utilizando tecnología de escaneo láser FARO Focus Core, se capturó una nube de puntos de ultra alta densidad de la Chimenea CPS, detectando deformaciones estructurales fuera de tolerancias normativas y anticipando un riesgo inminente de colapso.\",\n  \"headline\": \"Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS — CODELCO División Salvador\",\n  \"keywords\": \"chimenea CPS, CODELCO Salvador, deformación estructural, escaneo láser, FARO Focus Core, prevención de colapso, control dimensional, 3D Ultra\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Structural Deformation Analysis\",\n    \"Laser Scanning\",\n    \"Chimney Inspection\",\n    \"Collapse Prevention\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Utilizando tecnología de escaneo láser FARO Focus Core, se capturó una nube de puntos de ultra alta densidad de la Chimenea CPS, detectando deformaciones estructurales fuera de tolerancias normativas y anticipando un riesgo inminente de colapso.\",\n  \"headline\": \"Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS — CODELCO División Salvador\",\n  \"keywords\": \"chimenea CPS, CODELCO Salvador, deformación estructural, escaneo láser, FARO Focus Core, prevención de colapso, control dimensional, 3D Ultra\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
       ],
       "anchors": [],
       "contacts": {
@@ -277,14 +277,14 @@
       "route": "/casos/hornos-isasmelt-extension-vida-util",
       "url": "https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util",
       "lang": "es",
-      "title": "Hornos ISASMELT — Extensión de Vida Útil 10 Años mediante Simulación Termomecánica | 3D Ultra",
-      "description": "Caso de estudio: Análisis de integridad estructural y simulación termomecánica de hornos ISASMELT para evaluar la extensión de vida útil del activo de fusión más crítico de la fundición.",
+      "title": "Hornos ISASMELT: extensión de vida útil | 3D Ultra",
+      "description": "Análisis de integridad estructural y simulación termomecánica de hornos ISASMELT para evaluar la extensión de vida útil del activo de fusión más crítico.",
       "h1": "Extensión de Vida Útil de Hornos ISASMELT mediante Simulación Termomecánica",
       "canonical": "https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util",
       "alternates": [],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"ISASMELT Furnace\",\n    \"Structural Integrity\",\n    \"Thermal Simulation\",\n    \"Life Extension\",\n    \"Copper Smelting\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Análisis de integridad estructural bajo condiciones extremas de estrés térmico para evaluar la extensión de vida operacional de hornos de fusión ISASMELT. Incluye simulación CFD, FEA termomecánico y mapeo de desgaste refractario.\",\n  \"headline\": \"Extensión de Vida Útil de Hornos ISASMELT mediante Simulación Termomecánica y Análisis de Integridad Estructural\",\n  \"keywords\": \"ISASMELT, horno fusión, extensión vida útil, simulación termomecánica, FEA, CFD, estrés térmico, desgaste refractario, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"ISASMELT Furnace\",\n    \"Structural Integrity\",\n    \"Thermal Simulation\",\n    \"Life Extension\",\n    \"Copper Smelting\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Análisis de integridad estructural bajo condiciones extremas de estrés térmico para evaluar la extensión de vida operacional de hornos de fusión ISASMELT. Incluye simulación CFD, FEA termomecánico y mapeo de desgaste refractario.\",\n  \"headline\": \"Extensión de Vida Útil de Hornos ISASMELT mediante Simulación Termomecánica y Análisis de Integridad Estructural\",\n  \"keywords\": \"ISASMELT, horno fusión, extensión vida útil, simulación termomecánica, FEA, CFD, estrés térmico, desgaste refractario, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
       ],
       "anchors": [],
       "contacts": {
@@ -302,14 +302,14 @@
       "route": "/casos/rueda-moldeo-anodos-potrerillos",
       "url": "https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos",
       "lang": "es",
-      "title": "Adaptación Ingenieril Rueda de Moldeo — Ánodos Chuquicamata | 3D Ultra",
-      "description": "Caso de estudio: Adaptación de alta complejidad de la Rueda de Moldeo para cambio de formato de ánodos en CODELCO Potrerillos. Simulación computacional + prototipado 3D para acelerar montaje.",
+      "title": "Rueda de moldeo para ánodos Chuquicamata | 3D Ultra",
+      "description": "Adaptación de la Rueda de Moldeo al cambio de formato de ánodos en CODELCO Potrerillos, con simulación computacional y prototipado 3D para acelerar el montaje.",
       "h1": "Adaptación Ingenieril de la Rueda de Moldeo para Ánodos Tipo Chuquicamata (CH)",
       "canonical": "https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos",
       "alternates": [],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Anode Casting\",\n    \"Reverse Engineering\",\n    \"3D Printing\",\n    \"Copper Smelting\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Ingeniería de detalle para la adaptación del sistema de moldeo de ánodos de cobre en la Fundición Potrerillos, acoplando simulaciones computacionales de alta fidelidad con maquetas impresas en 3D a escala paramétrica para acelerar el montaje en terreno.\",\n  \"headline\": \"Adaptación Ingenieril de Alta Complejidad de la Rueda de Moldeo para Ánodos Tipo Chuquicamata — Fundición Potrerillos\",\n  \"keywords\": \"rueda de moldeo, ánodos, Chuquicamata, Potrerillos, simulación, prototipado 3D, ingeniería inversa, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Anode Casting\",\n    \"Reverse Engineering\",\n    \"3D Printing\",\n    \"Copper Smelting\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Ingeniería de detalle para la adaptación del sistema de moldeo de ánodos de cobre en la Fundición Potrerillos, acoplando simulaciones computacionales de alta fidelidad con maquetas impresas en 3D a escala paramétrica para acelerar el montaje en terreno.\",\n  \"headline\": \"Adaptación Ingenieril de Alta Complejidad de la Rueda de Moldeo para Ánodos Tipo Chuquicamata — Fundición Potrerillos\",\n  \"keywords\": \"rueda de moldeo, ánodos, Chuquicamata, Potrerillos, simulación, prototipado 3D, ingeniería inversa, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
       ],
       "anchors": [],
       "contacts": {
@@ -327,27 +327,23 @@
       "route": "/guias/gemelos-digitales-fundiciones-cobre",
       "url": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre",
       "lang": "es",
-      "title": "Guía Definitiva: Gemelos Digitales en Fundiciones de Cobre — 3D Ultra",
-      "description": "Guía técnica completa sobre la implementación de gemelos digitales bidireccionales en fundiciones y refinerías de cobre. Metodología, ahorro, tecnología y casos reales documentados por 3D Ultra en CODELCO Chile.",
+      "title": "Gemelos digitales en fundiciones de cobre: guía | 3D Ultra",
+      "description": "Guía técnica para implementar gemelos digitales en fundiciones y refinerías de cobre: metodología, ahorro, tecnología y casos documentados en CODELCO.",
       "h1": "Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre",
       "canonical": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre",
       "alternates": [
         {
-          "hreflang": "en",
-          "href": "https://3d-ultra.cl/en/faq.html"
-        },
-        {
           "hreflang": "es",
-          "href": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html"
+          "href": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre"
         },
         {
           "hreflang": "x-default",
-          "href": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html"
+          "href": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre"
         }
       ],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Digital Twin\",\n    \"Copper Smelting\",\n    \"Predictive Maintenance\",\n    \"IoT Integration\",\n    \"3D Laser Scanning\",\n    \"BIM Modeling\"\n  ],\n  \"articleSection\": \"Guías Técnicas\",\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Guía técnica completa sobre la implementación de gemelos digitales bidireccionales en fundiciones de cobre. Cubre desde la captura de realidad con escaneo láser hasta la integración IoT y el cálculo del ahorro.\",\n  \"headline\": \"Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre\",\n  \"keywords\": \"gemelo digital, digital twin, fundición cobre, copper smelting, CODELCO, mantenimiento predictivo, IoT, SCADA, escaneo láser, BIM, CFD, minería 4.0\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"wordCount\": 3200\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Digital Twin\",\n    \"Copper Smelting\",\n    \"Predictive Maintenance\",\n    \"IoT Integration\",\n    \"3D Laser Scanning\",\n    \"BIM Modeling\"\n  ],\n  \"articleSection\": \"Guías Técnicas\",\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Guía técnica completa sobre la implementación de gemelos digitales bidireccionales en fundiciones de cobre. Cubre desde la captura de realidad con escaneo láser hasta la integración IoT y el cálculo del ahorro.\",\n  \"headline\": \"Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre\",\n  \"keywords\": \"gemelo digital, digital twin, fundición cobre, copper smelting, CODELCO, mantenimiento predictivo, IoT, SCADA, escaneo láser, BIM, CFD, minería 4.0\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"wordCount\": 3200\n}"
       ],
       "anchors": [
         "#aplicaciones",
@@ -375,13 +371,13 @@
       "url": "https://3d-ultra.cl/en/faq",
       "lang": "en",
       "title": "Digital Twin FAQ — Copper Smelting & Mining | 3D Ultra Chile",
-      "description": "Frequently asked questions about digital twin implementation for copper smelting operations in Chile. Covering technology, savings, timelines, and CODELCO case studies by 3D Ultra — MCCO Engineering Group.",
+      "description": "Frequently asked questions about digital twins for copper smelting operations in Chile: technology, savings, timelines and CODELCO case studies by 3D Ultra.",
       "h1": "Frequently Asked Questions: Digital Twins for Copper Smelting & Mining Operations",
       "canonical": "https://3d-ultra.cl/en/faq",
       "alternates": [
         {
           "hreflang": "en",
-          "href": "https://3d-ultra.cl/en/faq.html"
+          "href": "https://3d-ultra.cl/en/faq"
         },
         {
           "hreflang": "es",
@@ -509,13 +505,13 @@
       "url": "https://3d-ultra.cl/casos/gemelo-digital-raf-potrerillos.html",
       "lang": "es",
       "title": "Gemelo Digital Área RAF — Fundición Potrerillos | 3D Ultra",
-      "description": "Caso de estudio: Implementación del gemelo digital bidireccional en el Área de Refinación a Fuego (RAF) de la Fundición Potrerillos, CODELCO División Salvador. Modelo 3D navegable integrado con datos operacionales.",
+      "description": "Gemelo digital del Área de Refinación a Fuego (RAF) de la Fundición Potrerillos, CODELCO División Salvador. Modelo 3D navegable con datos operacionales.",
       "h1": "Gemelo Digital del Área de Refinación a Fuego (RAF) — Fundición Potrerillos",
       "canonical": "https://3d-ultra.cl/casos/gemelo-digital-raf-potrerillos",
       "alternates": [],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Digital Twin Technology\",\n    \"Copper Smelting\",\n    \"Fire Refining\",\n    \"Predictive Maintenance\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Implementación de un modelo 3D completamente navegable e integrado con datos de procesos operacionales para la optimización de paradas de planta en la fundición de cobre más importante de la División Salvador de CODELCO.\",\n  \"headline\": \"Gemelo Digital del Área de Refinación a Fuego (RAF) — Fundición Potrerillos, CODELCO División Salvador\",\n  \"keywords\": \"gemelo digital, fundición Potrerillos, CODELCO Salvador, RAF, refinación a fuego, planta virtual, mantenimiento predictivo, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/gemelo-digital-raf-potrerillos.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Digital Twin Technology\",\n    \"Copper Smelting\",\n    \"Fire Refining\",\n    \"Predictive Maintenance\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Implementación de un modelo 3D completamente navegable e integrado con datos de procesos operacionales para la optimización de paradas de planta en la fundición de cobre más importante de la División Salvador de CODELCO.\",\n  \"headline\": \"Gemelo Digital del Área de Refinación a Fuego (RAF) — Fundición Potrerillos, CODELCO División Salvador\",\n  \"keywords\": \"gemelo digital, fundición Potrerillos, CODELCO Salvador, RAF, refinación a fuego, planta virtual, mantenimiento predictivo, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/gemelo-digital-raf-potrerillos\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
       ],
       "anchors": [],
       "contacts": {
@@ -533,14 +529,14 @@
       "route": "/casos/analisis-chimenea-cps-salvador.html",
       "url": "https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador.html",
       "lang": "es",
-      "title": "Análisis Estructural Chimenea CPS — Deformación y Prevención de Colapso | 3D Ultra",
-      "description": "Caso de estudio: Análisis de deformación estructural de la Chimenea CPS en CODELCO División Salvador mediante escaneo láser FARO Focus Core. Detección de deformaciones fuera de tolerancia normativa que anticiparon riesgo de colapso.",
+      "title": "Análisis estructural de la Chimenea CPS | 3D Ultra",
+      "description": "Escaneo láser de la Chimenea CPS de CODELCO División Salvador. El análisis detectó deformaciones fuera de tolerancia y anticipó un riesgo de colapso.",
       "h1": "Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS",
       "canonical": "https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador",
       "alternates": [],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Structural Deformation Analysis\",\n    \"Laser Scanning\",\n    \"Chimney Inspection\",\n    \"Collapse Prevention\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Utilizando tecnología de escaneo láser FARO Focus Core, se capturó una nube de puntos de ultra alta densidad de la Chimenea CPS, detectando deformaciones estructurales fuera de tolerancias normativas y anticipando un riesgo inminente de colapso.\",\n  \"headline\": \"Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS — CODELCO División Salvador\",\n  \"keywords\": \"chimenea CPS, CODELCO Salvador, deformación estructural, escaneo láser, FARO Focus Core, prevención de colapso, control dimensional, 3D Ultra\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Structural Deformation Analysis\",\n    \"Laser Scanning\",\n    \"Chimney Inspection\",\n    \"Collapse Prevention\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Utilizando tecnología de escaneo láser FARO Focus Core, se capturó una nube de puntos de ultra alta densidad de la Chimenea CPS, detectando deformaciones estructurales fuera de tolerancias normativas y anticipando un riesgo inminente de colapso.\",\n  \"headline\": \"Análisis de Deformación Estructural y Prevención de Colapso de la Chimenea CPS — CODELCO División Salvador\",\n  \"keywords\": \"chimenea CPS, CODELCO Salvador, deformación estructural, escaneo láser, FARO Focus Core, prevención de colapso, control dimensional, 3D Ultra\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
       ],
       "anchors": [],
       "contacts": {
@@ -558,14 +554,14 @@
       "route": "/casos/hornos-isasmelt-extension-vida-util.html",
       "url": "https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util.html",
       "lang": "es",
-      "title": "Hornos ISASMELT — Extensión de Vida Útil 10 Años mediante Simulación Termomecánica | 3D Ultra",
-      "description": "Caso de estudio: Análisis de integridad estructural y simulación termomecánica de hornos ISASMELT para evaluar la extensión de vida útil del activo de fusión más crítico de la fundición.",
+      "title": "Hornos ISASMELT: extensión de vida útil | 3D Ultra",
+      "description": "Análisis de integridad estructural y simulación termomecánica de hornos ISASMELT para evaluar la extensión de vida útil del activo de fusión más crítico.",
       "h1": "Extensión de Vida Útil de Hornos ISASMELT mediante Simulación Termomecánica",
       "canonical": "https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util",
       "alternates": [],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"ISASMELT Furnace\",\n    \"Structural Integrity\",\n    \"Thermal Simulation\",\n    \"Life Extension\",\n    \"Copper Smelting\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Análisis de integridad estructural bajo condiciones extremas de estrés térmico para evaluar la extensión de vida operacional de hornos de fusión ISASMELT. Incluye simulación CFD, FEA termomecánico y mapeo de desgaste refractario.\",\n  \"headline\": \"Extensión de Vida Útil de Hornos ISASMELT mediante Simulación Termomecánica y Análisis de Integridad Estructural\",\n  \"keywords\": \"ISASMELT, horno fusión, extensión vida útil, simulación termomecánica, FEA, CFD, estrés térmico, desgaste refractario, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"ISASMELT Furnace\",\n    \"Structural Integrity\",\n    \"Thermal Simulation\",\n    \"Life Extension\",\n    \"Copper Smelting\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Análisis de integridad estructural bajo condiciones extremas de estrés térmico para evaluar la extensión de vida operacional de hornos de fusión ISASMELT. Incluye simulación CFD, FEA termomecánico y mapeo de desgaste refractario.\",\n  \"headline\": \"Extensión de Vida Útil de Hornos ISASMELT mediante Simulación Termomecánica y Análisis de Integridad Estructural\",\n  \"keywords\": \"ISASMELT, horno fusión, extensión vida útil, simulación termomecánica, FEA, CFD, estrés térmico, desgaste refractario, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
       ],
       "anchors": [],
       "contacts": {
@@ -583,14 +579,14 @@
       "route": "/casos/rueda-moldeo-anodos-potrerillos.html",
       "url": "https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos.html",
       "lang": "es",
-      "title": "Adaptación Ingenieril Rueda de Moldeo — Ánodos Chuquicamata | 3D Ultra",
-      "description": "Caso de estudio: Adaptación de alta complejidad de la Rueda de Moldeo para cambio de formato de ánodos en CODELCO Potrerillos. Simulación computacional + prototipado 3D para acelerar montaje.",
+      "title": "Rueda de moldeo para ánodos Chuquicamata | 3D Ultra",
+      "description": "Adaptación de la Rueda de Moldeo al cambio de formato de ánodos en CODELCO Potrerillos, con simulación computacional y prototipado 3D para acelerar el montaje.",
       "h1": "Adaptación Ingenieril de la Rueda de Moldeo para Ánodos Tipo Chuquicamata (CH)",
       "canonical": "https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos",
       "alternates": [],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Anode Casting\",\n    \"Reverse Engineering\",\n    \"3D Printing\",\n    \"Copper Smelting\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Ingeniería de detalle para la adaptación del sistema de moldeo de ánodos de cobre en la Fundición Potrerillos, acoplando simulaciones computacionales de alta fidelidad con maquetas impresas en 3D a escala paramétrica para acelerar el montaje en terreno.\",\n  \"headline\": \"Adaptación Ingenieril de Alta Complejidad de la Rueda de Moldeo para Ánodos Tipo Chuquicamata — Fundición Potrerillos\",\n  \"keywords\": \"rueda de moldeo, ánodos, Chuquicamata, Potrerillos, simulación, prototipado 3D, ingeniería inversa, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Anode Casting\",\n    \"Reverse Engineering\",\n    \"3D Printing\",\n    \"Copper Smelting\",\n    \"CODELCO\"\n  ],\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Ingeniería de detalle para la adaptación del sistema de moldeo de ánodos de cobre en la Fundición Potrerillos, acoplando simulaciones computacionales de alta fidelidad con maquetas impresas en 3D a escala paramétrica para acelerar el montaje en terreno.\",\n  \"headline\": \"Adaptación Ingenieril de Alta Complejidad de la Rueda de Moldeo para Ánodos Tipo Chuquicamata — Fundición Potrerillos\",\n  \"keywords\": \"rueda de moldeo, ánodos, Chuquicamata, Potrerillos, simulación, prototipado 3D, ingeniería inversa, 3D Ultra, MCCO\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/casos/rueda-moldeo-anodos-potrerillos\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  }\n}"
       ],
       "anchors": [],
       "contacts": {
@@ -608,27 +604,23 @@
       "route": "/guias/gemelos-digitales-fundiciones-cobre.html",
       "url": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html",
       "lang": "es",
-      "title": "Guía Definitiva: Gemelos Digitales en Fundiciones de Cobre — 3D Ultra",
-      "description": "Guía técnica completa sobre la implementación de gemelos digitales bidireccionales en fundiciones y refinerías de cobre. Metodología, ahorro, tecnología y casos reales documentados por 3D Ultra en CODELCO Chile.",
+      "title": "Gemelos digitales en fundiciones de cobre: guía | 3D Ultra",
+      "description": "Guía técnica para implementar gemelos digitales en fundiciones y refinerías de cobre: metodología, ahorro, tecnología y casos documentados en CODELCO.",
       "h1": "Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre",
       "canonical": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre",
       "alternates": [
         {
-          "hreflang": "en",
-          "href": "https://3d-ultra.cl/en/faq.html"
-        },
-        {
           "hreflang": "es",
-          "href": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html"
+          "href": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre"
         },
         {
           "hreflang": "x-default",
-          "href": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html"
+          "href": "https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre"
         }
       ],
       "robots": "",
       "jsonld": [
-        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Digital Twin\",\n    \"Copper Smelting\",\n    \"Predictive Maintenance\",\n    \"IoT Integration\",\n    \"3D Laser Scanning\",\n    \"BIM Modeling\"\n  ],\n  \"articleSection\": \"Guías Técnicas\",\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Guía técnica completa sobre la implementación de gemelos digitales bidireccionales en fundiciones de cobre. Cubre desde la captura de realidad con escaneo láser hasta la integración IoT y el cálculo del ahorro.\",\n  \"headline\": \"Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre\",\n  \"keywords\": \"gemelo digital, digital twin, fundición cobre, copper smelting, CODELCO, mantenimiento predictivo, IoT, SCADA, escaneo láser, BIM, CFD, minería 4.0\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre.html\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"wordCount\": 3200\n}"
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"TechArticle\",\n  \"about\": [\n    \"Digital Twin\",\n    \"Copper Smelting\",\n    \"Predictive Maintenance\",\n    \"IoT Integration\",\n    \"3D Laser Scanning\",\n    \"BIM Modeling\"\n  ],\n  \"articleSection\": \"Guías Técnicas\",\n  \"author\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra — MCCO Engineering Group\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"dateModified\": \"2026-03-16\",\n  \"datePublished\": \"2026-03-16\",\n  \"description\": \"Guía técnica completa sobre la implementación de gemelos digitales bidireccionales en fundiciones de cobre. Cubre desde la captura de realidad con escaneo láser hasta la integración IoT y el cálculo del ahorro.\",\n  \"headline\": \"Guía Definitiva: Gemelos Digitales Bidireccionales en Fundiciones y Refinerías de Cobre\",\n  \"keywords\": \"gemelo digital, digital twin, fundición cobre, copper smelting, CODELCO, mantenimiento predictivo, IoT, SCADA, escaneo láser, BIM, CFD, minería 4.0\",\n  \"mainEntityOfPage\": \"https://3d-ultra.cl/guias/gemelos-digitales-fundiciones-cobre\",\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl\"\n  },\n  \"wordCount\": 3200\n}"
       ],
       "anchors": [
         "#aplicaciones",
@@ -656,13 +648,13 @@
       "url": "https://3d-ultra.cl/en/faq.html",
       "lang": "en",
       "title": "Digital Twin FAQ — Copper Smelting & Mining | 3D Ultra Chile",
-      "description": "Frequently asked questions about digital twin implementation for copper smelting operations in Chile. Covering technology, savings, timelines, and CODELCO case studies by 3D Ultra — MCCO Engineering Group.",
+      "description": "Frequently asked questions about digital twins for copper smelting operations in Chile: technology, savings, timelines and CODELCO case studies by 3D Ultra.",
       "h1": "Frequently Asked Questions: Digital Twins for Copper Smelting & Mining Operations",
       "canonical": "https://3d-ultra.cl/en/faq",
       "alternates": [
         {
           "hreflang": "en",
-          "href": "https://3d-ultra.cl/en/faq.html"
+          "href": "https://3d-ultra.cl/en/faq"
         },
         {
           "hreflang": "es",
