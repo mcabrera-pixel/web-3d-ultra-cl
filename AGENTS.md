@@ -23,7 +23,8 @@ Carpetas hermanas en disco (`02_Marketing/`, `03_Documentos/`, `04_Propuestas/`,
 npm ci
 npm run dev                                   # http://localhost:4321
 npm run build                                 # prebuild: mcco-headers → astro build → dist/
-npm run check                                 # mcco-check: OBLIGATORIO verde antes de PR
+npm test                                      # pruebas de test/ (también las corre prebuild)
+npm run check                                 # mcco-check, verificador de adopción y test/build: OBLIGATORIO verde antes de PR
 node scripts/repaso-texto.mjs                 # repaso editorial de dist: sin hallazgos antes de PR
 npm run parity -- --old https://3d-ultra.cl   # migraciones: producción vs dist
 ```
@@ -63,3 +64,5 @@ Rama → PR → CI (build + `mcco-check` + preview si hay credenciales Cloudflar
 ## 8. Commits
 
 Conventional Commits en español: `feat(web): …`, `fix(seo): …`, `content(casos): …`, `chore(kit): sube @mcco/web-kit a vX`.
+
+Al subir el kit cambian juntos, en el mismo commit, `package.json`, el lockfile (regenerado en Linux con npm 11.19.0) y los dos workflows; `test/kit-version.test.mjs` fija el tag y el commit del kit y hay que actualizarlo antes de la subida. `test/build/saltar-contenido.test.mjs` exige un solo enlace de salto por página, el del kit (v1.4.2), y que ningún enlace a un ancla quede sin destino.

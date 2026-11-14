@@ -7,6 +7,8 @@ La identidad visual de 3D Ultra es la del Estándar Web MCCO del kit (`@mcco/web
 - SF Pro del sistema e Inter local del kit, cuerpo de 17 px. Sin fuentes remotas: Montserrat y Google Fonts se retiraron en la Tarea 7.
 - Bloques sin radio, tarjetas de 18 px y píldoras de 980 px. Sin degradados ni sombras decorativas.
 - Layout `Sitio.astro` sobre `Estandar`: barra global, sub-navegación, un solo `main` y bloque Grupo.
+- Desde el kit v1.4.2, `Estandar` abre cada página con el enlace «Saltar al contenido» («Skip to content» en `/en/faq`), `a.std-saltar` hacia `main#std-contenido`, visible solo con foco. El sitio no pone un enlace de salto propio ni usa ese `id`.
+- El campo del hero de la portada no dibuja guiones sobre el texto del hero: H1, bajada y las dos píldoras. La pausa y el rótulo «Render 3D» quedan fuera de esa regla, y el bloque de clientes empieza justo bajo el lienzo, fuera del hero.
 
 ## Acción en rojo (`src/styles/theme.css`)
 Un solo color de acción por pantalla.
