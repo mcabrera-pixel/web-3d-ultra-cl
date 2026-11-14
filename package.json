@@ -16,7 +16,7 @@
     "test": "node --test \"test/*.test.mjs\""
   },
   "dependencies": {
-    "@mcco/web-kit": "github:mcabrera-pixel/mcco-web-kit#v1.4.1",
+    "@mcco/web-kit": "github:mcabrera-pixel/mcco-web-kit#v1.4.2",
     "astro": "^7.3.4",
     "three": "0.160.0"
   },
