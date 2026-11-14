@@ -103,3 +103,16 @@ Salida distinta de cero ante pérdida de rutas, metadatos, idioma, JSON-LD, ancl
 - `node scripts/verificar-adopcion.mjs --base docs/registros/adopcion-3d-ultra/seo-antes.json --nuevo https://3d-ultra.cl` → **OK**.
 - `npm run parity -- --old https://3d-ultra.cl` → **paridad OK** (11 rutas).
 - `node --test test/verificar-adopcion.test.mjs` → **6/6**.
+
+## Cambio en la base: 14-nov-2026, encargo F6-faq
+
+`seo-antes.json` se editó a mano solo en sus bloques `FAQPage` (sin recaptura; el resto del archivo no cambia):
+
+- `/`: se quitó el `FAQPage` del arreglo `jsonld`. Venía de `src/legacy/index-faq.jsonld` y la portada no muestra
+  esas preguntas, así que la portada deja de publicarlo.
+- `/en/faq` y `/en/faq.html`: las respuestas 3, 7 y 8 del `FAQPage` pasan al texto que se lee en la página
+  (semirraya en los rangos de la 3 y la 8; en la 7, «include the digital twin…» sin «at Division Salvador» ni
+  «through thermomechanical simulation»). Preguntas y orden no cambian.
+
+El JSON-LD de esas páginas difiere a propósito de la captura de producción del 29-oct-2026 hasta que se publique.
+`test/build/faq-jsonld.test.mjs` exige que cada `FAQPage` sea igual a las preguntas visibles de su página.

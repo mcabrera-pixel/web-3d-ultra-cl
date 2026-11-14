@@ -1,16 +1,13 @@
 ---
-import fs from 'node:fs';
 import Sitio from '../layouts/Sitio.astro';
 import InicioContenido from '../components/InicioContenido.astro';
 import { loadSite } from '@mcco/web-kit/lib/site.mjs';
 import '../styles/inicio.css';
 const site = loadSite();
-const faqLd = fs.readFileSync('src/legacy/index-faq.jsonld', 'utf8').trim();
-// SEO conservado. El legado se retira en la Tarea 7, tras migrar sus consumidores.
+// SEO conservado.
 const title = '3DUltra Arch & Ingeniería Soluciones de Ingeniería 4.0';
 ---
 <Sitio title={title} description={site.description.trim()} organization={true} ogImage="/og.webp"
   alternates={[{ lang: 'es', href: '/' }, { lang: 'en', href: '/en/faq' }]}>
-  <script slot="head" is:inline type="application/ld+json" set:html={faqLd} />
   <InicioContenido />
 </Sitio>
