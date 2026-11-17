@@ -39,17 +39,17 @@ tags: [procedimientos animados, mantención, capacitación, equipos mineros]
 generated_by: claude
 ---
 
-Un procedimiento de mantención escrito dice qué hacer y en qué orden. Lo que no siempre logra es que alguien que nunca ha hecho el trabajo se imagine dónde está cada pieza, por dónde entra la grúa o cuánto espacio queda alrededor del equipo. Para eso sirve animarlo en 3D. Esta guía explica cómo armamos un procedimiento animado en 3D Ultra a partir de un equipo real y qué recibe al final tu equipo de mantención.
+Un procedimiento de mantención escrito dice qué hacer y en qué orden. Lo que no siempre logra es que alguien que nunca ha hecho el trabajo se imagine dónde está cada pieza, por dónde entra la grúa o cuánto espacio queda alrededor del equipo. Para eso lo animamos en 3D. Así armamos en 3D Ultra un procedimiento animado a partir de un equipo real, y esto es lo que recibe al final tu equipo de mantención.
 
 ## Se parte del procedimiento escrito vigente
 
 Cada animación que hacemos parte del procedimiento escrito vigente de tu faena. Ese documento ya pasó por las revisiones de tu área, y la idea es que la animación muestre lo mismo que dice el papel, paso por paso.
 
-Antes de pedir la animación, conviene revisar que el procedimiento esté al día. Si el taller ya trabaja con otra secuencia o con otra herramienta, lo mejor es corregir primero el documento. Un video que muestra algo distinto a lo que se hace en terreno confunde más que ayudar.
+Antes de pedir la animación, conviene revisar que el procedimiento esté al día. Si el taller ya trabaja con otra secuencia o con otra herramienta, corrige primero el documento, porque un video que muestra algo distinto a lo que se hace en terreno confunde más de lo que ayuda.
 
 ## Qué necesitamos para empezar
 
-La lista es corta:
+Para empezar necesitamos:
 
 - El modelo y la serie del equipo.
 - La maniobra o el procedimiento que quieres mostrar.
@@ -63,7 +63,7 @@ En la [biblioteca de equipos](/biblioteca/) tenemos modelos 3D de referencia de 
 
 El equipo de tu faena rara vez es igual al de catálogo. Puede tener accesorios distintos, modificaciones hechas en la misma faena o cambios en los accesos. Por eso ajustamos el modelo de referencia con un escaneo láser del equipo, fotos y los planos del fabricante, hasta que las medidas y los accesorios coinciden con los de tu flota.
 
-Este paso pesa más de lo que parece. Si el video muestra una escalera o una plataforma que tu camión no tiene, la cuadrilla deja de confiar en el material desde el primer minuto.
+Si el video muestra una escalera o una plataforma que tu camión no tiene, la cuadrilla deja de confiar en el material desde el primer minuto.
 
 ## Qué procedimientos conviene animar primero
 
@@ -79,13 +79,19 @@ Si estás partiendo, elige uno solo. Un procedimiento que el turno hace seguido 
 
 ## Qué recibe tu equipo de mantención
 
-Lo que recibe tu equipo se usa en momentos distintos.
+Cada entrega se usa en un momento distinto.
 
-**Videos del procedimiento.** Muestran cada paso en el orden del documento. El turno los repasa antes de ir al taller, y en una parada sirven para la charla previa con la cuadrilla y los contratistas sin detener el equipo.
+### Videos del procedimiento
 
-**Recorrido 3D del equipo.** Se abre en pantalla o con lentes de realidad virtual. Un operador o mantenedor nuevo puede ubicar la cabina, la plataforma y las escaleras de un camión, o la sala de máquinas de una pala, sin subir al equipo. En el caso de un cargador subterráneo, lo conoce sin bajar a la mina.
+Muestran cada paso en el orden del documento. El turno los repasa antes de ir al taller, y en una parada sirven para la charla previa con la cuadrilla y los contratistas sin detener el equipo.
 
-**Piezas ordenadas por sistema.** Así funciona el panel de piezas de cada ficha de la biblioteca. En el 930E-5, por ejemplo, van «Tolva y levante», «Cabina y plataforma», «Motor y potencia», «Ruedas y suspensión» y «Chasis y frontal». Al elegir una pieza, la cámara va hacia ella y el resto del equipo queda translúcido. Así es fácil señalar en una charla de qué componente se está hablando.
+### Recorrido 3D del equipo
+
+Se abre en pantalla o con lentes de realidad virtual. Un operador o mantenedor nuevo puede ubicar la cabina, la plataforma y las escaleras de un camión, o la sala de máquinas de una pala, sin subir al equipo. En el caso de un cargador subterráneo, lo conoce sin bajar a la mina.
+
+### Piezas ordenadas por sistema
+
+Así funciona el panel de piezas de cada ficha de la biblioteca. En el 930E-5, por ejemplo, van «Tolva y levante», «Cabina y plataforma», «Motor y potencia», «Ruedas y suspensión» y «Chasis y frontal». Al elegir una pieza, la cámara va hacia ella y el resto del equipo queda translúcido. Eso facilita señalar en una charla de qué componente se está hablando.
 
 ## Si además vas a planificar una mantención mayor
 
@@ -95,9 +101,9 @@ El procedimiento animado y la planificación salen del mismo modelo, así que el
 
 ## Cómo usarlo en capacitación
 
-El recorrido 3D y los videos se usan en inducciones y charlas de seguridad sin sacar el equipo de operación ni subir a nadie a la plataforma. Para un jefe de capacitación, eso significa que la inducción no depende de que haya un camión o una pala disponibles en el taller ese día.
+El recorrido 3D y los videos se usan en inducciones y charlas de seguridad sin sacar el equipo de operación ni subir a nadie a la plataforma. Para un jefe de capacitación, la inducción ya no depende de que haya un camión o una pala disponibles en el taller ese día.
 
-Una forma simple de ordenarlo es esta. El trabajador nuevo recorre primero el equipo en 3D para ubicar sus partes. Después ve el video del procedimiento. Recién entonces llega al taller, donde el supervisor le muestra el trabajo en el equipo real.
+Un orden simple es que el trabajador nuevo recorra primero el equipo en 3D para ubicar sus partes, después vea el video del procedimiento y recién entonces llegue al taller, donde el supervisor le muestra el trabajo en el equipo real.
 
 ## Dónde hemos trabajado con estos equipos
 
