@@ -16,7 +16,7 @@ cloudflare:
   zone_checklist_done: false        # pendiente Mario: AI Crawl Control allow · robots gestionado OFF · Crawler Hints ON · www
 
 analytics:
-  ga4: ""
+  ga4: "G-12YKS926SM"
   ads: ""
   cf_beacon_token: ""
 
