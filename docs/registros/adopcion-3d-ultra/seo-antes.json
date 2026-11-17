@@ -464,6 +464,43 @@
       "status": 200,
       "expectedStatus": 200
     },
+    "/blog/linea-base-3d-estructuras-fundicion": {
+      "route": "/blog/linea-base-3d-estructuras-fundicion",
+      "url": "https://3d-ultra.cl/blog/linea-base-3d-estructuras-fundicion",
+      "lang": "es-cl",
+      "title": "Línea base 3D: cómo vigilar una estructura de fundición",
+      "description": "Cómo usar un primer escaneo láser como línea base para comparar una chimenea u horno de fundición campaña tras campaña y ver cuánto se movió.",
+      "h1": "Línea base 3D: cómo vigilar una estructura de fundición",
+      "canonical": "https://3d-ultra.cl/blog/linea-base-3d-estructuras-fundicion",
+      "alternates": [],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1",
+      "jsonld": [
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BlogPosting\",\n  \"author\": {\n    \"@type\": \"Person\",\n    \"jobTitle\": \"CEO de MCCO Group\",\n    \"name\": \"Mario Cabrera\",\n    \"worksFor\": {\n      \"@id\": \"https://3d-ultra.cl/#organization\"\n    }\n  },\n  \"citation\": [\n    \"https://3d-ultra.cl/casos/analisis-chimenea-cps-salvador\",\n    \"https://3d-ultra.cl/casos/hornos-isasmelt-extension-vida-util\",\n    \"https://store.astm.org/e2807-11r19.html\",\n    \"https://www.cloudcompare.org/doc/wiki/index.php/How_to_compare_two_3D_entities\",\n    \"https://www.cloudcompare.org/doc/wiki/index.php/DistancesComputation\",\n    \"https://www.cloudcompare.org/doc/wiki/index.php/Cloud-to-Mesh_Distance\"\n  ],\n  \"dateModified\": \"2026-11-17\",\n  \"datePublished\": \"2026-11-17\",\n  \"description\": \"Cómo usar un primer escaneo láser como línea base para comparar una chimenea u horno de fundición campaña tras campaña y ver cuánto se movió.\",\n  \"headline\": \"Línea base 3D: cómo vigilar una estructura de fundición\",\n  \"image\": \"https://3d-ultra.cl/og.webp\",\n  \"inLanguage\": \"es-CL\",\n  \"mainEntityOfPage\": {\n    \"@id\": \"https://3d-ultra.cl/blog/linea-base-3d-estructuras-fundicion\",\n    \"@type\": \"WebPage\"\n  },\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"logo\": {\n      \"@type\": \"ImageObject\",\n      \"url\": \"https://3d-ultra.cl/logo.png\"\n    },\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl/\"\n  },\n  \"wordCount\": 947\n}",
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"item\": \"https://3d-ultra.cl/\",\n      \"name\": \"Inicio\",\n      \"position\": 1\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"item\": \"https://3d-ultra.cl/blog/\",\n      \"name\": \"Blog\",\n      \"position\": 2\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"item\": \"https://3d-ultra.cl/blog/linea-base-3d-estructuras-fundicion\",\n      \"name\": \"Línea base 3D: cómo vigilar una estructura de fundición\",\n      \"position\": 3\n    }\n  ]\n}"
+      ],
+      "anchors": [
+        "#dos-preguntas-distintas",
+        "#el-mismo-sistema-de-referencia",
+        "#nube-contra-nube-o-nube-contra-superficie",
+        "#std-contenido",
+        "#std-gnav-enlaces",
+        "#un-formato-que-siga-legible"
+      ],
+      "contacts": {
+        "forms": [],
+        "mailto": [
+          "mcabrera@mccocopper.cl"
+        ],
+        "whatsapp": [
+          "https://wa.me/56979860843?text=Hola%2C%20vengo%20de%203d-ultra.cl%20(L%C3%ADnea%20base%203D%3A%20c%C3%B3mo%20vigilar%20una%20estructura%20de%20fundici%C3%B3n)%20y%20quiero%20cotizar."
+        ],
+        "contactAnchors": [
+          "/#contacto"
+        ]
+      },
+      "status": 200,
+      "expectedStatus": 200
+    },
     "/gracias": {
       "route": "/gracias",
       "url": "https://3d-ultra.cl/gracias",
