@@ -10,8 +10,9 @@
 //   scripts/importar-muestra.mjs desde un origen fuera del repo, y cada una declara su propio ícono (bomba, su
 //   favicon.svg de la muestra; bomba-esencial, `data:,` para no pedir ninguno). Cambiarlo es cambiar la muestra y el
 //   script que la reproduce, fuera de este encargo. La prueba exige que sigan con ese único ícono.
-// - Los artículos del blog (/blog/<slug>) usan `Post` del kit, que no tiene slot head: el sitio no puede declarar ahí
-//   el ícono sin tocar el kit. Hoy no hay ninguno; si se publica uno, la prueba falla a propósito para resolverlo.
+//
+// Los artículos del blog (/blog/<slug>) ya no usan `Post` del kit, que no tiene slot head: desde el primer artículo
+// (rama content/primer-articulo) van dentro de Sitio, como el resto, y declaran el ícono por el mismo camino.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
@@ -81,11 +82,12 @@ test('favicon: el dist tiene las páginas de la base de adopción, el caso de de
   assert.deepEqual(Object.keys(MUESTRAS).sort(), Object.keys(ICONO_MUESTRA).sort(), 'cada muestra tiene su excepción');
 });
 
-test('favicon: no hay artículos del blog con Post (sin slot head en el kit: excepción listada)', () => {
+test('favicon: ningún artículo del blog usa Post del kit (sin slot head) y cada uno está en el dist', () => {
   const posts = paginas.filter((f) => nodosDe.get(f).some((n) => n.tagName === 'main' && attr(n, 'data-mcco') === 'post'));
-  const mensaje = 'hay artículos con Post del kit, que no tiene slot head: declarar ahí /favicon.ico pide cambiar el kit';
-  assert.deepEqual(posts, [], mensaje);
-  assert.deepEqual(publishedBlogSlugs(path.join(RAIZ, 'src/content/blog')), [], mensaje);
+  assert.deepEqual(posts, [], 'hay artículos con Post del kit, que no tiene slot head: deben ir dentro de Sitio');
+  for (const slug of publishedBlogSlugs(path.join(RAIZ, 'src/content/blog'))) {
+    assert.ok(paginas.includes(`blog/${slug}.html`), `falta blog/${slug}.html`);
+  }
 });
 
 for (const archivo of paginas) {

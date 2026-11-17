@@ -1,7 +1,7 @@
 // Solo posterior a build: npm run check. Enlace «Saltar al contenido» del kit v1.4.2 en el HTML construido.
 // `Estandar` (aquí, vía Sitio.astro) lo emite como primer hijo del <body>: a.std-saltar hacia main#std-contenido, con
-// el texto en el idioma de la página («Skip to content» en /en/faq). `Post` (artículos del blog, hoy sin entradas)
-// emite a.mcco-saltar hacia main#mcco-contenido. El sitio no pone un enlace de salto propio: cada página tiene uno
+// el texto en el idioma de la página («Skip to content» en /en/faq). Los artículos del blog también van en Sitio, no en
+// el layout `Post` del kit (que emitiría a.mcco-saltar hacia main#mcco-contenido). El sitio no pone un enlace de salto propio: cada página tiene uno
 // solo, el del kit, y ese id lo lleva solo el único <main>. Ningún enlace interno a un ancla queda sin destino (de la
 // misma página, de otra del sitio o relativo, como ../index.html#contacto) y la hoja de cada página trae la regla
 // .std-saltar del kit, que lo oculta hasta recibir el foco. Las muestras estáticas de /muestras/ tienen su propio HTML

@@ -412,13 +412,51 @@
       "h1": "Blog",
       "canonical": "https://3d-ultra.cl/blog/",
       "alternates": [],
-      "robots": "noindex, nofollow",
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1",
       "jsonld": [],
       "anchors": [],
       "contacts": {
         "forms": [],
         "mailto": [],
         "whatsapp": [],
+        "contactAnchors": [
+          "/#contacto"
+        ]
+      },
+      "status": 200,
+      "expectedStatus": 200
+    },
+    "/blog/procedimiento-mantencion-animado-3d": {
+      "route": "/blog/procedimiento-mantencion-animado-3d",
+      "url": "https://3d-ultra.cl/blog/procedimiento-mantencion-animado-3d",
+      "lang": "es-cl",
+      "title": "Cómo se arma un procedimiento de mantención animado en 3D",
+      "description": "Qué necesitas para animar en 3D un procedimiento de mantención de tu camión, pala o cargador, cómo se ajusta el modelo y qué recibe tu equipo.",
+      "h1": "Cómo se arma un procedimiento de mantención animado en 3D",
+      "canonical": "https://3d-ultra.cl/blog/procedimiento-mantencion-animado-3d",
+      "alternates": [],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1",
+      "jsonld": [
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BlogPosting\",\n  \"author\": {\n    \"@type\": \"Person\",\n    \"jobTitle\": \"CEO de MCCO Group\",\n    \"name\": \"Mario Cabrera\",\n    \"worksFor\": {\n      \"@id\": \"https://3d-ultra.cl/#organization\"\n    }\n  },\n  \"citation\": [\n    \"https://3d-ultra.cl/biblioteca/\",\n    \"https://3d-ultra.cl/biblioteca/komatsu-930e-5\",\n    \"https://3d-ultra.cl/biblioteca/pala-ph-4100xpc\",\n    \"https://3d-ultra.cl/biblioteca/sandvik-lh621\"\n  ],\n  \"dateModified\": \"2026-11-16\",\n  \"datePublished\": \"2026-11-16\",\n  \"description\": \"Qué necesitas para animar en 3D un procedimiento de mantención de tu camión, pala o cargador, cómo se ajusta el modelo y qué recibe tu equipo.\",\n  \"headline\": \"Cómo se arma un procedimiento de mantención animado en 3D\",\n  \"image\": \"https://3d-ultra.cl/og.webp\",\n  \"inLanguage\": \"es-CL\",\n  \"mainEntityOfPage\": {\n    \"@id\": \"https://3d-ultra.cl/blog/procedimiento-mantencion-animado-3d\",\n    \"@type\": \"WebPage\"\n  },\n  \"publisher\": {\n    \"@type\": \"Organization\",\n    \"logo\": {\n      \"@type\": \"ImageObject\",\n      \"url\": \"https://3d-ultra.cl/logo.png\"\n    },\n    \"name\": \"3D Ultra\",\n    \"url\": \"https://3d-ultra.cl/\"\n  },\n  \"wordCount\": 949\n}",
+        "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"BreadcrumbList\",\n  \"itemListElement\": [\n    {\n      \"@type\": \"ListItem\",\n      \"item\": \"https://3d-ultra.cl/\",\n      \"name\": \"Inicio\",\n      \"position\": 1\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"item\": \"https://3d-ultra.cl/blog/\",\n      \"name\": \"Blog\",\n      \"position\": 2\n    },\n    {\n      \"@type\": \"ListItem\",\n      \"item\": \"https://3d-ultra.cl/blog/procedimiento-mantencion-animado-3d\",\n      \"name\": \"Cómo se arma un procedimiento de mantención animado en 3D\",\n      \"position\": 3\n    }\n  ]\n}"
+      ],
+      "anchors": [
+        "#del-modelo-de-referencia-a-tu-equipo",
+        "#piezas-ordenadas-por-sistema",
+        "#recorrido-3d-del-equipo",
+        "#se-parte-del-procedimiento-escrito-vigente",
+        "#std-contenido",
+        "#std-gnav-enlaces",
+        "#videos-del-procedimiento"
+      ],
+      "contacts": {
+        "forms": [],
+        "mailto": [
+          "mcabrera@mccocopper.cl"
+        ],
+        "whatsapp": [
+          "https://wa.me/56979860843?text=Hola%2C%20vengo%20de%203d-ultra.cl%20(C%C3%B3mo%20se%20arma%20un%20procedimiento%20de%20mantenci%C3%B3n%20animado%20en%203D)%20y%20quiero%20cotizar."
+        ],
         "contactAnchors": [
           "/#contacto"
         ]
