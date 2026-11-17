@@ -1,6 +1,6 @@
 # web-3d-ultra-cl — 3d-ultra.cl
 
-Web de **3D Ultra** (gemelos digitales, plantas virtuales y simulación para minería y fundición de cobre), división de MCCO Group SpA. Conforme al **Estándar Web MCCO v2**: Astro 7 + `@mcco/web-kit` + Cloudflare Pages, verificación `mcco-check` en CI, deploy automático en cada merge a `main`.
+Web de **3D Ultra** (gemelos digitales, plantas virtuales y simulación para minería y fundición de cobre), división de MCCO Group. Conforme al **Estándar Web MCCO v2**: Astro 7 + `@mcco/web-kit` + Cloudflare Pages, verificación `mcco-check` en CI, deploy automático en cada merge a `main`.
 
 - Contrato para agentes y humanos: [`AGENTS.md`](AGENTS.md)
 - Manifiesto del sitio: [`site.yaml`](site.yaml)

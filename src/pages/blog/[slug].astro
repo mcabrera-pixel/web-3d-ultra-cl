@@ -1,8 +1,16 @@
 ---
 // Página de artículo: una ruta por entrada de la colección blog → /blog/<slug> (archivo <slug>.html).
-import Post from '@mcco/web-kit/layouts/Post.astro';
+// Va dentro de Sitio (navegación, sub-navegación, pie, favicon y enlace de salto del sitio) con las piezas del artículo
+// del kit: cápsula, fuentes, FAQ (con su FAQPage), relacionados y Cta. El BlogPosting y el BreadcrumbList son los que
+// arma el layout Post del kit, que no tiene slot head ni la barra del sitio. Mismo camino que mcco.cl (PR #9).
+import Sitio from '../../layouts/Sitio.astro';
+import Bloque from '@mcco/web-kit/components/estandar/Bloque.astro';
+import AiCapsule from '@mcco/web-kit/components/AiCapsule.astro';
+import Faq from '@mcco/web-kit/components/Faq.astro';
+import Cta from '@mcco/web-kit/components/Cta.astro';
+import { loadSite } from '@mcco/web-kit/lib/site.mjs';
+import { canonicalFor } from '@mcco/web-kit/lib/routes.mjs';
 import { getCollection, render } from 'astro:content';
-import '../../styles/theme.css';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -10,7 +18,89 @@ export async function getStaticPaths() {
 }
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const site = loadSite();
+const d = post.data;
+const url = canonicalFor(Astro.url.pathname, site.domain);
+const author = d.author ?? site.content.author ?? { name: site.name, role: '' };
+const published = d.date.toISOString().slice(0, 10);
+const modified = (d.updated ?? d.date).toISOString().slice(0, 10);
+const words = post.body ? post.body.split(/\s+/).filter(Boolean).length : undefined;
+const minutes = words ? Math.max(1, Math.round(words / 200)) : undefined;
+const hero = new URL(d.hero?.src ?? site.seo.og_image ?? '/og.webp', site.domain).href;
+const logo = new URL(site.seo.logo ?? '/logo.png', site.domain).href;
+
+const blogPosting: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: d.title,
+  description: d.description,
+  image: hero,
+  datePublished: published,
+  dateModified: modified,
+  inLanguage: site.lang,
+  author: { '@type': 'Person', name: author.name, jobTitle: author.role, worksFor: { '@id': `${site.domain}/#organization` } },
+  publisher: { '@type': 'Organization', name: site.name, url: `${site.domain}/`, logo: { '@type': 'ImageObject', url: logo } },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+};
+if (words) blogPosting.wordCount = words;
+if (d.sources?.length) blogPosting.citation = d.sources.map((s: any) => s.url);
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site.domain}/` },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${site.domain}/blog/` },
+    { '@type': 'ListItem', position: 3, name: d.title, item: url },
+  ],
+};
+const fecha = d.date.toLocaleDateString('es-CL', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Santiago' });
 ---
-<Post post={post}>
-  <Content />
-</Post>
+<Sitio title={d.seo_title ?? d.title} description={d.description} type="article" ogImage={hero}
+       published={published} modified={modified} jsonld={[blogPosting, breadcrumb]}>
+  <Bloque tono="claro">
+    <article class="post" data-mcco="post">
+      <header class="post__header">
+        <nav aria-label="Ruta" class="post__crumbs">
+          <a href="/">Inicio</a> › <a href="/blog/">Blog</a> › <span>{d.category}</span>
+        </nav>
+        <h1 class="std-h1">{d.title}</h1>
+        <p class="post__meta">
+          Por <strong>{author.name}</strong>{author.role && <span>, {author.role}</span>}
+          · <time datetime={published}>{fecha}</time>{minutes && <span> · {minutes} min de lectura</span>}
+        </p>
+        {d.hero && <img class="post__hero" src={d.hero.src} alt={d.hero.alt} width="1200" height="675" fetchpriority="high" />}
+      </header>
+      <AiCapsule text={d.capsule} />
+      <div class="post__contenido"><Content /></div>
+      {d.sources?.length > 0 && (
+        <section class="post__fuentes">
+          <h2>Fuentes</h2>
+          <ul>{d.sources.map((s: any) => <li><a href={s.url} rel="noopener nofollow">{s.title}</a></li>)}</ul>
+        </section>
+      )}
+      <Faq items={d.faq} />
+      <section class="post__relacionados">
+        <h2>Servicios relacionados</h2>
+        <ul>
+          {d.related.map((r: any) => <li><a href={r.url}>{r.anchor}</a></li>)}
+          {d.sister && <li><a href={d.sister.url} rel="noopener">{d.sister.anchor}</a> <small>({d.sister.site})</small></li>}
+        </ul>
+      </section>
+      <Cta ref={d.title} />
+    </article>
+  </Bloque>
+</Sitio>
+<style>
+  .post { max-width: 760px; margin: 0 auto; text-align: left; }
+  .post__crumbs { font-size: 0.8125rem; color: var(--std-texto-2, var(--mcco-color-muted)); margin-bottom: 0.75rem; }
+  .post__crumbs a { color: inherit; }
+  .post__meta { font-size: 0.9375rem; color: var(--std-texto-2, var(--mcco-color-muted)); margin: 0.5rem 0 var(--mcco-space); }
+  .post__hero { width: 100%; height: auto; border-radius: var(--mcco-radius); margin: var(--mcco-space) 0; }
+  .post__contenido :global(h2) { margin-top: calc(var(--mcco-space) * 2); }
+  .post__contenido :global(p), .post__contenido :global(li) { line-height: 1.6; }
+  .post__contenido :global(table) { width: 100%; border-collapse: collapse; margin: var(--mcco-space) 0; font-size: 0.9375rem; }
+  .post__contenido :global(th), .post__contenido :global(td) { border: 1px solid var(--mcco-color-border); padding: 0.5rem 0.625rem; text-align: left; vertical-align: top; }
+  .post__fuentes ul, .post__relacionados ul { padding-left: 1.25rem; }
+  .post a { min-height: 24px; }
+</style>

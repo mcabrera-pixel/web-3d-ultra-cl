@@ -33,7 +33,7 @@ content:
   cadence: viernes                  # calendario del motor de contenido (3dultra publica los viernes)
   author:
     name: Mario Cabrera
-    role: Gerente General, MCCO Group SpA
+    role: CEO de MCCO Group
 
 seo:
   og_image: /og.webp                # recorte 1200×630 del render ens.png original (8,9 MB → WebP)
