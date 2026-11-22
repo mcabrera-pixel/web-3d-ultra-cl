@@ -1,11 +1,11 @@
 // El paquete @mcco/web-kit, el lockfile y los dos workflows del sitio apuntan al mismo tag del kit (docs/LOCKFILE.md del
-// kit: paquete, lockfile y workflows van juntos). El tag v1.4.4 (6468c7d) apunta al commit cbd315b del kit.
+// kit: paquete, lockfile y workflows van juntos). El tag v1.5.3 apunta al commit 7567dc1 del kit.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
-const TAG = 'v1.4.4';
-const COMMIT = 'cbd315b7b350ba34ca00abc54473a6295deb359b';
+const TAG = 'v1.5.3';
+const COMMIT = '7567dc1c9ae4a7738c5320e17a1b5fe595fe8252';
 const ESPEC = `github:mcabrera-pixel/mcco-web-kit#${TAG}`;
 const leer = (ruta) => fs.readFileSync(new URL(`../${ruta}`, import.meta.url), 'utf8');
 
