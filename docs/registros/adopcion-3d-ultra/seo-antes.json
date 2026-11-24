@@ -777,6 +777,37 @@
       },
       "status": 404,
       "expectedStatus": 404
+    },
+    "/blog/gaussian-splatting-o-escaneo-laser-planta": {
+      "route": "/blog/gaussian-splatting-o-escaneo-laser-planta",
+      "url": "https://3d-ultra.cl/blog/gaussian-splatting-o-escaneo-laser-planta",
+      "lang": "es-cl",
+      "title": "Gaussian splatting o escaneo láser: qué pedir en tu planta",
+      "description": "Qué es el Gaussian splatting, en qué ayuda dentro de una planta minera y por qué para medir, comparar campañas o modelar sigues necesitando el escaneo láser.",
+      "h1": "Gaussian splatting o escaneo láser: qué pedir en tu planta",
+      "canonical": "https://3d-ultra.cl/blog/gaussian-splatting-o-escaneo-laser-planta",
+      "alternates": [],
+      "robots": "index, follow, max-image-preview:large, max-snippet:-1",
+      "jsonld": [],
+      "anchors": [
+        "#lo-que-un-splat-no-trae",
+        "#std-contenido",
+        "#std-gnav-enlaces"
+      ],
+      "contacts": {
+        "forms": [],
+        "mailto": [
+          "mcabrera@mccocopper.cl"
+        ],
+        "whatsapp": [
+          "https://wa.me/56979860843?text=Hola%2C%20vengo%20de%203d-ultra.cl%20(Gaussian%20splatting%20o%20escaneo%20l%C3%A1ser%3A%20qu%C3%A9%20pedir%20en%20tu%20planta)%20y%20quiero%20cotizar."
+        ],
+        "contactAnchors": [
+          "/#contacto"
+        ]
+      },
+      "status": 200,
+      "expectedStatus": 200
     }
   }
 }
